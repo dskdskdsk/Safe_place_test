@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 70.4.1
-  Файл: 70.4.1_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 70.4.2
+  Файл: 70.4.2_safe-place.html
+  Зміни версії 70.4.2 відносно 70.4.1:
+  1. Відсутні медіа більше не блокують ZIP без пояснення: до запису даних
+     показано кількість і вибір скасувати / відновити доступне.
+     Посилання на відсутні медіа збережено для подальшого відновлення.
+  2. Помилки медіа мають окремі діагностичні коди для маніфесту,
+     дублів ID, порожнього аудіо, відсутнього audioId та некоректного data URL.
+  3. Фото із ZIP отримують MIME відповідно до розширення файла.
+  4. APP_VERSION у діагностиці виправлено з 68.1 на 70.4.2.
+  5. Незмінні: нові ID для медіа, транзакція IndexedDB, перевірка конфлікту
+     стану й відкат нових медіа при невдалому збереженні журналу.
+
   Зміни версії 70.4.1 відносно 70.4:
   1. Для кнопок, перемикачів, чипів емоцій та інших явно визначених
      елементів керування вимкнено виділення тексту і touch-callout WebKit.
@@ -302,7 +313,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 70.4.1</title>
+<title>Safe Place · 70.4.2</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#01696f">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -1867,6 +1878,12 @@ function migrateTagsToCanonical(state){
 // ═══ i18n ═══
 const LANG={
 uk:{
+import_missing_title:"В архіві є не всі медіа",
+import_missing_text:"Не знайдено фото: {photos}. Голосових: {voices}. Файлів немає ні серед розпізнаних медіа архіву, ні в локальному сховищі. Це не означає, що весь архів пошкоджений.\n\nМожна відновити записи й доступні медіа. Посилання на відсутні файли залишаться для подальшого відновлення. Дні, які вже є в щоденнику, буде оновлено даними з архіву.",
+import_available:"Відновити доступне",
+import_cancel:"Скасувати",
+import_media_title:"Не вдалося перевірити медіа архіву",
+import_media_detail:"Імпорт зупинено до збереження журналу. Відкрий технічні подробиці: там зазначено конкретну причину.",
   modal_close:'Закрити вікно',
 ai_consent_title:"Надіслати текст до Google Gemini?",
 ai_consent_text:"Ця дія передасть Google текст запиту нижче: вибрані записи або дайджести та пов’язані дані щоденника. Обробка відбувається поза пристроєм за умовами Google Gemini API. Фото й аудіофайли не надсилаються.\n\nМожна скасувати й продовжити користуватися щоденником локально. Аналіз великого періоду може потребувати кількох окремих запитів.",
@@ -1928,7 +1945,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 70.4.1',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 70.4.2',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -1951,6 +1968,12 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   months_gen:['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'],
 },
 en:{
+import_missing_title:"Some media are missing",
+import_missing_text:"Photos not found: {photos}. Voice files: {voices}. These files were found neither among recognized archive media nor in local storage. This does not mean the entire archive is damaged.\n\nYou can restore entries and available media. References to missing files will be retained for later recovery. Existing days will be updated with the archive data.",
+import_available:"Restore available data",
+import_cancel:"Cancel",
+import_media_title:"Could not validate archive media",
+import_media_detail:"Import stopped before saving the journal. Open technical details for the specific reason.",
   modal_close:'Close dialog',
 ai_consent_title:"Send text to Google Gemini?",
 ai_consent_text:"This action sends Google the request text below: selected entries or digests and related journal data. Processing takes place outside your device under Google Gemini API terms. Photo and audio files are not sent.\n\nYou can cancel and continue using the journal locally. Analysis of a long period may require several separate requests.",
@@ -2012,7 +2035,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 70.4.1',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 70.4.2',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4418,7 +4441,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='68.1';
+const APP_VERSION='70.4.2';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -4603,7 +4626,7 @@ function reportError(err,opts){
   const kind=classifyError(err,ctx);
   if(kind==='aborted')return Promise.resolve(null);
   logError(ctx,err);
-  const tt=_errTexts(kind,ctx,en);
+  const tt=kind==='import_media'?{title:t('import_media_title'),text:t('import_media_detail')}:_errTexts(kind,ctx,en);
   const e=(err&&typeof err==='object')?err:{message:String(err||'')};
   const details=ctx+' / '+kind+'\n'+(e.name?e.name+': ':'')+(e.message||'')+(e.info?'\n'+JSON.stringify(e.info):'');
   const closeA={label:en?'Close':'Закрити',value:null};
@@ -7284,7 +7307,7 @@ document.getElementById('import-btn').addEventListener('click',()=>document.getE
 async function restoreVoiceEntriesFromZip(zip){
   const wrapped={files:Object.fromEntries(Object.entries(zip.files).map(([name,z])=>['voice/'+name,z]))};
   const res=await safeImportJournal({days:{}},wrapped,true);
-  return {restoredFiles:res.voices,restoredEntries:res.voices,failedFiles:0,manifestFound:true,manifestError:false};
+  return {restoredFiles:res.voices,restoredEntries:res.voices,failedFiles:res.voiceFailed,manifestFound:true,manifestError:false};
 }
 let _importBusy=false;
 function importMediaTransaction(db,records,remove=false){
@@ -7304,6 +7327,7 @@ async function safeImportJournal(input,zip=null,voiceOnly=false){
   _importBusy=true;
   let db,staged=false,committed=false;
   const records=[];
+  const mediaError=reason=>new AppError('import_media',reason);
   try{
     const before=JSON.stringify(S),diskBefore=localStorage.getItem(SK);
     const imp=validateJournal(input);
@@ -7317,49 +7341,58 @@ async function safeImportJournal(input,zip=null,voiceOnly=false){
     const manifests=Object.keys(files).filter(n=>/^voice\/manifest\.json$/i.test(n)&&!files[n].dir);
     if(manifests.length){
       const manifest=JSON.parse(await files[manifests[0]].async('string'));
-      if(!manifest||!Array.isArray(manifest.entries))throw new Error(t('import_media'));
+      if(!manifest||!Array.isArray(manifest.entries))throw mediaError('VOICE_MANIFEST_INVALID');
       for(const en of manifest.entries){
-        if(!en||typeof en.audioId!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(en.dayKey))throw new Error(t('import_media'));
+        if(!en||typeof en.audioId!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(en.dayKey))throw mediaError('VOICE_MANIFEST_ENTRY_INVALID');
         if(!imp.days[en.dayKey])imp.days[en.dayKey]=voiceOnly?JSON.parse(JSON.stringify(S.days[en.dayKey]||{})):{};
         const d=imp.days[en.dayKey];
         if(!d.summaryEntries)d.summaryEntries=[];
         if(!d.summaryEntries.some(e=>e.type==='voice'&&e.audioId===en.audioId)){
-          if(d.summaryEntries.some(e=>e.id===en.entryId))throw new Error(t('import_media'));
+          if(d.summaryEntries.some(e=>e.id===en.entryId))throw mediaError('VOICE_ENTRY_ID_CONFLICT');
           d.summaryEntries.push({id:en.entryId||crypto.randomUUID(),type:'voice',text:'',audioId:en.audioId,duration:en.duration||0,time:en.time||'00:00',createdAt:en.createdAt||Date.now(),includeInDigest:en.includeInDigest!==false,emotions:[]});
         }
       }
-    }else if(voiceOnly)throw new Error(t('import_media'));
+    }else if(voiceOnly)throw mediaError('VOICE_MANIFEST_MISSING');
     const photoFiles=new Map(),voiceFiles=new Map();
     for(const [name,f] of Object.entries(files)){
       if(f.dir)continue;
       let m=name.match(/^photos\/([^/]+)\.(?:jpg|jpeg|png|webp)$/i),map=photoFiles;
       if(!m){m=name.match(/^voice\/([^/]+)\.webm$/i);map=voiceFiles;}
-      if(m){if(map.has(m[1]))throw new Error(t('import_media'));map.set(m[1],f);}
+      if(m){if(map.has(m[1]))throw mediaError('DUPLICATE_MEDIA_ID');map.set(m[1],f);}
     }
     const photos=new Map(),voices=new Map();let missingPhotos=0,missingVoices=0;
     const pd=imp.photoData||{};
     for(const d of Object.values(imp.days)){
       for(const id of d.photoIds||[])if(!photos.has(id))photos.set(id,null);
       for(const e of d.summaryEntries||[])if(e.type==='voice'){
-        if(typeof e.audioId!=='string'||!e.audioId)throw new Error(t('import_media'));
+        if(typeof e.audioId!=='string'||!e.audioId)throw mediaError('VOICE_AUDIO_ID_MISSING');
         if(!voices.has(e.audioId))voices.set(e.audioId,null);
       }
     }
     for(const [id] of photos){
       let dataUrl=pd[id];
-      if(photoFiles.has(id))dataUrl=await blobToDataURL(await photoFiles.get(id).async('blob'));
+      if(photoFiles.has(id)){
+        const file=photoFiles.get(id),ext=file.name.split('.').pop().toLowerCase();
+        const mime=ext==='png'?'image/png':ext==='webp'?'image/webp':'image/jpeg';
+        dataUrl=await blobToDataURL(new Blob([await file.async('uint8array')],{type:mime}));
+      }
       if(dataUrl!==undefined){
-        if(typeof dataUrl!=='string'||!/^data:[^,]*;base64,[A-Za-z0-9+/=\s]+$/.test(dataUrl))throw new Error(t('import_media'));
+        if(typeof dataUrl!=='string'||!/^data:[^,]*;base64,[A-Za-z0-9+/=\s]+$/.test(dataUrl))throw mediaError('PHOTO_DATA_URL_INVALID');
         const fresh='imp_'+crypto.randomUUID();photos.set(id,fresh);records.push({store:_PST,value:{id:fresh,dataUrl}});
       }else if(!await get(_PST,id)){missingPhotos++;}
     }
     for(const [id] of voices){
       if(voiceFiles.has(id)){
-        const blob=await voiceFiles.get(id).async('blob');if(!blob.size)throw new Error(t('import_media'));
+        const blob=await voiceFiles.get(id).async('blob');if(!blob.size)throw mediaError('VOICE_FILE_EMPTY');
         const fresh='imp_'+crypto.randomUUID();voices.set(id,fresh);records.push({store:_VST,value:{id:fresh,blob}});
       }else if(!await get(_VST,id)){missingVoices++;}
     }
-    if(zip&&(missingPhotos||missingVoices))throw new Error(t('import_media'));
+    if(zip&&(missingPhotos||missingVoices)){
+      const accepted=await showDialog({kind:'warning',title:t('import_missing_title'),
+        text:t('import_missing_text').replace('{photos}',String(missingPhotos)).replace('{voices}',String(missingVoices)),
+        dismissValue:false,actions:[{label:t('import_cancel'),value:false},{label:t('import_available'),primary:true,value:true}]});
+      if(accepted!==true)throw new AppError('aborted','Import cancelled before media write');
+    }
     for(const d of Object.values(imp.days)){
       if(d.photoIds)d.photoIds=d.photoIds.map(id=>photos.get(id)||id);
       for(const e of d.summaryEntries||[])if(e.type==='voice')e.audioId=voices.get(e.audioId)||e.audioId;
@@ -10559,7 +10592,6 @@ if(!_storageBlocked)finalizePendingWipe();
 
 try{if(sessionStorage.getItem('journal_wipe_warn')){sessionStorage.removeItem('journal_wipe_warn');setTimeout(()=>_wipeWarn(true),700);}}catch(e){}
 </script>
-
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

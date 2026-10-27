@@ -15,3 +15,5 @@ Each suite serves this repository on a temporary loopback port and uses clean br
 Results/screenshots go to `tests/artifacts/`. `regression.py` accepts case names to rerun individual cases. The old two-tab overwrite test is replaced by single-writer and legacy-conflict tests in `test_fixes.py`.
 
 71.0 design checks: `python tests/design71.py` — both themes, eight viewport sizes, long synthetic content, root font reflow, overflow and touch action geometry. Screenshots and results: `tests/artifacts/design71/`. This is Chromium emulation, not physical iPhone testing.
+
+71.1 theme checks: `python tests/clay711.py` — compares dark computed styles against git tag `v71.0`, checks final light entry/delete/voice states and text contrast. Requires repository history and the tag. Results: `tests/artifacts/clay711/`.

@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 71.0
-  Файл: 71.0_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 71.1
+  Файл: 71.1_safe-place.html
+  Зміни 71.1 — Глина й папір:
+  1. Світла тема: паперові нейтральні відтінки та глиняні акценти за палітрою Claude.
+  2. Світлі записи, пастельні вибрані стани, м’які рамки й тіні.
+  3. Контрастні інтерактивні відтінки глини. Темна тема та дані незмінні.
+
   Зміни 71.0 — Читабельність і адаптивність тем:
   1. Виправлено clamp, контраст тексту, теплу світлу палітру та заливки темної теми.
   2. Видимі дії записів на touch, більші кнопки, читабельні підписи.
@@ -333,19 +338,21 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 71.0</title>
+<title>Safe Place · 71.1</title>
 <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#01696f">
+<meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
 
 <style>
 :root,[data-theme="light"]{
-  --bg:rgb(245 242 236);--surface:rgb(255 253 249);--off:rgb(239 234 226);--dyn:rgb(226 219 209);
-  --div:rgb(224 217 207);--bdr:rgb(164 153 139);
-  --tx:#25221c;--txm:#5f5b53;--txf:rgb(107 101 92);
-  --pri:#01696f;--prih:#0c4e54;--prilo:#cedcd8;--fill:var(--pri);--fill-hover:var(--prih);
+  /* 71.1: Claude's paper neutrals and clay accent; darker interactive clay for contrast. */
+  --bg:rgb(250 249 245);--surface:rgb(255 254 251);--off:rgb(245 244 237);--dyn:rgb(240 238 230);
+  --div:rgb(232 230 220);--bdr:rgb(176 174 165);
+  --tx:rgb(38 38 36);--txm:rgb(94 93 89);--txf:rgb(115 114 108);
+  --clay:rgb(217 119 87);--pri:rgb(163 78 51);--prih:rgb(139 63 40);
+  --prilo:rgb(246 232 222);--fill:rgb(182 85 54);--fill-hover:rgb(163 72 43);
   --err:#a12c7b;--suc:#437a22;--gold:rgb(123 85 0);--org:rgb(158 74 0);--blu:#006494;--pur:#7a39bb;
-  --sh1:0 1px 2px oklch(0.2 0.01 80/.06);--sh2:0 4px 12px oklch(0.2 0.01 80/.08);--sh3:0 12px 32px oklch(0.2 0.01 80/.12);
+  --sh1:0 1px 2px oklch(from var(--tx) l c h/.025);--sh2:0 4px 12px oklch(from var(--tx) l c h/.05);--sh3:0 12px 32px oklch(from var(--tx) l c h/.10);
   --r1:.375rem;--r2:.5rem;--r3:.75rem;--r4:1rem;--rf:9999px;
   --ff:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --xs:clamp(.75rem,.7rem + .25vw,.875rem);--sm:clamp(.875rem,.8rem + .35vw,1rem);
@@ -1245,6 +1252,33 @@ html.modal-open .page{overflow-y:hidden}
  .ins-custom-picker{flex-wrap:wrap}
 }
 
+/* 71.1: paper and clay, scoped to light. Keep all dark component styles from 71.0. */
+[data-theme="light"] :is(.topbar,.bnav,.preset-bar){background:var(--bg);border-color:var(--div)}
+[data-theme="light"] .card{border-color:var(--div)}
+[data-theme="light"] .clabel{font-weight:600;letter-spacing:.035em}
+[data-theme="light"] .today-date{font-weight:500;line-height:1.2}
+[data-theme="light"] :is(.preset-btn,.notes-sw-btn,.ins-tab,.rec-cat-btn,.media-tab){background:transparent;border-color:var(--div)}
+[data-theme="light"] :is(.preset-btn,.notes-sw-btn,.ins-tab,.rec-cat-btn,.media-tab).active{background:var(--prilo);color:var(--pri);border-color:oklch(from var(--clay) l c h/.5)}
+[data-theme="light"] .ni.active{color:var(--pri)}
+[data-theme="light"] .ni.active svg{background:var(--prilo);box-shadow:0 0 0 5px var(--prilo);border-radius:var(--r1)}
+[data-theme="light"] :is(.status-chip,.echip.unsel){background:var(--off);border-color:var(--div)}
+[data-theme="light"] .summary-entry{background:var(--off);color:var(--tx);border:1px solid var(--div);border-left:3px solid var(--clay);box-shadow:none;padding:var(--s3)}
+[data-theme="light"] .summary-entry-time{color:var(--txf)}
+[data-theme="light"] .summary-entry-btn{background:var(--surface);color:var(--txm);border:1px solid var(--div)}
+[data-theme="light"] .summary-entry-btn:hover{background:var(--prilo);color:var(--pri)}
+[data-theme="light"] .summary-entry-del-armed{background:var(--err);color:var(--surface);border-color:var(--err)}
+[data-theme="light"] .summary-entry-excluded{opacity:1;color:var(--txm);border-style:dashed;border-left-color:var(--txf)}
+[data-theme="light"] .voice-msg{background:var(--surface);border-color:var(--div)}
+[data-theme="light"] .voice-msg-play{background:var(--fill);color:var(--surface)}
+[data-theme="light"] .voice-msg-time{color:var(--txm)}
+[data-theme="light"] .voice-msg-wave{background:repeating-linear-gradient(90deg,var(--pri) 0 2px,transparent 2px 5px)}
+[data-theme="light"] .voice-msg-wave-fill{background:oklch(from var(--surface) l c h/.65)}
+[data-theme="light"] .wx-card{background:var(--dyn);color:var(--tx);border:1px solid var(--div)}
+[data-theme="light"] :is(.ibank-item,.ibank-tabs){background:var(--surface);border-color:var(--div)}
+[data-theme="light"] .cal-day{box-shadow:none;border-color:var(--div)}
+[data-theme="light"] #ai-day-result{background:var(--off);border-color:var(--div);border-left-color:var(--clay)}
+[data-theme="light"] #ai-ins-btn{background:var(--fill)!important}
+
 </style>
 <script>
 (function(){
@@ -2017,7 +2051,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.0',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.1',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2116,7 +2150,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.0',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.1',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -3358,6 +3392,8 @@ function nowTime(){const d=new Date();return`${pad(d.getHours())}:${pad(d.getMin
 // ═══ THEME ═══
 function applyTheme(dark){
   document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  const chromeColor=document.querySelector('meta[name="theme-color"]');
+  if(chromeColor)chromeColor.content=dark?'rgb(23 22 20)':'rgb(250 249 245)';
   document.documentElement.style.setProperty('color-scheme',dark?'dark':'light');
   const b=document.getElementById('theme-btn');
   b.innerHTML=dark
@@ -4581,7 +4617,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='71.0';
+const APP_VERSION='71.1';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');

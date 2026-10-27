@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 71.2
-  Файл: 71.2_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 71.3
+  Файл: 71.3_safe-place.html
+  Зміни 71.3 — Спокійні кнопки та чистий календар:
+  1. Натискання без масштабування й анімованого обідка; легка зміна прозорості.
+  2. Назва місяця без фону та рамки; стрілки без контуру й тіней.
+  3. Типографіка 70.5, позначення вибору та дані збережені.
+
   Зміни 71.2 — Звична типографіка та помітні кнопки:
   1. Повернено текстові параметри 70.5, збережено глиняну палітру.
   2. Виправлено перекриття вибраних статусів у світлій темі.
@@ -343,7 +348,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 71.2</title>
+<title>Safe Place · 71.3</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -414,7 +419,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .row-input{display:flex;gap:var(--s2);align-items:flex-end}
 .add-btn{width:36px;height:36px;border-radius:var(--r2);background:var(--fill);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .add-btn:hover{background:var(--fill-hover)}
-.add-btn:active{transform:scale(.95)}
+.add-btn:active{opacity:.8}
 
 /* LISTS */
 .elist{list-style:none;margin-top:var(--s2);display:flex;flex-direction:column;gap:var(--s2)}
@@ -431,7 +436,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
   margin:4px 0;flex-basis:100%;opacity:.5;
 }
 .echip{padding:var(--s1) var(--s3);border-radius:var(--rf);font-size:var(--xs);font-weight:500;border:1.5px solid transparent;cursor:pointer;transition:all var(--tr);user-select:none}
-.echip:active{transform:scale(.96)}
+.echip:active{opacity:.8}
 .echip.unsel{background:var(--off);border-color:var(--bdr);color:var(--txm)}
 .sel-great{background:oklch(from var(--suc) l c h/.15);border-color:var(--suc);color:var(--suc)}
 .sel-good{background:oklch(from var(--pri) l c h/.15);border-color:var(--pri);color:var(--pri)}
@@ -457,7 +462,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 
 /* STREAK */
 .streak-badge{display:inline-flex;align-items:center;gap:4px;padding:var(--s1) var(--s3);background:oklch(from var(--org) l c h/.15);border-radius:var(--rf);font-size:var(--xs);font-weight:600;color:var(--org);cursor:pointer;transition:transform .15s ease;user-select:none}
-.streak-badge:active{transform:scale(.93)}
+.streak-badge:active{opacity:.8}
 .streak-badge.streak-s{color:var(--txm);background:oklch(from var(--tx) l c h/.08)}
 .streak-badge.streak-m{color:var(--gold);background:oklch(from var(--gold) l c h/.15)}
 .streak-badge.streak-l{color:var(--org);background:oklch(from var(--org) l c h/.15)}
@@ -486,7 +491,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 /* STATUS */
 .status-bar{padding:0 var(--s4) var(--s4);display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);}
 .status-chip{display:flex;align-items:center;justify-content:center;gap:6px;padding:var(--s2) var(--s4);border-radius:var(--rf);font-size:var(--sm);font-weight:500;border:1.5px solid var(--bdr);color:var(--txm);background:var(--off);cursor:pointer;transition:all var(--tr);}
-.status-chip:active{transform:scale(.96);}
+.status-chip:active{opacity:.8;}
 .status-chip.sel-work{background:oklch(from var(--blu) l c h/.15);border-color:var(--blu);color:var(--blu);}
 .status-chip.sel-home{background:oklch(from var(--suc) l c h/.15);border-color:var(--suc);color:var(--suc);}
 .status-chip.sel-travel{background:oklch(from var(--org) l c h/.15);border-color:var(--org);color:var(--org);}
@@ -577,7 +582,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 /* FAB */
 .fab{position:fixed;bottom:calc(68px + env(safe-area-inset-bottom) + 12px);right:16px;background:var(--fill);color:#fff;border-radius:var(--rf);padding:var(--s3) var(--s5);font-size:var(--sm);font-weight:600;box-shadow:var(--sh3);z-index:99;display:none;align-items:center;gap:var(--s2)}
 .fab.on{display:flex}
-.fab:active{transform:scale(.96)}
+.fab:active{opacity:.8}
 
 /* TODAY PAGE */
 .today-header{padding:var(--s5) var(--s4) var(--s2)}
@@ -617,7 +622,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .emotion-from-entry-edit-ta{flex:1 1 auto;min-width:0;font-size:11px;line-height:1.35;color:var(--tx);background:var(--off);border:1px solid var(--bdr);border-radius:var(--r1);padding:5px 6px;resize:none;font-family:inherit}
 .emotion-from-entry-edit-ta:focus{outline:none;border-color:var(--pri)}
 .emotion-from-entry-send-btn{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--fill);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .1s,opacity .15s}
-.emotion-from-entry-send-btn:active{transform:scale(.92)}
+.emotion-from-entry-send-btn:active{opacity:.8}
 .emotion-from-entry-send-btn:disabled{opacity:.4;cursor:default}
 .emotion-from-entry-send-btn svg{width:12px;height:12px;transform:translateX(-1px)}
 .emotion-from-entry-cancel-row{margin-top:5px;display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -657,7 +662,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .se-emo-comment-ta{flex:1 1 auto;min-width:0;min-height:28px;max-height:44px;font-size:11px;line-height:1.3;color:var(--tx);background:oklch(from var(--pri) l c h/.05);border:1px solid oklch(from var(--pri) l c h/.20);border-radius:var(--r1);padding:4px 6px;resize:none;font-family:inherit}
 .se-emo-comment-ta:focus{outline:none;border-color:var(--pri)}
 .se-emo-send-btn{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--fill);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .1s,opacity .15s}
-.se-emo-send-btn:active{transform:scale(.92)}
+.se-emo-send-btn:active{opacity:.8}
 .se-emo-send-btn:disabled{opacity:.4;cursor:default}
 .se-emo-send-btn svg{width:13px;height:13px;transform:translateX(-1px)}
 .se-emo-comment-footer-row{margin-top:5px;display:flex;align-items:center;justify-content:space-between;gap:8px}
@@ -871,9 +876,9 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 
     /* ── CALENDAR ── */
     .cal-nav{display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s3) var(--s2);}
-    .cal-nav-btn{width:36px;height:36px;border-radius:12px;border:1.5px solid var(--bdr);background:var(--off);color:var(--txm);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--tr);font-size:13px;box-shadow:0 1px 2px oklch(0% 0 0/.04)}
-    .cal-nav-btn:hover{background:var(--dyn);border-color:var(--bdr);color:var(--tx);transform:translateY(-1px);box-shadow:0 3px 8px oklch(0% 0 0/.06)}
-    .cal-nav-label{font-size:16px;font-weight:800;color:var(--tx);padding:6px 16px;border-radius:12px;background:var(--off);border:1.5px solid var(--bdr);letter-spacing:.01em}
+    .cal-nav-btn{width:36px;height:36px;border-radius:12px;border:0;background:var(--off);color:var(--txm);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--tr),color var(--tr),opacity var(--tr);font-size:13px;box-shadow:none}
+    @media(hover:hover){.cal-nav-btn:hover{background:var(--dyn);color:var(--tx)}}
+    .cal-nav-label{font-size:16px;font-weight:800;color:var(--tx);padding:6px 16px;border-radius:0;background:transparent;border:0;letter-spacing:.01em}
     .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;padding:var(--s2) var(--s3) var(--s3);width:100%;box-sizing:border-box;overflow:hidden;}
     .cal-dow{text-align:center;font-size:9px;color:var(--txf);padding:0 0 2px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.85}
     .cal-day{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:4px;padding:6px;border-radius:var(--r2);cursor:pointer;transition:transform var(--tr),background var(--tr),border-color var(--tr),box-shadow var(--tr);aspect-ratio:auto;min-height:72px;min-width:0;box-sizing:border-box;background:var(--off);border:1px solid oklch(from var(--tx) l c h/.06);box-shadow:0 1px 0 oklch(0% 0 0/.03)}
@@ -1130,18 +1135,18 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .summary-compose{display:flex;flex-direction:row;align-items:flex-end;gap:var(--s2);width:100%}
 .summary-compose .summary-wrap{flex:1 1 auto;min-width:0}
 .summary-send-btn{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--fill);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .1s,opacity .15s}
-.summary-send-btn:active{transform:scale(.92)}
+.summary-send-btn:active{opacity:.8}
 .summary-send-btn:disabled{opacity:.4;cursor:default}
 .summary-send-btn svg{width:18px;height:18px;transform:translateX(-1px)}
 
 .compose-btn-col{flex-shrink:0;display:flex;flex-direction:column;gap:var(--s2)}
 .voice-mic-btn{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--off);color:var(--txm);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr)}
 .voice-mic-btn svg{width:17px;height:17px}
-.voice-mic-btn:active{transform:scale(.92)}
+.voice-mic-btn:active{opacity:.8}
 .voice-mic-btn:hover{color:var(--pri);border-color:var(--pri)}
 .voice-stop-btn{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--err);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .1s}
 .voice-stop-btn svg{width:14px;height:14px}
-.voice-stop-btn:active{transform:scale(.92)}
+.voice-stop-btn:active{opacity:.8}
 @keyframes voice-rec-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
 .voice-rec-wrap{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:8px;background:oklch(from var(--err) l c h/.08);border:1px solid oklch(from var(--err) l c h/.3);border-radius:var(--r2);padding:10px 12px;height:44px;box-sizing:border-box}
 .voice-rec-dot{width:10px;height:10px;border-radius:50%;background:var(--err);flex-shrink:0;animation:voice-rec-pulse 1.1s ease-in-out infinite}
@@ -1280,9 +1285,9 @@ html.modal-open .page{overflow-y:hidden}
 [data-theme="light"] #ai-day-result{background:var(--off);border-color:var(--div);border-left-color:var(--clay)}
 [data-theme="light"] #ai-ins-btn{background:var(--fill)!important}
 
-/* 71.2: visible press and selected states, without changing type metrics. */
+/* 71.3: quiet opacity-only press feedback; selected state stays visible. */
 .status-chip:is(.sel-work,.sel-home,.sel-travel,.sel-other,.cs-sel){box-shadow:inset 0 0 0 1px currentColor}
-:is(button,.status-chip,.echip,.preset-btn,.notes-sw-btn,.media-tab,.ins-tab,.rec-cat-btn):active{outline:2px solid var(--pri);outline-offset:2px}
+:is(button,.status-chip,.echip,.preset-btn,.notes-sw-btn,.media-tab,.ins-tab,.rec-cat-btn):active{opacity:.8}
 
 </style>
 <script>
@@ -2056,7 +2061,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.2',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.3',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2155,7 +2160,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.2',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.3',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4622,7 +4627,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='71.2';
+const APP_VERSION='71.3';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');

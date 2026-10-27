@@ -19,3 +19,5 @@ Results/screenshots go to `tests/artifacts/`. `regression.py` accepts case names
 71.1 theme checks: `python tests/clay711.py` — compares dark computed styles against git tag `v71.0`, checks final light entry/delete/voice states and text contrast. Requires repository history and the tag. Results: `tests/artifacts/clay711/`.
 
 71.2: `python tests/type712.py` compares typography to `v70.5` and verifies status selection and press feedback in both themes. Requires the v70.5 git tag.
+
+71.3: `python tests/controls713.py` supersedes the 71.2 outline expectation with opacity feedback and verifies calendar navigation/chrome while comparing typography to `v70.5`.

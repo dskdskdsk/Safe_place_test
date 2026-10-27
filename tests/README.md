@@ -17,3 +17,5 @@ Results/screenshots go to `tests/artifacts/`. `regression.py` accepts case names
 71.0 design checks: `python tests/design71.py` — both themes, eight viewport sizes, long synthetic content, root font reflow, overflow and touch action geometry. Screenshots and results: `tests/artifacts/design71/`. This is Chromium emulation, not physical iPhone testing.
 
 71.1 theme checks: `python tests/clay711.py` — compares dark computed styles against git tag `v71.0`, checks final light entry/delete/voice states and text contrast. Requires repository history and the tag. Results: `tests/artifacts/clay711/`.
+
+71.2: `python tests/type712.py` compares typography to `v70.5` and verifies status selection and press feedback in both themes. Requires the v70.5 git tag.

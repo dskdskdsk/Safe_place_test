@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 71.1
-  Файл: 71.1_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 71.2
+  Файл: 71.2_safe-place.html
+  Зміни 71.2 — Звична типографіка та помітні кнопки:
+  1. Повернено текстові параметри 70.5, збережено глиняну палітру.
+  2. Виправлено перекриття вибраних статусів у світлій темі.
+  3. Додано видимі обідки вибору та натискання в обох темах.
+
   Зміни 71.1 — Глина й папір:
   1. Світла тема: паперові нейтральні відтінки та глиняні акценти за палітрою Claude.
   2. Світлі записи, пастельні вибрані стани, м’які рамки й тіні.
@@ -338,7 +343,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 71.1</title>
+<title>Safe Place · 71.2</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -355,9 +360,9 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
   --sh1:0 1px 2px oklch(from var(--tx) l c h/.025);--sh2:0 4px 12px oklch(from var(--tx) l c h/.05);--sh3:0 12px 32px oklch(from var(--tx) l c h/.10);
   --r1:.375rem;--r2:.5rem;--r3:.75rem;--r4:1rem;--rf:9999px;
   --ff:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  --xs:clamp(.75rem,.7rem + .25vw,.875rem);--sm:clamp(.875rem,.8rem + .35vw,1rem);
-  --base:clamp(1rem,.95rem + .25vw,1.125rem);--lg:clamp(1.125rem,1rem + .75vw,1.5rem);
-  --xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+  --xs:clamp(.75rem,.7rem+.25vw,.875rem);--sm:clamp(.875rem,.8rem+.35vw,1rem);
+  --base:clamp(1rem,.95rem+.25vw,1.125rem);--lg:clamp(1.125rem,1rem+.75vw,1.5rem);
+  --xl:clamp(1.5rem,1.2rem+1.25vw,2.25rem);
   --s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.25rem;--s6:1.5rem;--s8:2rem;
   --tr:180ms cubic-bezier(.16,1,.3,1);
 }
@@ -369,7 +374,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
   --sh1:0 1px 2px oklch(0 0 0/.2);--sh2:0 4px 12px oklch(0 0 0/.3);--sh3:0 12px 32px oklch(0 0 0/.4);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:none;-webkit-font-smoothing:antialiased}
 body{min-height:100dvh;font-family:var(--ff);font-size:var(--base);color:var(--tx);background:var(--bg);overscroll-behavior:none}
 button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 input,textarea,select{font:inherit;color:inherit;background:none}
@@ -392,7 +397,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 
 /* BOTTOM NAV */
 .bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;background:var(--surface);border-top:1px solid var(--bdr);display:flex;padding-bottom:env(safe-area-inset-bottom)}
-.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:var(--s2) var(--s1);min-height:56px;justify-content:center;color:var(--txm);font-size:11px;letter-spacing:0;font-weight:500}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:var(--s2) var(--s1);min-height:56px;justify-content:center;color:var(--txm);font-size:9px;letter-spacing:.03em;text-transform:uppercase;font-weight:500}
 .ni.active{color:var(--pri)}
 .ni svg{width:22px;height:22px}
 
@@ -1214,8 +1219,6 @@ html.modal-open .page{overflow-y:hidden}
 [data-theme="dark"]{color-scheme:dark}
 .summary-entry-voice{background:linear-gradient(135deg,var(--fill),var(--fill-hover))}
 .summary-entry-head{flex-wrap:wrap}
-.summary-entry-time,.etime,.ibank-meta,.habit-freq,.media-item-status{font-size:12px}
-.cal-dow,.statlbl,.nsml,.emotion-from-entry-time{font-size:11px}
 .summary-entry-text{overflow-wrap:anywhere}
 .add-btn,.summary-send-btn,.voice-mic-btn,.voice-stop-btn,.cal-nav-btn,.mpbtn,
 .voice-preview-play,.voice-msg-play,.ai-result-close{min-width:44px;min-height:44px}
@@ -1237,7 +1240,7 @@ html.modal-open .page{overflow-y:hidden}
 .undo-toast{width:max-content;max-width:calc(100% - 24px);white-space:normal;overflow-wrap:anywhere}
 .undo-btn{color:var(--bg);text-decoration:underline;min-height:44px;flex-shrink:0}
 .bnav{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
-.ni{min-width:0;text-align:center;line-height:1.25}
+.ni{min-width:0;text-align:center}
 .fab{right:max(16px,calc((100vw - 480px)/2 + 16px))}
 @media(hover:none),(pointer:coarse){
  .summary-entry-actions{opacity:1}
@@ -1255,13 +1258,11 @@ html.modal-open .page{overflow-y:hidden}
 /* 71.1: paper and clay, scoped to light. Keep all dark component styles from 71.0. */
 [data-theme="light"] :is(.topbar,.bnav,.preset-bar){background:var(--bg);border-color:var(--div)}
 [data-theme="light"] .card{border-color:var(--div)}
-[data-theme="light"] .clabel{font-weight:600;letter-spacing:.035em}
-[data-theme="light"] .today-date{font-weight:500;line-height:1.2}
 [data-theme="light"] :is(.preset-btn,.notes-sw-btn,.ins-tab,.rec-cat-btn,.media-tab){background:transparent;border-color:var(--div)}
 [data-theme="light"] :is(.preset-btn,.notes-sw-btn,.ins-tab,.rec-cat-btn,.media-tab).active{background:var(--prilo);color:var(--pri);border-color:oklch(from var(--clay) l c h/.5)}
 [data-theme="light"] .ni.active{color:var(--pri)}
 [data-theme="light"] .ni.active svg{background:var(--prilo);box-shadow:0 0 0 5px var(--prilo);border-radius:var(--r1)}
-[data-theme="light"] :is(.status-chip,.echip.unsel){background:var(--off);border-color:var(--div)}
+[data-theme="light"] :is(.status-chip:not(.sel-work):not(.sel-home):not(.sel-travel):not(.sel-other):not(.cs-sel),.echip.unsel){background:var(--off);border-color:var(--div)}
 [data-theme="light"] .summary-entry{background:var(--off);color:var(--tx);border:1px solid var(--div);border-left:3px solid var(--clay);box-shadow:none;padding:var(--s3)}
 [data-theme="light"] .summary-entry-time{color:var(--txf)}
 [data-theme="light"] .summary-entry-btn{background:var(--surface);color:var(--txm);border:1px solid var(--div)}
@@ -1278,6 +1279,10 @@ html.modal-open .page{overflow-y:hidden}
 [data-theme="light"] .cal-day{box-shadow:none;border-color:var(--div)}
 [data-theme="light"] #ai-day-result{background:var(--off);border-color:var(--div);border-left-color:var(--clay)}
 [data-theme="light"] #ai-ins-btn{background:var(--fill)!important}
+
+/* 71.2: visible press and selected states, without changing type metrics. */
+.status-chip:is(.sel-work,.sel-home,.sel-travel,.sel-other,.cs-sel){box-shadow:inset 0 0 0 1px currentColor}
+:is(button,.status-chip,.echip,.preset-btn,.notes-sw-btn,.media-tab,.ins-tab,.rec-cat-btn):active{outline:2px solid var(--pri);outline-offset:2px}
 
 </style>
 <script>
@@ -2051,7 +2056,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.1',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.2',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2150,7 +2155,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.1',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.2',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4617,7 +4622,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='71.1';
+const APP_VERSION='71.2';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -9570,7 +9575,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
           : null;
         const dot = dotColor ? `<div class="cal-dot" style="background:${esc(dotColor)}"></div>` : '<div class="cal-dot" style="opacity:0"></div>';
         const count = dayData ? ((dayData.summaryEntries&&dayData.summaryEntries.length)||0) : 0;
-        const badge = count ? `<div style="font-size:11px;font-weight:700;color:var(--txm);line-height:1.2">${count}</div>` : '<div style="height:9px"></div>';
+        const badge = count ? `<div style="font-size:9px;font-weight:700;color:var(--txm);line-height:1">${count}</div>` : '<div style="height:9px"></div>';
         const cellBg = dotColor ? `background:color-mix(in oklch, ${dotColor} 14%, var(--off));` : '';
         const cellBorder = dotColor ? `border-color:color-mix(in oklch, ${dotColor} 30%, transparent);` : '';
         html += `<div class="cal-day${isToday?' today':''} ${isFuture?'cal-future':''}" data-k="${esc(k)}" style="${esc(cellBg)}${esc(cellBorder)}">

@@ -13,3 +13,5 @@ python tests/mobile.py
 Each suite serves this repository on a temporary loopback port and uses clean browser contexts with synthetic data. No live Gemini calls or user diary data. Fault injection is limited to the test context. These checks do not replace native iPhone keyboard, microphone, long-press and Files testing.
 
 Results/screenshots go to `tests/artifacts/`. `regression.py` accepts case names to rerun individual cases. The old two-tab overwrite test is replaced by single-writer and legacy-conflict tests in `test_fixes.py`.
+
+71.0 design checks: `python tests/design71.py` — both themes, eight viewport sizes, long synthetic content, root font reflow, overflow and touch action geometry. Screenshots and results: `tests/artifacts/design71/`. This is Chromium emulation, not physical iPhone testing.

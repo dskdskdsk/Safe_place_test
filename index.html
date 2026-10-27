@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 70.4.2
-  Файл: 70.4.2_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 70.5
+  Файл: 70.5_safe-place.html
+  Зміни версії 70.5 відносно 70.4.2:
+  1. Чернетка composer зберігається у days[date].draftText; відсутнє поле
+     безпечно доповнюється. Надсилання й очищення чернетки — один запис стану.
+  2. Web Locks дозволяє запис лише одній вкладці; друга заблокована для
+     редагування. Перед persist перевіряється актуальність journal_v3.
+     Конфлікт не перезаписує диск; доступний експорт локальних записів у JSON.
+  3. journal_pending_import_v1 фіксує нові медіа перед staging. На старті
+     лише вкладка-власник прибирає непов'язані медіа; підтверджені зберігаються.
+  4. При помилці recovery маркер залишається, запис заблокований до повторної
+     спроби. Старі photos/voices та основний ключ залишаються без змін.
+  5. Очищення журналу більше не видаляє journal_v3 при відмові persist.
+     Нові тексти — LANG uk/en. Кеш PWA оновлено.
+
   Зміни версії 70.4.2 відносно 70.4.1:
   1. Відсутні медіа більше не блокують ZIP без пояснення: до запису даних
      показано кількість і вибір скасувати / відновити доступне.
@@ -214,6 +227,7 @@ function openPinResetOverlay(){window.safePlaceUI?.remember('pin-reset-overlay')
 }
 function closePinResetOverlay(){document.getElementById('pin-reset-overlay').style.display='none';}
 async function performJournalReset(){
+  if(typeof _writeReady!=='undefined'&&(!_writeReady||_writeBlocked)){if(typeof showToast==='function')showToast(t('tab_text'));return;}
   try{
     if(typeof wipeAllData==='function'){await wipeAllData({undoable:false});if(typeof _wipeFailures!=='undefined'&&_wipeFailures.length){try{sessionStorage.setItem('journal_wipe_warn','1');}catch(e){}}}
   }catch(err){console.error('Journal reset error:',err);}
@@ -313,7 +327,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 70.4.2</title>
+<title>Safe Place · 70.5</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#01696f">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -1878,6 +1892,15 @@ function migrateTagsToCanonical(state){
 // ═══ i18n ═══
 const LANG={
 uk:{
+tab_title:"Щоденник відкритий в іншій вкладці",
+tab_text:"Редагування доступне лише в одній вкладці. Закрий іншу вкладку або вікно цього щоденника, потім перезавантаж цю сторінку.",
+tab_conflict_title:"Знайдено новіші дані",
+tab_conflict_text:"Інша вкладка змінила журнал. Запис із цієї вкладки зупинено, щоб не стерти новіші дані. За потреби завантаж локальні записи цієї вкладки перед перезавантаженням. JSON не містить медіафайлів.",
+tab_export:"Завантажити локальні записи (JSON)",
+tab_reload:"Перезавантажити",
+tab_unsupported:"Браузер не підтримує безпечне блокування вкладок. Відкрий щоденник в актуальному Safari або Chrome через HTTPS.",
+import_recovery_title:"Відновлення імпорту не завершено",
+import_recovery_text:"Не вдалося перевірити медіа після перерваного імпорту. Дані не очищено навмання. Перезавантаж сторінку для повторної спроби.",
 import_missing_title:"В архіві є не всі медіа",
 import_missing_text:"Не знайдено фото: {photos}. Голосових: {voices}. Файлів немає ні серед розпізнаних медіа архіву, ні в локальному сховищі. Це не означає, що весь архів пошкоджений.\n\nМожна відновити записи й доступні медіа. Посилання на відсутні файли залишаться для подальшого відновлення. Дні, які вже є в щоденнику, буде оновлено даними з архіву.",
 import_available:"Відновити доступне",
@@ -1945,7 +1968,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 70.4.2',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 70.5',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -1968,6 +1991,15 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   months_gen:['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'],
 },
 en:{
+tab_title:"Journal open in another tab",
+tab_text:"Only one tab can edit the journal. Close the other journal tab or window, then reload this page.",
+tab_conflict_title:"Newer journal data found",
+tab_conflict_text:"Another tab changed the journal. Saving from this tab has stopped to avoid overwriting newer data. Download this tab’s local entries before reloading if needed. The JSON does not include media files.",
+tab_export:"Download local entries (JSON)",
+tab_reload:"Reload",
+tab_unsupported:"This browser does not support safe tab locking. Open the journal in a current Safari or Chrome over HTTPS.",
+import_recovery_title:"Import recovery incomplete",
+import_recovery_text:"Media from an interrupted import could not be checked. No speculative cleanup was performed. Reload to retry.",
 import_missing_title:"Some media are missing",
 import_missing_text:"Photos not found: {photos}. Voice files: {voices}. These files were found neither among recognized archive media nor in local storage. This does not mean the entire archive is damaged.\n\nYou can restore entries and available media. References to missing files will be retained for later recovery. Existing days will be updated with the archive data.",
 import_available:"Restore available data",
@@ -2035,7 +2067,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 70.4.2',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 70.5',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -2101,7 +2133,8 @@ function validateJournal(input){
   for(const [date,d] of Object.entries(s.days)){
     if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!obj(d))fail();
     for(const k of ['emotions','dayRatings','ideas','events','photos','gratitude','summaryEntries','photoIds'])if(d[k]!==undefined&&!Array.isArray(d[k]))fail();
-    for(const k of ['summary','status','statusNote'])if(d[k]!==undefined&&typeof d[k]!=='string')fail();
+    if(d.draftText===undefined)d.draftText='';
+    for(const k of ['summary','status','statusNote','draftText'])if(d[k]!==undefined&&typeof d[k]!=='string')fail();
     if(d.summaryEntries&&d.summaryEntries.some(e=>!obj(e)))fail();
     if(d.photoIds&&d.photoIds.some(id=>typeof id!=='string'))fail();
   }
@@ -2117,7 +2150,7 @@ function validateJournal(input){
   return s;
 }
 function showStorageRecovery(){
-  document.getElementById('app').inert=true;
+  setJournalInert(true);
   const actions=[];
   if(_storageOriginal!==null)actions.push({label:t('storage_raw'),keepOpen:true,onClick:()=>{
     const url=URL.createObjectURL(new Blob([_storageOriginal],{type:'application/octet-stream'}));
@@ -2126,8 +2159,60 @@ function showStorageRecovery(){
   actions.push({label:t('storage_retry'),primary:true,keepOpen:true,onClick:()=>location.reload()});
   showDialog({kind:'error',title:t('storage_title'),text:t('storage_blocked'),actions,locked:true});
 }
+
+// 70.5: one writer per origin; recovery runs while the exclusive Web Lock is held.
+const PENDING_IMPORT_KEY='journal_pending_import_v1';
+function setJournalInert(value){
+  const app=document.getElementById('app');
+  if(window.safePlaceUI)window.safePlaceUI.setBaseInert(app,value);else app.inert=value;
+}
+function blockJournalWriter(conflict=false,reason=''){
+  _writeReady=false;_writeBlocked=true;
+  setJournalInert(true);
+  setTimeout(()=>{
+    const actions=[];
+    if(conflict)actions.push({label:t('tab_export'),keepOpen:true,onClick:()=>{
+      const url=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));
+      const a=document.createElement('a');a.href=url;a.download='journal-local-unsaved.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+    }});
+    actions.push({label:t('tab_reload'),primary:true,keepOpen:true,onClick:()=>location.reload()});
+    showDialog({locked:true,kind:'warning',title:t(conflict?'tab_conflict_title':reason==='recovery'?'import_recovery_title':'tab_title'),text:t(conflict?'tab_conflict_text':reason==='unsupported'?'tab_unsupported':reason==='recovery'?'import_recovery_text':'tab_text'),actions});
+  },0);
+}
+async function recoverPendingImport(){
+  const raw=localStorage.getItem(PENDING_IMPORT_KEY);if(raw===null)return;
+  const marker=JSON.parse(raw);
+  if(!marker||marker.version!==1||!['photos','voices'].every(k=>Array.isArray(marker[k])&&marker[k].every(id=>typeof id==='string'&&id.startsWith('imp_'))))throw new Error('Invalid pending import marker');
+  const saved=localStorage.getItem(SK);
+  const journal=saved===null?{days:{}}:validateJournal(JSON.parse(saved));
+  const photos=new Set(),voices=new Set();
+  Object.values(journal.days).forEach(d=>{
+    (d.photoIds||[]).forEach(id=>photos.add(id));
+    (d.summaryEntries||[]).forEach(e=>{if(e&&e.audioId)voices.add(e.audioId);});
+  });
+  await _mediaDeleteIds({photos:marker.photos.filter(id=>!photos.has(id)),voices:marker.voices.filter(id=>!voices.has(id))});
+  localStorage.removeItem(PENDING_IMPORT_KEY);
+}
+function initializeJournalWriter(){
+  setJournalInert(true);
+  if(!navigator.locks){blockJournalWriter(false,'unsupported');return;}
+  navigator.locks.request('safe-place-journal-writer',{mode:'exclusive',ifAvailable:true},async lock=>{
+    if(!lock){blockJournalWriter();return;}
+    if(localStorage.getItem(SK)!==_lastPersisted){blockJournalWriter(true);return;}
+    try{await recoverPendingImport();}catch(e){console.error('Import recovery failed',e);blockJournalWriter(false,'recovery');return;}
+    _writeReady=true;_writeBlocked=false;
+    setJournalInert(false);
+    if(dirty)persist();
+    await finalizePendingWipe();
+    // Browser releases this lock when the document closes; never transfer it mid-edit.
+    await new Promise(()=>{});
+  }).catch(e=>{console.error('Writer initialization failed',e);blockJournalWriter(false,'unsupported');});
+}
+
 const SK='journal_v3';
+let _writeReady=false,_writeBlocked=false,_lastPersisted=null;
 let S=load();
+_lastPersisted=_storageOriginal;
 if(!readPrefs().t)writePrefs({lang:S.settings.lang||'uk',dark:!!S.settings.dark});
 let dirty=false;
 let TODAY=todayKey();
@@ -2172,7 +2257,11 @@ let _autosaveT=null,_autosaveFirst=0;
 // Quiet write of the whole journal (no re-render). Returns true on success.
 function persist(){
   if(_storageBlocked)return false;
-  try{localStorage.setItem(SK,JSON.stringify(S));}
+  if(!_writeReady||_writeBlocked){dirty=true;return false;}
+  try{
+    if(localStorage.getItem(SK)!==_lastPersisted){blockJournalWriter(true);dirty=true;return false;}
+    const serialized=JSON.stringify(S);localStorage.setItem(SK,serialized);_lastPersisted=serialized;
+  }
   catch(e){dirty=true;notifySaveFail(e);showFab();return false;}
   dirty=false;hideFab();
   clearTimeout(_autosaveT);_autosaveT=null;_autosaveFirst=0;
@@ -2205,6 +2294,7 @@ document.body.appendChild(_tt);
 function day(k=activeDay){
   if(!S.days[k])S.days[k]={emotions:[],dayRating:0,dayRatings:[],ideas:[],events:[],photos:[],gratitude:['','',''],summary:'',summaryEntries:[],status:'',statusNote:''};
   const d=S.days[k];
+  if(d.draftText===undefined)d.draftText='';
   if(!d.gratitude)d.gratitude=['','',''];
   if(d.summary===undefined)d.summary='';
   if(!Array.isArray(d.summaryEntries))d.summaryEntries=[];
@@ -3192,17 +3282,11 @@ function dayRatingTrend(d){
   return {symbol:'↘',title:en?'Declined by end of day':'Знизилось до кінця дня'};
 }
 
-window.addEventListener('storage', function(e){
-  if(e.key === 'journal_v3' && e.newValue){
-    if(dirty) return;
-    try {
-      if(_storageBlocked)return;
-      const incoming = validateJournal(JSON.parse(e.newValue));
-      S = incoming;
-      renderToday && renderToday();
-      renderStats && renderStats();
-    } catch(err){}
-  }
+window.addEventListener('storage',function(e){
+  if(e.key!==SK||_storageBlocked||!_writeReady)return;
+  if(localStorage.getItem(SK)===_lastPersisted)return;
+  // Even a legacy/non-cooperating tab must not silently replace our state.
+  blockJournalWriter(true);
 });
 function addDaysKey(key, delta){
   const d = new Date(key + 'T12:00:00');
@@ -3909,6 +3993,7 @@ function insertTag(tag,isNew=false){
   // Видаляємо поточний недописаний #тег і вставляємо обраний
   const newBefore=before.replace(/#[\wа-яёіїєґА-ЯЁІЇЄҐ'-]*$/u,'')+tag+' ';
   summaryEl.value=newBefore+after;
+  day().draftText=summaryEl.value;
   const newCur=newBefore.length;
   summaryEl.setSelectionRange(newCur,newCur);
   // Зберігаємо новий тег в customTags
@@ -3922,6 +4007,7 @@ function insertTag(tag,isNew=false){
 }
 
 summaryEl.addEventListener('input',e=>{
+  day().draftText=summaryEl.value;
   markNow();renderTagBadges();
   const q=getHashQuery();
   if(q!==null){showDropdown(q);}else{hideDropdown();}
@@ -3945,7 +4031,12 @@ function submitSummaryEntry(){
   }
   const v=summaryEl.value.trim();
   if(!v)return;
-  addSummaryEntry(v,activeDay);
+  if(!_writeReady||_writeBlocked)return;
+  const previous=JSON.parse(JSON.stringify(day()));
+  const d=day(),arr=ensureSummaryEntries(d);
+  arr.push({id:'se_'+crypto.randomUUID(),text:v,time:nowTime(),createdAt:Date.now()});
+  d._summaryCleared=false;d.draftText='';rebuildDaySummary(d);
+  if(!markNow()){S.days[activeDay]=previous;dirty=true;return;}
   summaryEl.value='';
   summaryPage=Math.max(0,Math.ceil(ensureSummaryEntries(day()).length/SUMMARY_PAGE_SIZE)-1);
   markNow();
@@ -3963,7 +4054,7 @@ const summarySendBtn=document.getElementById('summary-send-btn');
 if(summarySendBtn)summarySendBtn.addEventListener('click',submitSummaryEntry);
 
 function renderSummary(){
-  summaryEl.value='';
+  summaryEl.value=day().draftText||'';
   summaryPage=Math.max(0,Math.ceil(ensureSummaryEntries(day()).length/SUMMARY_PAGE_SIZE)-1);
   renderSummaryEntries();
   renderTagBadges();
@@ -4441,7 +4532,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='70.4.2';
+const APP_VERSION='70.5';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -7323,9 +7414,10 @@ function importMediaTransaction(db,records,remove=false){
 }
 async function safeImportJournal(input,zip=null,voiceOnly=false){
   if(_storageBlocked)throw new Error(t('storage_blocked'));
+  if(!_writeReady||_writeBlocked)throw new Error(t('tab_text'));
   if(_importBusy)throw new Error(t('import_busy'));
   _importBusy=true;
-  let db,staged=false,committed=false;
+  let db,staged=false,committed=false,pending=false;
   const records=[];
   const mediaError=reason=>new AppError('import_media',reason);
   try{
@@ -7400,15 +7492,21 @@ async function safeImportJournal(input,zip=null,voiceOnly=false){
     delete imp.photoData;
     const unchanged=()=>JSON.stringify(S)===before&&localStorage.getItem(SK)===diskBefore;
     if(!unchanged())throw new Error(t('import_changed'));
+    await recoverPendingImport();
+    if(records.length){
+      const marker={version:1,photos:records.filter(r=>r.store===_PST).map(r=>r.value.id),voices:records.filter(r=>r.store===_VST).map(r=>r.value.id)};
+      localStorage.setItem(PENDING_IMPORT_KEY,JSON.stringify(marker));pending=true;
+    }
     await importMediaTransaction(db,records);staged=true;
     if(!unchanged())throw new Error(t('import_changed'));
     // No await between final conflict check and the synchronous journal commit.
     const result=importJournalJson(imp,getLang());
     if(result.error)throw new Error(result.error);
     committed=true;
+    if(pending){try{localStorage.removeItem(PENDING_IMPORT_KEY);}catch(e){console.error('Import marker cleanup deferred',e);}}
     return {...result,photos:records.filter(r=>r.store===_PST).length,voices:records.filter(r=>r.store===_VST).length,photoFailed:missingPhotos,voiceFailed:missingVoices};
   }catch(e){
-    if(staged&&!committed){try{await importMediaTransaction(db,records,true);}catch(cleanup){throw new Error(t('import_cleanup'));}}
+    if(pending&&!committed){try{await recoverPendingImport();}catch(cleanup){throw new Error(t('import_cleanup'));}}
     throw e;
   }finally{_importBusy=false;}
 }
@@ -7703,6 +7801,8 @@ function _referencedMediaIds(){
 // undoable=true: photos/voice are removed after the undo window (a small marker survives an app close).
 // undoable=false: everything is removed right now and we wait for it to finish.
 async function wipeAllData(opts){
+if(!_writeReady||_writeBlocked)throw new Error(t('tab_text'));
+const previousState=S;
 _wipeFailures=[];
 const undoable=!!(opts&&opts.undoable);
   const backup=undoable?{state:JSON.stringify(S),key:localStorage.getItem(GEMINI_KEY_SK)}:null;
@@ -7710,9 +7810,9 @@ const undoable=!!(opts&&opts.undoable);
   if(undoable){try{ids=await _mediaKeys();}catch(e){ids=null;}}
   clearTimeout(_autosaveT);_autosaveT=null;_autosaveFirst=0;
   S=freshState(S);
+  dirty=true;if(!persist()){S=previousState;_wipeFailures.push('journal');throw new Error(t('import_unsaved'));}
   try{localStorage.removeItem(GEMINI_KEY_SK);}catch(e){}
   aiInsightCache=null;aiInsightPeriod=null;
-  dirty=true;if(!persist()){try{localStorage.removeItem(SK);}catch(e){_wipeFailures.push('journal');}}
 try{localStorage.removeItem(PENDING_WIPE_KEY);}catch(e){}
 if(undoable){
     const has=ids&&((ids.photos||[]).length||(ids.voices||[]).length);
@@ -7776,7 +7876,7 @@ const _bk=await wipeAllData({undoable:true});renderAfterWipe();_wipeWarn();
     _t.textContent=(_lang==='en'?'All data deleted':'Всі дані видалено')+' ';
     _t.appendChild(_ub);document.body.appendChild(_t);
     let _rm=false;
-    const _tm=setTimeout(()=>{if(!_rm){_rm=true;_t.remove();}if(!_storageBlocked)finalizePendingWipe();},5000);
+    const _tm=setTimeout(()=>{if(!_rm){_rm=true;_t.remove();}if(!_storageBlocked&&_writeReady)finalizePendingWipe();},5000);
     _ub.addEventListener('click',async()=>{clearTimeout(_tm);_rm=true;_t.remove();await undoWipe(_bk);renderAfterWipe();if(typeof renderCal==='function')renderCal();if(typeof renderNotesList==='function')renderNotesList();if(typeof showToast==='function'){showToast(_lang==='en'?'Restored!':'Відновлено!');}else{const _rt=document.createElement('div');_rt.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--suc);color:#fff;padding:10px 18px;border-radius:var(--rf);font-size:var(--sm);z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.4)';_rt.textContent=_lang==='en'?'Restored!':'Відновлено!';document.body.appendChild(_rt);setTimeout(()=>_rt.remove(),2500);}});
   })();
 });
@@ -10542,7 +10642,7 @@ window.addEventListener('DOMContentLoaded', function(){
     window.visualViewport.addEventListener('resize',()=>schedule(true));
     window.visualViewport.addEventListener('scroll',()=>schedule(true));
   }
-  window.safePlaceUI={remember};
+  window.safePlaceUI={remember,setBaseInert(el,value){if(inertBefore.has(el)){inertBefore.set(el,value);el.inert=true;}else el.inert=value;}};
   updateViewport();syncModals();
 })();
 
@@ -10588,7 +10688,7 @@ document.addEventListener('focusout',function(){setTimeout(checkDayRollover,300)
 setInterval(checkDayRollover,30000);
 
 // Finish a media wipe that was interrupted by closing the app inside the undo window.
-if(!_storageBlocked)finalizePendingWipe();
+if(!_storageBlocked)initializeJournalWriter();
 
 try{if(sessionStorage.getItem('journal_wipe_warn')){sessionStorage.removeItem('journal_wipe_warn');setTimeout(()=>_wipeWarn(true),700);}}catch(e){}
 </script>

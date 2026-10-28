@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 71.3
-  Файл: 71.3_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 71.4
+  Файл: 71.4_safe-place.html
+  Зміни 71.4 — Виразна оцінка дня:
+  Семантична шкала, адаптивні ряди, постійне пояснення над бейджами.
+
   Зміни 71.3 — Спокійні кнопки та чистий календар:
   1. Натискання без масштабування й анімованого обідка; легка зміна прозорості.
   2. Назва місяця без фону та рамки; стрілки без контуру й тіней.
@@ -348,7 +351,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 71.3</title>
+<title>Safe Place · 71.4</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -1289,6 +1292,17 @@ html.modal-open .page{overflow-y:hidden}
 .status-chip:is(.sel-work,.sel-home,.sel-travel,.sel-other,.cs-sel){box-shadow:inset 0 0 0 1px currentColor}
 :is(button,.status-chip,.echip,.preset-btn,.notes-sw-btn,.media-tab,.ins-tab,.rec-cat-btn):active{opacity:.8}
 
+/* 71.4: semantic scale independent of decorative theme accents. */
+:root{--rating-fill-1:rgb(174 43 43);--rating-fill-2:rgb(169 72 12);--rating-fill-3:rgb(126 100 0);--rating-fill-4:rgb(65 112 32);--rating-fill-5:rgb(20 115 62);--rating-1:var(--rating-fill-1);--rating-2:var(--rating-fill-2);--rating-3:var(--rating-fill-3);--rating-4:var(--rating-fill-4);--rating-5:var(--rating-fill-5)}
+[data-theme="dark"]{--rating-1:rgb(255 133 133);--rating-2:rgb(255 177 105);--rating-3:rgb(239 209 91);--rating-4:rgb(164 213 112);--rating-5:rgb(103 218 151)}
+[data-block="rating"]>.cb{container-type:inline-size}
+#rating-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:8px 0}
+.rating-value{min-width:0;height:44px;background:var(--rating-fill);color:white;border:2px solid transparent;border-radius:var(--r2);font-size:var(--xs);font-weight:700;cursor:pointer}
+.rating-value[aria-pressed="true"]{border-color:var(--tx);box-shadow:inset 0 0 0 2px white}
+#rating-label{display:flex;align-items:center;justify-content:center;min-height:2.8em;line-height:1.35;margin:4px 0;overflow-wrap:anywhere}
+#rating-chips:empty{display:none!important}
+@container(min-width:360px){#rating-row{grid-template-columns:repeat(10,minmax(0,1fr))}}
+
 </style>
 <script>
 (function(){
@@ -1629,7 +1643,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       <div class="ch"><span class="clabel" data-i18n="lbl_rating">⭐ Оцінка дня</span></div>
       <div class="cb">
         <div class="rating-row" id="rating-row"></div>
-        <div class="rating-label" id="rating-label"></div>
+        <div class="rating-label" id="rating-label" aria-live="polite"></div>
         <div class="rating-chips" id="rating-chips"></div>
       </div>
     </div>
@@ -2061,7 +2075,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.3',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.4',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2160,7 +2174,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.3',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.4',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -3835,7 +3849,7 @@ document.getElementById('custom-emotion-save').addEventListener('click',()=>{
 
 // ═══ DAY RATING ═══
 function getRatingLabel(n){return n?t('rating_'+n):'';}const RATING_LABELS=null;
-const RATING_COLORS=['','var(--err)','var(--err)','var(--org)','var(--org)','var(--gold)','var(--gold)','var(--pri)','var(--pri)','var(--suc)','var(--suc)'];
+const RATING_COLORS=['','var(--rating-1)','var(--rating-1)','var(--rating-2)','var(--rating-2)','var(--rating-3)','var(--rating-3)','var(--rating-4)','var(--rating-4)','var(--rating-5)','var(--rating-5)'];
 let ratingChipSelectedIdx=-1;
 let ratingChipEditIdx=-1;
 
@@ -3849,7 +3863,7 @@ function renderRating(){
   const chipsWrap=document.getElementById('rating-chips');
   row.innerHTML='';
   chipsWrap.innerHTML='';
-  row.style.cssText='display:flex;gap:4px;flex-wrap:nowrap;';
+  row.removeAttribute('style');
   chipsWrap.style.cssText='display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin-top:8px;line-height:1;';
 
   const isEditMode=ratingChipEditIdx>=0 && ratingChipEditIdx<ratings.length;
@@ -3858,11 +3872,11 @@ function renderRating(){
 
   for(let i=1;i<=10;i++){
     const s=document.createElement('button');
-    const filled=isEditMode?editingVal>=i:avgRounded>=i;
-    s.style.cssText=`flex:1;height:32px;border-radius:var(--r2);border:1.5px solid ${filled?RATING_COLORS[i]:'var(--bdr)'};background:${filled?'oklch(from '+RATING_COLORS[i]+' l c h/.15)':'var(--off)'};color:${filled?RATING_COLORS[i]:'var(--txm)'};font-size:var(--xs);font-weight:700;cursor:pointer;transition:all var(--tr);`;
-    if(isEditMode){
-      s.style.boxShadow=`0 0 0 2px ${RATING_COLORS[editingVal]||'var(--pri)'}33`;
-    }
+    const selectedVal=isEditMode?editingVal:ratingVal(ratings[ratingChipSelectedIdx>=0?ratingChipSelectedIdx:ratings.length-1]);
+    s.className='rating-value';
+    s.style.setProperty('--rating-fill',`var(--rating-fill-${Math.ceil(i/2)})`);
+    s.setAttribute('aria-pressed',String(selectedVal===i));
+    s.setAttribute('aria-label',getRatingLabel(i));
     s.textContent=i;
     s.addEventListener('click',()=>{
       if(isEditMode){
@@ -3872,10 +3886,11 @@ function renderRating(){
         ratingChipSelectedIdx=-1;
         syncDayRating(d);markNow();renderRating();
       } else {
-        if((d.dayRatings||[]).length>=10)return; d.dayRatings.push({v:i,t:nowTime()});syncDayRating(d);markNow();renderRating();
+        if((d.dayRatings||[]).length>=10)return; ratingChipSelectedIdx=-1; d.dayRatings.push({v:i,t:nowTime()});syncDayRating(d);markNow();renderRating();
       }
     });
-    s.addEventListener('mouseenter',()=>{ if(!isEditMode){ lbl.textContent=getRatingLabel(i);lbl.style.color=RATING_COLORS[i]; } });
+    s.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&!isEditMode){lbl.textContent=getRatingLabel(i);lbl.style.color=RATING_COLORS[i];}});
+    s.addEventListener('pointerleave',()=>{lbl.textContent=stableLabel;lbl.style.color=stableColor;});
     row.appendChild(s);
   }
 
@@ -3884,9 +3899,13 @@ function renderRating(){
     lbl.textContent=en?'Choose a new value for this entry':'Оберіть нове значення для цього запису';
     lbl.style.color=RATING_COLORS[editingVal]||'var(--pri)';
   } else {
-    lbl.textContent=avgRounded?getRatingLabel(avgRounded):t('today_rating_hint');
-    lbl.style.color=avgRounded?RATING_COLORS[avgRounded]:'var(--txf)';
+    const shown=ratings[ratingChipSelectedIdx>=0?ratingChipSelectedIdx:ratings.length-1];
+    const value=shown?ratingVal(shown):0;
+    lbl.textContent=value?getRatingLabel(value):t('today_rating_hint');
+    lbl.style.color=value?RATING_COLORS[value]:'var(--txm)';
   }
+
+  const stableLabel=lbl.textContent,stableColor=lbl.style.color;
 
   function renderChips(){
     chipsWrap.innerHTML='';
@@ -3945,7 +3964,7 @@ function renderRating(){
 
     if(ratings.length>1){
       const footer=document.createElement('div');
-      footer.style.cssText='display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding-top:10px;border-top:1px solid var(--bdr);';
+      footer.style.cssText='display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:4px;padding-top:6px;border-top:1px solid var(--bdr);';
       const c=RATING_COLORS[avgRounded]||'var(--pri)';
       const avgBadge=document.createElement('span');
       avgBadge.style.cssText=`display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:var(--r3);background:oklch(from ${c} l c h/.18);border:1.5px solid ${c};color:${c};font-size:var(--sm);font-weight:800;line-height:1;`;
@@ -4627,7 +4646,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='71.3';
+const APP_VERSION='71.4';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');

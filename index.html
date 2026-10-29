@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 71.5.1
-  Файл: 71.5.1_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 71.6
+  Файл: 71.6_safe-place.html
+  Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
   Зміни 71.5.1: повернено висоту кнопок оцінки 32px і проміжки 4px.
 
   Зміни 71.5 — Контурна шкала оцінок:
@@ -357,7 +358,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 71.5.1</title>
+<title>Safe Place · 71.6</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -2081,7 +2082,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.5.1',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.6',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2180,7 +2181,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.5.1',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.6',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -2945,440 +2946,50 @@ if(!window._seEmoOutsideBound){
     if(typeof renderSummaryEntries==='function')renderSummaryEntries();
   });
 }
-function ratingVal(r){ return (r&&typeof r==='object') ? (r.v||0) : (r||0); }
-function ratingTime(r){ return (r&&typeof r==='object') ? (r.t||'') : ''; }
-function calcDayRating(d){
-  if(!d.dayRatings||!d.dayRatings.length)return 0;
-  return d.dayRatings.reduce((s,r)=>s+ratingVal(r),0)/d.dayRatings.length;
+function ratingVal(r){const v=r&&typeof r==='object'?r.v:r;return typeof v==='number'&&Number.isFinite(v)&&v>=1&&v<=10?v:0;}
+function ratingTime(r){return r&&typeof r==='object'&&typeof r.t==='string'?r.t:'';}
+function ratingEntries(d){
+  const entries=Array.isArray(d?.dayRatings)?d.dayRatings.filter(r=>ratingVal(r)>0):[];
+  return entries.length?entries:(ratingVal(d?.dayRating)?[d.dayRating]:[]);
 }
-// Exact day score = mean of the day's ratings (not rounded); legacy days fall back to the stored integer.
-function dayScore(d){
-  if(!d)return 0;
-  const c=calcDayRating(d);
-  return c>0?c:(d.dayRating||0);
+function calcDayRating(d){const vals=ratingEntries(d).map(ratingVal);return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;}
+function dayScore(d){return calcDayRating(d);}
+function periodRating(keys){
+  const rated=[...new Set(keys)].filter(k=>k<=todayKey()&&dayScore(S.days[k])>0);
+  return {n:rated.length,avg:rated.length?rated.reduce((sum,k)=>sum+dayScore(S.days[k]),0)/rated.length:null};
 }
 function fmtScore(x){return Number.isInteger(x)?String(x):x.toFixed(1);}
 function syncDayRating(d){
-  const avg=calcDayRating(d);
+  const vals=(d.dayRatings||[]).map(ratingVal).filter(v=>v>0);
+  const avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
   d.dayRating=avg?Math.round(avg):0;
 }
 function dayRatingDynamics(d){
   if(!d||!d.dayRatings||d.dayRatings.length<2)return null;
-  const vals=d.dayRatings.map(ratingVal);
+  const vals=ratingEntries(d).map(ratingVal);
+  if(vals.length<2)return null;
   const min=Math.min(...vals),max=Math.max(...vals);
   const delta=max-min;
   const symbol=delta<=1?'〰️':(delta<=3?'≈':'⚡');
   return {min,max,delta,symbol};
 }
 
-function buildMoodInsight(dayKeys, periodLabel){
-  const en=getLang()==='en';
-  const filled=[];
-  (dayKeys||[]).forEach(k=>{
-    const d=S.days[k];
-    if(d && d.dayRatings && d.dayRatings.length) filled.push({k,d});
-  });
-  if(!filled.length) return null;
-
-  const totalDays=(dayKeys||[]).length || filled.length;
-  const coverage=Math.round((filled.length/totalDays)*100);
-  const allVals=filled.flatMap(({d})=>d.dayRatings.map(ratingVal));
-  const avg=allVals.reduce((a,b)=>a+b,0)/allVals.length;
-
-  function pickVariant(arr, seedNum){
-    if(!arr.length) return '';
-    const idx=Math.abs(Math.round((seedNum||0)*97))%arr.length;
-    return arr[idx];
-  }
-  function shiftKey(k,days){
-    const d=new Date(k+'T12:00:00'); d.setDate(d.getDate()+days);
-    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-  }
-  function periodAvg(keys){
-    const vals=[];
-    keys.forEach(k=>{const d=S.days[k]; if(d&&d.dayRatings&&d.dayRatings.length) vals.push(...d.dayRatings.map(ratingVal));});
-    return vals.length? vals.reduce((a,b)=>a+b,0)/vals.length : null;
-  }
-
-  const cards=[];
-  function pushCompare(icon, text){ cards.push({icon, text}); }
-
-  // ── 1. Coverage / data quality ──
-  const coverageVariants = coverage<70 ? (en? [
-    `Only ${coverage}% of days have ratings — take the rest with a grain of salt.`,
-    `Data coverage is thin this period: ${coverage}% of days rated.`,
-    `With just ${coverage}% of days filled in, this is more of a snapshot than a full picture.`
-  ] : [
-    `Заповнено лише ${coverage}% днів — решту висновків варто брати з обережністю.`,
-    `Дані доволі неповні: лише ${coverage}% днів мають оцінку.`,
-    `Тут заповнено тільки ${coverage}% днів, тож картина ще не повна.`
-  ]) : (en? [
-    `${filled.length} of ${totalDays} days rated (${coverage}%) — solid coverage.`,
-    `Good data density: ${filled.length} of ${totalDays} days have ratings.`,
-    `${coverage}% of days are filled in, so this read is fairly reliable.`
-  ] : [
-    `Оцінено ${filled.length} з ${totalDays} днів (${coverage}%) — непогане покриття.`,
-    `Дані доволі щільні: заповнено ${filled.length} з ${totalDays} днів.`,
-    `${coverage}% днів заповнено, тож висновку можна довіряти.`
-  ]);
-  pushCompare('📊', pickVariant(coverageVariants, avg*3+coverage));
-
-  // ── 2. Average rating with qualitative read ──
-  function avgQualityPhrase(){
-    let pool;
-    if(avg>=8.5) pool = en? [
-      `Average rating: ${avg.toFixed(1)} — an exceptionally good stretch.`,
-      `${avg.toFixed(1)} average — about as good as it gets.`,
-      `A strong ${avg.toFixed(1)} average, close to the top of the scale.`
-    ] : [
-      `Середня оцінка: ${avg.toFixed(1)} — винятково гарний період.`,
-      `${avg.toFixed(1)} у середньому — майже максимум шкали.`,
-      `Дуже сильний результат: середня ${avg.toFixed(1)}.`
-    ];
-    else if(avg>=7) pool = en? [
-      `Average rating: ${avg.toFixed(1)} — a genuinely good period overall.`,
-      `${avg.toFixed(1)} average puts this comfortably in "good" territory.`,
-      `Solid average of ${avg.toFixed(1)} — more good days than not.`
-    ] : [
-      `Середня оцінка: ${avg.toFixed(1)} — загалом хороший період.`,
-      `${avg.toFixed(1)} у середньому — впевнено в зоні "добре".`,
-      `Непоганий показник: середня ${avg.toFixed(1)}, добрих днів було більше.`
-    ];
-    else if(avg>=5.5) pool = en? [
-      `Average rating: ${avg.toFixed(1)} — a fairly balanced, middle-of-the-road period.`,
-      `${avg.toFixed(1)} average — neither great nor rough, just steady middle ground.`,
-      `A moderate ${avg.toFixed(1)}, without strong swings either way.`
-    ] : [
-      `Середня оцінка: ${avg.toFixed(1)} — доволі збалансований, середній період.`,
-      `${avg.toFixed(1)} у середньому — ні надто добре, ні надто важко.`,
-      `Помірний показник ${avg.toFixed(1)}, без сильних перекосів у той чи інший бік.`
-    ];
-    else if(avg>=4) pool = en? [
-      `Average rating: ${avg.toFixed(1)} — noticeably harder than usual.`,
-      `${avg.toFixed(1)} average — this stretch leaned toward the difficult side.`,
-      `A softer ${avg.toFixed(1)}, with more heavy days than light ones.`
-    ] : [
-      `Середня оцінка: ${avg.toFixed(1)} — помітно важчий період, ніж звично.`,
-      `${avg.toFixed(1)} у середньому — цей відрізок хилився у важчий бік.`,
-      `Знижений показник ${avg.toFixed(1)}: важких днів було більше, ніж легких.`
-    ];
-    else pool = en? [
-      `Average rating: ${avg.toFixed(1)} — a genuinely tough period.`,
-      `${avg.toFixed(1)} average signals a hard stretch overall.`,
-      `A low ${avg.toFixed(1)} — this was a difficult period across the board.`
-    ] : [
-      `Середня оцінка: ${avg.toFixed(1)} — по-справжньому складний період.`,
-      `${avg.toFixed(1)} у середньому — сигнал про важкий відрізок часу.`,
-      `Низький показник ${avg.toFixed(1)}: складно було майже всюди.`
-    ];
-    return pickVariant(pool, avg*11+filled.length);
-  }
-  pushCompare('⭐', avgQualityPhrase());
-
-  // ── comparison phrase generator (used for prev period / half-split) ──
-  function comparePhrase(deltaVal, seedBase, ctxBetter, ctxWorse, ctxFlat){
-    const absd=Math.abs(deltaVal);
-    if(absd<0.35) return pickVariant(ctxFlat, seedBase);
-    const tier = absd<0.8?'small': absd<1.5?'medium':'large';
-    const pool = deltaVal>0 ? ctxBetter[tier] : ctxWorse[tier];
-    return pickVariant(pool, seedBase+absd*5);
-  }
-
-  // ── 3. Best/worst + trend + comparisons, period-specific ──
-  if(periodLabel==='week'){
-    let best=filled[0], worst=filled[0];
-    filled.forEach(f=>{ if(calcDayRating(f.d)>calcDayRating(best.d))best=f; if(calcDayRating(f.d)<calcDayRating(worst.d))worst=f; });
-    if(filled.length>=3 && calcDayRating(best.d)!==calcDayRating(worst.d)){
-      const bestName=WDS[new Date(best.k+'T12:00:00').getDay()];
-      const worstName=WDS[new Date(worst.k+'T12:00:00').getDay()];
-      const bv=calcDayRating(best.d).toFixed(1), wv=calcDayRating(worst.d).toFixed(1);
-      const pool = en? [
-        `Best day: ${bestName} (${bv}), toughest: ${worstName} (${wv}).`,
-        `${bestName} carried the week (${bv}); ${worstName} was the low point (${wv}).`,
-        `Peak was ${bestName} at ${bv}; the roughest spot was ${worstName} at ${wv}.`
-      ] : [
-        `Найкращий день: ${bestName} (${bv}), найважчий: ${worstName} (${wv}).`,
-        `${bestName} витягнув тиждень (${bv}); ${worstName} став найважчим (${wv}).`,
-        `Пік тижня — ${bestName} (${bv}), провал — ${worstName} (${wv}).`
-      ];
-      pushCompare('🏆', pickVariant(pool, avg+parseFloat(bv)-parseFloat(wv)));
-    }
-
-    const firstHalfKeys=dayKeys.slice(0,3), secondHalfKeys=dayKeys.slice(3);
-    const a1=periodAvg(firstHalfKeys), a2=periodAvg(secondHalfKeys);
-    if(a1!=null && a2!=null){
-      const delta=a2-a1;
-      const better={small:en?['Slight lift toward the end of the week.']:['Легке покращення до кінця тижня.'],
-                     medium:en?['The week clearly improved toward the end.']:['Тиждень помітно покращився до кінця.'],
-                     large:en?['A big turnaround — the week ended much stronger than it began.']:['Значний перелом — тиждень закінчився набагато краще, ніж почався.']};
-      const worse={small:en?['A slight dip toward the end of the week.']:['Легкий спад до кінця тижня.'],
-                    medium:en?['The week started stronger than it ended.']:['Тиждень почався краще, ніж закінчився.'],
-                    large:en?['A rough finish — the week faded noticeably by the end.']:['Важке завершення — тиждень помітно втратив у силі до кінця.']};
-      const flat=en?['The week held a similar tone from start to end.']:['Тиждень тримав приблизно однаковий тон від початку до кінця.'];
-      pushCompare(delta>0.35?'📈':delta<-0.35?'📉':'➡️', comparePhrase(delta, a1+a2, better, worse, flat));
-    }
-
-    const prevWeekKeys=dayKeys.map(k=>shiftKey(k,-7));
-    const prevAvg=periodAvg(prevWeekKeys);
-    if(prevAvg!=null){
-      const delta=avg-prevAvg;
-      const better={small:en?[`Slightly better than last week (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Трохи краще, ніж минулого тижня (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                    medium:en?[`A clear step up from last week (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Помітний крок вгору порівняно з минулим тижнем (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                    large:en?[`A big jump from last week (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Великий стрибок порівняно з минулим тижнем (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]};
-      const worse={small:en?[`Slightly lower than last week (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Трохи гірше, ніж минулого тижня (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                   medium:en?[`Noticeably lower than last week (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Помітно гірше, ніж минулого тижня (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                   large:en?[`A steep drop from last week (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Різке падіння порівняно з минулим тижнем (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]};
-      const flat=en?[`About the same as last week (${prevAvg.toFixed(1)} vs ${avg.toFixed(1)}).`]:[`Приблизно на рівні минулого тижня (${prevAvg.toFixed(1)} проти ${avg.toFixed(1)}).`];
-      pushCompare(delta>0.35?'📈':delta<-0.35?'📉':'➡️', comparePhrase(delta, prevAvg+avg, better, worse, flat));
-    }
-
-    addVariationCard(en?'week':'тиждень', filled.map(f=>calcDayRating(f.d)));
-  }
-
-  else if(periodLabel==='month'){
-    const weeks=[];
-    for(let i=0;i<dayKeys.length;i+=7) weeks.push(dayKeys.slice(i,i+7));
-    const weekAvgs=weeks.map(periodAvg).map((v,i)=>({v,i})).filter(w=>w.v!=null);
-    if(weekAvgs.length>=2){
-      let best=weekAvgs[0], worst=weekAvgs[0];
-      weekAvgs.forEach(w=>{ if(w.v>best.v)best=w; if(w.v<worst.v)worst=w; });
-      if(best.v-worst.v>=0.5){
-        const pool = en? [
-          `Week ${best.i+1} was the strongest (${best.v.toFixed(1)}), week ${worst.i+1} the weakest (${worst.v.toFixed(1)}).`,
-          `The month peaked in week ${best.i+1} (${best.v.toFixed(1)}) and dipped in week ${worst.i+1} (${worst.v.toFixed(1)}).`,
-          `Best stretch: week ${best.i+1} (${best.v.toFixed(1)}); toughest: week ${worst.i+1} (${worst.v.toFixed(1)}).`
-        ] : [
-          `Найкращим був ${best.i+1}-й тиждень (${best.v.toFixed(1)}), найслабшим — ${worst.i+1}-й (${worst.v.toFixed(1)}).`,
-          `Місяць мав пік у ${best.i+1}-му тижні (${best.v.toFixed(1)}) і провал у ${worst.i+1}-му (${worst.v.toFixed(1)}).`,
-          `Найсильніший відрізок — ${best.i+1}-й тиждень (${best.v.toFixed(1)}), найважчий — ${worst.i+1}-й (${worst.v.toFixed(1)}).`
-        ];
-        pushCompare('🏆', pickVariant(pool, best.v-worst.v+best.i));
-      }
-    }
-
-    const firstKey=dayKeys[0];
-    const prevMonthDate=new Date(firstKey+'T12:00:00'); prevMonthDate.setMonth(prevMonthDate.getMonth()-1);
-    const prevMonthKeys=[];
-    const y=prevMonthDate.getFullYear(), m=prevMonthDate.getMonth();
-    const daysInPrev=new Date(y,m+1,0).getDate();
-    for(let d=1;d<=daysInPrev;d++) prevMonthKeys.push(`${y}-${pad(m+1)}-${pad(d)}`);
-    const prevAvg=periodAvg(prevMonthKeys);
-    if(prevAvg!=null){
-      const delta=avg-prevAvg;
-      const better={small:en?[`Slightly better than last month (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Трохи краще, ніж минулого місяця (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                    medium:en?[`A clear improvement over last month (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Помітне покращення порівняно з минулим місяцем (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                    large:en?[`A major improvement over last month (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Значне покращення порівняно з минулим місяцем (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]};
-      const worse={small:en?[`Slightly lower than last month (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Трохи гірше, ніж минулого місяця (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                   medium:en?[`Noticeably lower than last month (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Помітно гірше, ніж минулого місяця (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                   large:en?[`A sharp decline from last month (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Різке падіння порівняно з минулим місяцем (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]};
-      const flat=en?[`About the same as last month (${prevAvg.toFixed(1)} vs ${avg.toFixed(1)}).`]:[`Приблизно на рівні минулого місяця (${prevAvg.toFixed(1)} проти ${avg.toFixed(1)}).`];
-      pushCompare(delta>0.3?'📈':delta<-0.3?'📉':'➡️', comparePhrase(delta, prevAvg+avg, better, worse, flat));
-    }
-
-    addVariationCard(en?'month':'місяць', filled.map(f=>calcDayRating(f.d)));
-  }
-
-  else if(periodLabel==='year'){
-    const byMonth={};
-    dayKeys.forEach(k=>{ const mk=k.slice(0,7); (byMonth[mk]=byMonth[mk]||[]).push(k); });
-    const monthEntries=Object.entries(byMonth).map(([mk,keys])=>({mk,avg:periodAvg(keys)})).filter(e=>e.avg!=null);
-    if(monthEntries.length>=2){
-      let best=monthEntries[0], worst=monthEntries[0];
-      monthEntries.forEach(e=>{ if(e.avg>best.avg)best=e; if(e.avg<worst.avg)worst=e; });
-      if(best.avg-worst.avg>=0.5){
-        const bestName=MON[parseInt(best.mk.slice(5,7),10)-1];
-        const worstName=MON[parseInt(worst.mk.slice(5,7),10)-1];
-        const pool = en? [
-          `Strongest month: ${bestName} (${best.avg.toFixed(1)}), weakest: ${worstName} (${worst.avg.toFixed(1)}).`,
-          `${bestName} was the high point of the year (${best.avg.toFixed(1)}); ${worstName} was the low point (${worst.avg.toFixed(1)}).`,
-          `The year peaked in ${bestName} (${best.avg.toFixed(1)}) and dipped in ${worstName} (${worst.avg.toFixed(1)}).`
-        ] : [
-          `Найкращий місяць: ${bestName} (${best.avg.toFixed(1)}), найслабший: ${worstName} (${worst.avg.toFixed(1)}).`,
-          `${bestName} став найсильнішим місяцем року (${best.avg.toFixed(1)}); ${worstName} — найслабшим (${worst.avg.toFixed(1)}).`,
-          `Рік мав пік у ${bestName} (${best.avg.toFixed(1)}) і провал у ${worstName} (${worst.avg.toFixed(1)}).`
-        ];
-        pushCompare('🏆', pickVariant(pool, best.avg-worst.avg));
-      }
-    }
-    if(monthEntries.length>=6){
-      const half=Math.floor(monthEntries.length/2);
-      const h1=monthEntries.slice(0,half), h2=monthEntries.slice(half);
-      const h1avg=h1.reduce((s,e)=>s+e.avg,0)/h1.length;
-      const h2avg=h2.reduce((s,e)=>s+e.avg,0)/h2.length;
-      const delta=h2avg-h1avg;
-      const better={small:en?['A gentle upward drift through the year.']:['Легкий рух угору протягом року.'],
-                    medium:en?['Mood trended upward through the year.']:['Настрій зростав протягом року.'],
-                    large:en?['A strong upward shift over the course of the year.']:['Сильний зсув угору протягом року.']};
-      const worse={small:en?['A gentle downward drift through the year.']:['Легкий рух донизу протягом року.'],
-                   medium:en?['Mood trended downward through the year.']:['Настрій знижувався протягом року.'],
-                   large:en?['A strong downward shift over the course of the year.']:['Помітний спад протягом року.']};
-      const flat=en?['Mood held a fairly consistent level across the year.']:['Настрій тримався на приблизно однаковому рівні протягом року.'];
-      pushCompare(delta>0.3?'📈':delta<-0.3?'📉':'➡️', comparePhrase(delta, h1avg+h2avg, better, worse, flat));
-    }
-    const yr=parseInt(dayKeys[0].slice(0,4),10);
-    const prevYearKeys=dayKeys.map(k=>`${yr-1}${k.slice(4)}`);
-    const prevAvg=periodAvg(prevYearKeys);
-    if(prevAvg!=null){
-      const delta=avg-prevAvg;
-      const better={small:en?[`Slightly better than ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Трохи краще, ніж у ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                    medium:en?[`A clear improvement over ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Помітне покращення порівняно з ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                    large:en?[`A major improvement over ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Значне покращення порівняно з ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]};
-      const worse={small:en?[`Slightly lower than ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Трохи гірше, ніж у ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                   medium:en?[`Noticeably lower than ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Помітно гірше, ніж у ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`],
-                   large:en?[`A sharp decline from ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]:[`Різкий спад порівняно з ${yr-1} (${prevAvg.toFixed(1)} → ${avg.toFixed(1)}).`]};
-      const flat=en?[`About the same as ${yr-1} (${prevAvg.toFixed(1)} vs ${avg.toFixed(1)}).`]:[`Приблизно на рівні ${yr-1} (${prevAvg.toFixed(1)} проти ${avg.toFixed(1)}).`];
-      pushCompare(delta>0.3?'📈':delta<-0.3?'📉':'➡️', comparePhrase(delta, prevAvg+avg, better, worse, flat));
-    }
-
-    addVariationCard(en?'year':'рік', filled.map(f=>calcDayRating(f.d)));
-  }
-
-  // ── Rich variation/spread card, avoiding repeated boilerplate ──
-  function addVariationCard(scopeKey, vals){
-    if(!vals || vals.length<2) return;
-    const min=Math.min(...vals), max=Math.max(...vals), spread=max-min;
-    const first=vals[0], last=vals[vals.length-1], delta=last-first;
-    const seed = spread*13 + delta*7 + vals.length;
-
-    const labels = {
-      week:{en:'The week', ua:'Тиждень', enLower:'the week', uaGen:'тижня'},
-      month:{en:'The month', ua:'Місяць', enLower:'the month', uaGen:'місяця'},
-      year:{en:'The year', ua:'Рік', enLower:'the year', uaGen:'року'}
-    };
-    const L = labels[scopeKey] || labels.week;
-    const Cap = en?L.en:L.ua;
-
-    if(spread<0.9){
-      const pool = en? [
-        `${Cap} stayed remarkably even, without any real peaks or dips.`,
-        `${Cap} was steady throughout — no day stood out much from the rest.`,
-        `A calm, level stretch with barely any variation (range of ${spread.toFixed(1)}).`
-      ] : [
-        `${Cap} тримався напрочуд рівно, без явних піків чи спадів.`,
-        `${Cap} пройшов стабільно — жоден день сильно не виділявся серед інших.`,
-        `Спокійний, рівний відрізок майже без коливань (розкид ${spread.toFixed(1)}).`
-      ];
-      pushCompare('→', pickVariant(pool, seed));
-      return;
-    }
-
-    const spreadTier = spread<1.8 ? 'moderate' : spread<2.8 ? 'high' : 'extreme';
-
-    if(delta>=0.7){
-      const pool = {
-        moderate: en? [
-          `${Cap} showed a gradual lift from start to finish (range of ${spread.toFixed(1)}).`,
-          `Things got better as ${L.enLower} went on — a modest but real climb.`,
-          `${Cap} ended noticeably stronger than it began.`
-        ] : [
-          `${Cap} поступово зростав від початку до кінця (розкид ${spread.toFixed(1)}).`,
-          `Ситуація покращувалась із часом — невеликий, але реальний підйом.`,
-          `${Cap} закінчився помітно краще, ніж почався.`
-        ],
-        high: en? [
-          `${Cap} had a strong upward arc — a rough start giving way to a much better finish.`,
-          `A big swing upward: ${L.enLower} improved by a wide margin by the end (range of ${spread.toFixed(1)}).`,
-          `Whatever was weighing things down early on seems to have eased — ${L.enLower} closed on a high note.`
-        ] : [
-          `${Cap} мав виразну траєкторію вгору — важкий початок поступився значно кращому фіналу.`,
-          `Сильний підйом: до кінця ${L.uaGen} стан покращився з великим розривом (розкид ${spread.toFixed(1)}).`,
-          `Те, що тиснуло на початку, схоже, відпустило — ${L.uaGen.replace('и','ий')} закінчився на високій ноті.`
-        ],
-        extreme: en? [
-          `A dramatic turnaround — from real lows to real highs within ${L.enLower}.`,
-          `Extreme range (${spread.toFixed(1)} points): this looks like one hard patch followed by a genuine recovery.`,
-          `${Cap} swung hard from bad to good — worth remembering what shifted things.`
-        ] : [
-          `Різкий перелом — від справжніх низів до справжніх підйомів у межах ${L.uaGen}.`,
-          `Екстремальний розкид (${spread.toFixed(1)} бала): схоже на важкий відрізок, за яким прийшло справжнє відновлення.`,
-          `${Cap} різко пройшов шлях від поганого до доброго — варто пригадати, що саме змінилось.`
-        ]
-      }[spreadTier];
-      pushCompare('↗', pickVariant(pool, seed));
-      return;
-    }
-
-    if(delta<=-0.7){
-      const pool = {
-        moderate: en? [
-          `${Cap} softened gradually toward the end (range of ${spread.toFixed(1)}).`,
-          `A decent start gave way to a quieter finish.`,
-          `${Cap} lost some momentum as it went on.`
-        ] : [
-          `${Cap} поступово втрачав силу до кінця (розкид ${spread.toFixed(1)}).`,
-          `Непоганий початок поступився спокійнішим, слабшим фіналом.`,
-          `${Cap} з часом трохи втратив темп.`
-        ],
-        high: en? [
-          `${Cap} started strong but faded noticeably by the end.`,
-          `A steep decline: what began well didn't hold (range of ${spread.toFixed(1)}).`,
-          `Something shifted partway through — the finish was clearly heavier than the start.`
-        ] : [
-          `${Cap} почався сильно, але помітно втратив у якості до кінця.`,
-          `Різкий спад: те, що добре почалось, не втрималось (розкид ${spread.toFixed(1)}).`,
-          `Щось змінилось посередині — фінал вийшов явно важчим за початок.`
-        ],
-        extreme: en? [
-          `A hard fall from real highs to real lows within ${L.enLower}.`,
-          `Extreme range (${spread.toFixed(1)} points): a strong start collapsed into a genuinely tough finish.`,
-          `${Cap} swung hard from good to bad — worth noting what triggered the drop.`
-        ] : [
-          `Різке падіння від справжніх підйомів до справжніх низів у межах ${L.uaGen}.`,
-          `Екстремальний розкид (${spread.toFixed(1)} бала): сильний старт обвалився у по-справжньому важкий фінал.`,
-          `${Cap} різко пройшов шлях від доброго до поганого — варто зафіксувати, що це запустило.`
-        ]
-      }[spreadTier];
-      pushCompare('↘', pickVariant(pool, seed));
-      return;
-    }
-
-    // sideways trend but real spread — the "up and down" case, now much more varied
-    const pool = {
-      moderate: en? [
-        `${Cap} bounced between good and rough days, though nothing extreme (range of ${spread.toFixed(1)}).`,
-        `A bit of a rollercoaster, but within a reasonable range — not one long trend either way.`,
-        `Some ups and downs kept things interesting without tipping too far in either direction.`
-      ] : [
-        `${Cap} коливався між хорошими і важчими днями, хоч і без крайнощів (розкид ${spread.toFixed(1)}).`,
-        `Трохи американських гірок, але в межах розумного — без довгого тренду в один бік.`,
-        `Були свої підйоми й спади, які тримали період у тонусі без сильного перекосу.`
-      ],
-      high: en? [
-        `A genuinely mixed stretch — real high points and real low points, without settling into one direction (range of ${spread.toFixed(1)}).`,
-        `${Cap} had both strong days and difficult ones — the kind of period shaped by specific events rather than a steady mood.`,
-        `Wide swings suggest this period was driven more by what happened day-to-day than by an overall trend.`
-      ] : [
-        `Дійсно змішаний відрізок — були і справжні підйоми, і справжні спади, без чіткого напрямку (розкид ${spread.toFixed(1)}).`,
-        `${Cap} мав і сильні дні, і важкі — такий період радше формують конкретні події, ніж загальний настрій.`,
-        `Широкі коливання говорять про те, що на цей період більше впливали окремі дні, ніж стала тенденція.`
-      ],
-      extreme: en? [
-        `Very wide swings (${spread.toFixed(1)} points) with no clear direction — likely a handful of standout days pulling the average in both ways.`,
-        `${Cap} had both some of the best and some of the toughest days side by side — worth looking at what drove the extremes.`,
-        `This kind of spread usually means a few specific days did most of the work, rather than a gradual shift.`
-      ] : [
-        `Дуже широкі коливання (${spread.toFixed(1)} бала) без чіткого напрямку — ймовірно, кілька виразних днів тягнули середнє в обидва боки.`,
-        `${Cap} мав поруч і найкращі, і найважчі дні — варто пригадати, що саме викликало ці крайнощі.`,
-        `Такий розкид зазвичай означає, що кілька конкретних днів визначили картину, а не поступова зміна.`
-      ]
-    }[spreadTier];
-    pushCompare('↕', pickVariant(pool, seed));
-  }
-
-  return {
-    title: en?'Quick insight':'Короткий інсайт',
-    cards: cards.slice(0,6)
-  };
+function buildMoodInsight(dayKeys,periodLabel){
+  const keys=[...new Set(dayKeys||[])].filter(k=>k<=todayKey());
+  const stats=periodRating(keys),en=getLang()==='en';
+  if(!stats.n)return null;
+  const vals=keys.map(k=>dayScore(S.days[k])).filter(v=>v>0);
+  return {title:en?'Rating overview':'Огляд оцінок',cards:[
+    {icon:'📊',text:en?`${stats.n} of ${keys.length} elapsed days rated.`:`Оцінено ${stats.n} із ${keys.length} минулих днів.`},
+    {icon:'⭐',text:en?`Average: ${stats.avg.toFixed(1)}/10. Each rated day has equal weight.`:`Середня: ${stats.avg.toFixed(1)}/10. Кожен оцінений день має однакову вагу.`},
+    {icon:'↕',text:en?`Daily averages range from ${fmtScore(Math.min(...vals))} to ${fmtScore(Math.max(...vals))}.`:`Середні оцінки днів: від ${fmtScore(Math.min(...vals))} до ${fmtScore(Math.max(...vals))}.`}
+  ]};
 }
-
-
-
-
-
 
 function dayRatingTrend(d){
   if(!d||!d.dayRatings||d.dayRatings.length<2)return null;
-  const vals=d.dayRatings.map(ratingVal);
+  const vals=ratingEntries(d).map(ratingVal);
+  if(vals.length<2)return null;
   const first=vals[0], last=vals[vals.length-1];
   const min=Math.min(...vals), max=Math.max(...vals);
   const delta=last-first;
@@ -3858,9 +3469,17 @@ function getRatingLabel(n){return n?t('rating_'+n):'';}const RATING_LABELS=null;
 const RATING_COLORS=['','var(--rating-1)','var(--rating-1)','var(--rating-2)','var(--rating-2)','var(--rating-3)','var(--rating-3)','var(--rating-4)','var(--rating-4)','var(--rating-5)','var(--rating-5)'];
 let ratingChipSelectedIdx=-1;
 let ratingChipEditIdx=-1;
+let ratingEditDay=null;
 
 function renderRating(){
+  if(ratingEditDay!==activeDay){ratingChipEditIdx=-1;ratingChipSelectedIdx=-1;ratingEditDay=activeDay;}
   const d=day();
+  const snapshot=JSON.parse(JSON.stringify(d));
+  function commitRating(){
+    syncDayRating(d);
+    if(!markNow()){Object.keys(d).forEach(k=>delete d[k]);Object.assign(d,JSON.parse(JSON.stringify(snapshot)));dirty=true;}
+    renderRating();
+  }
   const ratings=d.dayRatings||[];
   const avg=calcDayRating(d);
   const avgRounded=Math.round(avg);
@@ -3890,9 +3509,9 @@ function renderRating(){
         if(r&&typeof r==='object')r.v=i; else ratings[ratingChipEditIdx]={v:i,t:nowTime()};
         ratingChipEditIdx=-1;
         ratingChipSelectedIdx=-1;
-        syncDayRating(d);markNow();renderRating();
+        commitRating();
       } else {
-        if((d.dayRatings||[]).length>=10)return; ratingChipSelectedIdx=-1; d.dayRatings.push({v:i,t:nowTime()});syncDayRating(d);markNow();renderRating();
+        if((d.dayRatings||[]).length>=10){lbl.textContent=getLang()==='en'?'Limit: 10 ratings. Edit an existing rating.':'Ліміт: 10 оцінок. Можна змінити наявну оцінку.';return;} ratingChipSelectedIdx=-1; d.dayRatings.push({v:i,t:nowTime()});commitRating();
       }
     });
     s.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&!isEditMode){lbl.textContent=getRatingLabel(i);lbl.style.color=RATING_COLORS[i];}});
@@ -3935,7 +3554,7 @@ function renderRating(){
         e.stopPropagation();
         if(ratingChipSelectedIdx===ri)ratingChipSelectedIdx=-1;
         if(ratingChipEditIdx===ri)ratingChipEditIdx=-1;
-        d.dayRatings.splice(ri,1);syncDayRating(d);markNow();renderRating();
+        ratingChipSelectedIdx=-1;ratingChipEditIdx=-1;d.dayRatings.splice(ri,1);commitRating();
       });
       chip.appendChild(num); chip.appendChild(del);
 
@@ -4652,7 +4271,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='71.5.1';
+const APP_VERSION='71.6';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -5495,9 +5114,10 @@ function customMoodH(id){
   return level==='pos'?76:level==='neg'?22:46;
 }
 function buildMoodChart(container){
+  closeDayRatingDetail();
   // Special all-time view — verdict card instead of chart
   if(moodPeriod==='all'){
-    const allKeys=Object.keys(S.days).filter(k=>S.days[k].dayRating||S.days[k].emotions?.length);
+    const allKeys=Object.keys(S.days).filter(k=>k<=todayKey()&&(dayScore(S.days[k])||S.days[k].emotions?.length));
     if(!allKeys.length){container.innerHTML='<div style="text-align:center;color:var(--txm);padding:var(--s8);font-size:var(--sm)">Немає даних</div>';return;}
     const total=allKeys.length;
     const rated=allKeys.filter(k=>{const d=S.days[k];return (d.dayRatings&&d.dayRatings.length)?calcDayRating(d)>0:(d.dayRating>0)});
@@ -5512,7 +5132,7 @@ function buildMoodChart(container){
       {min:1.5,emoji:'😔',label:getLang()==='en'?'Difficult period':'Складний період',color:'var(--err)'},
       {min:0,  emoji:'🌧️',label:getLang()==='en'?'Very hard':'Дуже важко',color:'var(--err)'},
     ];
-    const grade=GRADES.find(g=>pct>=g.min)||GRADES[GRADES.length-1];
+    const grade=rated.length?(GRADES.find(g=>pct>=g.min)||GRADES[GRADES.length-1]):{emoji:'—',color:'var(--txm)',label:getLang()==='en'?'No ratings yet':'Ще немає оцінок'};
     // Most common emotion
     const eCounts={};
     allKeys.forEach(k=>{
@@ -5532,7 +5152,7 @@ function buildMoodChart(container){
     const bestMonthLabel=bestMonth?MON[parseInt(bestMonth[0].split('-')[1])-1]+' '+bestMonth[0].split('-')[0]:'—';
     container.innerHTML=`<div class="mood-verdict">
       <div class="verdict-emoji">${grade.emoji}</div>
-      <div class="verdict-pct" style="color:${esc(grade.color)}">${avg}/10</div>
+      <div class="verdict-pct" style="color:${esc(grade.color)}">${rated.length?avg+'/10':'—'}</div>
       <div class="verdict-label">${grade.label}</div>
       <div class="verdict-stats">
         <div class="verdict-stat"><div class="verdict-stat-num">${total}</div><div class="verdict-stat-lbl">${getLang()==='en'?'Days':'Днів'}</div></div>
@@ -5551,29 +5171,27 @@ function buildMoodChart(container){
   if(moodPeriod==='year'){
     // Monthly aggregation
     days.forEach(({monthKeys,label})=>{
-      const counts={};
-      monthKeys.forEach(k=>{const _d=S.days[k];const _r=_d?( _d.dayRatings&&_d.dayRatings.length?Math.round(calcDayRating(_d)):_d.dayRating||0 ):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;if(em){counts[em]=(counts[em]||0)+1;}});
-      const dominant=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
-      const em=dominant?dominant[0]:null;
-      const h=em?(MOOD_H[em]||customMoodH(em)):4;
+      const stats=periodRating(monthKeys);
+      const em=stats.n?['','bad','bad','meh','meh','ok','ok','good','good','great','great'][Math.round(stats.avg)]:null;
+      const h=stats.n?stats.avg*9:4;
       const cl=em?emotionColor(em):'var(--bdr)';
       html+=`<div class="mc-col" style="flex:1"><div class="mc-bar" style="height:${esc(h)}px;background:${esc(cl)};width:100%"></div><div class="mc-lbl">${label}</div></div>`;
     });
   } else if(moodPeriod==='all'){
     days.forEach(k=>{
-      const _d=S.days[k];const _r=_d?( _d.dayRatings&&_d.dayRatings.length?Math.round(calcDayRating(_d)):_d.dayRating||0 ):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;
-      const h=em?(MOOD_H[em]||customMoodH(em)):4;
+      const _d=S.days[k];const _r=k<=todayKey()?Math.round(dayScore(_d)):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;
+      const h=em?dayScore(_d)*9:4;
       const cl=em?emotionColor(em):'var(--bdr)';
-      const d=keyToUTCDate(k);
+      const d=new Date(k+'T12:00:00');
       const lbl=moodPeriod==='all'?pad(d.getDate()):WDS[d.getDay()];
       html+=`<div class="mc-col"><div class="mc-bar" style="height:${esc(h)}px;background:${esc(cl)}"></div><div class="mc-lbl">${pad(d.getDate())}</div></div>`;
     });
   } else {
     days.forEach(k=>{
-      const _d=S.days[k];const _r=_d?( _d.dayRatings&&_d.dayRatings.length?Math.round(calcDayRating(_d)):_d.dayRating||0 ):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;
-      const h=em?(MOOD_H[em]||customMoodH(em)):4;
+      const _d=S.days[k];const _r=k<=todayKey()?Math.round(dayScore(_d)):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;
+      const h=em?dayScore(_d)*9:4;
       const cl=em?emotionColor(em):'var(--bdr)';
-      const d=keyToUTCDate(k);
+      const d=new Date(k+'T12:00:00');
       const lbl=moodPeriod==='week'?WDS[d.getDay()]:pad(d.getDate());
       const dyn=moodPeriod==='week'?dayRatingDynamics(_d):null;
       const dynTag=dyn?`<div class="mc-dyn" title="Δ ${dyn.delta.toFixed(1)}" style="font-size:11px;line-height:1;margin-bottom:2px;">${dyn.symbol}</div>`:'';
@@ -5589,19 +5207,19 @@ function buildMoodChart(container){
   const moodCounts={};
   let total=0;
   if(moodPeriod==='year'){
-    days.forEach(({monthKeys})=>{monthKeys.forEach(k=>{const _d=S.days[k];const _r=_d?( _d.dayRatings&&_d.dayRatings.length?Math.round(calcDayRating(_d)):_d.dayRating||0 ):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;if(em){moodCounts[em]=(moodCounts[em]||0)+1;total++;}});});
+    days.forEach(({monthKeys})=>{monthKeys.forEach(k=>{const _d=S.days[k];const _r=k<=todayKey()?Math.round(dayScore(_d)):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;if(em){moodCounts[em]=(moodCounts[em]||0)+1;total++;}});});
   } else {
-    days.forEach(k=>{const _d=S.days[k];const _r=_d?( _d.dayRatings&&_d.dayRatings.length?Math.round(calcDayRating(_d)):_d.dayRating||0 ):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;if(em){moodCounts[em]=(moodCounts[em]||0)+1;total++;}});
+    days.forEach(k=>{const _d=S.days[k];const _r=k<=todayKey()?Math.round(dayScore(_d)):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;if(em){moodCounts[em]=(moodCounts[em]||0)+1;total++;}});
   }
 
   if(total>0){
     const sorted=Object.entries(moodCounts).sort((a,b)=>b[1]-a[1]);
     html+='<div class="mood-summary-grid">';
-    sorted.slice(0,4).forEach(([id,cnt])=>{
+    sorted.forEach(([id,cnt])=>{
       const cl=emotionColor(id);
       const pct=Math.round(cnt/total*100);
       const bg=cl.startsWith('#')?cl+'22':cl.replace('var(','oklch(from ').replace(')',') l c h/.1)');
-      html+=`<div class="mood-sum-item" style="background:${esc(bg)}"><div class="mood-sum-num" style="color:${esc(cl)}">${pct}%</div><div class="mood-sum-lbl">${esc(emotionLabel(id))}: ${cnt}</div></div>`;
+      html+=`<div class="mood-sum-item" style="background:${esc(bg)}"><div class="mood-sum-num" style="color:${esc(cl)}">${pct}%</div><div class="mood-sum-lbl">${({bad:'1–2',meh:'3–4',ok:'5–6',good:'7–8',great:'9–10'})[id]}: ${cnt}</div></div>`;
     });
     html+='</div>';
   }
@@ -5636,9 +5254,14 @@ function buildMoodChart(container){
   }
 
   container.querySelectorAll('.mc-col[data-k]').forEach(col=>{
-    const open=ev=>{ ev.preventDefault(); ev.stopPropagation(); ev.stopImmediatePropagation?.(); openDayRatingDetail(col.dataset.k, col); };
-    col.addEventListener('pointerdown',open,{capture:true,passive:false});
-    col.addEventListener('click',open,{capture:true,passive:false});
+    let start=null,moved=false;
+    col.setAttribute('role','button');col.tabIndex=0;
+    col.setAttribute('aria-label',col.dataset.k+': '+(dayScore(S.days[col.dataset.k])||'—'));
+    col.addEventListener('pointerdown',e=>{start={x:e.clientX,y:e.clientY};moved=false;});
+    col.addEventListener('pointermove',e=>{if(start&&Math.hypot(e.clientX-start.x,e.clientY-start.y)>8)moved=true;});
+    col.addEventListener('pointercancel',()=>{moved=true;});
+    col.addEventListener('click',e=>{e.stopPropagation();if(!moved)openDayRatingDetail(col.dataset.k,col);start=null;});
+    col.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDayRatingDetail(col.dataset.k,col);}});
   });
 }
 
@@ -8618,40 +8241,22 @@ async function runPeriodAnalysis(fromKey, toKey, periodLabel){
 }
 
 function getInsightDays(){
-  const now=new Date();
-  const allKeys=Object.keys(S.days);
-  if(insPeriod==='week'){
-    return allKeys.filter(k=>{const d=keyToUTCDate(k);return(now-d)/864e5<=7;});
-  }
-  if(insPeriod==='month'){
-    return allKeys.filter(k=>{const d=keyToUTCDate(k);return(now-d)/864e5<=30;});
-  }
-  if(insPeriod==='custom'){
-    if(insCustomAll)return allKeys;
-    const from=insCustomFrom?new Date(insCustomFrom+'T00:00:00'):null;
-    const to=insCustomTo?new Date(insCustomTo+'T23:59:59'):null;
-    return allKeys.filter(k=>{
-      const d=keyToUTCDate(k);
-      if(from&&d<from)return false;
-      if(to&&d>to)return false;
-      return true;
-    });
-  }
-  return allKeys;
+ const range=getInsightRange();
+ return Object.keys(S.days).filter(k=>k<=todayKey()&&k>=range.fromKey&&k<=range.toKey);
 }
 
 function getInsightRange(){
   const todayStr = todayKey();
   const lang = getLang();
   if(insPeriod === 'week'){
-    const from = new Date(); from.setDate(from.getDate()-6);
+    const from = new Date(); from.setDate(from.getDate()-(from.getDay()||7)+1);
     const fromKey = from.getFullYear()+'-'+String(from.getMonth()+1).padStart(2,'0')+'-'+String(from.getDate()).padStart(2,'0');
-    return {fromKey, toKey: todayStr, label: lang==='en' ? 'the last week' : 'останній тиждень'};
+    return {fromKey, toKey: todayStr, label: lang==='en' ? 'this calendar week' : 'поточний календарний тиждень'};
   }
   if(insPeriod === 'month'){
-    const from = new Date(); from.setDate(from.getDate()-29);
+    const from = new Date(); from.setDate(1);
     const fromKey = from.getFullYear()+'-'+String(from.getMonth()+1).padStart(2,'0')+'-'+String(from.getDate()).padStart(2,'0');
-    return {fromKey, toKey: todayStr, label: lang==='en' ? 'the last month' : 'останній місяць'};
+    return {fromKey, toKey: todayStr, label: lang==='en' ? 'this calendar month' : 'поточний календарний місяць'};
   }
   if(insCustomAll){
     const allKeys = Object.keys(S.days).sort();
@@ -8663,11 +8268,7 @@ function getInsightRange(){
   return {fromKey, toKey, label: lang==='en' ? `${fromKey} — ${toKey}` : `${fromKey} — ${toKey}`};
 }
 
-function avgRating(keys){
-  const rated=keys.filter(k=>S.days[k]&&S.days[k].dayRating>0);
-  if(!rated.length)return null;
-  return rated.reduce((s,k)=>s+dayScore(S.days[k]),0)/rated.length;
-}
+function avgRating(keys){return periodRating(keys).avg;}
 
 function renderInsights(container){
   const isCustom=insPeriod==='custom';
@@ -8812,8 +8413,8 @@ function renderInsHabits(body){
     const pct=totalDays>0?Math.round(doneDays.length/totalDays*100):0;
     const color=pct>=70?'var(--suc)':pct>=40?'var(--gold)':'var(--err)';
     const streak=habitStreakCount(hid);
-    const withRating=doneDays.filter(k=>S.days[k]&&S.days[k].dayRating>0);
-    const withoutRating=days.filter(k=>!isHabitDone(hid,k)&&S.days[k]&&S.days[k].dayRating>0);
+    const withRating=doneDays.filter(k=>dayScore(S.days[k])>0);
+    const withoutRating=days.filter(k=>!isHabitDone(hid,k)&&dayScore(S.days[k])>0);
     const avgWith=avgRating(withRating);
     const avgWithout=avgRating(withoutRating);
     const diff=(avgWith!==null&&avgWithout!==null)?avgWith-avgWithout:null;
@@ -8963,7 +8564,7 @@ function renderInsAnalysis(body){
     daysShort:'дн'
   };
   const days=getInsightDays();
-  const rated=days.filter(k=>S.days[k]&&S.days[k].dayRating>0);
+  const rated=days.filter(k=>dayScore(S.days[k])>0);
   if(rated.length<7){body.innerHTML=`<div class="ins-empty">${t.need}<br><span style="font-size:var(--xs)">${t.continue}</span></div>`;return;}
   const insights=[];
   const habits=S.habits||[];
@@ -9120,7 +8721,7 @@ function buildTimeline(yearFilter){
 
     // Деталі: середній настрій, топ емоції
     const allDateKeys=Object.keys(S.days).sort();const segKeys=allDateKeys.filter(k=>k>=seg.start&&k<=seg.end&&S.days[k].status===seg.status);
-    const rated=segKeys.filter(k=>S.days[k]&&S.days[k].dayRating>0);
+    const rated=segKeys.filter(k=>dayScore(S.days[k])>0);
     const avgMood=rated.length?Math.round(rated.reduce((s,k)=>s+dayScore(S.days[k]),0)/rated.length*10)/10:null;
     const emotionCount={};
     segKeys.forEach(k=>{(S.days[k].emotions||[]).forEach(e=>{emotionCount[e.id]=(emotionCount[e.id]||0)+1;});});
@@ -9925,7 +9526,7 @@ function closeDaysPopup(){
 // ── DAY RATING DETAIL POPUP ──
 function closeDayRatingDetail(){
   const p=document.getElementById('day-rating-popup');
-  if(p)p.classList.remove('on');
+  if(p){p.classList.remove('on');p.style.display='none';}
 }
 (function(){
   const popup=document.getElementById('day-rating-popup');
@@ -9951,7 +9552,7 @@ function closeDayRatingDetail(){
   window.openDayRatingDetail=function(dateKey, colEl){
     const en=getLang()==='en';
     const d=S.days[dateKey];
-    if(!d||!d.dayRatings||!d.dayRatings.length)return;
+    if(!dayScore(d))return;
 
     document.getElementById('drp-title').textContent='📅 '+fmtBig(dateKey);
 
@@ -9965,13 +9566,13 @@ function closeDayRatingDetail(){
 
     const list=document.getElementById('drp-list');
     list.innerHTML='';
-    const sorted=[...d.dayRatings].sort((a,b)=>(ratingTime(a)||'').localeCompare(ratingTime(b)||''));
+    const sorted=ratingEntries(d).slice().sort((a,b)=>(ratingTime(a)||'').localeCompare(ratingTime(b)||''));
     sorted.forEach(r=>{
       const rv=ratingVal(r), rt=ratingTime(r)||'—';
       const c=RATING_COLORS[Math.round(rv)]||'var(--pri)';
       const row=document.createElement('div');
       row.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:4px 8px;border-radius:var(--r2);background:oklch(from '+c+' l c h/.1);';
-      row.innerHTML='<span style="color:var(--txm);font-size:var(--sm)">'+rt+'</span><span style="color:'+esc(c)+';font-weight:700;font-size:var(--sm)">'+rv+'</span>';
+      row.innerHTML='<span style="color:var(--txm);font-size:var(--sm)">'+esc(rt)+'</span><span style="color:'+esc(c)+';font-weight:700;font-size:var(--sm)">'+rv+'</span>';
       list.appendChild(row);
     });
 
@@ -9987,7 +9588,7 @@ function closeDayRatingDetail(){
     requestAnimationFrame(()=>positionNearCol(colEl));
   };
 
-  box.addEventListener('click',()=>{ closeDayRatingDetail(); });
+  document.addEventListener('scroll',e=>{if(!popup.contains(e.target))closeDayRatingDetail();},{capture:true,passive:true});
   document.addEventListener('click',e=>{ if(!popup.contains(e.target)) closeDayRatingDetail(); });
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDayRatingDetail();});
   window.addEventListener('resize',()=>{ if(popup.classList.contains('on')) popup.classList.remove('on'); });

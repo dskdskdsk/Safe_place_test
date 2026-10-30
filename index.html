@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 71.6
-  Файл: 71.6_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 71.6.1
+  Файл: 71.6.1_safe-place.html
+  Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
   Зміни 71.5.1: повернено висоту кнопок оцінки 32px і проміжки 4px.
 
@@ -354,11 +355,11 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 </script>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 71.6</title>
+<title>Safe Place · 71.6.1</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -710,7 +711,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 
 /* Mood chart */
 .moodchart-wrap{overflow-x:auto;padding-bottom:var(--s2)}
-.moodchart{display:flex;align-items:flex-end;gap:3px;height:122px;min-width:100%;padding-top:8px;overflow:visible}
+.moodchart{display:flex;align-items:flex-end;gap:3px;height:132px;min-width:100%;padding-top:20px;overflow:visible}
 .moodchart.week-view .mc-col{flex:1;min-width:0}
 .moodchart.week-view .mc-bar{min-width:0}
 .mc-col{display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0}
@@ -727,7 +728,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .mood-insight-dots{display:flex;justify-content:center;gap:5px;margin-top:6px;}
 .mood-insight-dot{width:5px;height:5px;border-radius:50%;background:var(--bdr);transition:all .2s ease;cursor:pointer;}
 .mood-insight-dot.active{background:var(--fill);width:12px;border-radius:3px;}
-.mc-dyn{font-size:10px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;min-height:14px;display:flex;align-items:center;justify-content:center;margin-bottom:1px;}
+.mc-dyn{font-size:11px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;min-height:18px;display:flex;align-items:center;justify-content:center;margin-bottom:2px;}
 
 /* Mood legend */
 .mood-legend{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s4);margin-top:var(--s3)}
@@ -736,9 +737,9 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 
 /* Mood stats summary */
 .mood-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s3)}
-.mood-sum-item{padding:var(--s3);border-radius:var(--r3);font-size:var(--xs);text-align:center}
+.mood-sum-item{padding:var(--s2) var(--s3);border-radius:var(--r3);font-size:var(--xs);text-align:center;background:transparent}
 .mood-sum-num{font-size:var(--lg);font-weight:700;line-height:1}
-.mood-sum-lbl{color:var(--txm);margin-top:2px}
+.mood-sum-lbl{color:var(--txm);margin-top:4px;font-size:var(--sm)}
 
 /* Ideas bank */
 .idea-bank-item{padding:var(--s2) var(--s3);background:oklch(from var(--gold) l c h/.08);border:1px solid oklch(from var(--gold) l c h/.25);border-radius:var(--r2);font-size:var(--sm);line-height:1.5;margin-bottom:var(--s2)}
@@ -1229,6 +1230,9 @@ html.modal-open .page{overflow-y:hidden}
   -webkit-touch-callout:default;
 }
 
+/* App chrome cannot be selected by a long press. Editing fields remain selectable. */
+body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+:is(input,textarea,[contenteditable]:not([contenteditable="false"])),[contenteditable]:not([contenteditable="false"]) *{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
 /* 71.0: responsive presentation; storage and viewport controllers unchanged. */
 :root{color-scheme:light}
 [data-theme="dark"]{color-scheme:dark}
@@ -1304,7 +1308,8 @@ html.modal-open .page{overflow-y:hidden}
 [data-theme="dark"]{--rating-1:rgb(209 99 167);--rating-2:rgb(253 171 67);--rating-3:rgb(232 175 52);--rating-4:rgb(79 152 163);--rating-5:rgb(109 170 69)}
 [data-block="rating"]>.cb{container-type:inline-size}
 #rating-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:8px 0}
-.rating-value{min-width:0;height:32px;background:oklch(from var(--rating-tone) l c h/.15);color:var(--rating-tone);border:1.5px solid var(--rating-tone);border-radius:var(--r2);font-size:var(--xs);font-weight:700;cursor:pointer}
+.rating-value{min-width:0;height:32px;background:transparent;color:var(--txf);border:1.5px solid var(--bdr);border-radius:var(--r2);font-size:var(--xs);font-weight:700;cursor:pointer}
+.rating-value.is-lit{background:oklch(from var(--rating-tone) l c h/.15);color:var(--rating-tone);border-color:var(--rating-tone)}
 .rating-value[aria-pressed="true"]{background:oklch(from var(--rating-tone) l c h/.23)}
 #rating-label{display:flex;align-items:center;justify-content:center;min-height:1.6em;line-height:1.35;margin:2px 0;overflow-wrap:anywhere}
 #rating-chips:empty{display:none!important}
@@ -2082,7 +2087,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.6',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.6.1',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2181,7 +2186,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.6',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.6.1',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -3028,6 +3033,10 @@ function markNow(){dirty=true;return persist();}          // discrete action: sa
 function showFab(){document.getElementById('save-fab').classList.add('on');}
 function hideFab(){document.getElementById('save-fab').classList.remove('on');}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+document.addEventListener('gesturestart',e=>e.preventDefault(),{passive:false});
+document.addEventListener('gesturechange',e=>e.preventDefault(),{passive:false});
+document.addEventListener('touchmove',e=>{if(e.touches.length>1)e.preventDefault();},{passive:false});
+document.addEventListener('dblclick',e=>{if(!e.target.closest('input,textarea,[contenteditable]'))e.preventDefault();});
 function nowTime(){const d=new Date();return`${pad(d.getHours())}:${pad(d.getMinutes())}`;}
 
 // ═══ THEME ═══
@@ -3191,6 +3200,7 @@ function emotionLabel(id){
   const e=BUILT_IN.find(x=>x.id===id);
   return e?e.label:id;
 }
+function moodBarColor(id){return ({bad:'#d163a7',meh:'#fdab43',ok:'#e8af34',good:'#4f98a3',great:'#6daa45'})[id]||emotionColor(id);}
 function emotionColor(id){
   if(!id)return'var(--txf)';
   if(MOOD_COLORS[id])return MOOD_COLORS[id];
@@ -3497,8 +3507,8 @@ function renderRating(){
 
   for(let i=1;i<=10;i++){
     const s=document.createElement('button');
-    const selectedVal=isEditMode?editingVal:ratingVal(ratings[ratingChipSelectedIdx>=0?ratingChipSelectedIdx:ratings.length-1]);
-    s.className='rating-value';
+    const selectedVal=isEditMode?0:ratingVal(ratings[ratingChipSelectedIdx>=0?ratingChipSelectedIdx:ratings.length-1]);
+    s.className='rating-value'+(selectedVal>=i?' is-lit':'');
     s.style.setProperty('--rating-tone',RATING_COLORS[i]);
     s.setAttribute('aria-pressed',String(selectedVal===i));
     s.setAttribute('aria-label',getRatingLabel(i));
@@ -3522,7 +3532,7 @@ function renderRating(){
   const en=getLang()==='en';
   if(isEditMode){
     lbl.textContent=en?'Choose a new value for this entry':'Оберіть нове значення для цього запису';
-    lbl.style.color=RATING_COLORS[editingVal]||'var(--pri)';
+    lbl.style.color='var(--txm)';
   } else {
     const shown=ratings[ratingChipSelectedIdx>=0?ratingChipSelectedIdx:ratings.length-1];
     const value=shown?ratingVal(shown):0;
@@ -4271,7 +4281,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='71.6';
+const APP_VERSION='71.6.1';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -5174,14 +5184,14 @@ function buildMoodChart(container){
       const stats=periodRating(monthKeys);
       const em=stats.n?['','bad','bad','meh','meh','ok','ok','good','good','great','great'][Math.round(stats.avg)]:null;
       const h=stats.n?stats.avg*9:4;
-      const cl=em?emotionColor(em):'var(--bdr)';
+      const cl=em?moodBarColor(em):'var(--bdr)';
       html+=`<div class="mc-col" style="flex:1"><div class="mc-bar" style="height:${esc(h)}px;background:${esc(cl)};width:100%"></div><div class="mc-lbl">${label}</div></div>`;
     });
   } else if(moodPeriod==='all'){
     days.forEach(k=>{
       const _d=S.days[k];const _r=k<=todayKey()?Math.round(dayScore(_d)):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;
       const h=em?dayScore(_d)*9:4;
-      const cl=em?emotionColor(em):'var(--bdr)';
+      const cl=em?moodBarColor(em):'var(--bdr)';
       const d=new Date(k+'T12:00:00');
       const lbl=moodPeriod==='all'?pad(d.getDate()):WDS[d.getDay()];
       html+=`<div class="mc-col"><div class="mc-bar" style="height:${esc(h)}px;background:${esc(cl)}"></div><div class="mc-lbl">${pad(d.getDate())}</div></div>`;
@@ -5190,14 +5200,14 @@ function buildMoodChart(container){
     days.forEach(k=>{
       const _d=S.days[k];const _r=k<=todayKey()?Math.round(dayScore(_d)):0;const em=_r?(['','bad','bad','meh','meh','ok','ok','good','good','great','great'][_r]||null):null;
       const h=em?dayScore(_d)*9:4;
-      const cl=em?emotionColor(em):'var(--bdr)';
+      const cl=em?moodBarColor(em):'var(--bdr)';
       const d=new Date(k+'T12:00:00');
       const lbl=moodPeriod==='week'?WDS[d.getDay()]:pad(d.getDate());
       const dyn=moodPeriod==='week'?dayRatingDynamics(_d):null;
-      const dynTag=dyn?`<div class="mc-dyn" title="Δ ${dyn.delta.toFixed(1)}" style="font-size:11px;line-height:1;margin-bottom:2px;">${dyn.symbol}</div>`:'';
+      const dynTag=dyn?`<div class="mc-dyn" title="Δ ${dyn.delta.toFixed(1)}">${dyn.symbol}</div>`:'';
       const dir=moodPeriod==='week'&&_d&&_d.dayRatings&&_d.dayRatings.length>=2?dayRatingTrend(_d):null;
       const dirTag=dir?`<div class=\"mc-dir\" title=\"${esc(dir.title)}\">${dir.symbol}</div>`:'<div class=\"mc-dir\"></div>';
-      html+=`<div class=\"mc-col\" data-k=\"${esc(k)}\" style=\"cursor:pointer;padding-top:14px;overflow:visible;\">${dynTag}<div class=\"mc-bar\" style=\"height:${esc(h)}px;background:${esc(cl)}\"></div>${dirTag}<div class=\"mc-lbl\">${lbl}</div></div>`;
+      html+=`<div class=\"mc-col\" data-k=\"${esc(k)}\" style=\"cursor:pointer;overflow:visible;\">${dynTag}<div class=\"mc-bar\" style=\"height:${esc(h)}px;background:${esc(cl)}\"></div>${dirTag}<div class=\"mc-lbl\">${lbl}</div></div>`;
     });
   }
 
@@ -5218,8 +5228,8 @@ function buildMoodChart(container){
     sorted.forEach(([id,cnt])=>{
       const cl=emotionColor(id);
       const pct=Math.round(cnt/total*100);
-      const bg=cl.startsWith('#')?cl+'22':cl.replace('var(','oklch(from ').replace(')',') l c h/.1)');
-      html+=`<div class="mood-sum-item" style="background:${esc(bg)}"><div class="mood-sum-num" style="color:${esc(cl)}">${pct}%</div><div class="mood-sum-lbl">${({bad:'1–2',meh:'3–4',ok:'5–6',good:'7–8',great:'9–10'})[id]}: ${cnt}</div></div>`;
+      
+      html+=`<div class="mood-sum-item"><div class="mood-sum-num" style="color:${esc(cl)}">${pct}%</div><div class="mood-sum-lbl">${esc(emotionLabel(id))} · ${({bad:'1–2',meh:'3–4',ok:'5–6',good:'7–8',great:'9–10'})[id]}: ${cnt}</div></div>`;
     });
     html+='</div>';
   }

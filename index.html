@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 71.6.2
-  Файл: 71.6.2_safe-place.html
+  ЩОДЕННИК · ВЕРСІЯ 72.0
+  Файл: 72.0_safe-place.html
+  Зміни 72.0: прибрано погоду, геолокацію та запити Open-Meteo.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -91,7 +92,7 @@
   4. API-ключ передається через x-goog-api-key, а не параметр URL.
   5. Уточнено пояснення AI й локального зберігання, версію у налаштуваннях.
      Нові тексти — LANG uk/en. Схему сховищ не змінено.
-  Межі: Gemini і погода Open-Meteo потребують інтернету; офлайн-повторний
+  Межі: Gemini потребує інтернету; офлайн-повторний
   запуск установленої PWA ще не забезпечено service worker.
 
   Зміни версії 70.2 відносно 70.1:
@@ -360,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 71.6.2</title>
+<title>Safe Place · 72.0</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -689,15 +690,6 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .statc{flex:1;background:var(--off);border-radius:var(--r3);padding:var(--s3) var(--s2);text-align:center}
 .statnum{font-size:var(--lg);font-weight:700;letter-spacing:-.02em;line-height:1}
 .statlbl{font-size:9px;color:var(--txm);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
-
-/* Weather */
-.wx-card{background:linear-gradient(135deg,var(--fill) 0%,var(--fill-hover) 100%);border-radius:var(--r4);padding:var(--s4);color:#fff;display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s3)}
-.wx-temp{font-size:clamp(2rem,8vw,3rem);font-weight:700;line-height:1}
-.wx-desc{font-size:var(--sm);opacity:.85;margin-top:2px}
-.wx-loc{font-size:var(--xs);opacity:.7;margin-top:var(--s1)}
-.wx-details{display:flex;gap:var(--s4);margin-top:var(--s3)}
-.wx-detail{font-size:var(--xs);opacity:.8;display:flex;align-items:center;gap:4px}
-.wx-icon{font-size:3.5rem;line-height:1}
 
 /* Mood filter tabs */
 .mood-tabs{display:flex;gap:var(--s1);margin-bottom:var(--s3);background:var(--off);border-radius:var(--r3);padding:3px}
@@ -1294,7 +1286,6 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 [data-theme="light"] .voice-msg-time{color:var(--txm)}
 [data-theme="light"] .voice-msg-wave{background:repeating-linear-gradient(90deg,var(--pri) 0 2px,transparent 2px 5px)}
 [data-theme="light"] .voice-msg-wave-fill{background:oklch(from var(--surface) l c h/.65)}
-[data-theme="light"] .wx-card{background:var(--dyn);color:var(--tx);border:1px solid var(--div)}
 [data-theme="light"] :is(.ibank-item,.ibank-tabs){background:var(--surface);border-color:var(--div)}
 [data-theme="light"] .cal-day{box-shadow:none;border-color:var(--div)}
 [data-theme="light"] #ai-day-result{background:var(--off);border-color:var(--div);border-left-color:var(--clay)}
@@ -2046,7 +2037,6 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   import_unsaved:"Імпорт не збережено. Поточний щоденник залишено без змін. Перевір доступність сховища та вільне місце.",
   photo_failed:"Не вдалося додати фото. Перевір формат файла та вільне місце.",
   photo_limit:"Максимум 4 фото на день. Зайві файли пропущено.",
-  wx_locating:'Визначаю місцезнаходження...',wx_feels:'Відчувається як',wx_kmh:'км/г',wx_off:'Погода недоступна — дозвольте геолокацію',wx_clear:'Ясно',wx_cloudy:'Хмарно',wx_fog:'Туман',wx_rain:'Дощ',wx_snow:'Сніг',wx_shower:'Злива',wx_storm:'Гроза',wx_var:'Змінно',
   nav_today:'Сьогодні',nav_notes:'Записи',nav_dash:'Дашборд',nav_settings:'Налаштування',
   idea_detail_title:'Ідея',idea_tags_lbl:'Мітки',idea_new_tag_ph:'Нова мітка...',idea_subtasks_lbl:'Підпункти',idea_new_subtask_ph:'Новий підпункт...',idea_detail_hint:'Натисни ідею, щоб відкрити деталі',
   title_today:'Сьогодні',title_notes:'Записи',title_dash:'Дашборд',title_settings:'Налаштування',
@@ -2089,7 +2079,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI та погода використовують зовнішні сервіси · Версія 71.6.2',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.0',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2145,7 +2135,6 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   import_unsaved:"Import was not saved. The current journal was left unchanged. Check storage access and available space.",
   photo_failed:"Could not add photo. Check the file format and available storage.",
   photo_limit:"Maximum 4 photos per day. Extra files were skipped.",
-  wx_locating:'Finding your location...',wx_feels:'Feels like',wx_kmh:'km/h',wx_off:'Weather unavailable — allow location access',wx_clear:'Clear',wx_cloudy:'Cloudy',wx_fog:'Fog',wx_rain:'Rain',wx_snow:'Snow',wx_shower:'Showers',wx_storm:'Thunderstorm',wx_var:'Variable',
   nav_today:'Today',nav_notes:'Notes',nav_dash:'Dashboard',nav_settings:'Settings',
   idea_detail_title:'Idea',idea_tags_lbl:'Tags',idea_new_tag_ph:'New tag...',idea_subtasks_lbl:'Subtasks',idea_new_subtask_ph:'New subtask...',idea_detail_hint:'Tap an idea to open details',
   title_today:'Today',title_notes:'Notes',title_dash:'Dashboard',title_settings:'Settings',
@@ -2188,7 +2177,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI and weather use external services · Version 71.6.2',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.0',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4283,7 +4272,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='71.6.2';
+const APP_VERSION='72.0';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -5057,26 +5046,6 @@ function renderNotes(){
 }
 
 // ═══════════════════ DASHBOARD ═══════════════════
-let weatherCache=null;
-
-async function fetchWeather(){
-  if(weatherCache)return weatherCache;
-  return new Promise(resolve=>{
-    if(!navigator.geolocation){resolve(null);return;}
-    navigator.geolocation.getCurrentPosition(async pos=>{
-      try{
-        const{latitude:lat,longitude:lon}=pos.coords;
-        const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,relative_humidity_2m&wind_speed_unit=kmh`;
-        const r=await fetch(url);const data=await r.json();
-        weatherCache={temp:Math.round(data.current.temperature_2m),feels:Math.round(data.current.apparent_temperature),code:data.current.weather_code,wind:Math.round(data.current.wind_speed_10m),humidity:data.current.relative_humidity_2m};
-        resolve(weatherCache);
-      }catch{resolve(null);}
-    },()=>resolve(null),{timeout:5000});
-  });
-}
-function wxIcon(c){if(c===0)return'☀️';if(c<=3)return'⛅';if(c<=48)return'🌫️';if(c<=67)return'🌧️';if(c<=77)return'❄️';if(c<=82)return'🌦️';if(c<=99)return'⛈️';return'🌤️';}
-function wxDesc(c){if(c===0)return t('wx_clear');if(c<=3)return t('wx_cloudy');if(c<=48)return t('wx_fog');if(c<=67)return t('wx_rain');if(c<=77)return t('wx_snow');if(c<=82)return t('wx_shower');if(c<=99)return t('wx_storm');return t('wx_var');}
-
 // ── Mood chart data builder ──
 function getMoodDays(){
   const now=new Date();
@@ -5280,18 +5249,6 @@ function buildMoodChart(container){
 async function renderDash(){
   const cont=document.getElementById('dash-content');
   cont.innerHTML='';
-
-  // Weather
-  const wxDiv=document.createElement('div');
-  wxDiv.innerHTML='<div class="wx-card" style="opacity:.6"><div>'+esc(t('wx_locating'))+' 📍</div><div class="wx-icon">🌤️</div></div>';
-  cont.appendChild(wxDiv);
-  fetchWeather().then(wx=>{
-    if(wx){
-      wxDiv.innerHTML=`<div class="wx-card"><div><div class="wx-temp">${wx.temp}°C</div><div class="wx-desc">${wxDesc(wx.code)}</div><div class="wx-loc">${esc(t('wx_feels'))} ${wx.feels}°C</div><div class="wx-details"><div class="wx-detail">💨 ${wx.wind} ${esc(t('wx_kmh'))}</div><div class="wx-detail">💧 ${wx.humidity}%</div></div></div><div class="wx-icon">${wxIcon(wx.code)}</div></div>`;
-    }else{
-      wxDiv.innerHTML='<div class="wx-card"><div class="wx-loc" style="opacity:.8">'+esc(t('wx_off'))+'</div><div class="wx-icon">🌤️</div></div>';
-    }
-  });
 
   // Stats
   const allDays=Object.keys(S.days).sort();
@@ -10403,7 +10360,6 @@ function checkDayRollover(){
   if(_userIsComposing())return false;      // retried on blur, on resume and every 30 s
   flushAutosave();
   const old=TODAY;TODAY=nk;
-  weatherCache=null;
   if(activeDay===old)activeDay=TODAY;       // only follow if the user was looking at "today"
   try{
     renderToday();

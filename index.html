@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 72.1
-  Файл: 72.1_safe-place.html
-  Зміни 72.1: Етап A — чисті профілі аналітики та походження оцінок.
+  ЩОДЕННИК · ВЕРСІЯ 72.2
+  Файл: 72.2_safe-place.html
+  Зміни 72.2: Етап B — описові підсумки й календарні порівняння періодів.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -361,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 72.1</title>
+<title>Safe Place · 72.2</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -690,6 +690,19 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .statc{flex:1;background:var(--off);border-radius:var(--r3);padding:var(--s3) var(--s2);text-align:center}
 .statnum{font-size:var(--lg);font-weight:700;letter-spacing:-.02em;line-height:1}
 .statlbl{font-size:9px;color:var(--txm);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+
+.period-facts{margin-top:12px;border-top:1px solid var(--bdr);padding-top:10px;color:var(--tx);font-size:var(--sm);overflow-wrap:anywhere}
+.period-facts summary{cursor:pointer;font-weight:700;line-height:1.5;min-height:44px;padding:4px 0}
+.period-facts-brief{display:block;font-weight:400;font-size:var(--xs);color:var(--txm)}
+.period-facts-content{padding-top:6px}
+.period-facts-group{margin-top:16px;padding-top:12px;border-top:1px solid var(--bdr)}
+.period-facts h4{font-size:var(--sm);margin:0 0 8px;color:var(--tx);line-height:1.4}
+.period-facts dl{margin:0}
+.period-facts-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:8px;padding:5px 0;line-height:1.4}
+.period-facts dt{color:var(--txm)}
+.period-facts dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.period-facts-note{font-size:var(--xs);color:var(--txm);line-height:1.5;margin:8px 0}
+.period-facts-interval{display:grid;gap:3px;line-height:1.5;font-size:var(--xs);margin:10px 0}
 
 /* Mood filter tabs */
 .mood-tabs{display:flex;gap:var(--s1);margin-bottom:var(--s3);background:var(--off);border-radius:var(--r3);padding:3px}
@@ -2079,7 +2092,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.1',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.2',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2177,7 +2190,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.1',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.2',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -2965,7 +2978,34 @@ function insightMedian(values){
   return a.length%2?a[m]:(a[m-1]+a[m])/2;
 }
 function insightTimestamp(v){return typeof v==='number'&&Number.isFinite(v)&&v>0&&v<=8640000000000000;}
-function readInsightDay(snapshot,dateKey,asOf){
+// Local indexes contain new collections and primitives; never persisted or globally cached.
+function insightReadContext(snapshot){
+  const habitIds=new Map(),ideaSources=new Map(),historyKeys=new Set(Object.keys(snapshot?.days||{}));
+  for(const key of Object.keys(snapshot?.habitLog||{})){
+    const date=key.slice(-10);if(!insightDateKey(date))continue;
+    historyKeys.add(date);
+    if(key.length>11&&key.slice(-11,-10)==='_'&&snapshot.habitLog[key]){
+      if(!habitIds.has(date))habitIds.set(date,[]);habitIds.get(date).push(key.slice(0,-11));
+    }
+  }
+  for(const ids of habitIds.values())ids.sort();
+  function visit(nodes){
+    if(!Array.isArray(nodes))return;
+    nodes.forEach((n,i)=>{
+      if(!n||typeof n!=='object'||Array.isArray(n))return;
+      if(insightDateKey(n.date)){
+        historyKeys.add(n.date);
+        if(typeof n.text==='string'&&n.text.trim()){
+          if(!ideaSources.has(n.date))ideaSources.set(n.date,[]);
+          ideaSources.get(n.date).push(typeof n.id==='string'&&n.id.trim()?n.id:`${n.date}:idea:${i}`);
+        }
+      }
+      visit(n.children);
+    });
+  }
+  visit(snapshot?.ideaTree?.roots);return {habitIds,ideaSources,historyKeys};
+}
+function readInsightDay(snapshot,dateKey,asOf,context=null){
   if(!insightDateKey(dateKey)||!insightDateKey(asOf))throw new TypeError('Expected YYYY-MM-DD dateKey and asOf');
   const object=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
   const list=x=>Array.isArray(x)?x:[];
@@ -3025,13 +3065,13 @@ function readInsightDay(snapshot,dateKey,asOf){
   const statusKnown=statusId!==null&&(Object.hasOwn(STATUS_DATA,statusId)||list(snapshot?.settings?.customStatuses).some(s=>s?.id===statusId));
   // Read existing marks, including marks whose habit definition is no longer available.
   const suffix='_'+dateKey;
-  const markedIds=Object.keys(snapshot?.habitLog||{}).filter(k=>k.endsWith(suffix)&&k.length>suffix.length&&snapshot.habitLog[k]).map(k=>k.slice(0,-suffix.length)).sort();
+  const markedIds=context?(context.habitIds.get(dateKey)||[]).slice():Object.keys(snapshot?.habitLog||{}).filter(k=>k.endsWith(suffix)&&k.length>suffix.length&&snapshot.habitLog[k]).map(k=>k.slice(0,-suffix.length)).sort();
   const savedFields=['ideas','events','photos','photoIds','gratitude','media'];
   const hasSavedValue=x=>text(x)||(object(x)&&Object.values(x).some(v=>text(v)));
   let hasOtherSavedData=savedFields.some(k=>list(d[k]).some(hasSavedValue));
-  const ideaSources=[];
+  const ideaSources=context?(context.ideaSources.get(dateKey)||[]).slice():[];
   function visitIdeas(nodes){list(nodes).forEach((n,i)=>{if(!object(n))return;if(n.date===dateKey&&text(n.text))ideaSources.push(text(n.id)?n.id:`${dateKey}:idea:${i}`);visitIdeas(n.children);});}
-  visitIdeas(snapshot?.ideaTree?.roots);
+  if(!context)visitIdeas(snapshot?.ideaTree?.roots);
   hasOtherSavedData=hasOtherSavedData||ideaSources.length>0;
   if(ratings.some(r=>r.provenance==='unknown'))limitations.push('rating-time-origin-unknown');
   if(entries.length)limitations.push('entry-time-origin-unknown');
@@ -3041,10 +3081,11 @@ function readInsightDay(snapshot,dateKey,asOf){
   flags.hasSubmittedData=Object.values(flags).some(Boolean);
   return {dateKey,asOf,isFuture:dateKey>asOf,ratings:{count:ratings.length,mean,range:values.length>=2?Math.max(...values)-Math.min(...values):null,meanAbsoluteDeviation:values.length>=2?values.reduce((s,v)=>s+Math.abs(v-mean),0)/values.length:null,entries:ratings},entries:{count:entries.length,textCount:entries.filter(e=>e.type==='text').length,voiceCount:entries.filter(e=>e.type==='voice').length,sources:entries},emotions:{uniqueIds,knownLevels,unknownIds,sources:uniqueIds.map(id=>({id,sources:emotionSources.get(id).slice()}))},status:{id:statusId,known:statusKnown},habits:{markedIds},flags,quality:{ratingTime:ratings.map(r=>({source:r.source,provenance:r.provenance})),diagnostics,limitations},ideaSources};
 }
-function readInsightPeriod(snapshot,from,to,asOf){
-  if(![from,to,asOf].every(insightDateKey)||from>to)throw new TypeError('Expected ordered YYYY-MM-DD range and asOf');
-  const end=to<asOf?to:asOf,days=[];
-  for(let k=from;k<=end;k=insightNextDay(k))days.push(readInsightDay(snapshot,k,asOf));
+function insightAvailableHistoryStart(snapshot,asOf,context=null){
+  const readerContext=context||insightReadContext(snapshot);
+  return [...readerContext.historyKeys].filter(k=>insightDateKey(k)&&k<=asOf).sort().find(k=>readInsightDay(snapshot,k,asOf,readerContext).flags.hasSubmittedData)||null;
+}
+function summarizeInsightProfiles(days,requestedRange,asOf,availableHistoryStart){
   const count=days.length,rated=days.filter(d=>d.flags.hasRatings),values=rated.map(d=>d.ratings.mean),median=insightMedian(values);
   const channels={ratings:'hasRatings',emotions:'hasEmotions',status:'hasStatus',entries:'hasEntries',habits:'hasHabits',observed:'hasSubmittedData'},counts={},coverage={};
   for(const [channel,flag] of Object.entries(channels)){counts[channel]=days.filter(d=>d.flags[flag]).length;coverage[channel]={count:counts[channel],denominator:count,fraction:count?counts[channel]/count:null};}
@@ -3052,16 +3093,77 @@ function readInsightPeriod(snapshot,from,to,asOf){
   counts.ratingsWithoutEntries=days.filter(d=>d.flags.hasRatings&&!d.flags.hasEntries).length;
   counts.unobserved=count-counts.observed;
   const adjacentPairs=[];
-  for(let i=1;i<days.length;i++)if(days[i-1].flags.hasRatings&&days[i].flags.hasRatings)adjacentPairs.push({from:days[i-1].dateKey,to:days[i].dateKey,absoluteDifference:Math.abs(days[i].ratings.mean-days[i-1].ratings.mean)});
+  for(let i=1;i<days.length;i++)if(insightNextDay(days[i-1].dateKey)===days[i].dateKey&&days[i-1].flags.hasRatings&&days[i].flags.hasRatings)adjacentPairs.push({from:days[i-1].dateKey,to:days[i].dateKey,absoluteDifference:Math.abs(days[i].ratings.mean-days[i-1].ratings.mean)});
   const frequencies=new Map();
   days.forEach(d=>d.emotions.uniqueIds.forEach(id=>{if(!frequencies.has(id))frequencies.set(id,[]);frequencies.get(id).push(d.dateKey);}));
-  const historyKeys=new Set(Object.keys(snapshot?.days||{}));
-  Object.keys(snapshot?.habitLog||{}).forEach(k=>{const date=k.slice(-10);if(insightDateKey(date))historyKeys.add(date);});
-  function historyIdeas(nodes){if(!Array.isArray(nodes))return;nodes.forEach(n=>{if(n&&insightDateKey(n.date))historyKeys.add(n.date);if(n)historyIdeas(n.children);});}
-  historyIdeas(snapshot?.ideaTree?.roots);
-  const availableHistoryStart=[...historyKeys].filter(k=>insightDateKey(k)&&k<=asOf).sort().find(k=>readInsightDay(snapshot,k,asOf).flags.hasSubmittedData)||null;
-  return {asOf,requestedRange:{from,to},range:{from:count?from:null,to:count?end:null},calendarDayCount:count,availableHistoryStart,days,counts,coverage,ratings:{count:rated.length,mean:values.length?values.reduce((a,b)=>a+b,0)/values.length:null,median,range:values.length>=2?Math.max(...values)-Math.min(...values):null,medianAbsoluteDeviation:values.length>=2?insightMedian(values.map(v=>Math.abs(v-median))):null,adjacentPairs,adjacentPairCount:adjacentPairs.length,meanAdjacentAbsoluteDifference:adjacentPairs.length?adjacentPairs.reduce((s,p)=>s+p.absoluteDifference,0)/adjacentPairs.length:null},entries:{count:days.reduce((s,d)=>s+d.entries.count,0),textCount:days.reduce((s,d)=>s+d.entries.textCount,0),voiceCount:days.reduce((s,d)=>s+d.entries.voiceCount,0),dayCount:counts.entries,medianPerRecordedDay:insightMedian(days.filter(d=>d.flags.hasEntries).map(d=>d.entries.count))},emotions:{dayCount:counts.emotions,frequencies:[...frequencies.keys()].sort().map(id=>({id,count:frequencies.get(id).length,denominator:counts.emotions,fraction:frequencies.get(id).length/counts.emotions,days:frequencies.get(id).slice()}))},limitations:['coverage-is-calendar-range','history-start-is-not-usage-start',...new Set(days.flatMap(d=>d.quality.limitations))]};
+  return {asOf,requestedRange:{...requestedRange},range:{from:count?days[0].dateKey:null,to:count?days.at(-1).dateKey:null},calendarDayCount:count,availableHistoryStart,days,counts,coverage,ratings:{count:rated.length,mean:values.length?values.reduce((a,b)=>a+b,0)/values.length:null,median,range:values.length>=2?Math.max(...values)-Math.min(...values):null,medianAbsoluteDeviation:values.length>=2?insightMedian(values.map(v=>Math.abs(v-median))):null,adjacentPairs,adjacentPairCount:adjacentPairs.length,meanAdjacentAbsoluteDifference:adjacentPairs.length?adjacentPairs.reduce((s,p)=>s+p.absoluteDifference,0)/adjacentPairs.length:null},entries:{count:days.reduce((s,d)=>s+d.entries.count,0),textCount:days.reduce((s,d)=>s+d.entries.textCount,0),voiceCount:days.reduce((s,d)=>s+d.entries.voiceCount,0),dayCount:counts.entries,medianPerRecordedDay:insightMedian(days.filter(d=>d.flags.hasEntries).map(d=>d.entries.count))},emotions:{dayCount:counts.emotions,frequencies:[...frequencies.keys()].sort().map(id=>({id,count:frequencies.get(id).length,denominator:counts.emotions,fraction:frequencies.get(id).length/counts.emotions,days:frequencies.get(id).slice()}))},limitations:['coverage-is-calendar-range','history-start-is-not-usage-start',...new Set(days.flatMap(d=>d.quality.limitations))]};
 }
+function readInsightPeriod(snapshot,from,to,asOf,context=null){
+  if(![from,to,asOf].every(insightDateKey)||from>to)throw new TypeError('Expected ordered YYYY-MM-DD range and asOf');
+  const end=to<asOf?to:asOf,days=[],readerContext=context||insightReadContext(snapshot);
+  for(let k=from;k<=end;){days.push(readInsightDay(snapshot,k,asOf,readerContext));if(k===end)break;k=insightNextDay(k);}
+  return summarizeInsightProfiles(days,{from,to},asOf,insightAvailableHistoryStart(snapshot,asOf,readerContext));
+}
+// Stage B: pure calendar comparisons and descriptive facts; no storage/UI calls.
+function insightShiftDays(key,amount){const d=new Date(key+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+amount);return d.toISOString().slice(0,10);}
+function insightMonthStart(key,offset=0){const d=new Date(key.slice(0,7)+'-01T12:00:00Z');d.setUTCMonth(d.getUTCMonth()+offset);return d.toISOString().slice(0,10);}
+function insightWeekStart(key){return insightShiftDays(key,-((new Date(key+'T12:00:00Z').getUTCDay()+6)%7));}
+function insightCalendarRange(period,anchor){
+  if(!insightDateKey(anchor))throw new TypeError('Expected YYYY-MM-DD anchor');
+  if(period==='week'){const from=insightWeekStart(anchor);return {from,to:insightShiftDays(from,6)};}
+  if(period==='month')return {from:insightMonthStart(anchor),to:insightShiftDays(insightMonthStart(anchor,1),-1)};
+  if(period==='year')return {from:anchor.slice(0,4)+'-01-01',to:anchor.slice(0,4)+'-12-31'};
+  throw new TypeError('Expected week, month or year');
+}
+function describeInsightPeriod(profile){
+  const emotionLevelDayCounts={pos:0,neu:0,neg:0};
+  let mixedEmotionDayCount=0,unknownEmotionDayCount=0,unknownStatusDayCount=0;
+  profile.days.forEach(d=>{
+    const levels=new Set(d.emotions.knownLevels.map(e=>e.level));
+    for(const level of levels)emotionLevelDayCounts[level]++;
+    if(levels.has('pos')&&levels.has('neg'))mixedEmotionDayCount++;
+    if(d.emotions.unknownIds.length)unknownEmotionDayCount++;
+    if(d.status.id&&!d.status.known)unknownStatusDayCount++;
+  });
+  return {ratingEntryCount:profile.days.reduce((sum,d)=>sum+d.ratings.count,0),multiRatingDayCount:profile.days.filter(d=>d.ratings.count>=2).length,mixedEmotionDayCount,unknownEmotionDayCount,unknownStatusDayCount,emotionLevelDayCounts};
+}
+function compareInsightPeriods(snapshot,period,profile,asOf,context){
+  const currentDays=profile.days;if(!currentDays.length)return null;
+  const start=profile.requestedRange.from;
+  let previousRange;
+  if(period==='week')previousRange={from:insightShiftDays(start,-7),to:insightShiftDays(currentDays.at(-1).dateKey,-7)};
+  else if(period==='month')previousRange={from:insightMonthStart(start,-1),to:insightShiftDays(start,-1)};
+  else {const y=String(Number(start.slice(0,4))-1).padStart(4,'0');previousRange={from:y+'-01-01',to:y+'-12-31'};}
+  const pairs=[];
+  currentDays.forEach(d=>{
+    const previous=period==='week'?insightShiftDays(d.dateKey,-7):period==='month'?previousRange.from.slice(0,7)+d.dateKey.slice(7):previousRange.from.slice(0,4)+d.dateKey.slice(4);
+    if(insightDateKey(previous)&&previous>=previousRange.from&&previous<=previousRange.to)pairs.push({current:d.dateKey,previous});
+  });
+  const currentKeys=new Set(pairs.map(p=>p.current)),previousKeys=new Set(pairs.map(p=>p.previous));
+  const previousEnd=pairs.at(-1)?.previous||previousRange.from;
+  const previousFull=readInsightPeriod(snapshot,previousRange.from,previousEnd,asOf,context);
+  const current=summarizeInsightProfiles(currentDays.filter(d=>currentKeys.has(d.dateKey)),profile.requestedRange,asOf,profile.availableHistoryStart);
+  const previous=summarizeInsightProfiles(previousFull.days.filter(d=>previousKeys.has(d.dateKey)),{from:previousRange.from,to:previousEnd},asOf,profile.availableHistoryStart);
+  const available=current.ratings.count>0&&previous.ratings.count>0;
+  return {kind:'previous-period',available,reason:available?null:(!current.ratings.count?'no-current-ratings':'no-previous-ratings'),current,previous,pairs,excludedCurrentDates:currentDays.filter(d=>!currentKeys.has(d.dateKey)).map(d=>d.dateKey),excludedPreviousDates:previousFull.days.filter(d=>!previousKeys.has(d.dateKey)).map(d=>d.dateKey),delta:available?current.ratings.mean-previous.ratings.mean:null,limitations:['calendar-aligned','missing-ratings-not-imputed','descriptive-not-causal']};
+}
+function readInsightBaseline(snapshot,profile,asOf,context){
+  if(!profile.days.length)return null;
+  const to=insightShiftDays(insightWeekStart(profile.requestedRange.from),-1),from=insightShiftDays(to,-55);
+  const baseline=readInsightPeriod(snapshot,from,to,asOf,context);
+  const ratedWeekCount=new Set(baseline.days.filter(d=>d.flags.hasRatings).map(d=>insightWeekStart(d.dateKey))).size;
+  const eligible=baseline.ratings.count>=20&&ratedWeekCount>=4;
+  return {range:{from,to},profile:baseline,ratedWeekCount,requiredRatedDays:20,requiredRatedWeeks:4,eligible,reason:eligible?null:'insufficient-baseline-history',mean:eligible?baseline.ratings.mean:null,delta:eligible&&profile.ratings.count?profile.ratings.mean-baseline.ratings.mean:null,currentRatedDayCount:profile.ratings.count,limitations:['eight-completed-weeks','not-the-84-day-association-window','descriptive-not-causal']};
+}
+function readInsightOverview(snapshot,period,anchor,asOf){
+  if(!insightDateKey(asOf)||!insightDateKey(anchor)||!['week','month','year','all'].includes(period))throw new TypeError('Expected calendar period, anchor and asOf');
+  const context=insightReadContext(snapshot);
+  const selectedRange=period==='all'?{from:insightAvailableHistoryStart(snapshot,asOf,context),to:asOf}:insightCalendarRange(period,anchor);
+  const historyCutoff=selectedRange.to<asOf?selectedRange.to:asOf;
+  const summary=selectedRange.from?readInsightPeriod(snapshot,selectedRange.from,selectedRange.to,historyCutoff,context):summarizeInsightProfiles([],selectedRange,historyCutoff,null);
+  return {period,asOf,historyCutoff,selectedRange,summary,descriptive:describeInsightPeriod(summary),comparison:period==='all'?null:compareInsightPeriods(snapshot,period,summary,historyCutoff,context),baseline:period==='all'?null:readInsightBaseline(snapshot,summary,historyCutoff,context),limitations:['equal-weight-per-rated-day','no-inference-from-entry-content',...(period==='all'?['all-time-start-is-available-history']:[])]};
+}
+
 // One captured instant supplies every field; recordedDay never depends on cached TODAY.
 function makeRecordedRating(v,dateKey,instant){
   const recordedDay=`${instant.getFullYear()}-${pad(instant.getMonth()+1)}-${pad(instant.getDate())}`;
@@ -4395,7 +4497,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='72.1';
+const APP_VERSION='72.2';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -5217,12 +5319,69 @@ function customMoodH(id){
   const level=ce&&ce.level?ce.level:'neu';
   return level==='pos'?76:level==='neg'?22:46;
 }
+// Plain descriptive presentation; automatic insight selection is outside Stage B.
+function renderInsightPeriodFacts(model,lang){
+  const tr=(uk,en)=>lang==='en'?en:uk,p=model.summary,d=model.descriptive;
+  const num=v=>v===null?'—':Number(v.toFixed(2)).toLocaleString(lang==='en'?'en-GB':'uk-UA',{maximumFractionDigits:2});
+  const date=k=>k?k.split('-').reverse().join('.'):'—';
+  const range=r=>r.from?`${date(r.from)} – ${date(r.to)}`:'—';
+  const delta=v=>v===null?'—':(v>0?'+':'')+num(v);
+  const note=s=>`<p class="period-facts-note">${esc(s)}</p>`;
+  const row=(label,value)=>`<div class="period-facts-row"><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`;
+  const group=(title,body)=>`<section class="period-facts-group"><h4>${esc(title)}</h4>${body}</section>`;
+  const coverage=c=>`${c.count} / ${c.denominator}${c.fraction===null?'':` · ${num(c.fraction*100)}%`}`;
+  const meanLabel=tr('Середня оцінка','Average rating'),ratedLabel=tr('Оцінених днів','Rated days');
+  let content=note(range(p.range));
+  if(!p.calendarDayCount)content+=note(model.period==='all'?tr('Ще немає даних для визначення діапазону всієї історії.','There is no data to establish the all-time date range yet.'):tr('У цьому періоді ще немає минулих днів.','This period has no elapsed days yet.'));
+  else if(!p.ratings.count)content+=note(tr('Ще немає оцінок за цей період.','No ratings for this period yet.'));
+  content+='<dl>'+row(meanLabel,num(p.ratings.mean))+row(tr('Медіана оцінок днів','Median daily rating'),num(p.ratings.median))+row(tr('Розкид середніх днів','Spread of daily averages'),num(p.ratings.medianAbsoluteDeviation))+row(tr('Зміна між сусідніми днями','Change between adjacent days'),num(p.ratings.meanAdjacentAbsoluteDifference))+row(tr('Сусідніх пар','Adjacent pairs'),String(p.ratings.adjacentPairCount))+'</dl>';
+  const channels=[['ratings','Оцінки','Ratings'],['emotions','Емоції','Emotions'],['status','Вибраний статус','Selected status'],['entries','Відправлені записи','Submitted entries'],['habits','Відмітки звичок','Habit marks']];
+  content+=group(tr('Дні з даними','Days with data'),'<dl>'+channels.map(([key,uk,en])=>row(tr(uk,en),coverage(p.coverage[key]))).join('')+row(tr('Дні без зафіксованих даних','Days without recorded data'),String(p.counts.unobserved))+row(tr('Дні із записами без оцінок','Entry days without ratings'),String(p.counts.entriesWithoutRatings))+row(tr('Оцінені дні без записів','Rated days without entries'),String(p.counts.ratingsWithoutEntries))+row(tr('Дні з невідомим статусом','Days with an unknown status'),String(d.unknownStatusDayCount))+'</dl>');
+  content+=group(tr('Ритм записів','Entry rhythm'),'<dl>'+row(tr('Всього записів','Total entries'),String(p.entries.count))+row(tr('Текстових','Text'),String(p.entries.textCount))+row(tr('Голосових','Voice'),String(p.entries.voiceCount))+row(tr('Медіана записів у днях із записами','Median entries on days with entries'),num(p.entries.medianPerRecordedDay))+'</dl>');
+  const frequencies=p.emotions.frequencies.map(e=>row(emotionLabel(e.id),`${e.count} / ${e.denominator} · ${num(e.fraction*100)}%`)).join('');
+  content+=group(tr('Частота емоцій','Emotion frequency'),(frequencies?'<dl>'+frequencies+'</dl>':note(tr('За цей період емоції не зафіксовано.','No emotions recorded for this period.')))+'<dl>'+row(tr('Дні з позитивними й негативними емоціями','Days with positive and negative emotions'),String(d.mixedEmotionDayCount))+row(tr('Дні з невідомою категорією емоції','Days with an unknown emotion category'),String(d.unknownEmotionDayCount))+'</dl>'+note(tr('Частка серед днів з будь-якими емоціями. Можна вибрати кілька емоцій, тому сума часток може перевищувати 100%.','Share of days with any emotions. Multiple emotions can be selected, so the shares may total more than 100%.')));
+  if(model.comparison){
+    const c=model.comparison;
+    const interval=(title,profile)=>`<p class="period-facts-interval"><strong>${esc(title)}</strong><span>${esc(range(profile.range))}</span><span>${esc(meanLabel)}: ${esc(num(profile.ratings.mean))} · ${esc(ratedLabel)}: ${esc(coverage(profile.coverage.ratings))}</span></p>`;
+    let body=interval(tr('Вибраний відрізок','Selected interval'),c.current)+interval(tr('Попередній відрізок','Previous interval'),c.previous)+'<dl>'+row(tr('Різниця середніх','Difference in averages'),delta(c.delta))+'</dl>';
+    if(!c.available)body+=note(tr('Для різниці потрібні оцінки в обох відрізках.','Both intervals need ratings to calculate a difference.'));
+    if(c.excludedCurrentDates.length)body+=note(tr('Без календарної пари у вибраному періоді','No calendar match in the selected period')+': '+c.excludedCurrentDates.map(date).join(', '));
+    if(c.excludedPreviousDates.length)body+=note(tr('Без календарної пари в попередньому періоді','No calendar match in the previous period')+': '+c.excludedPreviousDates.map(date).join(', '));
+    content+=group(tr('Порівняння з попереднім періодом','Comparison with the previous period'),body+note(tr('Порівнюються однакові минулі календарні дні. Пропущені оцінки не заповнюються; це описова різниця наявних оцінок.','The same elapsed calendar days are compared. Missing ratings are not filled in; this is a descriptive difference between recorded ratings.')));
+  }
+  if(model.baseline){
+    const b=model.baseline;
+    content+=group(tr('Особистий базовий рівень','Personal baseline'),note(range(b.range))+'<dl>'+row(tr('Оцінених днів у базовому вікні','Rated days in the baseline window'),String(b.profile.ratings.count))+row(tr('Тижнів з оцінками','Weeks with ratings'),String(b.ratedWeekCount))+row(tr('Середня базового рівня','Baseline average'),num(b.mean))+row(tr('Різниця з базовим рівнем','Difference from baseline'),delta(b.delta))+'</dl>'+(!b.eligible?note(tr('Історії для базового рівня поки недостатньо.','There is not enough baseline history yet.')):'')+note(tr('Вісім завершених тижнів перед початком вибраного періоду. Потрібно щонайменше 20 оцінених днів у 4 різних тижнях.','Eight completed weeks before the selected period starts. At least 20 rated days in 4 different weeks are required.')));
+  }
+  content+=note(tr('Кожен оцінений день має однакову вагу. Розкид — медіана абсолютних відхилень від медіани днів. Зміна між днями — середня абсолютна різниця лише сусідніх календарних днів з оцінками. Одна оцінка не описує стабільність.','Every rated day has equal weight. Spread is the median absolute deviation from the median daily rating. Change between days is the mean absolute difference of adjacent rated calendar days only. One rating does not establish stability.'));
+  content+=note(tr('Перший доступний день','First available day')+': '+date(p.availableHistoryStart)+'. '+tr('Це початок доступної історії, а не доведена дата початку користування.','This is the start of available history, not a proven date of first use.'));
+  if(model.period==='all')content+=note(tr('Для всього часу покриття рахується від першого доступного дня; порівняння періодів і базовий рівень доступні для тижня, місяця та року.','All-time coverage starts at the first available day; period comparisons and the baseline are available for week, month and year.'));
+  content+=note(tr('Ці числа описують зафіксовані дані й не доводять причин змін.','These numbers describe recorded data and do not establish causes of change.'));
+  return `<details class="period-facts" id="mood-period-facts"><summary><span>${esc(tr('Числа за період','Period in numbers'))}</span><span class="period-facts-brief">${esc(meanLabel)}: ${esc(num(p.ratings.mean))} · ${esc(ratedLabel)}: ${p.ratings.count} / ${p.calendarDayCount}</span></summary><div class="period-facts-content">${content}</div></details>`;
+}
+function moodPeriodFactsModel(asOf){
+  let anchor=asOf;
+  if(moodPeriod==='week')anchor=insightShiftDays(asOf,moodWeekOffset*7);
+  if(moodPeriod==='month')anchor=insightMonthStart(asOf,moodMonthOffset);
+  if(moodPeriod==='year')anchor=String(Number(asOf.slice(0,4))+moodYearOffset).padStart(4,'0')+'-01-01';
+  return readInsightOverview(S,moodPeriod,anchor,asOf);
+}
+function bindPeriodFactsHeight(container){
+  container._periodFactsObserver?.disconnect();
+  const facts=container.querySelector('.period-facts'),body=container.closest('.mood-body');if(!facts||!body)return;
+  const resize=()=>{if(!body.closest('.mood-collapsed'))body.style.maxHeight=body.scrollHeight+300+'px';};
+  facts.addEventListener('toggle',resize);
+  if(typeof ResizeObserver!=='undefined'){container._periodFactsObserver=new ResizeObserver(resize);container._periodFactsObserver.observe(facts);}
+  resize();
+}
+
 function buildMoodChart(container){
   closeDayRatingDetail();
+  const periodFacts=renderInsightPeriodFacts(moodPeriodFactsModel(todayKey()),getLang());
   // Special all-time view — verdict card instead of chart
   if(moodPeriod==='all'){
     const allKeys=Object.keys(S.days).filter(k=>k<=todayKey()&&(dayScore(S.days[k])||S.days[k].emotions?.length));
-    if(!allKeys.length){container.innerHTML='<div style="text-align:center;color:var(--txm);padding:var(--s8);font-size:var(--sm)">Немає даних</div>';return;}
+    if(!allKeys.length){container.innerHTML='<div style="text-align:center;color:var(--txm);padding:var(--s8);font-size:var(--sm)">'+(getLang()==='en'?'No data':'Немає даних')+'</div>'+periodFacts;bindPeriodFactsHeight(container);return;}
     const total=allKeys.length;
     const rated=allKeys.filter(k=>{const d=S.days[k];return (d.dayRatings&&d.dayRatings.length)?calcDayRating(d)>0:(d.dayRating>0)});
     const avg=rated.length?Math.round(rated.reduce((s,k)=>{const d=S.days[k];return s+((d.dayRatings&&d.dayRatings.length)?calcDayRating(d):d.dayRating);},0)/rated.length*10)/10:0;
@@ -5264,6 +5423,8 @@ function buildMoodChart(container){
         <div class="verdict-stat"><div class="verdict-stat-num" style="font-size:var(--sm)">${bestMonthLabel}</div><div class="verdict-stat-lbl">${getLang()==='en'?'Best month':'Кращий місяць'}</div></div>
       </div>
     </div>`;
+    container.insertAdjacentHTML('beforeend',periodFacts);
+    bindPeriodFactsHeight(container);
     return;
   }
 
@@ -5338,7 +5499,8 @@ function buildMoodChart(container){
     html += `<div class=\"mood-insight\"><div class=\"mood-insight-title\">${insight.title}</div><div class=\"mood-insight-track\">${slides}</div>${insight.cards.length>1?`<div class=\"mood-insight-dots\">${dots}</div>`:''}</div>`;
   }
 
-  container.innerHTML=html;
+  container.innerHTML=html+periodFacts;
+  bindPeriodFactsHeight(container);
 
   const insightTrack=container.querySelector('.mood-insight-track');
   if(insightTrack){

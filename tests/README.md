@@ -23,3 +23,5 @@ Results/screenshots go to `tests/artifacts/`. `regression.py` accepts case names
 71.3: `python tests/controls713.py` supersedes the 71.2 outline expectation with opacity feedback and verifies calendar navigation/chrome while comparing typography to `v70.5`.
 
 71.4: `python tests/rating714.py` checks responsive rating layout, persistent explanations, edit/delete/reload/limit and generates narrow-screen screenshots.
+
+72.1 Stage A: `python tests/insight_a.py` — frozen deterministic readers, calendar profiles, metadata, midnight/timezones, JSON/ZIP and UI regression. Exits nonzero on failure. Results: `tests/artifacts/insight-a/`.

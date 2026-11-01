@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 72.0
-  Файл: 72.0_safe-place.html
-  Зміни 72.0: прибрано погоду, геолокацію та запити Open-Meteo.
+  ЩОДЕННИК · ВЕРСІЯ 72.1
+  Файл: 72.1_safe-place.html
+  Зміни 72.1: Етап A — чисті профілі аналітики та походження оцінок.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -361,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 72.0</title>
+<title>Safe Place · 72.1</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -1647,7 +1647,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     <div class="card" data-block="rating">
       <div class="ch"><span class="clabel" data-i18n="lbl_rating">⭐ Оцінка дня</span></div>
       <div class="cb">
-        <div class="rating-row" id="rating-row"></div>
+        <div class="rating-row" id="rating-row"><p class="nsm" style="grid-column:1/-1;color:var(--txm);text-align:center;margin:0">Для оцінювання відкрий Safe Place у Safari або іншому браузері. Перегляд HTML-вкладення може показувати лише оформлення.<br><span lang="en">To rate your day, open Safe Place in Safari or another browser. An HTML attachment preview may only show the layout.</span></p></div>
         <div class="rating-label" id="rating-label" aria-live="polite"></div>
         <div class="rating-chips" id="rating-chips"></div>
       </div>
@@ -2079,7 +2079,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.0',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.1',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2177,7 +2177,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.0',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.1',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -2948,6 +2948,127 @@ function ratingEntries(d){
   const entries=Array.isArray(d?.dayRatings)?d.dayRatings.filter(r=>ratingVal(r)>0):[];
   return entries.length?entries:(ratingVal(d?.dayRating)?[d.dayRating]:[]);
 }
+// Stage A: deterministic readers. No journal normalization, storage or UI calls.
+function insightDateKey(key){
+  if(typeof key!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(key))return false;
+  const d=new Date(key+'T12:00:00Z');
+  return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===key;
+}
+function insightNextDay(key){
+  // Calendar arithmetic in a timezone-free carrier, never elapsed local milliseconds.
+  const d=new Date(key+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+1);
+  return d.toISOString().slice(0,10);
+}
+function insightMedian(values){
+  if(!values.length)return null;
+  const a=values.slice().sort((x,y)=>x-y),m=Math.floor(a.length/2);
+  return a.length%2?a[m]:(a[m-1]+a[m])/2;
+}
+function insightTimestamp(v){return typeof v==='number'&&Number.isFinite(v)&&v>0&&v<=8640000000000000;}
+function readInsightDay(snapshot,dateKey,asOf){
+  if(!insightDateKey(dateKey)||!insightDateKey(asOf))throw new TypeError('Expected YYYY-MM-DD dateKey and asOf');
+  const object=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
+  const list=x=>Array.isArray(x)?x:[];
+  const text=x=>typeof x==='string'&&x.trim().length>0;
+  const d=object(snapshot?.days?.[dateKey])?snapshot.days[dateKey]:{};
+  const diagnostics=[],limitations=[];
+  const validTime=x=>typeof x==='string'&&/^([01]\d|2[0-3]):[0-5]\d$/.test(x);
+  const ratings=[];
+  function readRating(r,source){
+    const v=ratingVal(r);
+    if(!v){diagnostics.push({source,code:'invalid-rating'});return;}
+    const meta=object(r)?r:{};
+    const ts=insightTimestamp(meta.ts)?meta.ts:null;
+    const recordedDay=insightDateKey(meta.recordedDay)?meta.recordedDay:null;
+    const retro=typeof meta.retro==='boolean'?meta.retro:null;
+    const t=validTime(meta.t)?meta.t:null;
+    const consistent=recordedDay!==null&&retro!==null&&retro===(dateKey!==recordedDay);
+    const provenance=ts!==null&&t!==null&&consistent?'recorded':'unknown';
+    for(const [key,ok] of [['ts',ts!==null],['t',t!==null],['recordedDay',recordedDay!==null],['retro',retro!==null],['edited',typeof meta.edited==='boolean'],['editedAt',insightTimestamp(meta.editedAt)]]){
+      if(meta[key]!==undefined&&!ok)diagnostics.push({source,code:'invalid-rating-'+key});
+    }
+    if(recordedDay!==null&&retro!==null&&!consistent)diagnostics.push({source,code:'inconsistent-rating-retro'});
+    ratings.push({source,v,t,ts,recordedDay,retro,edited:typeof meta.edited==='boolean'?meta.edited:null,editedAt:insightTimestamp(meta.editedAt)?meta.editedAt:null,provenance});
+  }
+  list(d.dayRatings).forEach((r,i)=>readRating(r,`${dateKey}:dayRatings:${i}`));
+  if(!ratings.length&&d.dayRating!==undefined&&d.dayRating!==0)readRating(d.dayRating,`${dateKey}:dayRating`);
+  const values=ratings.map(r=>r.v),mean=values.length?values.reduce((a,b)=>a+b,0)/values.length:null;
+  const entries=[];
+  list(d.summaryEntries).forEach((e,i)=>{
+    const source=`${dateKey}:summaryEntries:${i}`;
+    if(!object(e)||!(e.type==='voice'?text(e.audioId):text(e.text))){diagnostics.push({source,code:'invalid-entry'});return;}
+    // An ordinary midnight entry is not evidence of migration.
+    entries.push({source,id:text(e.id)?e.id:null,type:e.type==='voice'?'voice':'text',time:validTime(e.time)?e.time:null,createdAt:insightTimestamp(e.createdAt)?e.createdAt:null,provenance:'unknown'});
+  });
+  if(!entries.length&&!d._summaryCleared&&text(d.summary))entries.push({source:`${dateKey}:summary`,id:null,type:'text',time:null,createdAt:null,provenance:'legacy-summary'});
+  const emotionSources=new Map();
+  function addEmotion(e,source){
+    const id=typeof e==='string'?e:(object(e)?e.id:null);
+    if(!text(id)){if(e!==undefined&&e!==null&&e!=='')diagnostics.push({source,code:'invalid-emotion'});return;}
+    if(!emotionSources.has(id))emotionSources.set(id,[]);
+    const sources=emotionSources.get(id);if(!sources.includes(source))sources.push(source);
+  }
+  function collectEmotions(x,source){
+    list(x.emotions).forEach((e,i)=>addEmotion(e,source+':emotions:'+i));
+    for(const key of ['emotion','emotionId'])if(x[key])addEmotion(x[key],source+':'+key);
+  }
+  collectEmotions(d,dateKey);
+  entries.forEach(e=>{if(e.source.includes(':summaryEntries:'))collectEmotions(d.summaryEntries[Number(e.source.split(':').pop())],e.source);});
+  const uniqueIds=[...emotionSources.keys()].sort(),knownLevels=[],unknownIds=[];
+  uniqueIds.forEach(id=>{
+    const builtin=BUILT_IN.find(e=>e.id===id);
+    const custom=list(snapshot?.customEmotions).find(e=>'c_'+(typeof e==='string'?e:e?.label)===id);
+    const level=builtin?.level||(object(custom)&&['pos','neu','neg'].includes(custom.level)?custom.level:null);
+    if(level)knownLevels.push({id,level});else unknownIds.push(id);
+  });
+  const statusId=text(d.status)?d.status:null;
+  const statusKnown=statusId!==null&&(Object.hasOwn(STATUS_DATA,statusId)||list(snapshot?.settings?.customStatuses).some(s=>s?.id===statusId));
+  // Read existing marks, including marks whose habit definition is no longer available.
+  const suffix='_'+dateKey;
+  const markedIds=Object.keys(snapshot?.habitLog||{}).filter(k=>k.endsWith(suffix)&&k.length>suffix.length&&snapshot.habitLog[k]).map(k=>k.slice(0,-suffix.length)).sort();
+  const savedFields=['ideas','events','photos','photoIds','gratitude','media'];
+  const hasSavedValue=x=>text(x)||(object(x)&&Object.values(x).some(v=>text(v)));
+  let hasOtherSavedData=savedFields.some(k=>list(d[k]).some(hasSavedValue));
+  const ideaSources=[];
+  function visitIdeas(nodes){list(nodes).forEach((n,i)=>{if(!object(n))return;if(n.date===dateKey&&text(n.text))ideaSources.push(text(n.id)?n.id:`${dateKey}:idea:${i}`);visitIdeas(n.children);});}
+  visitIdeas(snapshot?.ideaTree?.roots);
+  hasOtherSavedData=hasOtherSavedData||ideaSources.length>0;
+  if(ratings.some(r=>r.provenance==='unknown'))limitations.push('rating-time-origin-unknown');
+  if(entries.length)limitations.push('entry-time-origin-unknown');
+  if(unknownIds.length)limitations.push('emotion-level-unknown');
+  if(statusId&&!statusKnown)limitations.push('status-definition-unknown');
+  const flags={hasRatings:ratings.length>0,hasEmotions:uniqueIds.length>0,hasStatus:statusId!==null,hasEntries:entries.length>0,hasHabits:markedIds.length>0,hasOtherSavedData};
+  flags.hasSubmittedData=Object.values(flags).some(Boolean);
+  return {dateKey,asOf,isFuture:dateKey>asOf,ratings:{count:ratings.length,mean,range:values.length>=2?Math.max(...values)-Math.min(...values):null,meanAbsoluteDeviation:values.length>=2?values.reduce((s,v)=>s+Math.abs(v-mean),0)/values.length:null,entries:ratings},entries:{count:entries.length,textCount:entries.filter(e=>e.type==='text').length,voiceCount:entries.filter(e=>e.type==='voice').length,sources:entries},emotions:{uniqueIds,knownLevels,unknownIds,sources:uniqueIds.map(id=>({id,sources:emotionSources.get(id).slice()}))},status:{id:statusId,known:statusKnown},habits:{markedIds},flags,quality:{ratingTime:ratings.map(r=>({source:r.source,provenance:r.provenance})),diagnostics,limitations},ideaSources};
+}
+function readInsightPeriod(snapshot,from,to,asOf){
+  if(![from,to,asOf].every(insightDateKey)||from>to)throw new TypeError('Expected ordered YYYY-MM-DD range and asOf');
+  const end=to<asOf?to:asOf,days=[];
+  for(let k=from;k<=end;k=insightNextDay(k))days.push(readInsightDay(snapshot,k,asOf));
+  const count=days.length,rated=days.filter(d=>d.flags.hasRatings),values=rated.map(d=>d.ratings.mean),median=insightMedian(values);
+  const channels={ratings:'hasRatings',emotions:'hasEmotions',status:'hasStatus',entries:'hasEntries',habits:'hasHabits',observed:'hasSubmittedData'},counts={},coverage={};
+  for(const [channel,flag] of Object.entries(channels)){counts[channel]=days.filter(d=>d.flags[flag]).length;coverage[channel]={count:counts[channel],denominator:count,fraction:count?counts[channel]/count:null};}
+  counts.entriesWithoutRatings=days.filter(d=>d.flags.hasEntries&&!d.flags.hasRatings).length;
+  counts.ratingsWithoutEntries=days.filter(d=>d.flags.hasRatings&&!d.flags.hasEntries).length;
+  counts.unobserved=count-counts.observed;
+  const adjacentPairs=[];
+  for(let i=1;i<days.length;i++)if(days[i-1].flags.hasRatings&&days[i].flags.hasRatings)adjacentPairs.push({from:days[i-1].dateKey,to:days[i].dateKey,absoluteDifference:Math.abs(days[i].ratings.mean-days[i-1].ratings.mean)});
+  const frequencies=new Map();
+  days.forEach(d=>d.emotions.uniqueIds.forEach(id=>{if(!frequencies.has(id))frequencies.set(id,[]);frequencies.get(id).push(d.dateKey);}));
+  const historyKeys=new Set(Object.keys(snapshot?.days||{}));
+  Object.keys(snapshot?.habitLog||{}).forEach(k=>{const date=k.slice(-10);if(insightDateKey(date))historyKeys.add(date);});
+  function historyIdeas(nodes){if(!Array.isArray(nodes))return;nodes.forEach(n=>{if(n&&insightDateKey(n.date))historyKeys.add(n.date);if(n)historyIdeas(n.children);});}
+  historyIdeas(snapshot?.ideaTree?.roots);
+  const availableHistoryStart=[...historyKeys].filter(k=>insightDateKey(k)&&k<=asOf).sort().find(k=>readInsightDay(snapshot,k,asOf).flags.hasSubmittedData)||null;
+  return {asOf,requestedRange:{from,to},range:{from:count?from:null,to:count?end:null},calendarDayCount:count,availableHistoryStart,days,counts,coverage,ratings:{count:rated.length,mean:values.length?values.reduce((a,b)=>a+b,0)/values.length:null,median,range:values.length>=2?Math.max(...values)-Math.min(...values):null,medianAbsoluteDeviation:values.length>=2?insightMedian(values.map(v=>Math.abs(v-median))):null,adjacentPairs,adjacentPairCount:adjacentPairs.length,meanAdjacentAbsoluteDifference:adjacentPairs.length?adjacentPairs.reduce((s,p)=>s+p.absoluteDifference,0)/adjacentPairs.length:null},entries:{count:days.reduce((s,d)=>s+d.entries.count,0),textCount:days.reduce((s,d)=>s+d.entries.textCount,0),voiceCount:days.reduce((s,d)=>s+d.entries.voiceCount,0),dayCount:counts.entries,medianPerRecordedDay:insightMedian(days.filter(d=>d.flags.hasEntries).map(d=>d.entries.count))},emotions:{dayCount:counts.emotions,frequencies:[...frequencies.keys()].sort().map(id=>({id,count:frequencies.get(id).length,denominator:counts.emotions,fraction:frequencies.get(id).length/counts.emotions,days:frequencies.get(id).slice()}))},limitations:['coverage-is-calendar-range','history-start-is-not-usage-start',...new Set(days.flatMap(d=>d.quality.limitations))]};
+}
+// One captured instant supplies every field; recordedDay never depends on cached TODAY.
+function makeRecordedRating(v,dateKey,instant){
+  const recordedDay=`${instant.getFullYear()}-${pad(instant.getMonth()+1)}-${pad(instant.getDate())}`;
+  return {v,t:`${pad(instant.getHours())}:${pad(instant.getMinutes())}`,ts:instant.getTime(),recordedDay,retro:dateKey!==recordedDay};
+}
+function makeEditedRating(r,v,instant){return {...(r&&typeof r==='object'?r:{}),v,edited:true,editedAt:instant.getTime()};}
+
 function calcDayRating(d){const vals=ratingEntries(d).map(ratingVal);return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;}
 function dayScore(d){return calcDayRating(d);}
 function periodRating(keys){
@@ -3505,14 +3626,16 @@ function renderRating(){
     s.setAttribute('aria-label',getRatingLabel(i));
     s.textContent=i;
     s.addEventListener('click',()=>{
+      const clickedAt=new Date(),clickedDay=activeDay;
+      if(clickedDay!==ratingEditDay)return;
       if(isEditMode){
         const r=ratings[ratingChipEditIdx];
-        if(r&&typeof r==='object')r.v=i; else ratings[ratingChipEditIdx]={v:i,t:nowTime()};
+        ratings[ratingChipEditIdx]=makeEditedRating(r,i,clickedAt);
         ratingChipEditIdx=-1;
         ratingChipSelectedIdx=-1;
         commitRating();
       } else {
-        if((d.dayRatings||[]).length>=10){lbl.textContent=getLang()==='en'?'Limit: 10 ratings. Edit an existing rating.':'Ліміт: 10 оцінок. Можна змінити наявну оцінку.';return;} ratingChipSelectedIdx=-1; d.dayRatings.push({v:i,t:nowTime()});commitRating();
+        if((d.dayRatings||[]).length>=10){lbl.textContent=getLang()==='en'?'Limit: 10 ratings. Edit an existing rating.':'Ліміт: 10 оцінок. Можна змінити наявну оцінку.';return;} ratingChipSelectedIdx=-1; d.dayRatings.push(makeRecordedRating(i,clickedDay,clickedAt));commitRating();
       }
     });
     s.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&!isEditMode){lbl.textContent=getRatingLabel(i);lbl.style.color=RATING_COLORS[i];}});
@@ -4272,7 +4395,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='72.0';
+const APP_VERSION='72.1';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');

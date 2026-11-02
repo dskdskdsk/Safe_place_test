@@ -1,0 +1,48 @@
+[
+  {
+    "name": "evidence_engine",
+    "tests": [
+      "C"
+    ],
+    "status": "PASS",
+    "detail": {
+      "assertions": 41
+    },
+    "pageErrors": []
+  },
+  {
+    "name": "independent_python_oracle",
+    "tests": [
+      "C"
+    ],
+    "status": "PASS",
+    "detail": {
+      "randomizedContrasts": 288,
+      "repeatedCandidates": 13,
+      "seed": 723,
+      "note": "Synthetic random null data; not a false-positive guarantee"
+    },
+    "pageErrors": []
+  },
+  {
+    "name": "America/Los_Angeles",
+    "status": "PASS",
+    "detail": {
+      "assertions": 41
+    }
+  },
+  {
+    "name": "Pacific/Kiritimati",
+    "status": "PASS",
+    "detail": {
+      "assertions": 41
+    }
+  },
+  {
+    "name": "Europe/Kyiv",
+    "status": "PASS",
+    "detail": {
+      "assertions": 41
+    }
+  }
+]

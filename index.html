@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 72.2
-  Файл: 72.2_safe-place.html
-  Зміни 72.2: Етап B — описові підсумки й календарні порівняння періодів.
+  ЩОДЕННИК · ВЕРСІЯ 72.3
+  Файл: 72.3_safe-place.html
+  Зміни 72.3: Етап C — групові контрасти, повторюваність і контекст для майбутніх інсайтів.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -361,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 72.2</title>
+<title>Safe Place · 72.3</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -2092,7 +2092,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.2',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.3',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2190,7 +2190,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.2',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.3',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -3162,6 +3162,72 @@ function readInsightOverview(snapshot,period,anchor,asOf){
   const historyCutoff=selectedRange.to<asOf?selectedRange.to:asOf;
   const summary=selectedRange.from?readInsightPeriod(snapshot,selectedRange.from,selectedRange.to,historyCutoff,context):summarizeInsightProfiles([],selectedRange,historyCutoff,null);
   return {period,asOf,historyCutoff,selectedRange,summary,descriptive:describeInsightPeriod(summary),comparison:period==='all'?null:compareInsightPeriods(snapshot,period,summary,historyCutoff,context),baseline:period==='all'?null:readInsightBaseline(snapshot,summary,historyCutoff,context),limitations:['equal-weight-per-rated-day','no-inference-from-entry-content',...(period==='all'?['all-time-start-is-available-history']:[])]};
+}
+
+// Stage C: deterministic evidence candidates. Presentation/selection belongs to Stage D.
+function insightGroupStats(days){
+  const rated=days.filter(d=>d.ratings.mean!==null);
+  return {observedDays:days.map(d=>d.dateKey),ratedDays:rated.map(d=>d.dateKey),count:rated.length,denominator:days.length,coverage:days.length?rated.length/days.length:null,mean:rated.length?rated.reduce((s,d)=>s+d.ratings.mean,0)/rated.length:null};
+}
+function insightContrast(a,b){
+  const A=insightGroupStats(a),B=insightGroupStats(b);
+  return {A,B,delta:A.count&&B.count?A.mean-B.mean:null,weight:A.count&&B.count?A.count*B.count/(A.count+B.count):0};
+}
+// Tolerance only absorbs IEEE arithmetic noise at the decimal product boundaries.
+function insightAtLeast(value,bound){return value>bound||Math.abs(value-bound)<=1e-12;}
+function insightRepeatability(delta,localDelta,nA,nB,weeks){
+  const sign=Math.sign(delta||0),aligned=sign!==0&&sign===Math.sign(localDelta||0);
+  const support=weeks.filter(w=>insightAtLeast(sign*w.delta,0.3)&&sign!==0).length;
+  const opposite=weeks.filter(w=>insightAtLeast(-sign*w.delta,0.3)&&sign!==0).length;
+  const K=weeks.length;
+  return {eligible:nA>=10&&nB>=10&&K>=6&&aligned&&insightAtLeast(Math.abs(delta),0.7)&&insightAtLeast(Math.abs(localDelta),0.7)&&3*support>=2*K&&5*opposite<=K,aligned,weekCount:K,support,opposite,neutral:K-support-opposite};
+}
+function insightContextCheck(a,b,kind,delta){
+  const key=d=>{
+    const dayType=[0,6].includes(new Date(d.dateKey+'T12:00:00Z').getUTCDay())?'sat-sun':'mon-fri';
+    if(kind==='dayType')return dayType;
+    if(!d.status.known)return null;
+    return kind==='status'?d.status.id:JSON.stringify([d.status.id,dayType]);
+  };
+  const keys=[...new Set([...a,...b].map(key).filter(k=>k!==null))].sort();
+  const strata=keys.map(k=>({key:k,...insightContrast(a.filter(d=>key(d)===k),b.filter(d=>key(d)===k))})).filter(s=>s.A.count>=2&&s.B.count>=2);
+  const weight=strata.reduce((s,x)=>s+x.weight,0),adjustedDelta=weight?strata.reduce((s,x)=>s+x.delta*x.weight,0)/weight:null;
+  const coverage=group=>{const all=insightGroupStats(group==='A'?a:b),included=strata.reduce((s,x)=>s+x[group].count,0),observed=strata.reduce((s,x)=>s+x[group].denominator,0);return {ratedIncluded:included,ratedTotal:all.count,ratedFraction:all.count?included/all.count:null,observedIncluded:observed,observedTotal:all.denominator,observedFraction:all.denominator?observed/all.denominator:null};};
+  const sign=Math.sign(delta||0),contradiction=sign!==0&&strata.some(s=>Math.sign(s.delta)===-sign);
+  return {kind,strata,subgroupCount:strata.length,adjustedDelta,coverage:{A:coverage('A'),B:coverage('B')},state:!strata.length?'unavailable':contradiction?'contradiction':sign!==0&&Math.sign(adjustedDelta)===sign?'consistent':'inconclusive',scope:'included-contexts-only'};
+}
+function readInsightCandidates(snapshot,period,anchor,asOf){
+  if(!insightDateKey(anchor)||!insightDateKey(asOf)||!['week','month','year','all'].includes(period))throw new TypeError('Expected calendar period, anchor and asOf');
+  // All-time association policy is deliberately unspecified in the agreed plan.
+  if(period==='all')return {period,asOf,range:null,candidates:[],limitations:['all-time-associations-not-specified']};
+  const selectedRange=insightCalendarRange(period,anchor),to=selectedRange.to<asOf?selectedRange.to:asOf;
+  if(selectedRange.from>to)return {period,asOf,selectedRange,range:null,candidates:[],limitations:['future-period']};
+  const from=period==='year'?selectedRange.from:insightShiftDays(to,-83),range={from,to},context=insightReadContext(snapshot);
+  const days=readInsightPeriod(snapshot,from,to,to,context).days;
+  const firstMarks=new Map();
+  for(const [date,ids] of context.habitIds)if(date<=to)for(const id of ids)if(!firstMarks.has(id)||date<firstMarks.get(id))firstMarks.set(id,date);
+  const definitions=[...firstMarks.keys()].sort().map(id=>({type:'habit',id}));
+  definitions.push(...[...new Set(days.filter(d=>d.status.known).map(d=>d.status.id))].sort().map(id=>({type:'status',id})));
+  definitions.push(...[...new Set(days.flatMap(d=>d.emotions.uniqueIds))].sort().map(id=>({type:'emotion',id})));
+  const candidates=definitions.map(({type,id})=>{
+    const firstMark=type==='habit'?firstMarks.get(id):null,start=firstMark&&firstMark>from?firstMark:from;
+    const eligibleDays=days.filter(d=>d.dateKey>=start),a=[],b=[];
+    for(const d of eligibleDays){
+      if(type==='habit'){if(d.habits.markedIds.includes(id))a.push(d);else if(d.flags.hasSubmittedData)b.push(d);}
+      else if(type==='status'){if(d.status.known)(d.status.id===id?a:b).push(d);}
+      else if(d.emotions.uniqueIds.length)(d.emotions.uniqueIds.includes(id)?a:b).push(d);
+    }
+    const contrast=insightContrast(a,b),weekKeys=[...new Set([...a,...b].map(d=>insightWeekStart(d.dateKey)))].sort();
+    const weeks=weekKeys.map(key=>({from:key<start?start:key,to:insightShiftDays(key,6)>to?to:insightShiftDays(key,6),weekStart:key,partial:key<start||insightShiftDays(key,6)>to,...insightContrast(a.filter(d=>insightWeekStart(d.dateKey)===key),b.filter(d=>insightWeekStart(d.dateKey)===key))}));
+    const usable=weeks.filter(w=>w.A.count&&w.B.count),totalWeight=usable.reduce((s,w)=>s+w.weight,0);
+    const localDelta=totalWeight?usable.reduce((s,w)=>s+w.weight*w.delta,0)/totalWeight:null;
+    const repeatability=insightRepeatability(contrast.delta,localDelta,contrast.A.count,contrast.B.count,usable);
+    const checks=(type==='status'?['dayType']:['status','dayType','joint']).map(kind=>insightContextCheck(a,b,kind,contrast.delta));
+    const contradiction=checks.some(c=>c.state==='contradiction'),contextComplete=checks.every(c=>c.state==='consistent'&&c.coverage.A.ratedFraction===1&&c.coverage.B.ratedFraction===1);
+    const level=repeatability.eligible?3:contrast.A.count>=5&&contrast.B.count>=5?2:1;
+    return {type,id,range:{from:start,to},firstAvailableMark:firstMark,...contrast,localDelta,weeks,repeatability,level,context:{checks,contradiction,complete:contextComplete},interpretation:contradiction?'context-dependent':level===3&&contextComplete?'repeated-association':level===3?'context-uncertain':level===2?'comparison':'descriptive',generalInterpretationAllowed:level===3&&!contradiction&&contextComplete,limitations:['association-not-causation','product-thresholds-not-significance','multiple-testing-and-dependent-days',...(type==='habit'?['unmarked-is-not-not-done','first-mark-is-not-creation-date']:[]),...(!contextComplete?['context-partial-or-unavailable']:[])]};
+  });
+  return {period,asOf,selectedRange,range,candidates,limitations:['equal-weight-per-rated-day','no-inference-from-entry-content','historical-cutoff']};
 }
 
 // One captured instant supplies every field; recordedDay never depends on cached TODAY.
@@ -4497,7 +4563,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='72.2';
+const APP_VERSION='72.3';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');

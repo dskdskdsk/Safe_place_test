@@ -27,3 +27,7 @@ Results/screenshots go to `tests/artifacts/`. `regression.py` accepts case names
 72.1 Stage A: `python tests/insight_a.py` — frozen deterministic readers, calendar profiles, metadata, midnight/timezones, JSON/ZIP and UI regression. Exits nonzero on failure. Results: `tests/artifacts/insight-a/`.
 
 72.2 Stage B: `python tests/insight_b.py` — descriptive facts, calendar comparisons, baseline thresholds, 170 independent Python calendar/mean scenarios, timezones, UI/reload, responsive details and large history. Results/screenshots: `tests/artifacts/insight-b/`; exits nonzero on FAIL/pageErrors.
+# Stage C
+
+Run `python tests/insight_c.py` for deterministic evidence, threshold and context checks,
+an independent seeded Python oracle, and three time zones. Results: artifacts/insight-c/results.json.

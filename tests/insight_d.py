@@ -4,6 +4,11 @@ src=Path(__file__).with_name('regression.py').read_text();exec(src[:src.index('w
 OUT=Path(__file__).parent/'artifacts'/'insight-d';OUT.mkdir(parents=True,exist_ok=True)
 def ui(p,c):
  p.wait_for_function('_writeReady')
+ coverage=ev(p,"""()=>{const make=(n,prev=5)=>{const s={days:{},habitLog:{}};for(let i=1;i<=n;i++)s.days['2026-10-'+String(i).padStart(2,'0')]={dayRatings:[7]};for(let i=1;i<=prev;i++)s.days['2026-09-'+String(i).padStart(2,'0')]={dayRatings:[5]};const m=readInsightOverview(s,'month','2026-10-01','2026-11-02');return renderMoodCards(m,s,'uk')};return {full:make(29),below:make(15),half:make(16),comparable:make(29,15)}}""")
+ check('Даних достатньо для підсумку' in coverage['full'] and 'На основі 29 оцінених днів' in coverage['full'],'29/31 is sufficient')
+ check('Поки даних мало' in coverage['below'] and 'менше половини' in coverage['below'],'15/31 is preliminary')
+ check('Поки даних мало' not in coverage['half'] and 'Даних достатньо' in coverage['half'],'16/31 meets half')
+ check('Середня оцінка зросла' in coverage['comparable'] and 'На основі 29 днів цього періоду та 15 попереднього' in coverage['comparable'],'both periods meet comparison coverage')
  for lang in ['uk','en']:
   for dark in [False,True]:
    ev(p,"""({lang,dark})=>{S.settings.lang=lang;applyI18n();applyTheme(dark);S.days={};S.habitLog={};S.habits=[{id:'h',name:'<img src=x onerror=alert(1)>'}];for(let i=0;i<84;i++){const k=insightShiftDays(todayKey(),-i);S.days[k]={dayRatings:[i%2?8:5],status:'work',emotions:[{id:'good'}]};if(i%2)S.habitLog['h_'+k]=true;}renderDash()}""",{'lang':lang,'dark':dark})

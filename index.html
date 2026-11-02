@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 72.3
-  Файл: 72.3_safe-place.html
-  Зміни 72.3: Етап C — групові контрасти, повторюваність і контекст для майбутніх інсайтів.
+  ЩОДЕННИК · ВЕРСІЯ 72.4.2
+  Файл: 72.4.2_safe-place.html
+  Зміни 72.4.2: узгоджені тексти інсайтів і поріг покриття половини періоду.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -361,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 72.3</title>
+<title>Safe Place · 72.4.2</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -734,6 +734,21 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .mood-insight-dots{display:flex;justify-content:center;gap:5px;margin-top:6px;}
 .mood-insight-dot{width:5px;height:5px;border-radius:50%;background:var(--bdr);transition:all .2s ease;cursor:pointer;}
 .mood-insight-dot.active{background:var(--fill);width:12px;border-radius:3px;}
+.mood-story{margin-top:12px;padding:14px 14px 10px;border-radius:var(--r3);background:linear-gradient(145deg,oklch(from var(--pri) l c h/.11),oklch(from var(--pri) l c h/.045));border:1px solid oklch(from var(--pri) l c h/.22);overflow:hidden}
+.mood-story-head{display:flex;align-items:center;gap:7px;margin-bottom:8px;color:var(--txm);font-size:10px;font-weight:800;letter-spacing:.045em;text-transform:uppercase}
+.mood-story-head span:first-child{font-size:15px}
+.mood-story .mood-insight-track{gap:0}
+.mood-story .mood-insight-slide{display:block;min-height:92px;padding:0 2px 4px}
+.mood-story-title{font-size:16px;line-height:1.25;font-weight:750;color:var(--tx);margin-bottom:6px}
+.mood-story-text{font-size:13px;line-height:1.48;color:var(--txm);margin:0}
+.mood-story-foot{margin-top:8px;font-size:10px;line-height:1.35;color:var(--txf)}
+.mood-story .mood-insight-dots{margin-top:8px}
+.insight-proof{margin-top:7px;color:var(--txf);font-size:10px}
+.insight-proof>summary{display:inline-flex;align-items:center;min-height:30px;padding:4px 2px;cursor:pointer;list-style:none;color:var(--txf);font-weight:650}
+.insight-proof>summary::-webkit-details-marker{display:none}
+.insight-proof>summary::after{content:'›';font-size:15px;margin-left:5px;transition:transform .2s}
+.insight-proof[open]>summary::after{transform:rotate(90deg)}
+.insight-proof .period-facts{margin-top:4px}
 .mc-dyn{font-size:11px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;min-height:18px;display:flex;align-items:center;justify-content:center;margin-bottom:2px;}
 
 /* Mood legend */
@@ -2092,7 +2107,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.3',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.4.2',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2190,7 +2205,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.3',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.4.2',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4563,7 +4578,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='72.3';
+const APP_VERSION='72.4.2';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -5386,6 +5401,61 @@ function customMoodH(id){
   return level==='pos'?76:level==='neg'?22:46;
 }
 // Plain descriptive presentation; automatic insight selection is outside Stage B.
+function selectMoodCards(model,evidence){
+  const p=model.summary,cards=[];
+  if(p.ratings.count)cards.push({type:'summary',mean:p.ratings.mean,count:p.ratings.count,total:p.calendarDayCount,comparison:model.comparison,baseline:model.baseline});
+  const ranked=evidence.candidates.filter(c=>c.level>=2).sort((a,b)=>Number(b.context.contradiction)-Number(a.context.contradiction)||b.level-a.level||Math.min(b.A.count,b.B.count)-Math.min(a.A.count,a.B.count)||a.type.localeCompare(b.type)||a.id.localeCompare(b.id));
+  const link=ranked.find(c=>c.type!=='emotion');if(link)cards.push({type:'association',evidence:link});
+  const emotion=p.emotions.frequencies.slice().sort((a,b)=>b.count-a.count||a.id.localeCompare(b.id))[0];
+  if(emotion)cards.push({type:'emotion',emotion});
+  else if(p.ratings.count*2<p.calendarDayCount)cards.push({type:'missing',count:p.ratings.count,total:p.calendarDayCount});
+  if(!cards.length)cards.push({type:'empty'});
+  return cards.slice(0,3);
+}
+function renderMoodCards(model,snapshot,lang){
+  const tr=(uk,en)=>lang==='en'?en:uk,fmt=n=>Number(n.toFixed(1)).toLocaleString(lang==='en'?'en-GB':'uk-UA');
+  const evidence=readInsightCandidates(snapshot,model.period,model.selectedRange.from||model.asOf,model.asOf);
+  const cards=selectMoodCards(model,evidence);
+  const periodWord={week:tr('тиждень','week'),month:tr('місяць','month'),year:tr('рік','year'),all:tr('весь час','all time')}[model.period];
+  const statusName=id=>STATUS_DATA[id]?.label||(snapshot.settings?.customStatuses||[]).find(s=>s.id===id)?.label||id;
+  const slides=cards.map(card=>{
+    let title='',text='',foot='';
+    if(card.type==='summary'){
+      const c=card.comparison,b=card.baseline;
+      const enoughCurrent=card.count*2>=card.total;
+      const comparable=c?.available&&c.current.ratings.count>=5&&c.previous.ratings.count>=5&&c.current.coverage.ratings.fraction>=.5&&c.previous.coverage.ratings.fraction>=.5;
+      if(comparable){
+        const d=c.delta;
+        title=Math.abs(d)<.3?tr('Середня оцінка майже не змінилася','The average rating is almost unchanged'):d>0?tr('Середня оцінка зросла','The average rating increased'):tr('Середня оцінка знизилася','The average rating decreased');
+        text=Math.abs(d)<.3?tr(`Середня оцінка майже не змінилася порівняно з попереднім періодом — ${fmt(card.mean)} із 10.`,`Your average is almost unchanged from the previous period at ${fmt(card.mean)} out of 10.`):tr(`Середня оцінка за цей ${periodWord} — ${fmt(card.mean)} із 10, це на ${fmt(Math.abs(d))} ${d>0?'вище':'нижче'} попереднього періоду.`,`Your average for this ${periodWord} is ${fmt(card.mean)} out of 10, ${fmt(Math.abs(d))} ${d>0?'higher':'lower'} than the previous period.`);
+        foot=tr(`На основі ${c.current.ratings.count} днів цього періоду та ${c.previous.ratings.count} попереднього.`,`Based on ${c.current.ratings.count} days from this period and ${c.previous.ratings.count} from the previous one.`);
+      }else if(enoughCurrent&&b?.eligible&&b.delta!==null&&Math.abs(b.delta)>=.3){
+        title=b.delta>0?tr('Вище твого звичного рівня','Above your usual level'):tr('Нижче твого звичного рівня','Below your usual level');
+        text=tr(`Середня оцінка за цей ${periodWord} — ${fmt(card.mean)} із 10. Це на ${fmt(Math.abs(b.delta))} ${b.delta>0?'вище':'нижче'} твого рівня за попередні завершені тижні.`,`Your average for this ${periodWord} is ${fmt(card.mean)} out of 10. That is ${fmt(Math.abs(b.delta))} ${b.delta>0?'above':'below'} your level across the previous completed weeks.`);
+        foot=tr(`На основі ${card.count} оцінених днів.`,`Based on ${card.count} rated days.`);
+      }else{
+        title=tr('Що показують оцінки','What the ratings show');
+        text=enoughCurrent?tr(`Середня оцінка за цей ${periodWord} — ${fmt(card.mean)} із 10. Даних достатньо для підсумку за цей період.`,`Your average for this ${periodWord} is ${fmt(card.mean)} out of 10. There is enough data for a summary of this period.`):tr(`Середня оцінка за цей ${periodWord} — ${fmt(card.mean)} із 10. Поки оцінено менше половини минулих днів, тому це попередня картина.`,`Your average for this ${periodWord} is ${fmt(card.mean)} out of 10. Fewer than half of the elapsed days are rated, so this is a preliminary picture.`);
+        foot=tr(`На основі ${card.count} оцінених днів.`,`Based on ${card.count} rated days.`);
+      }
+    }
+    if(card.type==='missing'){title=tr('Поки даних мало','Not enough data yet');text=tr(`Оцінки є за ${card.count} із ${card.total} минулих днів. Для підсумку потрібні оцінки хоча б за половину періоду.`,`Ratings cover ${card.count} of ${card.total} elapsed days. A summary needs ratings for at least half of the period.`);foot=tr('У підсумку враховані лише дні з оцінкою.','Only rated days are included in the summary.');}
+    if(card.type==='empty'){title=tr('Тут з’являться твої спостереження','Your observations will appear here');text=tr('Кілька оцінених днів дадуть перший підсумок. З часом з’являться обережні порівняння й повторювані зв’язки.','A few rated days will create the first summary. Careful comparisons and recurring associations will appear over time.');}
+    if(card.type==='emotion'){const e=card.emotion;title=tr('Найчастіша емоція','Most frequent emotion');text=tr(`Емоція «${emotionLabel(e.id)}» була у ${e.count} із ${e.denominator} днів, коли ти відзначав емоції.`,`“${emotionLabel(e.id)}” was present on ${e.count} of ${e.denominator} days when you recorded emotions.`);foot=tr('Це частота записів, а не оцінка якості дня.','This is recording frequency, not a judgement of the day.');}
+    if(card.type==='association'){
+      const c=card.evidence;
+      const label=c.type==='habit'?(snapshot.habits||[]).find(h=>h.id===c.id)?.name||c.id:statusName(c.id);
+      const higher=c.delta>0;
+      title=c.context.contradiction?tr('Контекст змінює картину','Context changes the picture'):c.generalInterpretationAllowed?tr('Цей зв’язок повторюється','This pattern keeps recurring'):tr('Є спостереження','There is an observation');
+      if(c.type==='habit')text=c.context.contradiction?tr(`Для «${label}» немає одного напрямку: у різних контекстах оцінки змінювалися по-різному.`,`There is no single direction for “${label}”: ratings moved differently across contexts.`):tr(`У дні з відміткою «${label}» оцінка була ${higher?'вищою':'нижчою'}, ніж в інші записані дні. ${c.generalInterpretationAllowed?'Це повторилося в різних тижнях.':'Поки лише сигнал, а не залежність.'}`,`On days marked “${label}”, ratings were ${higher?'higher':'lower'} than on other recorded days. ${c.generalInterpretationAllowed?'This recurred across different weeks.':'For now, this is only a signal, not an established dependency.'}`);
+      else text=c.context.contradiction?tr(`Для статусу «${label}» напрямок різниться між пн–пт і сб–нд, тому загального висновку немає.`,`For “${label}”, the direction differs between Mon–Fri and Sat–Sun, so there is no overall conclusion.`):tr(`У дні зі статусом «${label}» оцінка була ${higher?'вищою':'нижчою'}, ніж з іншими відомими статусами. ${c.generalInterpretationAllowed?'Цей зв’язок повторювався.':'Даних для стійкого висновку ще мало.'}`,`On days with “${label}”, ratings were ${higher?'higher':'lower'} than with other known statuses. ${c.generalInterpretationAllowed?'This association recurred.':'There is still too little evidence for a stable conclusion.'}`);
+      foot=c.type==='habit'?tr(`На основі ${c.A.count} днів із відміткою та ${c.B.count} інших записаних днів.`,`Based on ${c.A.count} marked days and ${c.B.count} other recorded days.`):tr(`На основі ${c.A.count} днів із цим статусом та ${c.B.count} днів з іншими статусами.`,`Based on ${c.A.count} days with this status and ${c.B.count} days with other statuses.`);
+    }
+    return `<article class="mood-insight-slide"><div class="mood-story-title">${esc(title)}</div><p class="mood-story-text">${esc(text)}</p>${foot?`<div class="mood-story-foot">${esc(foot)}</div>`:''}</article>`;
+  }).join('');
+  const dots=cards.map((_,i)=>`<button type="button" class="mood-insight-dot${i===0?' active':''}" data-i="${i}" aria-label="${i+1}"></button>`).join('');
+  return `<section class="mood-story" aria-label="${esc(tr('Спостереження','Observations'))}"><div class="mood-story-head"><span>✦</span><span>${esc(tr('Що помітно','What stands out'))}</span></div><div class="mood-insight-track">${slides}</div>${cards.length>1?`<div class="mood-insight-dots">${dots}</div>`:''}</section>`;
+}
 function renderInsightPeriodFacts(model,lang){
   const tr=(uk,en)=>lang==='en'?en:uk,p=model.summary,d=model.descriptive;
   const num=v=>v===null?'—':Number(v.toFixed(2)).toLocaleString(lang==='en'?'en-GB':'uk-UA',{maximumFractionDigits:2});
@@ -5436,18 +5506,26 @@ function bindPeriodFactsHeight(container){
   container._periodFactsObserver?.disconnect();
   const facts=container.querySelector('.period-facts'),body=container.closest('.mood-body');if(!facts||!body)return;
   const resize=()=>{if(!body.closest('.mood-collapsed'))body.style.maxHeight=body.scrollHeight+300+'px';};
-  facts.addEventListener('toggle',resize);
+  container.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',resize));
   if(typeof ResizeObserver!=='undefined'){container._periodFactsObserver=new ResizeObserver(resize);container._periodFactsObserver.observe(facts);}
   resize();
+}
+function bindMoodStory(container){
+  const insightTrack=container.querySelector('.mood-story .mood-insight-track');if(!insightTrack)return;
+  const dots=[...container.querySelectorAll('.mood-story .mood-insight-dot')];
+  const setActive=i=>dots.forEach((d,di)=>d.classList.toggle('active',di===i));
+  insightTrack.addEventListener('scroll',()=>setActive(Math.round(insightTrack.scrollLeft/insightTrack.offsetWidth)),{passive:true});
+  dots.forEach(dot=>dot.addEventListener('click',()=>{const i=parseInt(dot.dataset.i,10);insightTrack.scrollLeft=i*insightTrack.clientWidth;setActive(i);}));
 }
 
 function buildMoodChart(container){
   closeDayRatingDetail();
-  const periodFacts=renderInsightPeriodFacts(moodPeriodFactsModel(todayKey()),getLang());
+  const factsModel=moodPeriodFactsModel(todayKey());
+  const periodFacts=renderMoodCards(factsModel,S,getLang())+'<details class="insight-proof"><summary>'+esc(getLang()==='en'?'How this was calculated':'Як це визначено')+'</summary>'+renderInsightPeriodFacts(factsModel,getLang())+'</details>';
   // Special all-time view — verdict card instead of chart
   if(moodPeriod==='all'){
     const allKeys=Object.keys(S.days).filter(k=>k<=todayKey()&&(dayScore(S.days[k])||S.days[k].emotions?.length));
-    if(!allKeys.length){container.innerHTML='<div style="text-align:center;color:var(--txm);padding:var(--s8);font-size:var(--sm)">'+(getLang()==='en'?'No data':'Немає даних')+'</div>'+periodFacts;bindPeriodFactsHeight(container);return;}
+    if(!allKeys.length){container.innerHTML='<div style="text-align:center;color:var(--txm);padding:var(--s8);font-size:var(--sm)">'+(getLang()==='en'?'No data':'Немає даних')+'</div>'+periodFacts;bindPeriodFactsHeight(container);bindMoodStory(container);return;}
     const total=allKeys.length;
     const rated=allKeys.filter(k=>{const d=S.days[k];return (d.dayRatings&&d.dayRatings.length)?calcDayRating(d)>0:(d.dayRating>0)});
     const avg=rated.length?Math.round(rated.reduce((s,k)=>{const d=S.days[k];return s+((d.dayRatings&&d.dayRatings.length)?calcDayRating(d):d.dayRating);},0)/rated.length*10)/10:0;
@@ -5491,11 +5569,12 @@ function buildMoodChart(container){
     </div>`;
     container.insertAdjacentHTML('beforeend',periodFacts);
     bindPeriodFactsHeight(container);
+    bindMoodStory(container);
     return;
   }
 
   const days=getMoodDays();
-  if(!days.length){container.innerHTML='<div style="text-align:center;color:var(--txm);padding:var(--s8);font-size:var(--sm)">Немає даних за цей період</div>';return;}
+  if(!days.length){container.innerHTML='<div style="text-align:center;color:var(--txm);padding:var(--s8);font-size:var(--sm)">'+(getLang()==='en'?'No data for this period':'Немає даних за цей період')+'</div>'+periodFacts;bindPeriodFactsHeight(container);bindMoodStory(container);return;}
 
   let html=`<div class="moodchart-wrap"><div class="moodchart ${moodPeriod==='week'?'week-view':''}">`;
 
@@ -5558,7 +5637,7 @@ function buildMoodChart(container){
 
   // ── MOOD INSIGHT (short, non-analytical hint) ──
   const insightDayKeys = moodPeriod==='year' ? days.flatMap(x=>x.monthKeys) : days;
-  const insight = buildMoodInsight(insightDayKeys, moodPeriod);
+  const insight = null; // Stage D cards below use the shared A–C evidence.
   if(insight && insight.cards.length){
     const slides=insight.cards.map(c=>`<div class=\"mood-insight-slide\"><span class=\"mood-insight-icon\">${c.icon}</span><span class=\"mood-insight-text\">${c.text}</span></div>`).join('');
     const dots=insight.cards.map((_,i)=>`<span class=\"mood-insight-dot${i===0?' active':''}\" data-i=\"${esc(i)}\"></span>`).join('');
@@ -5568,22 +5647,7 @@ function buildMoodChart(container){
   container.innerHTML=html+periodFacts;
   bindPeriodFactsHeight(container);
 
-  const insightTrack=container.querySelector('.mood-insight-track');
-  if(insightTrack){
-    const dotsWrap=container.querySelector('.mood-insight-dots');
-    const dots=dotsWrap?[...dotsWrap.querySelectorAll('.mood-insight-dot')]:[];
-    const setActive=i=>{ dots.forEach((d,di)=>d.classList.toggle('active',di===i)); };
-    insightTrack.addEventListener('scroll',()=>{
-      const idx=Math.round(insightTrack.scrollLeft/insightTrack.offsetWidth);
-      setActive(idx);
-    },{passive:true});
-    dots.forEach(dot=>{
-      dot.addEventListener('click',()=>{
-        const i=parseInt(dot.dataset.i,10);
-        insightTrack.scrollTo({left:i*insightTrack.offsetWidth,behavior:'smooth'});
-      });
-    });
-  }
+  bindMoodStory(container);
 
   container.querySelectorAll('.mc-col[data-k]').forEach(col=>{
     let start=null,moved=false;

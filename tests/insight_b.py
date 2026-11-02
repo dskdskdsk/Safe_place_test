@@ -5,28 +5,34 @@ src=Path(__file__).with_name('regression.py').read_text();exec(src[:src.index('w
 OUT=Path(__file__).parent/'artifacts'/'insight-b';OUT.mkdir(parents=True,exist_ok=True)
 def pure(p,c):
  p.wait_for_function('_writeReady');return ev(p,Path(__file__).with_name('insight_b_cases.js').read_text())
+def open_facts(p):
+ proof=p.locator('.insight-proof')
+ if proof.get_attribute('open') is None:proof.locator(':scope > summary').click()
+ f=p.locator('#mood-period-facts')
+ if f.get_attribute('open') is None:f.locator(':scope > summary').click()
+ return f
 def ui(p,c):
  p.wait_for_function('_writeReady')
  for lang in ['uk','en']:
   for dark in [False,True]:
    ev(p,"""({lang,dark})=>{S.settings.lang=lang;applyI18n();applyTheme(dark);S.days={};S.habitLog={};S.customEmotions=[{label:'<img src=x onerror=alert(1)> '+ 'довга емоція '.repeat(8),level:'pos'}];
    const now=todayKey(),from=insightWeekStart(now),d=day(from);d.dayRatings=[2];d.emotions=[{id:'good'},{id:'bad'},{id:'c_'+S.customEmotions[0].label}];S.days[insightShiftDays(from,-7)]={dayRatings:[8]};moodPeriod='week';moodWeekOffset=0;renderDash();}""",{'lang':lang,'dark':dark})
-   p.locator('[data-page=dash]').click();f=p.locator('#mood-period-facts');check(not f.get_attribute('open'));f.locator('summary').click();p.wait_for_timeout(100)
+   p.locator('[data-page=dash]').click();f=p.locator('#mood-period-facts');check(not f.get_attribute('open'));f=open_facts(p);p.wait_for_timeout(100)
    check(f.locator('summary').inner_text().startswith('Period in numbers' if lang=='en' else 'Числа за період'));check(f.locator('img').count()==0,'escaped emotion');check('-6' in f.inner_text(),'difference')
    check(ev(p,'document.documentElement.scrollWidth<=innerWidth'),'root overflow');check(f.evaluate('(e)=>e.scrollWidth<=e.clientWidth'),'facts overflow')
    check(f.evaluate("e=>{const b=e.closest('.mood-body');return b.scrollHeight<=parseFloat(b.style.maxHeight)+1}"),'clipped details')
    p.screenshot(path=str(OUT/f'{lang}-{dark}-top.png'))
    heading='Comparison with the previous period' if lang=='en' else 'Порівняння з попереднім періодом';f.get_by_role('heading',name=heading,exact=True).scroll_into_view_if_needed();p.screenshot(path=str(OUT/f'{lang}-{dark}-comparison.png'))
    for period in ['month','year','all']:
-    p.locator('.mood-tab[data-period='+period+']').click();f=p.locator('#mood-period-facts');check(f.count()==1);f.locator('summary').click()
+    p.locator('.mood-tab[data-period='+period+']').click();f=open_facts(p);check(f.count()==1)
    check(heading not in f.inner_text(),'all-time no comparison')
-   p.locator('.mood-tab[data-period=month]').click();p.locator('#mood-prev').click();f=p.locator('#mood-period-facts');f.locator('summary').click()
+   p.locator('.mood-tab[data-period=month]').click();p.locator('#mood-prev').click();f=open_facts(p)
    check(ev(p,"insightMonthStart(todayKey(),-1).split('-').reverse().join('.')") in f.inner_text(),'historical dates')
  return 'UK/EN × light/dark, navigation/expand, escaping, dates, no overflow/clipping'
 def edits(p,c):
- p.wait_for_function('_writeReady');ev(p,'()=>{activeDay=todayKey();renderToday()}');p.locator('#rating-row button').nth(1).click();p.locator('[data-page=dash]').click();check('2' in p.locator('#mood-period-facts summary').inner_text())
- p.locator('[data-page=today]').click();chip=p.locator('#rating-chips>div').first.locator('span').first;chip.click();chip.click();p.locator('#rating-row button').nth(7).click();p.locator('[data-page=dash]').click();check('8' in p.locator('#mood-period-facts summary').inner_text())
- p.locator('[data-page=today]').click();p.locator('#rating-chips button').first.click();p.locator('[data-page=dash]').click();f=p.locator('#mood-period-facts');check('—' in f.locator('summary').inner_text());f.locator('summary').click();check('Ще немає оцінок' in f.inner_text());p.reload();p.wait_for_function('_writeReady');check(ev(p,'readInsightOverview(S,"week",todayKey(),todayKey()).summary.ratings.mean') is None)
+ p.wait_for_function('_writeReady');ev(p,'()=>{activeDay=todayKey();renderToday()}');p.locator('#rating-row button').nth(1).click();p.locator('[data-page=dash]').click();check('2' in p.locator('.mood-story').inner_text())
+ p.locator('[data-page=today]').click();chip=p.locator('#rating-chips>div').first.locator('span').first;chip.click();chip.click();p.locator('#rating-row button').nth(7).click();p.locator('[data-page=dash]').click();check('8' in p.locator('.mood-story').inner_text())
+ p.locator('[data-page=today]').click();p.locator('#rating-chips button').first.click();p.locator('[data-page=dash]').click();f=open_facts(p);check('Ще немає оцінок' in f.inner_text());p.reload();p.wait_for_function('_writeReady');check(ev(p,'readInsightOverview(S,"week",todayKey(),todayKey()).summary.ratings.mean') is None)
  return 'Add/edit/delete refresh facts; null empty state survives reload'
 def oracle(p,c):
  from datetime import date,timedelta
@@ -62,7 +68,7 @@ def oracle(p,c):
  }return cases.length;}""",{'snapshot':snapshot,'cases':expected})
  return str(count)+' independent Python datetime/mean scenarios match'
 def responsive(p,c):
- p.wait_for_function('_writeReady');p.locator('[data-page=dash]').click();f=p.locator('#mood-period-facts');f.locator('summary').click()
+ p.wait_for_function('_writeReady');p.locator('[data-page=dash]').click();f=open_facts(p)
  for width in [768,430,375,320]:
   p.set_viewport_size({'width':width,'height':844});ev(p,"document.documentElement.style.fontSize='24px'");p.wait_for_timeout(100)
   check(ev(p,'document.documentElement.scrollWidth<=innerWidth'),'root overflow');check(f.evaluate('(e)=>e.scrollWidth<=e.clientWidth'),'facts overflow');check(f.evaluate("e=>{const b=e.closest('.mood-body');return b.scrollHeight<=parseFloat(b.style.maxHeight)+1}"),'details clipped')

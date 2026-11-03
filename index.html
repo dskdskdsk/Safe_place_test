@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 72.4.3
-  Файл: 72.4.3_safe-place.html
-  Зміни 72.4.3: узгоджені тексти інсайтів і поріг покриття половини періоду.
+  ЩОДЕННИК · ВЕРСІЯ 73.0
+  Файл: 73.0_safe-place.html
+  Зміни 73.0 Day in the past: спогади місяць і рік тому, лише перегляд.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -361,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 72.4.3</title>
+<title>Safe Place · 73.0 Day in the past</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -2032,6 +2032,7 @@ function migrateTagsToCanonical(state){
 // ═══ i18n ═══
 const LANG={
 uk:{
+memory_title:'Цей день у минулому',memory_past:'Минуле',memory_month:'Місяць тому',memory_year:'Рік тому',memory_return:'Повернутися',memory_next:'Далі в минуле',memory_back:'Попередній спогад',memory_empty:'За ці дати ще немає записів',memory_voice_busy:'Спочатку збережи або скасуй голосовий запис.',memory_readonly:'Лише перегляд',memory_missing_audio:'Аудіозапис недоступний у цьому архіві.',memory_missing_photo:'Фото недоступне у цьому архіві.',memory_notes:'Опис дня',memory_ratings:'Оцінки дня',memory_emotions:'Емоції',memory_status:'Статус',memory_gratitude:'Вдячності',memory_events:'Події',memory_ideas:'Ідеї',memory_habits:'Відмітки звичок',memory_photos:'Фото',memory_media:'Медіа',memory_audio_unplayable:'Не вдалося відтворити цей запис на цьому пристрої.',memory_loading:'Завантаження…',memory_photo:'Відкрити або згорнути фото',
 tab_title:"Щоденник відкритий в іншій вкладці",
 tab_text:"Редагування доступне лише в одній вкладці. Закрий іншу вкладку або вікно цього щоденника, потім перезавантаж цю сторінку.",
 tab_conflict_title:"Знайдено новіші дані",
@@ -2107,7 +2108,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.4.3',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 73.0',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2130,6 +2131,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   months_gen:['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'],
 },
 en:{
+memory_title:'Day in the past',memory_past:'Past',memory_month:'A month ago',memory_year:'A year ago',memory_return:'Return',memory_next:'Further back',memory_back:'Previous memory',memory_empty:'No entries for these dates yet',memory_voice_busy:'Save or discard your voice recording first.',memory_readonly:'Read only',memory_missing_audio:'This audio recording is unavailable in this archive.',memory_missing_photo:'This photo is unavailable in this archive.',memory_notes:'Day description',memory_ratings:'Day ratings',memory_emotions:'Emotions',memory_status:'Status',memory_gratitude:'Gratitude',memory_events:'Events',memory_ideas:'Ideas',memory_habits:'Habit marks',memory_photos:'Photos',memory_media:'Media',memory_audio_unplayable:'This recording could not be played on this device.',memory_loading:'Loading…',memory_photo:'Expand or collapse photo',
 tab_title:"Journal open in another tab",
 tab_text:"Only one tab can edit the journal. Close the other journal tab or window, then reload this page.",
 tab_conflict_title:"Newer journal data found",
@@ -2205,7 +2207,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.4.3',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 73.0',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4578,7 +4580,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='72.4.3';
+const APP_VERSION='73.0';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -9190,6 +9192,111 @@ function renderTimeline(){
   if(cont) cont.innerHTML=buildTimeline(null);
 }
 
+// 73.0: memory readers never call day(), normalizers, storage or editor renderers.
+function getExactMemoryDate(anchor,kind){
+  if(!insightDateKey(anchor)||!['month','year'].includes(kind))throw new TypeError('Invalid memory date');
+  let [y,m,d]=anchor.split('-').map(Number);
+  if(kind==='year')y--;else if(--m===0){m=12;y--;}
+  const key=String(y).padStart(4,'0')+'-'+pad(m)+'-'+pad(d);
+  return y>0&&insightDateKey(key)?key:null;
+}
+function readMemoryDay(snapshot,dateKey){
+  const profile=readInsightDay(snapshot,dateKey,dateKey),d=snapshot.days?.[dateKey]||{};
+  const copy=x=>JSON.parse(JSON.stringify(x));
+  const list=x=>Array.isArray(x)?x:[];
+  const entries=profile.entries.sources.map(e=>({...e,text:e.type==='voice'?'':e.source.endsWith(':summary')?d.summary:d.summaryEntries[Number(e.source.split(':').pop())].text,audioId:e.type==='voice'?d.summaryEntries[Number(e.source.split(':').pop())].audioId:null}));
+  const ideas=list(d.ideas).slice();
+  function visit(nodes){for(const n of list(nodes)){if(n?.date===dateKey&&typeof n.text==='string'&&n.text.trim())ideas.push(n.text);visit(n?.children);}}
+  visit(snapshot.ideaTree?.roots);
+  return copy({dateKey,profile,entries,statusNote:d.statusNote||'',gratitude:list(d.gratitude),events:list(d.events),ideas,media:list(d.media),photoIds:list(d.photoIds),photos:list(d.photos),habits:profile.habits.markedIds.map(id=>({id,name:list(snapshot.habits).find(h=>h.id===id)?.name||id})),statusLabel:list(snapshot.settings?.customStatuses).find(s=>s.id===profile.status.id)?.label||null});
+}
+function hasMemoryContent(snapshot,key){return readInsightDay(snapshot,key,key).flags.hasSubmittedData;}
+function getMemoryTargets(snapshot,anchor){return ['month','year'].map(kind=>({kind,dateKey:getExactMemoryDate(anchor,kind)})).filter(x=>x.dateKey&&hasMemoryContent(snapshot,x.dateKey));}
+let memorySession=null,memoryToken=0,memoryUrls=[];
+function disposeMemoryMedia(){
+  memoryToken++;document.querySelectorAll('#memory-view audio').forEach(a=>{a.pause();a.removeAttribute('src');a.load();});
+  memoryUrls.forEach(u=>URL.revokeObjectURL(u));memoryUrls=[];
+}
+function renderMemoryDay(p){
+  const text=v=>typeof v==='string'?v:v&&typeof v==='object'?(v.text||v.name||v.title||''):'';
+  const rows=items=>items.map(text).filter(v=>typeof v==='string'&&v.trim()).map(v=>'<p>'+esc(v)+'</p>').join('');
+  const section=(key,body)=>body?`<details class="memory-section" open><summary>${esc(t(key))}</summary>${body}</details>`:'';
+  // Lead with the saved story; supporting details follow without editor controls.
+  let html=section('memory_notes',p.entries.map((e,i)=>e.type==='voice'?`<div data-memory-audio="${i}"><p>${esc(t('memory_loading'))}</p></div>`:`<p>${e.time?'<small>'+esc(e.time)+'</small><br>':''}${esc(e.text)}</p>`).join(''));
+  html+=section('memory_status',p.profile.status.id?rows([(STATUS_DATA[p.profile.status.id]?.label||p.statusLabel||p.profile.status.id),p.statusNote]):'');
+  html+=section('memory_emotions',rows(p.profile.emotions.uniqueIds.map(emotionLabel)));
+  html+=section('memory_ratings',rows(p.profile.ratings.entries.map(r=>String(r.v)+'/10'+(r.t?' · '+r.t:''))));
+  html+=section('memory_gratitude',rows(p.gratitude))+section('memory_events',rows(p.events))+section('memory_ideas',rows(p.ideas))+section('memory_habits',rows(p.habits.map(h=>h.name)));
+  html+=section('memory_media',rows(p.media.map(m=>[MCAT[m.cat]?.label||'',m.name||m.title||'',({active:t('media_progress'),progress:t('media_progress'),pause:t('media_pause'),done:t('media_done'),planned:t('media_planned')})[m.status]||m.status||'',m.rating?m.rating+'/5':'',m.note||''].filter(Boolean).join(' · '))));
+  html+=section('memory_photos',p.photoIds.length||p.photos.length?'<div id="memory-photos">'+esc(t('memory_loading'))+'</div>':'');
+  return html;
+}
+async function loadMemoryMedia(p,token){
+  const current=()=>memorySession&&token===memoryToken;
+  // Independent media reads: a slow voice must not delay the photos.
+  const voiceLoads=Promise.allSettled(p.entries.map(async(e,i)=>{
+    if(e.type!=='voice')return;
+    let blob=null;try{blob=await _voiceGet(e.audioId);}catch(_){}
+    if(!current())return;const slot=document.querySelector(`[data-memory-audio="${i}"]`);if(!slot)return;slot.textContent='';
+    if(!blob){slot.textContent=t('memory_missing_audio');return;}
+    if(e.time){const time=document.createElement('small');time.textContent=e.time;slot.append(time);}
+    const a=document.createElement('audio'),url=URL.createObjectURL(blob);memoryUrls.push(url);a.controls=true;a.preload='metadata';a.src=url;a.setAttribute('aria-label',t('memory_notes')+' '+(i+1));
+    a.onerror=()=>{if(current())slot.textContent=t('memory_audio_unplayable');};slot.append(a);
+  }));
+  if(!current())return;
+  const box=document.getElementById('memory-photos');if(!box)return;
+  let urls=[];try{urls=await _photoGet(p.photoIds);}catch(_){urls=p.photoIds.map(()=>null);}
+  if(!current())return;box.textContent='';
+  urls=urls.concat(p.photos.map(x=>typeof x==='string'?x:x?.dataUrl||x?.src||null));
+  for(const src of urls){
+    if(typeof src!=='string'||!/^data:image\/(png|jpeg|jpg|webp|gif);base64,/i.test(src)){const msg=document.createElement('p');msg.textContent=t('memory_missing_photo');box.append(msg);continue;}
+    const b=document.createElement('button'),img=document.createElement('img');b.type='button';b.className='memory-photo';b.setAttribute('aria-label',t('memory_photo'));b.setAttribute('aria-expanded','false');img.src=src;img.alt=t('memory_photos');
+    img.onerror=()=>{if(current()){const msg=document.createElement('p');msg.textContent=t('memory_missing_photo');b.replaceWith(msg);}};
+    b.append(img);b.onclick=()=>{const expanded=b.classList.toggle('expanded');b.setAttribute('aria-expanded',String(expanded));};box.append(b);
+  }
+  await voiceLoads;
+}
+function canOpenDayJourney(){
+  if(_voiceStarting||_voiceStream||(_voiceMediaRecorder&&_voiceMediaRecorder.state!=='inactive')||_voicePreviewBlob){showToast(t('memory_voice_busy'));return false;}
+  if(!_writeReady||_writeBlocked||_storageBlocked)return false;
+  return flushAutosave();
+}
+function openMemorySession(anchor=activeDay){
+  if(memorySession||!canOpenDayJourney())return false;
+  const targets=getMemoryTargets(S,anchor);if(!targets.length){showToast(t('memory_empty'));return false;}
+  memorySession={anchorDate:anchor,targets,index:0,originScrollY:scrollY,originFocus:document.activeElement};
+  if(_voicePlayerAudio)_voicePlayerAudio.pause();
+  document.querySelectorAll('audio').forEach(a=>a.pause());
+  window.safePlaceUI?.remember('memory-view',memorySession.originFocus?.matches('textarea,input')?document.getElementById('memory-launch'):memorySession.originFocus);document.getElementById('memory-view').classList.add('open');showMemoryAt(0);return true;
+}
+function showMemoryAt(index){
+  if(!memorySession||index<0||index>=memorySession.targets.length)return;
+  disposeMemoryMedia();memorySession.index=index;const target=memorySession.targets[index],p=readMemoryDay(S,target.dateKey);
+  document.getElementById('memory-title').textContent=t('memory_title');document.getElementById('memory-date').textContent=t('memory_'+target.kind)+' · '+new Date(target.dateKey+'T12:00:00').toLocaleDateString(getLang()==='en'?'en-GB':'uk-UA',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('memory-back').textContent=t('memory_back');document.getElementById('memory-back').hidden=index===0;document.getElementById('memory-next').textContent=t('memory_next');document.getElementById('memory-next').disabled=index===memorySession.targets.length-1;document.getElementById('memory-close').textContent=t('memory_return');document.getElementById('memory-readonly').textContent=t('memory_readonly');
+  const body=document.getElementById('memory-body');body.innerHTML=renderMemoryDay(p);body.scrollTop=0;loadMemoryMedia(p,memoryToken);
+}
+function stepMemory(direction){if(!memorySession)return;if(memorySession.index+direction<0)closeMemorySession();else showMemoryAt(memorySession.index+direction);}
+function closeMemorySession(){
+  if(!memorySession)return;const old=memorySession;disposeMemoryMedia();memorySession=null;document.getElementById('memory-view').classList.remove('open');document.getElementById('memory-body').textContent='';
+  requestAnimationFrame(()=>{window.scrollTo(0,old.originScrollY);if(old.originFocus?.isConnected&&!old.originFocus.matches('textarea,input'))old.originFocus.focus({preventScroll:true});});
+}
+function bindDayJourneyGestures(el,onStep){
+  let start=null;
+  const excluded=e=>e.target.closest('button,input,textarea,audio,video,img,a,summary,[contenteditable]');
+  el.addEventListener('touchstart',e=>{start=null;if(e.touches.length!==1||excluded(e)||String(getSelection()))return;const p=e.touches[0];if(p.clientX<24||p.clientX>innerWidth-24)return;start={x:p.clientX,y:p.clientY};},{passive:true});
+  el.addEventListener('touchmove',e=>{if(e.touches.length!==1)start=null;},{passive:true});
+  el.addEventListener('touchcancel',()=>start=null,{passive:true});
+  el.addEventListener('touchend',e=>{if(!start)return;const p=e.changedTouches[0],dx=p.clientX-start.x,dy=p.clientY-start.y;start=null;if(!String(getSelection())&&Math.abs(dx)>=60&&Math.abs(dx)>=1.5*Math.abs(dy))onStep(dx>0?1:-1);},{passive:true});
+}
+function initDayMemories(){
+  const style=document.createElement('style');style.textContent=`[data-block=summary]>.ch{flex-wrap:wrap;gap:8px}#memory-view{display:none;position:fixed;inset:0;z-index:5000;background:var(--bg);color:var(--tx);flex-direction:column;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}#memory-view.open{display:flex} .memory-header,.memory-nav{padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr)}.memory-header h2{font-size:18px;margin:0}.memory-header p{font-size:13px;margin:5px 0}.memory-nav button,.memory-header button,#memory-launch{min-height:44px;padding:8px 12px;border:1px solid var(--bdr);border-radius:var(--r2);background:var(--surface);color:var(--tx)}#memory-body{overflow-y:auto;overscroll-behavior:contain;min-height:0;flex:1;padding:16px;touch-action:pan-y}.memory-section{max-width:680px;margin:0 auto 14px;padding:14px;border:1px solid var(--bdr);border-radius:var(--r3);background:var(--surface)}.memory-section summary{font-weight:700;cursor:pointer;min-height:44px;align-content:center}.memory-nav button:disabled{opacity:.4}#memory-next{margin-left:auto}.memory-header small{color:var(--txm)}.memory-section p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;user-select:text;-webkit-user-select:text}.memory-section audio{width:100%;margin:10px 0}.memory-photo{display:inline-block;max-width:100%;padding:4px}.memory-photo img{width:100px;max-width:100%;border-radius:8px}.memory-photo.expanded{display:block;width:100%}.memory-photo.expanded img{width:100%}`;document.head.append(style);
+  const view=document.createElement('div');view.id='memory-view';view.setAttribute('role','dialog');view.setAttribute('aria-modal','true');view.setAttribute('aria-labelledby','memory-title');view.innerHTML='<header class="memory-header"><div><h2 id="memory-title"></h2><p id="memory-date"></p><small id="memory-readonly"></small></div><button id="memory-close" type="button"></button></header><nav class="memory-nav"><button id="memory-back" type="button"></button><button id="memory-next" type="button"></button></nav><div id="memory-body"></div>';document.body.append(view);
+  document.getElementById('memory-close').onclick=closeMemorySession;document.getElementById('memory-back').onclick=()=>stepMemory(-1);document.getElementById('memory-next').onclick=()=>stepMemory(1);bindDayJourneyGestures(view,stepMemory);
+  const card=document.querySelector('[data-block="summary"]'),button=document.createElement('button');button.id='memory-launch';button.type='button';button.dataset.i18n='memory_past';button.textContent=t('memory_past');button.onclick=()=>openMemorySession();card.querySelector('.ch').append(button);bindDayJourneyGestures(card,d=>{if(d===1)openMemorySession();});
+}
+window.addEventListener('load',initDayMemories,{once:true});
+
 function renderToday(){
   const _aiR=document.getElementById('ai-day-result');if(_aiR)_aiR.style.display='none';
   initHeader();
@@ -10592,7 +10699,7 @@ window.addEventListener('DOMContentLoaded', function(){
 // 70.4: visual viewport, bounded field scrolling and modal focus management.
 (function(){
   const root=document.documentElement;
-  const selector='.sheet,.drawer,.ob-ov,#fpov,#lock-screen,#pin-reset-overlay,#pin-export-after-overlay,#digest-view-popup,#rollup-view-popup';
+  const selector='.sheet,.drawer,.ob-ov,#fpov,#lock-screen,#pin-reset-overlay,#pin-export-after-overlay,#digest-view-popup,#rollup-view-popup,#memory-view';
   const focusSelector='button:not([disabled]),a[href],input:not([disabled]):not([type=hidden]),textarea:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])';
   const remembered=new WeakMap(),inertBefore=new Map();
   let pendingRestore=null;
@@ -10605,7 +10712,7 @@ window.addEventListener('DOMContentLoaded', function(){
     if(el.matches('.err-ov'))return true;
     return el.classList.contains(el.matches('.drawer,.streak-popup')?'on':'open');
   }
-  function focusables(el){return Array.from(el.querySelectorAll(focusSelector)).filter(x=>visible(x)&&!x.closest('[inert]'));}
+  function focusables(el){return Array.from(el.querySelectorAll(focusSelector+(el.id==='memory-view'?',summary,audio[controls]':''))).filter(x=>visible(x)&&!x.closest('[inert]'));}
   function focusQuietly(el){if(visible(el)&&!el.closest('[inert]'))el.focus({preventScroll:true});}
   function remember(el,previous=document.activeElement){
     if(typeof el==='string')el=document.getElementById(el);
@@ -10714,7 +10821,7 @@ window.addEventListener('DOMContentLoaded', function(){
   }
   function dismissTop(){
     if(!top)return;
-    const actions={'emotion-sheet':()=>closeEmotionSheet(),'habit-sheet':()=>closeHabitSheet(),'idea-detail-sheet':()=>closeIdeaDetail(),'day-drawer':()=>closeDrawer(),
+    const actions={'memory-view':()=>closeMemorySession(),'emotion-sheet':()=>closeEmotionSheet(),'habit-sheet':()=>closeHabitSheet(),'idea-detail-sheet':()=>closeIdeaDetail(),'day-drawer':()=>closeDrawer(),
       'fpov':()=>top.classList.remove('open'),'digest-view-popup':()=>top.classList.remove('on'),'rollup-view-popup':()=>top.classList.remove('on'),
       'ob-ov':()=>top.classList.remove('open'),'err-dlg':()=>{if(typeof _dlgCtl!=='undefined'&&_dlgCtl&&!_dlgCtl.locked)_dlgCtl.close(null);}};
     // PIN overlays are dismissed only by their existing authorized controls.
@@ -10792,6 +10899,7 @@ function _userIsComposing(){
   return false;
 }
 function checkDayRollover(){
+  if(memorySession)return false; // keep the journey anchored until the user returns
   const nk=todayKey();
   if(nk===TODAY)return false;
   if(_userIsComposing())return false;      // retried on blur, on resume and every 30 s

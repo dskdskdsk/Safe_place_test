@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 72.4.3
-  Файл: 72.4.3_safe-place.html
-  Зміни 72.4.3: узгоджені тексти інсайтів і поріг покриття половини періоду.
+  ЩОДЕННИК · ВЕРСІЯ 73.0
+  Файл: 73.0_safe-place.html
+  Зміни 73.0 Day in the past: спогади місяць і рік тому, лише перегляд.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -361,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 72.4.3</title>
+<title>Safe Place · 73.0 Day in the past</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -2032,6 +2032,7 @@ function migrateTagsToCanonical(state){
 // ═══ i18n ═══
 const LANG={
 uk:{
+memory_title:'Цей день у минулому',memory_past:'Минуле',memory_month:'Місяць тому',memory_year:'Рік тому',memory_return:'Повернутися',memory_next:'Далі в минуле',memory_back:'Попередній спогад',memory_empty:'За ці дати ще немає записів',memory_voice_busy:'Спочатку збережи або скасуй голосовий запис.',memory_readonly:'Лише перегляд',memory_missing_audio:'Аудіозапис недоступний у цьому архіві.',memory_missing_photo:'Фото недоступне у цьому архіві.',memory_notes:'Опис дня',memory_ratings:'Оцінки дня',memory_emotions:'Емоції',memory_status:'Статус',memory_gratitude:'Вдячності',memory_events:'Події',memory_ideas:'Ідеї',memory_habits:'Відмітки звичок',memory_photos:'Фото',memory_media:'Медіа',memory_audio_unplayable:'Не вдалося відтворити цей запис на цьому пристрої.',memory_loading:'Завантаження…',memory_photo:'Відкрити або згорнути фото',
 tab_title:"Щоденник відкритий в іншій вкладці",
 tab_text:"Редагування доступне лише в одній вкладці. Закрий іншу вкладку або вікно цього щоденника, потім перезавантаж цю сторінку.",
 tab_conflict_title:"Знайдено новіші дані",
@@ -2107,7 +2108,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 72.4.3',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 73.0',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2130,6 +2131,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   months_gen:['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'],
 },
 en:{
+memory_title:'Day in the past',memory_past:'Past',memory_month:'A month ago',memory_year:'A year ago',memory_return:'Return',memory_next:'Further back',memory_back:'Previous memory',memory_empty:'No entries for these dates yet',memory_voice_busy:'Save or discard your voice recording first.',memory_readonly:'Read only',memory_missing_audio:'This audio recording is unavailable in this archive.',memory_missing_photo:'This photo is unavailable in this archive.',memory_notes:'Day description',memory_ratings:'Day ratings',memory_emotions:'Emotions',memory_status:'Status',memory_gratitude:'Gratitude',memory_events:'Events',memory_ideas:'Ideas',memory_habits:'Habit marks',memory_photos:'Photos',memory_media:'Media',memory_audio_unplayable:'This recording could not be played on this device.',memory_loading:'Loading…',memory_photo:'Expand or collapse photo',
 tab_title:"Journal open in another tab",
 tab_text:"Only one tab can edit the journal. Close the other journal tab or window, then reload this page.",
 tab_conflict_title:"Newer journal data found",
@@ -2205,7 +2207,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 72.4.3',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 73.0',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4578,7 +4580,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='72.4.3';
+const APP_VERSION='73.0';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -9190,6 +9192,155 @@ function renderTimeline(){
   if(cont) cont.innerHTML=buildTimeline(null);
 }
 
+// 73.0: memory readers never call day(), normalizers, storage or editor renderers.
+function getExactMemoryDate(anchor,kind){
+  if(!insightDateKey(anchor)||!['month','year'].includes(kind))throw new TypeError('Invalid memory date');
+  let [y,m,d]=anchor.split('-').map(Number);
+  if(kind==='year')y--;else if(--m===0){m=12;y--;}
+  const key=String(y).padStart(4,'0')+'-'+pad(m)+'-'+pad(d);
+  return y>0&&insightDateKey(key)?key:null;
+}
+function readMemoryDay(snapshot,dateKey){
+  const profile=readInsightDay(snapshot,dateKey,dateKey),d=snapshot.days?.[dateKey]||{};
+  const copy=x=>JSON.parse(JSON.stringify(x));
+  const list=x=>Array.isArray(x)?x:[];
+  const entries=profile.entries.sources.map(e=>{
+    const raw=e.source.endsWith(':summary')?{text:d.summary}:list(d.summaryEntries)[Number(e.source.split(':').pop())]||{};
+    return {...e,text:e.type==='voice'?'':raw.text||'',audioId:e.type==='voice'?raw.audioId:null,duration:raw.duration||0,emotions:list(raw.emotions)};
+  });
+  const ideas=list(d.ideas).slice();
+  function visit(nodes){for(const n of list(nodes)){if(n?.date===dateKey&&typeof n.text==='string'&&n.text.trim())ideas.push(n.text);visit(n?.children);}}
+  visit(snapshot.ideaTree?.roots);
+  const customStatus=list(snapshot.settings?.customStatuses).find(s=>s.id===profile.status.id);
+  const builtinStatus=STATUS_DATA[profile.status.id];
+  return copy({dateKey,profile,entries,emotions:list(d.emotions),statusNote:d.statusNote||'',gratitude:list(d.gratitude),events:list(d.events),ideas,media:list(d.media),photoIds:list(d.photoIds),photos:list(d.photos),habits:profile.habits.markedIds.map(id=>{const h=list(snapshot.habits).find(x=>x.id===id);return{id,name:h?.name||id,freq:h?.freq||null};}),statusDef:profile.status.id?{id:profile.status.id,label:builtinStatus?.label||customStatus?.label||profile.status.id,icon:builtinStatus?.icon||customStatus?.icon||'📌',cls:builtinStatus?.cls||'',color:customStatus?.color||null}:null});
+}
+function hasMemoryContent(snapshot,key){return readInsightDay(snapshot,key,key).flags.hasSubmittedData;}
+function getMemoryTargets(snapshot,anchor){return ['month','year'].map(kind=>({kind,dateKey:getExactMemoryDate(anchor,kind)})).filter(x=>x.dateKey&&hasMemoryContent(snapshot,x.dateKey));}
+let memorySession=null,memoryToken=0,memoryUrls=[];
+function disposeMemoryMedia(){
+  memoryToken++;document.querySelectorAll('#memory-view audio').forEach(a=>{a.pause();a.removeAttribute('src');a.load();});
+  memoryUrls.forEach(u=>URL.revokeObjectURL(u));memoryUrls=[];
+}
+function renderMemoryDay(p){
+  const text=v=>typeof v==='string'?v:v&&typeof v==='object'?(v.text||v.name||v.title||''):'';
+  const card=(icon,key,body,cls='')=>body?`<section class="card memory-card ${cls}"><div class="ch"><span class="clabel">${icon} ${esc(t(key))}</span></div><div class="cb">${body}</div></section>`:'';
+  const listRows=(items,color,withTime=false)=>{const body=items.map(item=>{const value=text(item);if(!value.trim())return'';const time=withTime&&item&&typeof item==='object'?item.time:null;return`<li class="eitem"><span class="edot" style="background:${color}"></span><span class="etxt">${esc(value)}</span>${time?`<span class="etime">${esc(time)}</span>`:''}</li>`;}).join('');return body?`<ul class="elist memory-list">${body}</ul>`:'';};
+  const emotionComments=id=>{const em=p.emotions.find(x=>x?.id===id);const comments=(em?.comments||[]).filter(x=>x&&String(x.text||'').trim());return comments.length?`<div class="emotion-from-entries">${comments.map(c=>`<div class="emotion-from-entry-item"><span class="emotion-from-entry-time">${esc(c.time||'')}</span><span class="emotion-from-entry-text">${esc(c.text)}</span></div>`).join('')}</div>`:'';};
+  const entryEmotionChips=e=>(e.emotions||[]).map(link=>{const id=typeof link==='string'?link:link?.id;if(!id)return'';const color=emotionColor(id);return`<span class="se-emo-tag memory-emotion-tag" style="background:${esc(color)};border-color:${esc(color)};color:#fff">${esc(emotionLabel(id))}</span>`;}).join('');
+  const entries=p.entries.map((e,i)=>`<article class="summary-entry${e.type==='voice'?' summary-entry-voice':''}">${e.type==='voice'?`<div data-memory-audio="${i}" class="memory-audio-slot"><div class="voice-msg"><span class="memory-loader">${esc(t('memory_loading'))}</span></div></div>`:`<div class="summary-entry-text">${escWithTags(e.text)}</div>`}<div class="summary-entry-head"><time class="summary-entry-time">${esc(e.time||'')}</time></div>${entryEmotionChips(e)?`<div class="se-emo-chips-row">${entryEmotionChips(e)}</div>`:''}</article>`).join('');
+  const status=p.statusDef?`<div class="status-bar memory-status-bar"><div class="status-chip ${esc(p.statusDef.cls)}"${p.statusDef.color?` style="background:${esc(p.statusDef.color)}22;border-color:${esc(p.statusDef.color)};color:${esc(p.statusDef.color)}"`:''}>${esc(p.statusDef.icon)} <span>${esc(p.statusDef.label)}</span></div></div>${p.statusNote?`<div class="memory-readonly-field">${esc(p.statusNote)}</div>`:''}`:'';
+  const emotions=p.profile.emotions.uniqueIds.length?`<div class="egrid memory-emotion-grid">${p.profile.emotions.uniqueIds.map(id=>{const def=allEmotions().find(x=>x.id===id),color=emotionColor(id);return`<span class="echip ${def?.color?'':def?.cls||'sel-custom'}"${def?.color?` style="background:${esc(color)}22;border-color:${esc(color)};color:${esc(color)}"`:''}>${esc(emotionLabel(id))}</span>`;}).join('')}</div>${p.profile.emotions.uniqueIds.map(emotionComments).join('')}`:'';
+  const ratings=p.profile.ratings.entries.length?(()=>{const mean=p.profile.ratings.mean,rounded=Math.round(mean);const scale=Array.from({length:10},(_,i)=>{const n=i+1,color=RATING_COLORS[n];return`<span class="rating-value${n<=rounded?' is-lit':''}" style="--rating-tone:${color}">${n}</span>`;}).join('');const chips=p.profile.ratings.entries.map(r=>{const color=RATING_COLORS[Math.round(r.v)]||'var(--pri)';return`<span class="memory-rating-wrap"><span class="memory-rating-chip" style="background:oklch(from ${color} l c h/.15);border-color:${color};color:${color}">${esc(r.v)}</span>${r.t?`<small>${esc(r.t)}</small>`:''}</span>`;}).join('');return`<div class="memory-rating-scale">${scale}</div><div class="rating-label" style="color:${RATING_COLORS[rounded]}">${esc(getRatingLabel(rounded))}</div><div class="memory-rating-chips">${chips}</div>${p.profile.ratings.entries.length>1?`<div class="memory-rating-average">∅ ${mean.toFixed(1)}</div>`:''}`;})():'';
+  const habits=p.habits.length?`<div class="habit-list">${p.habits.map(h=>`<div class="habit-row memory-habit-row"><span class="habit-cb checked" aria-hidden="true"></span><div class="habit-info"><div class="habit-name">${esc(h.name)}</div>${h.freq?`<div class="habit-freq">${esc(h.freq===7?t('habit_daily'):h.freq+t('habit_times'))}</div>`:''}</div></div>`).join('')}</div>`:'';
+  const gratitude=p.gratitude.map((item,i)=>({value:text(item),number:i+1})).filter(x=>x.value.trim()).map((x,i,a)=>`<div class="grat-item${i===a.length-1?' memory-last':''}"><span class="grat-num">${x.number}</span><div class="memory-readonly-field">${esc(x.value)}</div></div>`).join('');
+  const media=p.media.length?p.media.map(m=>{const icon=MCAT[m.cat]?.icon||'🎬',status=({active:t('media_progress'),progress:t('media_progress'),pause:t('media_pause'),done:t('media_done'),planned:t('media_planned')})[m.status]||m.status||'';return`<div class="media-item memory-media-item"><span class="media-item-icon">${icon}</span><div class="memory-media-copy"><div class="media-item-name">${esc(m.name||m.title||'')}</div>${status?`<div class="media-item-status">${esc(status)}</div>`:''}${m.rating?`<div class="media-stars">${'⭐'.repeat(Math.max(0,Math.min(5,m.rating)))}</div>`:''}${m.note?`<div class="memory-media-note">${esc(m.note)}</div>`:''}</div></div>`;}).join(''):'';
+  let html=card('📍','memory_status',status,'memory-status-card');
+  html+=card('📅','memory_events',listRows(p.events,'var(--blu)',true));
+  html+=card('📝','memory_notes',entries,'memory-summary-card');
+  html+=card('💡','memory_ideas',listRows(p.ideas,'var(--gold)'));
+  html+=card('😘','memory_emotions',emotions);
+  html+=card('✅','memory_habits',habits);
+  html+=card('🎬','memory_media',media);
+  html+=card('🙏','memory_gratitude',gratitude);
+  html+=card('⭐','memory_ratings',ratings,'memory-rating-card');
+  html+=card('📷','memory_photos',p.photoIds.length||p.photos.length?'<div id="memory-photos" class="photo-row"><span class="memory-loader">'+esc(t('memory_loading'))+'</span></div>':'');
+  return html;
+}
+async function loadMemoryMedia(p,token){
+  const current=()=>memorySession&&token===memoryToken;
+  // Independent media reads: a slow voice must not delay the photos.
+  const voiceLoads=Promise.allSettled(p.entries.map(async(e,i)=>{
+    if(e.type!=='voice')return;
+    let blob=null;try{blob=await _voiceGet(e.audioId);}catch(_){}
+    if(!current())return;const slot=document.querySelector(`[data-memory-audio="${i}"]`);if(!slot)return;slot.textContent='';
+    if(!blob){slot.innerHTML='<div class="memory-media-missing">'+esc(t('memory_missing_audio'))+'</div>';return;}
+    const a=document.createElement('audio'),url=URL.createObjectURL(blob);memoryUrls.push(url);a.preload='metadata';a.src=url;a.className='memory-voice-audio';a.setAttribute('aria-label',t('memory_notes')+' '+(i+1));
+    const player=document.createElement('div');player.className='voice-msg';
+    const play=document.createElement('button');play.type='button';play.className='voice-msg-play';play.setAttribute('aria-label','Play');play.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"/></svg>';
+    const wave=document.createElement('div');wave.className='voice-msg-wave';const fill=document.createElement('div');fill.className='voice-msg-wave-fill';wave.append(fill);
+    const duration=document.createElement('span');duration.className='voice-msg-time';duration.textContent=fmtVoiceTime(e.duration||0);
+    play.onclick=()=>{if(a.paused)a.play().catch(_playFail);else a.pause();};a.ontimeupdate=()=>{if(a.duration)fill.style.width=(a.currentTime/a.duration*100)+'%';};a.onended=()=>{fill.style.width='0%';};
+    a.onerror=()=>{if(current())slot.innerHTML='<div class="memory-media-missing">'+esc(t('memory_audio_unplayable'))+'</div>';};
+    player.append(play,wave,duration,a);slot.textContent='';slot.append(player);
+  }));
+  if(!current())return;
+  const box=document.getElementById('memory-photos');if(!box)return;
+  let urls=[];try{urls=await _photoGet(p.photoIds);}catch(_){urls=p.photoIds.map(()=>null);}
+  if(!current())return;box.textContent='';
+  urls=urls.concat(p.photos.map(x=>typeof x==='string'?x:x?.dataUrl||x?.src||null));
+  for(const src of urls){
+    if(typeof src!=='string'||!/^data:image\/(png|jpeg|jpg|webp|gif);base64,/i.test(src)){const msg=document.createElement('p');msg.textContent=t('memory_missing_photo');box.append(msg);continue;}
+    const b=document.createElement('button'),img=document.createElement('img');b.type='button';b.className='memory-photo';b.setAttribute('aria-label',t('memory_photo'));img.className='photo-thumb';img.src=src;img.alt=t('memory_photos');
+    img.onerror=()=>{if(current()){const msg=document.createElement('p');msg.textContent=t('memory_missing_photo');b.replaceWith(msg);}};
+    b.append(img);b.onclick=()=>{document.getElementById('fpov').classList.add('memory-photo-viewer');openPhoto(src);};box.append(b);
+  }
+  await voiceLoads;
+}
+function canOpenDayJourney(){
+  if(_voiceStarting||_voiceStream||(_voiceMediaRecorder&&_voiceMediaRecorder.state!=='inactive')||_voicePreviewBlob){showToast(t('memory_voice_busy'));return false;}
+  if(!_writeReady||_writeBlocked||_storageBlocked)return false;
+  return flushAutosave();
+}
+function openMemorySession(anchor=activeDay){
+  if(memorySession||!canOpenDayJourney())return false;
+  const targets=getMemoryTargets(S,anchor);if(!targets.length){showToast(t('memory_empty'));return false;}
+  memorySession={anchorDate:anchor,targets,index:0,originScrollY:scrollY,originFocus:document.activeElement};
+  if(_voicePlayerAudio)_voicePlayerAudio.pause();
+  document.querySelectorAll('audio').forEach(a=>a.pause());
+  window.safePlaceUI?.remember('memory-view',memorySession.originFocus?.matches('textarea,input')?document.getElementById('memory-launch'):memorySession.originFocus);document.getElementById('memory-view').classList.add('open');showMemoryAt(0);return true;
+}
+function showMemoryAt(index){
+  if(!memorySession||index<0||index>=memorySession.targets.length)return;
+  disposeMemoryMedia();memorySession.index=index;const target=memorySession.targets[index],p=readMemoryDay(S,target.dateKey);
+  document.getElementById('memory-title').textContent=t('memory_title');document.getElementById('memory-date').textContent=new Date(target.dateKey+'T12:00:00').toLocaleDateString(getLang()==='en'?'en-GB':'uk-UA',{day:'numeric',month:'long',year:'numeric'});document.getElementById('memory-period').textContent=t('memory_'+target.kind);
+  document.getElementById('memory-back').textContent=t('memory_back');document.getElementById('memory-back').hidden=index===0;document.getElementById('memory-next').textContent=t('memory_next');document.getElementById('memory-next').disabled=index===memorySession.targets.length-1;document.getElementById('memory-close').textContent=t('memory_return');document.getElementById('memory-readonly').textContent=t('memory_readonly');
+  const body=document.getElementById('memory-body');body.innerHTML=renderMemoryDay(p);body.scrollTop=0;loadMemoryMedia(p,memoryToken);
+}
+function stepMemory(direction){if(!memorySession)return;if(memorySession.index+direction<0)closeMemorySession();else showMemoryAt(memorySession.index+direction);}
+function closeMemorySession(){
+  if(!memorySession)return;const old=memorySession;disposeMemoryMedia();memorySession=null;document.getElementById('memory-view').classList.remove('open');document.getElementById('memory-body').textContent='';
+  requestAnimationFrame(()=>{window.scrollTo(0,old.originScrollY);if(old.originFocus?.isConnected&&!old.originFocus.matches('textarea,input'))old.originFocus.focus({preventScroll:true});});
+}
+function bindDayJourneyGestures(el,onStep){
+  let start=null;
+  const excluded=e=>e.target.closest('button,input,textarea,audio,video,img,a,summary,[contenteditable]');
+  const hasSelection=()=>{const s=getSelection();return!!s&&s.rangeCount>0&&!s.isCollapsed;};
+  el.addEventListener('touchstart',e=>{start=null;if(e.touches.length!==1||excluded(e)||hasSelection())return;const p=e.touches[0];if(p.clientX<24||p.clientX>innerWidth-24)return;start={x:p.clientX,y:p.clientY};},{passive:true});
+  el.addEventListener('touchmove',e=>{if(e.touches.length!==1)start=null;},{passive:true});
+  el.addEventListener('touchcancel',()=>start=null,{passive:true});
+  el.addEventListener('touchend',e=>{if(!start)return;const p=e.changedTouches[0],dx=p.clientX-start.x,dy=p.clientY-start.y;start=null;if(!hasSelection()&&Math.abs(dx)>=60&&Math.abs(dx)>=1.5*Math.abs(dy))onStep(dx>0?1:-1);},{passive:true});
+}
+function initDayMemories(){
+  const style=document.createElement('style');style.textContent=`
+    [data-block=summary]>.ch{flex-wrap:wrap;gap:8px}
+    #memory-launch{min-height:36px;padding:5px 12px;border:1px solid var(--bdr);border-radius:var(--rf);background:var(--off);color:var(--txm);font-size:var(--xs);font-weight:600}
+    #memory-view{display:none;position:fixed;inset:0;z-index:5000;background:var(--bg);color:var(--tx);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+    #memory-view.open{display:block}.memory-shell{width:100%;max-width:480px;height:100%;margin:0 auto;display:flex;flex-direction:column;background:var(--bg)}
+    .memory-header{min-height:56px;padding:6px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border-bottom:1px solid var(--bdr);flex-shrink:0}
+    .memory-header h2{font-size:var(--base);font-weight:600;margin:0}.memory-header button{min-width:44px;min-height:44px;padding:8px 12px;border-radius:var(--r2);color:var(--txm)}.memory-header button:active{background:var(--off)}
+    .memory-hero{padding:var(--s5) var(--s4) var(--s3);flex-shrink:0}.memory-eyebrow{font-size:var(--xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--pri);margin-bottom:var(--s1)}
+    #memory-date{font-size:var(--xl);font-weight:700;letter-spacing:-.02em;line-height:1.1}.memory-meta{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--txm);font-size:var(--xs)}#memory-readonly{display:inline-flex;align-items:center;padding:2px 8px;border-radius:var(--rf);background:var(--off);border:1px solid var(--div)}
+    .memory-nav{padding:0 var(--s4) var(--s3);display:flex;gap:var(--s2);align-items:center}.memory-nav button{min-height:40px;padding:7px 13px;border:1px solid var(--bdr);border-radius:var(--rf);background:var(--surface);color:var(--txm);font-size:var(--xs);font-weight:600}.memory-nav button:disabled{opacity:.4}#memory-next{margin-left:auto}
+    #memory-body{overflow-y:auto;overscroll-behavior:contain;min-height:0;flex:1;padding:0 var(--s4) var(--s5);touch-action:pan-y;display:flex;flex-direction:column}
+    .memory-card{margin-bottom:var(--s3)}.memory-card .ch{padding-bottom:var(--s3)}.memory-card .cb{user-select:text;-webkit-user-select:text}.memory-list{margin-top:0}
+    .memory-readonly-field{width:100%;background:var(--off);border:1px solid var(--bdr);border-radius:var(--r3);padding:var(--s3);font-size:var(--sm);line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+    .memory-status-bar{grid-template-columns:minmax(0,1fr);padding:0 0 var(--s3)}.memory-status-bar .status-chip{cursor:default;width:100%}
+    .memory-summary-card .summary-entry{margin-bottom:var(--s2)}.memory-summary-card .summary-entry:last-child{margin-bottom:0}.memory-summary-card .summary-entry-head{justify-content:flex-end}.memory-summary-card .summary-entry-time:empty{display:none}.memory-emotion-tag{cursor:default;padding-right:10px}
+    .memory-emotion-grid{margin-bottom:var(--s2)}.memory-emotion-grid .echip{cursor:default}.memory-emotion-grid+.emotion-from-entries{margin-top:var(--s3)}
+    .memory-habit-row{cursor:default}.memory-habit-row .habit-cb{cursor:default}.memory-media-item{align-items:flex-start}.memory-media-copy{flex:1;min-width:0}.memory-media-note{margin-top:6px;font-size:var(--xs);color:var(--txm);line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+    .memory-last{margin-bottom:0}.memory-rating-scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:8px 0}.memory-rating-scale .rating-value{display:flex;align-items:center;justify-content:center;cursor:default}.memory-rating-chips{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:6px;margin-top:8px}.memory-rating-wrap{display:inline-flex;flex-direction:column;align-items:center;gap:2px}.memory-rating-wrap small{font-size:9px;color:var(--txf)}.memory-rating-chip,.memory-rating-average{display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:var(--r3);border:1.5px solid;font-size:var(--sm);font-weight:700}.memory-rating-average{width:max-content;margin:10px auto 0;background:var(--off);border-color:var(--bdr);color:var(--txm)}
+    .memory-photo{display:inline-flex;padding:0;border:0;border-radius:var(--r2);background:transparent}.memory-photo .photo-thumb{cursor:pointer}#fpov.memory-photo-viewer{z-index:6000}.memory-loader,.memory-media-missing{font-size:var(--xs);color:var(--txm);line-height:1.5}.memory-media-missing{padding:var(--s3);background:var(--off);border:1px solid var(--bdr);border-radius:var(--r2)}.memory-voice-audio{display:none}
+    @container(min-width:360px){.memory-rating-scale{grid-template-columns:repeat(10,minmax(0,1fr))}}
+    @media(min-width:390px){.memory-rating-scale{grid-template-columns:repeat(10,minmax(0,1fr))}}
+  `;document.head.append(style);
+  const view=document.createElement('div');view.id='memory-view';view.setAttribute('role','dialog');view.setAttribute('aria-modal','true');view.setAttribute('aria-labelledby','memory-title');view.innerHTML='<div class="memory-shell"><header class="memory-header"><h2 id="memory-title"></h2><button id="memory-close" type="button"></button></header><div class="memory-hero"><div class="memory-eyebrow" id="memory-period"></div><div id="memory-date"></div><div class="memory-meta"><span id="memory-readonly"></span></div></div><nav class="memory-nav"><button id="memory-back" type="button"></button><button id="memory-next" type="button"></button></nav><main id="memory-body"></main></div>';document.body.append(view);
+  document.getElementById('memory-close').onclick=closeMemorySession;document.getElementById('memory-back').onclick=()=>stepMemory(-1);document.getElementById('memory-next').onclick=()=>stepMemory(1);bindDayJourneyGestures(view,stepMemory);
+  document.getElementById('fpov').addEventListener('click',e=>e.currentTarget.classList.remove('memory-photo-viewer'));
+  const card=document.querySelector('[data-block="summary"]'),button=document.createElement('button');button.id='memory-launch';button.type='button';button.dataset.i18n='memory_past';button.textContent=t('memory_past');button.onclick=()=>openMemorySession();card.querySelector('.ch').append(button);bindDayJourneyGestures(card,d=>{if(d===1)openMemorySession();});
+}
+window.addEventListener('load',initDayMemories,{once:true});
+
 function renderToday(){
   const _aiR=document.getElementById('ai-day-result');if(_aiR)_aiR.style.display='none';
   initHeader();
@@ -10592,7 +10743,7 @@ window.addEventListener('DOMContentLoaded', function(){
 // 70.4: visual viewport, bounded field scrolling and modal focus management.
 (function(){
   const root=document.documentElement;
-  const selector='.sheet,.drawer,.ob-ov,#fpov,#lock-screen,#pin-reset-overlay,#pin-export-after-overlay,#digest-view-popup,#rollup-view-popup';
+  const selector='.sheet,.drawer,.ob-ov,#fpov,#lock-screen,#pin-reset-overlay,#pin-export-after-overlay,#digest-view-popup,#rollup-view-popup,#memory-view';
   const focusSelector='button:not([disabled]),a[href],input:not([disabled]):not([type=hidden]),textarea:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])';
   const remembered=new WeakMap(),inertBefore=new Map();
   let pendingRestore=null;
@@ -10605,7 +10756,7 @@ window.addEventListener('DOMContentLoaded', function(){
     if(el.matches('.err-ov'))return true;
     return el.classList.contains(el.matches('.drawer,.streak-popup')?'on':'open');
   }
-  function focusables(el){return Array.from(el.querySelectorAll(focusSelector)).filter(x=>visible(x)&&!x.closest('[inert]'));}
+  function focusables(el){return Array.from(el.querySelectorAll(focusSelector+(el.id==='memory-view'?',summary,audio[controls]':''))).filter(x=>visible(x)&&!x.closest('[inert]'));}
   function focusQuietly(el){if(visible(el)&&!el.closest('[inert]'))el.focus({preventScroll:true});}
   function remember(el,previous=document.activeElement){
     if(typeof el==='string')el=document.getElementById(el);
@@ -10714,7 +10865,7 @@ window.addEventListener('DOMContentLoaded', function(){
   }
   function dismissTop(){
     if(!top)return;
-    const actions={'emotion-sheet':()=>closeEmotionSheet(),'habit-sheet':()=>closeHabitSheet(),'idea-detail-sheet':()=>closeIdeaDetail(),'day-drawer':()=>closeDrawer(),
+    const actions={'memory-view':()=>closeMemorySession(),'emotion-sheet':()=>closeEmotionSheet(),'habit-sheet':()=>closeHabitSheet(),'idea-detail-sheet':()=>closeIdeaDetail(),'day-drawer':()=>closeDrawer(),
       'fpov':()=>top.classList.remove('open'),'digest-view-popup':()=>top.classList.remove('on'),'rollup-view-popup':()=>top.classList.remove('on'),
       'ob-ov':()=>top.classList.remove('open'),'err-dlg':()=>{if(typeof _dlgCtl!=='undefined'&&_dlgCtl&&!_dlgCtl.locked)_dlgCtl.close(null);}};
     // PIN overlays are dismissed only by their existing authorized controls.
@@ -10792,6 +10943,7 @@ function _userIsComposing(){
   return false;
 }
 function checkDayRollover(){
+  if(memorySession)return false; // keep the journey anchored until the user returns
   const nk=todayKey();
   if(nk===TODAY)return false;
   if(_userIsComposing())return false;      // retried on blur, on resume and every 30 s

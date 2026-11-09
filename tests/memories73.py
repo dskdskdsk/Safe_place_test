@@ -66,9 +66,9 @@ def media(p,c):
  body=p.locator('#memory-body').inner_text()
  check(all(x in body for x in ['My book','Worth reading','A friend','A walk','Small idea','Stretch','9 — Чудово','Аудіозапис недоступний','Фото недоступне']),body)
  check(p.locator('.memory-status-card .status-chip.sel-work,.memory-summary-card .summary-entry,.memory-emotion-grid .echip,.memory-habit-row,.memory-media-item,.memory-rating-scale .rating-value,.memory-photo .photo-thumb').count()>=7,'Today component styles are reused')
- p.locator('.memory-photo').click();check(p.locator('#fpov').get_attribute('class').find('open')>=0,'photo opens like Today');p.locator('#fpov').click()
+ p.locator('.memory-photo').click();check(p.locator('#memory-photo-lightbox').get_attribute('class').find('open')>=0,'photo opens in memory viewer');p.locator('#memory-photo-lightbox').click(position={'x':5,'y':5})
  ev(p,"()=>{window.savedAudio=document.querySelector('#memory-body audio');window.revoked=[];const orig=URL.revokeObjectURL;URL.revokeObjectURL=u=>{revoked.push(u);orig(u)};}")
- p.locator('#memory-next').click();check(ev(p,"savedAudio.paused&&revoked.length===1&&memoryUrls.length===0"),'media disposed on next')
+ p.locator('#memory-next').click();check(ev(p,"savedAudio.paused&&revoked.length>=2&&memoryUrls.length===0"),'media disposed on next')
  p.locator('#memory-back').click();p.wait_for_selector('#memory-body audio',state='attached');p.locator('#memory-close').click()
  check(ev(p,"async()=>JSON.stringify(S)===mediaBefore&&JSON.stringify(await _mediaKeys())===keysBefore"),'no media or journal mutations')
  # A stale asynchronous read must never attach content to another day or a closed view.

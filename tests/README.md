@@ -31,3 +31,9 @@ Results/screenshots go to `tests/artifacts/`. `regression.py` accepts case names
 
 Run `python tests/insight_c.py` for deterministic evidence, threshold and context checks,
 an independent seeded Python oracle, and three time zones. Results: artifacts/insight-c/results.json.
+
+73.0 memories: `python tests/memories73.py` — frozen detached readers, exact calendar dates,
+read-only storage invariants, actual IndexedDB audio/photos, draft/save/recording guards,
+late/corrupt media, focus/Escape, UK/EN, themes and mobile layout. Synthetic touch events
+check gesture filtering; physical Safari/PWA gestures still require the iPhone checklist
+in QA-73.0.md. Results/screenshots: `tests/artifacts/memories73/`.

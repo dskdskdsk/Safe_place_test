@@ -31,7 +31,11 @@ def run(name,ids,fn):
  finally:ctx.close()
  print(results[-1],flush=True);(OUT/'regression-results.json').write_text(json.dumps(results,ensure_ascii=False,indent=2))
 def ev(p,code,arg=None):return p.evaluate(code,arg)
+def open_summary(p):
+ if p.locator('[data-block="summary"]').evaluate("e=>e.classList.contains('today-module-collapsed')"):
+  p.locator('[data-block="summary"] > .ch').click()
 def submitted(p,c):
+ open_summary(p)
  p.locator('#day-summary').fill('QA запис 🧪 українською');p.locator('#summary-send-btn').click();p.reload()
  check(ev(p,"day().summary.includes('QA запис 🧪 українською')"));return 'Submitted through UI, persisted across reload'
 def edit(p,c):
@@ -43,6 +47,7 @@ def preferences(p,c):
  p.locator('[data-page=settings]').click();p.locator('#lang-en-btn').click();p.wait_for_function("typeof getLang==='function' && getLang()==='en'");p.locator('[data-page=settings]').click();p.locator('#dark-tog').click();p.reload()
  check(ev(p,"getLang()==='en'&&S.settings.dark===true&&document.documentElement.dataset.theme==='dark'"));return 'Language/theme via UI persist'
 def draft(p,c):
+ open_summary(p)
  p.locator('#day-summary').fill('UNSENT draft');p.wait_for_timeout(1200);p.reload();check(p.locator('#day-summary').input_value()=='UNSENT draft','Unsent draft is lost on reload');return 'Draft survives'
 def photos(p,c):
  files=[{'name':f'p{i}.png','mimeType':'image/png','buffer':PNG} for i in range(6)]
@@ -130,7 +135,7 @@ def pin(p,c):
  p.locator('#pin-input').fill('1234');p.locator('#pin-submit').click();p.wait_for_timeout(200);check(ev(p,"document.getElementById('lock-screen').style.display==='none'&&!document.getElementById('app').inert"));return 'Real PIN state/hash, wrong attempt, correct unlock and background isolation'
 def select_controls(p,c):
  out=ev(p,"""()=>{const host=document.createElement('div');host.innerHTML='<button><span>Label</span></button><div role="button"><input value="Edit"></div><p>Journal text</p>';document.body.append(host);const get=q=>getComputedStyle(host.querySelector(q)).userSelect;const r={button:get('button'),label:get('span'),input:get('input'),text:get('p')};host.remove();return r}""");check(out['button']==out['label']=='none' and out['input']=='text' and out['text']!='none',out)
- p.locator('#day-summary').fill('copy and paste');p.locator('#day-summary').press('Control+a');p.locator('#day-summary').press('Backspace');p.locator('#day-summary').fill('edited');check(p.locator('#day-summary').input_value()=='edited');return 'Computed CSS and keyboard editing; native iOS long-press menu not exercised'
+ open_summary(p);p.locator('#day-summary').fill('copy and paste');p.locator('#day-summary').press('Control+a');p.locator('#day-summary').press('Backspace');p.locator('#day-summary').fill('edited');check(p.locator('#day-summary').input_value()=='edited');return 'Computed CSS and keyboard editing; native iOS long-press menu not exercised'
 def pwa(p,c):
  ev(p,'async()=>{await navigator.serviceWorker.ready}');p.reload();p.wait_for_function('navigator.serviceWorker.controller!==null');ev(p,"addSummaryEntry('offline stored')");c.set_offline(True);p.reload();check(ev(p,"day().summary.includes('offline stored')"))
  ev(p,"addSummaryEntry('offline new')");p.reload();check(ev(p,"day().summary.includes('offline new')"));return 'Actual service worker reload offline and new entry persisted'

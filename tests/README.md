@@ -43,5 +43,6 @@ and recommendations; custom-emotion double tap and global reference rename; inje
 storage failure rollback, reload persistence, matching one-row editors, voice composer
 alignment, delete confirmation and calendar sticker sizing; UK/EN, both themes and 320–1024 px layouts.
 The visual-polish scenario also checks the grouped message-emotion picker, explicit close,
-page-scroll dismissal, internal scrolling and compact calendar geometry.
+horizontal centering, page-scroll dismissal, internal scrolling, compact calendar geometry
+and delayed display of the current day's status sticker.
 Results/screenshots: `tests/artifacts/edit731/`.

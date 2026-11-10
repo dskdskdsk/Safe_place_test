@@ -2831,15 +2831,22 @@ function renderEntryEmotionCommentSlot(en){
 function positionSeEmoDropdown(triggerEl, dropdownEl){
   if(!triggerEl||!dropdownEl)return;
   const r=triggerEl.getBoundingClientRect();
-  const dw=Math.min(dropdownEl.offsetWidth||320, window.innerWidth-24);
-  const dh=Math.min(dropdownEl.offsetHeight||360, window.innerHeight-24);
+  const viewport=window.visualViewport;
+  const viewportLeft=viewport?viewport.offsetLeft:0;
+  const viewportWidth=viewport?viewport.width:window.innerWidth;
+  const viewportHeight=viewport?viewport.height:window.innerHeight;
+  const host=document.getElementById('app')?.getBoundingClientRect();
+  const hostLeft=host?Math.max(viewportLeft,host.left):viewportLeft;
+  const hostRight=host?Math.min(viewportLeft+viewportWidth,host.right):viewportLeft+viewportWidth;
+  const dw=Math.min(dropdownEl.offsetWidth||320, hostRight-hostLeft-24);
+  const dh=Math.min(dropdownEl.offsetHeight||360, viewportHeight-24);
   let top=r.bottom+4;
-  let left=r.right-dw;
-  if(top+dh>window.innerHeight-12){
+  let left=hostLeft+(hostRight-hostLeft-dw)/2;
+  if(top+dh>viewportHeight-12){
     top=r.top-dh-4;
   }
-  top=Math.max(12, Math.min(top, window.innerHeight-dh-12));
-  left=Math.max(12, Math.min(left, window.innerWidth-dw-12));
+  top=Math.max(12, Math.min(top, viewportHeight-dh-12));
+  left=Math.max(hostLeft+12, Math.min(left, hostRight-dw-12));
   dropdownEl.style.top=top+'px';
   dropdownEl.style.left=left+'px';
   dropdownEl.style.right='auto';
@@ -9935,7 +9942,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
         const badge = count ? `<div style="font-size:9px;font-weight:700;color:var(--txm);line-height:1">${count}</div>` : '<div style="height:9px"></div>';
         const statusId=dayData?.status;
         const statusDef=statusId?(STATUS_DATA[statusId]||(S.settings?.customStatuses||[]).find(x=>x.id===statusId)):null;
-        const statusSticker=statusDef?.icon?`<span class="cal-status-icon" aria-hidden="true">${esc(statusDef.icon)}</span>`:'';
+        const statusSticker=statusDef?.icon&&!isToday?`<span class="cal-status-icon" aria-hidden="true">${esc(statusDef.icon)}</span>`:'';
         const cellBg = dotColor ? `background:color-mix(in oklch, ${dotColor} 14%, var(--off));` : '';
         const cellBorder = dotColor ? `border-color:color-mix(in oklch, ${dotColor} 30%, transparent);` : '';
         html += `<div class="cal-day${isToday?' today':''} ${isFuture?'cal-future':''}" data-k="${esc(k)}" style="${esc(cellBg)}${esc(cellBorder)}">

@@ -37,3 +37,7 @@ read-only storage invariants, actual IndexedDB audio/photos, draft/save/recordin
 late/corrupt media, focus/Escape, UK/EN, themes and mobile layout. Synthetic touch events
 check gesture filtering; physical Safari/PWA gestures still require the iPhone checklist
 in QA-73.0.md. Results/screenshots: `tests/artifacts/memories73/`.
+
+74.0 media/recommendations: `python tests/media74.py` — shared readers, category lifecycle,
+ID continuity, duplicate choice, rollback/undo, clean-context ZIP and repeated import,
+legacy records, responsive UK/EN themes, repeat cycles. Artifacts: `artifacts/media74/`.

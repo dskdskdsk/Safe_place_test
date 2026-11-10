@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 73.0
-  Файл: 73.0_safe-place.html
-  Зміни 73.0 Day in the past: спогади місяць і рік тому, лише перегляд.
+  ЩОДЕННИК · ВЕРСІЯ 74.0
+  Файл: 74.0 Media-Recommendations.html
+  Зміни 74.0 Media/Recommendations: рекомендації, поточні медіа та історія.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -361,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 73.0 Day in the past</title>
+<title>Safe Place · 74.0 Media/Recommendations</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -1350,6 +1350,30 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 .ibank-actions :is(.idea-add-child-btn,.ibank-del){min-width:34px;width:34px;padding:0}
 .cal-day{position:relative}.cal-status-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);font-size:20px;line-height:1;filter:drop-shadow(0 1px 1px oklch(0% 0 0/.12));pointer-events:none}
 
+
+
+/* 74.0 shared media and recommendation cards */
+.m74-head{flex-wrap:nowrap;gap:8px}.m74-head .clabel{min-width:0;overflow-wrap:anywhere;flex:1}
+.m74-collapse{flex:0 0 32px;height:32px;border-radius:var(--r2);background:var(--off);color:var(--txm);font-size:20px}
+.m74-content[hidden]{display:none}.m74-tabs{display:flex;gap:4px;padding:4px;border-radius:var(--r3);background:var(--off);margin-bottom:12px}
+.m74-tabs button{flex:1;min-width:0;min-height:36px;border-radius:var(--r2);color:var(--txm);font-size:var(--xs)}
+.m74-tabs .selected{background:var(--surface);color:var(--pri);box-shadow:var(--sh1)}
+.m74-date-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;font-size:var(--sm)}
+.m74-date-nav button{width:36px;height:36px;border-radius:var(--r2);background:var(--off);color:var(--txm);font-size:20px}
+.m74-card details[data-group],.m74-carry{border:1px solid var(--bdr);border-radius:var(--r3);margin-bottom:10px;overflow:hidden}
+.m74-card details>summary,.m74-carry>summary{cursor:pointer;padding:12px;font-size:var(--sm);color:var(--txm);overflow-wrap:anywhere}
+.m74-count{display:inline-block;padding:1px 7px;border:1px solid var(--bdr);border-radius:var(--rf);font-size:var(--xs);margin-left:6px;font-weight:500}
+.m74-row{padding:12px;border-top:1px solid var(--div);background:var(--off)}
+.m74-title{display:flex;gap:8px;align-items:flex-start;font-size:var(--sm);font-weight:500}.m74-title>span:last-child{min-width:0;overflow-wrap:anywhere}
+.m74-name{text-align:left;color:inherit;font:inherit;min-width:0;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.m74-name[aria-expanded="true"]{display:block}
+.m74-meta{font-size:var(--xs);color:var(--txf);margin:5px 0 8px}.m74-actions{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap}
+.m74-button{padding:6px 11px;min-height:36px;border:1px solid var(--bdr);border-radius:var(--rf);background:var(--surface);color:var(--txm);font-size:var(--xs);line-height:1.4}
+.m74-button.primary{background:var(--fill);border-color:var(--fill);color:#fff}.m74-menu{margin-left:auto}.m74-card .m74-menu>summary{padding:0 10px;min-height:36px;list-style:none;font-size:22px}.m74-menu>div{display:flex;flex-direction:column;gap:6px;padding:6px 0}
+.m74-card .m74-note>summary{padding:4px 0;font-size:var(--xs)}.m74-note p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:var(--sm);line-height:1.5}
+.m74-empty{color:var(--txm);font-size:var(--sm);line-height:1.5;padding:12px 0}.m74-rec-entries{max-height:65vh;overflow:auto;overscroll-behavior:contain}
+.m74-dialog{width:calc(100% - 32px);max-width:420px;max-height:80vh;overflow:auto;margin:auto;padding:20px;border:1px solid var(--bdr);border-radius:var(--r3);background:var(--surface);color:var(--tx)}.m74-dialog::backdrop{background:#0008}.m74-dialog h3{font-size:var(--base);margin-bottom:16px}.m74-dialog button{display:block;width:100%;margin-top:8px}
+.m74-notice{position:fixed;bottom:80px;left:16px;right:16px;max-width:448px;margin:auto;z-index:9999;border:1px solid var(--bdr);border-radius:var(--r3);padding:12px;background:var(--surface);box-shadow:var(--sh3);display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:var(--xs)}.m74-notice span{flex:1 1 100%}.m74-notice button{min-height:36px;padding:6px 12px;border-radius:var(--rf);background:var(--off);color:var(--pri)}
+#media-card .media-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}#media-card .media-tab{padding:8px 3px;font-size:var(--xs);text-align:center;min-width:0}
 </style>
 <script>
 (function(){
@@ -1639,6 +1663,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           <div class="media-tab active" data-mcat="watch" data-i18n="media_cat_watch">📺 Дивлюсь</div>
           <div class="media-tab" data-mcat="read" data-i18n="media_cat_read">📚 Читаю</div>
           <div class="media-tab" data-mcat="play" data-i18n="media_cat_play">🎮 Граю</div>
+          <div class="media-tab" data-mcat="listen" data-i18n="media_cat_listen">🎵 Слухаю</div>
         </div>
         <div class="row-input" style="margin-bottom:var(--s2)">
           <input class="txt-input" id="media-in" type="text" placeholder="Назва..." style="flex:1">
@@ -2122,13 +2147,14 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 73.0',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 74.0',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
   em_color_lbl:'Колір кнопки:',em_color_auto:'автоматично по типу або свій',
   em_add_btn:'Додати',
   toast_undo:'Скасувати',toast_deleted:'видалено',toast_status_deleted:'Статус видалено',em_add_own:'+ Своя',
+  "media_cat_listen":"Слухаю","m74_again":"Почати знову","m74_media":"Медіа","m74_recommendations":"Рекомендації","m74_now":"Зараз","m74_history":"Історія","m74_month":"Місяць","m74_year":"Рік","m74_all":"Весь час","m74_active":"В процесі","m74_pause":"На паузі","m74_done":"Завершено","m74_planned":"Заплановано","m74_linked":"У медіа","m74_missing":"Пов’язане медіа видалено","m74_cancel":"Скасувати","m74_undo":"Скасувати","m74_show":"Показати","m74_added":"Додано до медіа на сьогодні","m74_undo_changed":"Запис уже змінено. Скасування недоступне.","m74_match":"Схоже медіа вже є","m74_use":"Використати наявне","m74_separate":"Додати окремо","m74_start_watch":"Почати перегляд","m74_start_read":"Почати читати","m74_start_play":"Почати грати","m74_start_listen":"Почати слухати","m74_start_todo":"Позначити виконаним","m74_cat_watch":"Подивитись","m74_cat_read":"Почитати","m74_cat_play":"Пограти","m74_cat_listen":"Послухати","m74_cat_todo":"Зробити","m74_restore":"Повернути в очікування","m74_delete":"Видалити","m74_delete_question":"Видалити рекомендацію? Медіа залишиться.","m74_more":"Інші дії","m74_toggle":"Згорнути або розгорнути","m74_previous":"Попередній період","m74_next":"Наступний період","m74_impression":"Враження","m74_empty_now":"Поточних медіа ще немає. Почни з рекомендації або додай медіа у «Сьогодні».","m74_empty_history":"У цьому періоді ще немає завершених медіа.","m74_empty_recs":"Усі рекомендації вже опрацьовані. Нові можна додати у «Сьогодні».","m74_rec_added":"Додано до рекомендацій",
   media_cat_watch:'Дивлюсь',media_cat_read:'Читаю',media_cat_play:'Граю',
   media_empty:'Поки порожньо 🎬',
   media_continuing:'🔄 Продовжуєш',media_paused:'⏸ На паузі',media_add_today:'+ Сьогодні',
@@ -2221,13 +2247,14 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 73.0',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 74.0',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
   em_color_lbl:'Button color:',em_color_auto:'auto by type or custom',
   em_add_btn:'Add',
   toast_undo:'Undo',toast_deleted:'Deleted',toast_status_deleted:'Status deleted',em_add_own:'+ Custom',
+  "media_cat_listen":"Listening","m74_again":"Start again","m74_media":"Media","m74_recommendations":"Recommendations","m74_now":"Now","m74_history":"History","m74_month":"Month","m74_year":"Year","m74_all":"All time","m74_active":"In progress","m74_pause":"Paused","m74_done":"Completed","m74_planned":"Planned","m74_linked":"In media","m74_missing":"Linked media was deleted","m74_cancel":"Cancel","m74_undo":"Undo","m74_show":"Show","m74_added":"Added to today's media","m74_undo_changed":"This entry has changed. Undo is no longer available.","m74_match":"Similar media already exists","m74_use":"Use existing media","m74_separate":"Add separately","m74_start_watch":"Start watching","m74_start_read":"Start reading","m74_start_play":"Start playing","m74_start_listen":"Start listening","m74_start_todo":"Mark as done","m74_cat_watch":"Watch","m74_cat_read":"Read","m74_cat_play":"Play","m74_cat_listen":"Listen","m74_cat_todo":"To-do","m74_restore":"Return to waiting","m74_delete":"Delete","m74_delete_question":"Delete recommendation? Your media will remain.","m74_more":"More actions","m74_toggle":"Collapse or expand","m74_previous":"Previous period","m74_next":"Next period","m74_impression":"Impression","m74_empty_now":"No current media yet. Start a recommendation or add media in Today.","m74_empty_history":"No completed media in this period yet.","m74_empty_recs":"All recommendations have been handled. Add new ones in Today.","m74_rec_added":"Added to recommendations",
   media_cat_watch:'Watching',media_cat_read:'Reading',media_cat_play:'Playing',
   media_empty:'Nothing here yet 🎬',
   media_continuing:'🔄 Continuing',media_paused:'⏸ On pause',media_add_today:'+ Today',
@@ -2286,10 +2313,11 @@ function validateJournal(input){
   if(s.habits.some(x=>!obj(x)||typeof x.id!=='string'))fail();
   for(const [date,d] of Object.entries(s.days)){
     if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!obj(d))fail();
-    for(const k of ['emotions','dayRatings','ideas','events','photos','gratitude','summaryEntries','photoIds'])if(d[k]!==undefined&&!Array.isArray(d[k]))fail();
+    for(const k of ['emotions','dayRatings','ideas','events','photos','gratitude','summaryEntries','photoIds','media','recs'])if(d[k]!==undefined&&!Array.isArray(d[k]))fail();
     if(d.draftText===undefined)d.draftText='';
     for(const k of ['summary','status','statusNote','draftText'])if(d[k]!==undefined&&typeof d[k]!=='string')fail();
     if(d.summaryEntries&&d.summaryEntries.some(e=>!obj(e)))fail();
+    for(const field of ['media','recs'])if(d[field]&&d[field].some(e=>!obj(e)||typeof e.name!=='string'||typeof e.cat!=='string'||['mediaId','entryId'].some(k=>e[k]!==undefined&&typeof e[k]!=='string')))fail();
     if(d.photoIds&&d.photoIds.some(id=>typeof id!=='string'))fail();
   }
   if(s.ideaTree!==undefined){
@@ -4177,7 +4205,8 @@ function buildDigestFacts(d, dateKey){
   facts.mediaByCat = {
     read: media.filter(m=>m.cat==='read').map(m=>m.name).filter(Boolean),
     watch: media.filter(m=>m.cat==='watch').map(m=>m.name).filter(Boolean),
-    play: media.filter(m=>m.cat==='play').map(m=>m.name).filter(Boolean)
+    play: media.filter(m=>m.cat==='play').map(m=>m.name).filter(Boolean),
+    listen: media.filter(m=>m.cat==='listen').map(m=>m.name).filter(Boolean)
   };
   return facts;
 }
@@ -4607,7 +4636,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='73.0';
+const APP_VERSION='74.0';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -5919,462 +5948,172 @@ async function renderDash(){
     });
   })();
 
-  // ── Media Dash Card ──
-  const mdCard = document.createElement('div');
-  mdCard.className = 'card';
-  mdCard.id = 'media-dash-card';
-  mdCard.innerHTML = `
-    <div class="ch mood-ch" id="mdash-ch"><span class="clabel">${getLang()==='en'?'🎬 Media':'🎬 Медіа'}</span><div class="mood-coll-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></div></div>
-    <div class="cb mood-body" id="mdash-body-wrap">
-      <div class="ins-period-tabs" style="margin-bottom:var(--s3)">
-        <div class="ins-ptab active" data-mp="month">${getLang()==='en'?'Month':'Місяць'}</div>
-        <div class="ins-ptab" data-mp="year">${getLang()==='en'?'Year':'Рік'}</div>
-        <div class="ins-ptab" data-mp="all">${getLang()==='en'?'All time':'Весь час'}</div>
-      </div>
-      <div id="mdash-body"><div class="mdash-empty">${getLang()==='en'?'No data yet 🎬':'Поки немає даних 🎬'}</div></div>
-    </div>`;
-  cont.appendChild(mdCard);
-
-  document.getElementById('mdash-ch').addEventListener('click', () => {
-    const wrap = document.getElementById('mdash-body-wrap');
-    const isHidden = wrap.style.display === 'none';
-    wrap.style.display = isHidden ? '' : 'none';
-    mdCard.classList.toggle('mood-collapsed', !isHidden);
-    mediaDashOpen = isHidden;
-    S.settings.mediaDashOpen = mediaDashOpen;
-    save();
-  });
-
-  let mdashPeriod = 'month';
-  const _now = new Date();
-  let mdashMonth = _now.getMonth();
-  let mdashMonthYear = _now.getFullYear();
-  let mdashYear = _now.getFullYear();
-
-  function getMdashItems(period){
-    const keys = Object.keys(S.days);
-    const filtered = keys.filter(k => {
-      if(period === 'all') return true;
-      const d = new Date(k + 'T12:00:00');
-      if(period === 'month') return d.getFullYear()===mdashMonthYear && d.getMonth()===mdashMonth;
-      if(period === 'year')  return d.getFullYear()===mdashYear;
-    });
-    const items = [];
-    filtered.forEach(k => {
-      (S.days[k].media||[]).forEach(m => items.push({...m, _date: k}));
-    });
-    return items;
-  }
-
-  function mdashNavLabel(){
-    if(mdashPeriod==='month') return MON[mdashMonth]+' '+mdashMonthYear;
-    if(mdashPeriod==='year')  return String(mdashYear);
-    return null;
-  }
-
-  let mdashOpenCat = null; // tracks which category is expanded
-
-  function renderMdash(){
-    const items = getMdashItems(mdashPeriod);
-    const body = document.getElementById('mdash-body');
-
-    // Nav bar for month/year
-    const label = mdashNavLabel();
-    const navHtml = label ? `<div style="height:var(--s2)"></div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s3)">
-      <button id="mdash-prev" style="background:var(--off);border:1px solid var(--bdr);border-radius:var(--r2);width:28px;height:28px;cursor:pointer;color:var(--txm);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <span style="font-size:var(--sm);font-weight:600;color:var(--tx)">${label}</span>
-      <button id="mdash-next" style="background:var(--off);border:1px solid var(--bdr);border-radius:var(--r2);width:28px;height:28px;cursor:pointer;color:var(--txm);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
-    </div>` : '';
-
-    if(!items.length){ body.innerHTML=navHtml+'<div class="mdash-empty">'+(getLang()==='en'?'No data yet 🎬':'Поки немає даних 🎬')+'</div>';
-      bindMdashNav(); return; }
-
-    const cats = ['watch','read','play'];
-    const icons = {watch:'📺', read:'📚', play:'🎮'};
-    const labels = {watch:getLang()==='en'?'Watched':'Переглянуто', read:getLang()==='en'?'Read':'Прочитано', play:getLang()==='en'?'Played':'Зіграно'};
-    const statusLabel = {done:'✅ '+t('media_done'), progress:'🔄 '+t('media_progress'), planned:'📌 '+t('media_planned')};
-
-    let h = navHtml + '<div style="display:flex;flex-direction:column;gap:var(--s2)">';
-let _shownCats = 0;
-
-    cats.forEach(cat => {
-      const catItems = items.filter(m => m.cat === cat);
-      if(!catItems.length) return;
-      const done = catItems.filter(m => m.status==='done').length;
-      const progress = catItems.filter(m => m.status==='progress').length;
-      const planned = catItems.filter(m => m.status==='planned' || !m.status).length;
-      const isOpen = mdashOpenCat === cat;
-
-      // Sorted list: done first, then progress, then planned
-      const catItemsFiltered = catItems.filter(m => m.status === 'done' || m.status === 'progress');
-      const sorted = [...catItemsFiltered].sort((a,b) => {
-        const order = {done:0, progress:1, planned:2};
-        const oa = order[a.status]??2, ob = order[b.status]??2;
-        if(oa !== ob) return oa - ob;
-        return b._date.localeCompare(a._date);
-      });
-
-      if(!sorted.length) return;   // nothing done or in progress here: show no block at all
-_shownCats++;
-h += `<div class="mdash-cat-block" data-cat="${esc(cat)}" style="border-radius:var(--r3);overflow:hidden;border:1px solid var(--bdr);margin-bottom:var(--s3)">`;
-
-      // Category header — clickable
-      h += `<div class="mdash-cat-hdr" data-cat="${esc(cat)}" style="display:flex;align-items:center;justify-content:space-between;padding:var(--s3) var(--s3);background:var(--off);cursor:pointer;user-select:none">
-        <div style="display:flex;align-items:center;gap:var(--s2)">
-          <span style="font-size:1.1rem">${icons[cat]}</span>
-          <span style="font-size:var(--sm);font-weight:600;color:var(--tx)">${labels[cat]}</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:var(--s3)">
-          <div style="display:flex;gap:var(--s2)">
-            ${done ? `<span style="font-size:var(--xs);background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rf);padding:1px 7px;color:var(--tx);font-weight:600">${done}</span>` : ''}
-            ${progress ? `<span style="font-size:var(--xs);background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rf);padding:1px 7px;color:var(--tx)">🔄 ${progress}</span>` : ''}
-            
-          </div>
-          <svg style="transition:transform .2s;transform:rotate(${isOpen?'90':'0'}deg);flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-      </div>`;
-
-      // Expandable list
-      h += `<div class="mdash-cat-list" data-cat="${esc(cat)}" style="display:${isOpen?'block':'none'};background:var(--bg)">`;
-      let currentGroup = null;
-      sorted.forEach(m => {
-        const grp = statusLabel[m.status] || statusLabel.planned;
-        if(grp !== currentGroup){
-          currentGroup = grp;
-          h += `<div style="font-size:var(--xs);font-weight:600;color:var(--txm);text-transform:uppercase;letter-spacing:.05em;padding:var(--s3) var(--s3) var(--s1)">${grp}</div>`;
-        }
-        const stars = m.rating ? '⭐'.repeat(m.rating) : '';
-        const note = m.note ? `<div class="mdash-note" data-full="0" style="font-size:var(--xs);color:var(--txm);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;line-height:1.45">${esc(m.note)}</div>` : '';
-        const dateStr = m._date ? `<span style="font-size:var(--xs);color:var(--txf)">${(d=>d[1]+'.'+d[0])(m._date.slice(5).split('-'))}</span>` : '';
-        h += `<div class="mdash-item" style="padding:var(--s2) var(--s3);border-top:1px solid var(--bdr)">
-          <div style="min-width:0;display:flex;flex-direction:column;gap:4px">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--s2)">
-              <span class="mdash-name" style="font-size:var(--sm);color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:${m.note?'pointer':'default'}">${esc(m.name)}</span>
-              <div style="display:flex;align-items:center;gap:var(--s1);flex-shrink:0">
-                ${stars ? `<span style="font-size:.8rem">${stars}</span>` : ''}
-                ${dateStr}
-              </div>
-            </div>
-            ${note}
-          </div>
-        </div>`;
-      });
-      h += '</div>'; // cat-list
-      h += '</div>'; // cat-block
-    });
-    h += '</div>';
-
-    if(!_shownCats){ body.innerHTML = navHtml + '<div class="mdash-empty">'+(getLang()==='en'?'No data yet 🎬':'Поки немає даних 🎬')+'</div>'; bindMdashNav(); return; }
-body.innerHTML = h;
-bindMdashNav();
-
-    // Bind category toggle clicks
-    body.querySelectorAll('.mdash-cat-hdr').forEach(hdr => {
-      hdr.addEventListener('click', () => {
-        const cat = hdr.dataset.cat;
-        mdashOpenCat = mdashOpenCat === cat ? null : cat;
-        renderMdash();
-      });
-    });
-    function collapseNote(noteEl){
-      noteEl.dataset.full = '0';
-      noteEl.style.whiteSpace = 'nowrap';
-      noteEl.style.overflow = 'hidden';
-      noteEl.style.textOverflow = 'ellipsis';
-    }
-    function expandNote(noteEl){
-      noteEl.dataset.full = '1';
-      noteEl.style.whiteSpace = 'pre-wrap';
-      noteEl.style.overflow = 'visible';
-      noteEl.style.textOverflow = 'clip';
-    }
-    body.querySelectorAll('.mdash-note, .media-note').forEach(noteEl => {
-      noteEl.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = noteEl.dataset.full === '1';
-        if(open) collapseNote(noteEl); else expandNote(noteEl);
-      });
-    });
-    body.querySelectorAll('.mdash-item').forEach(row => {
-      const nameEl = row.querySelector('.mdash-name');
-      const noteEl = row.querySelector('.mdash-note');
-      if(!nameEl || !noteEl) return;
-      nameEl.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if(noteEl.dataset.full === '1') collapseNote(noteEl);
-      });
-    });
-    document.querySelectorAll('.media-day-item').forEach(row=>{
-      const name=row.querySelector('.media-day-name');
-      const note=row.querySelector('.media-note');
-      if(!name || !note) return;
-      const toggle=()=>{const open=note.dataset.full==='1'; if(open){collapseNote(note)} else {expandNote(note)}};
-      name.addEventListener('click', e=>{e.stopPropagation(); if(note.dataset.full==='1') collapseNote(note);});
-      note.addEventListener('click', e=>{e.stopPropagation(); toggle();});
-    });
-  }
-
-
-  function bindMdashNav(){
-    const prev = document.getElementById('mdash-prev');
-    const next = document.getElementById('mdash-next');
-    if(!prev) return;
-    prev.addEventListener('click', ()=>{
-      if(mdashPeriod==='month'){
-        mdashMonth--; if(mdashMonth<0){mdashMonth=11;mdashMonthYear--;}
-      } else if(mdashPeriod==='year'){ mdashYear--; }
-      renderMdash();
-    });
-    next.addEventListener('click', ()=>{
-      if(mdashPeriod==='month'){
-        mdashMonth++; if(mdashMonth>11){mdashMonth=0;mdashMonthYear++;}
-      } else if(mdashPeriod==='year'){ mdashYear++; }
-      renderMdash();
-    });
-  }
-
-  mdCard.querySelectorAll('.ins-ptab').forEach(t => {
-    t.addEventListener('click', () => {
-      mdCard.querySelectorAll('.ins-ptab').forEach(x => x.classList.remove('active'));
-      t.classList.add('active');
-      mdashPeriod = t.dataset.mp;
-      renderMdash();
-    });
-  });
-  renderMdash();
-
-  document.getElementById('mdash-body-wrap').style.display = mediaDashOpen ? '' : 'none';
-  if(!mediaDashOpen) mdCard.classList.add('mood-collapsed');
-
-  // Recommendations
+  renderMedia74Dash(cont);
   renderRecDash(cont);
 }
 
-
-// ═══ RECOMMENDATIONS DASH ═══
-
-function renderRecDash(cont){
-  const REC_CATS = [
-    {id:'watch', icon:'🎥', label:getLang()==='en'?'Watch':'Подивитись'},
-    {id:'play',  icon:'🎮', label:getLang()==='en'?'Play':'Пограти'},
-    {id:'listen',icon:'🎵', label:getLang()==='en'?'Listen':'Послухати'},
-    {id:'read',  icon:'📖', label:getLang()==='en'?'Read':'Почитати'},
-    {id:'todo',  icon:'✅', label:getLang()==='en'?'To-do':'Зробити'},
-  ];
-
-  // Collect all rec items from all days
-  function getAllRecs(){
-    const items = [];
-    Object.keys(S.days).forEach(dateKey => {
-      (S.days[dateKey].recs || []).forEach(r => {
-        items.push({...r, _date: dateKey});
-      });
-    });
-    return items;
-  }
-
-  const recCard = document.createElement('div');
-  recCard.className = 'card';
-  recCard.id = 'rec-dash-card';
-
-  const allRecs = getAllRecs();
-  const activeRecs = allRecs.filter(r => !r.done);
-  const totalActive = activeRecs.length;
-
-  recCard.innerHTML = `
-    <div class="ch mood-ch" id="recdash-ch">
-      <span class="clabel">📋 ${getLang()==='en'?'Recommendations':'Рекомендації'}${totalActive ? ' <span style="font-size:var(--xs);background:var(--off);border:1px solid var(--bdr);border-radius:var(--rf);padding:1px 7px;font-weight:600;color:var(--tx)">'+totalActive+'</span>' : ''}</span>
-      <div class="mood-coll-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></div>
-    </div>
-    <div class="cb mood-body" id="recdash-body-wrap">
-      <div id="recdash-body"></div>
-    </div>`;
-  cont.appendChild(recCard);
-
-  let recDashOpenCat = null;
-  let recPage = 0;
-  const REC_PAGE_SIZE = 5;
-
-  function renderRecBody(){
-    const allItems = getAllRecs();
-    const active = allItems.filter(r => !r.done);
-    const archived = allItems.filter(r => r.done);
-    const body = document.getElementById('recdash-body');
-    if(!body) return;
-
-    let h = '<div style="display:flex;flex-direction:column;gap:var(--s2)">';
-
-    // Category blocks
-    REC_CATS.forEach(cat => {
-      const catItems = active.filter(r => r.cat === cat.id);
-      if(!catItems.length) return;
-      const isOpen = recDashOpenCat === cat.id;
-
-      // Pagination
-      const totalPages = Math.ceil(catItems.length / REC_PAGE_SIZE);
-      const page = Math.min(recPage, totalPages - 1);
-      const pageItems = catItems.slice(page * REC_PAGE_SIZE, (page + 1) * REC_PAGE_SIZE);
-
-      h += `<div class="rec-dash-cat-block" data-rcat="${esc(cat.id)}">`;
-      h += `<div class="rec-dash-cat-hdr" data-rcat="${esc(cat.id)}">
-        <div style="display:flex;align-items:center;gap:var(--s2)">
-          <span>${cat.icon}</span>
-          <span style="font-size:var(--sm);font-weight:600;color:var(--tx)">${cat.label}</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:var(--s2)">
-          <span style="font-size:var(--xs);background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rf);padding:1px 7px;font-weight:600;color:var(--tx)">${catItems.length}</span>
-          <svg style="transition:transform .2s;transform:rotate(${isOpen?'90':'0'}deg)" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-      </div>`;
-
-      if(isOpen){
-        h += `<div class="rec-dash-cat-list open">`;
-        pageItems.forEach((r, i) => {
-          const globalIdx = allItems.findIndex(x => x._date === r._date && x.id === r.id);
-          h += `<div class="rec-item">
-            <div class="rec-check" data-idx="${esc(globalIdx)}" title="${getLang()==='en'?'Done':'Виконано'}">○</div>
-            <span style="font-size:var(--sm);color:var(--tx);flex:1">${esc(r.name)}</span>
-            <span style="font-size:var(--xs);color:var(--txf)">${(d=>d[1]+'.'+d[0])(r._date.slice(5).split('-'))}</span>
-          </div>`;
-        });
-
-        // Pagination controls
-        if(totalPages > 1){
-          h += `<div style="display:flex;align-items:center;justify-content:space-between;padding:var(--s2) var(--s3);border-top:1px solid var(--bdr)">
-            <button class="rec-page-btn" data-dir="-1" data-cat="${esc(cat.id)}" style="background:var(--off);border:1px solid var(--bdr);border-radius:var(--r2);padding:2px 10px;cursor:pointer;color:var(--txm);font-size:var(--xs)">← Назад</button>
-            <span style="font-size:var(--xs);color:var(--txm)">${page+1}–${Math.min((page+1)*REC_PAGE_SIZE, catItems.length)} з ${catItems.length}</span>
-            <button class="rec-page-btn" data-dir="1" data-cat="${esc(cat.id)}" style="background:var(--off);border:1px solid var(--bdr);border-radius:var(--r2);padding:2px 10px;cursor:pointer;color:var(--txm);font-size:var(--xs)">Далі →</button>
-          </div>`;
-        }
-        h += `</div>`;
-      }
-      h += `</div>`;
-    });
-
-    // Archive block
-    if(archived.length){
-      h += `<div class="rec-dash-cat-block" id="rec-archive-block">
-        <div class="rec-dash-cat-hdr" id="rec-archive-hdr">
-          <div style="display:flex;align-items:center;gap:var(--s2)">
-            <span>📦</span>
-            <span style="font-size:var(--sm);font-weight:600;color:var(--txm)">Архів</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:var(--s2)">
-            <span style="font-size:var(--xs);background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rf);padding:1px 7px;font-weight:600;color:var(--txm)">${archived.length}</span>
-            <svg id="rec-archive-arr" style="transition:transform .2s" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-        </div>
-        <div class="rec-dash-cat-list" id="rec-archive-list">`;
-      archived.slice().reverse().forEach(r => {
-        const globalIdx = allItems.findIndex(x => x._date === r._date && x.id === r.id);
-        const catInfo = REC_CATS.find(c => c.id === r.cat) || {icon:'📋'};
-        const doneDate = r.doneDate ? (d=>d[1]+'.'+d[0])(r.doneDate.slice(5).split('-')) : '';
-        h += `<div class="rec-item">
-          <span style="font-size:.9rem">${catInfo.icon}</span>
-          <span style="font-size:var(--sm);color:var(--txm);flex:1">${esc(r.name)}</span>
-          <div style="display:flex;align-items:center;gap:var(--s2)">
-            ${doneDate ? `<span style="font-size:var(--xs);color:var(--txf)">${esc(doneDate)}</span>` : ''}
-            <button class="rec-delete-btn" data-idx="${esc(globalIdx)}" style="font-size:var(--xs);padding:1px 6px;border-radius:var(--rf);border:1px solid var(--bdr);background:var(--off);color:var(--txm);cursor:pointer">✕</button>
-          </div>
-        </div>`;
-      });
-      h += `</div></div>`;
-    }
-
-    if(!active.length && !archived.length){
-      h += '<div class="mdash-empty">Поки немає рекомендацій 📋</div>';
-    }
-
-    h += '</div>';
-    body.innerHTML = h;
-
-    // Bind category headers
-    body.querySelectorAll('.rec-dash-cat-hdr[data-rcat]').forEach(hdr => {
-      hdr.addEventListener('click', () => {
-        const cat = hdr.dataset.rcat;
-        recDashOpenCat = recDashOpenCat === cat ? null : cat;
-        recPage = 0;
-        renderRecBody();
-      });
-    });
-
-    // Bind archive toggle
-    const archHdr = body.querySelector('#rec-archive-hdr');
-    const archList = body.querySelector('#rec-archive-list');
-    const archArr = body.querySelector('#rec-archive-arr');
-    if(archHdr && archList){
-      archHdr.addEventListener('click', () => {
-        const isOpen = archList.classList.toggle('open');
-        if(archArr) archArr.style.transform = isOpen ? 'rotate(90deg)' : '';
-      });
-    }
-
-    // Bind check buttons (mark done)
-    body.querySelectorAll('.rec-check').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.dataset.idx);
-        const item = allItems[idx];
-        if(!item) return;
-        const dayRecs = S.days[item._date].recs || [];
-        const recIdx = dayRecs.findIndex(r => r.id === item.id);
-        if(recIdx === -1) return;
-        dayRecs[recIdx].done = true;
-        dayRecs[recIdx].doneDate = new Date().toISOString().slice(0,10);
-        save();
-        renderRecBody();
-      });
-    });
-
-    // Bind delete buttons (remove from archive)
-    body.querySelectorAll('.rec-delete-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.dataset.idx);
-        const item = allItems[idx];
-        if(!item) return;
-        S.days[item._date].recs = (S.days[item._date].recs || []).filter(r => r.id !== item.id);
-        save();
-        renderRecBody();
-      });
-    });
-
-    // Bind pagination
-    body.querySelectorAll('.rec-page-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const dir = parseInt(btn.dataset.dir);
-        const cat = btn.dataset.cat;
-        const catItems = active.filter(r => r.cat === cat);
-        const totalPg = Math.ceil(catItems.length / REC_PAGE_SIZE);
-        recPage = Math.max(0, Math.min(recPage + dir, totalPg - 1));
-        renderRecBody();
-      });
-    });
-
-    // Update maxHeight only if not collapsed
-    const wrap = document.getElementById('recdash-body-wrap');
-    if(wrap && !recCard.classList.contains('mood-collapsed')) wrap.style.maxHeight = wrap.scrollHeight + 500 + 'px';
-  }
-
-  // Collapse toggle
-  if(!S.dashCollapsed) S.dashCollapsed = {};
-  const recBody = document.getElementById('recdash-body-wrap');
-  function applyRecCollapse(collapsed){
-    recBody.style.display = collapsed ? 'none' : '';
-    recCard.classList.toggle('mood-collapsed', collapsed);
-  }
-  if(S.dashCollapsed.recs){
-    applyRecCollapse(true);
-  } else {
-    renderRecBody();
-  }
-  document.getElementById('recdash-ch').addEventListener('click', () => {
-    if(!S.dashCollapsed) S.dashCollapsed = {};
-    const c = !recCard.classList.contains('mood-collapsed');
-    S.dashCollapsed.recs = c;
-    applyRecCollapse(c);
-    if(!c) renderRecBody();
-    save();
+// 74.0: shared media readers and transactional commands. Day snapshots remain historical.
+const MEDIA74_CATS={watch:'📺',read:'📚',play:'🎮',listen:'🎵',todo:'✅'};
+function media74Id(){return crypto.randomUUID();}
+function media74Status(m){return m.status==='progress'?'active':m.status||'planned';}
+function media74Name(s){return String(s||'').normalize('NFKC').trim().replace(/\s+/g,' ').toLocaleLowerCase();}
+function media74Rows(snapshot=S,cutoff=todayKey()){
+  const rows=[];
+  Object.keys(snapshot.days||{}).filter(k=>insightDateKey(k)&&k<=cutoff).sort().forEach(date=>{
+    (snapshot.days[date].media||[]).forEach((m,index)=>{if(m&&typeof m.name==='string')rows.push({...m,_date:date,_index:index,_key:m.mediaId||`legacy:${date}:${index}`,status:media74Status(m)});});
+  });return rows;
+}
+function media74Latest(snapshot=S,cutoff=todayKey()){
+  const byId=new Map();media74Rows(snapshot,cutoff).forEach(m=>byId.set(m._key,m));return [...byId.values()];
+}
+function media74Recs(){
+  const latest=new Map(media74Latest().filter(m=>m.mediaId).map(m=>[m.mediaId,m]));
+  return Object.keys(S.days).sort().reverse().flatMap(date=>(S.days[date].recs||[]).map((r,index)=>({...r,_date:date,_index:index,_media:r.mediaId?latest.get(r.mediaId):null,_state:r.mediaId?(latest.get(r.mediaId)?.status||'missing'):r.done?'done':'waiting'})));
+}
+function media74Commit(change){
+  if(_storageBlocked||!_writeReady||_writeBlocked||!flushAutosave())return false;
+  const before=JSON.stringify(S.days);
+  try{change();if(markNow())return true;}catch(e){console.error('Media update failed',e);}
+  S.days=JSON.parse(before);dirty=false;hideFab();return false;
+}
+function media74Refresh(){
+  renderMediaList();renderCarryMedia();window.renderRecToday74?.();renderStats();if(typeof renderCal==='function')renderCal();
+  document.dispatchEvent(new Event('media74change'));
+}
+function media74EnsureEntry(m){if(!m.mediaId)m.mediaId=media74Id();if(!m.entryId)m.entryId=media74Id();return m;}
+function media74AddSnapshot(source,date,status='active'){
+  const d=S.days[date]||(S.days[date]={});if(!Array.isArray(d.media))d.media=[];
+  const existing=source.mediaId&&d.media.find(m=>m.mediaId===source.mediaId);
+  if(existing)return existing;
+  const m={mediaId:source.mediaId||media74Id(),entryId:media74Id(),name:source.name,cat:source.cat,status};
+  if(source.sourceRec)m.sourceRec={...source.sourceRec};d.media.push(m);return m;
+}
+async function media74Choice(title,choices){
+  return new Promise(resolve=>{
+    const dialog=document.createElement('dialog');dialog.className='m74-dialog';
+    const heading=document.createElement('h3');heading.textContent=title;dialog.append(heading);
+    const finish=value=>{dialog.close();dialog.remove();resolve(value);};
+    choices.concat([{label:t('m74_cancel'),value:null}]).forEach(c=>{const b=document.createElement('button');b.type='button';b.className='m74-button';b.textContent=c.label;b.onclick=()=>finish(c.value);dialog.append(b);});
+    dialog.addEventListener('cancel',e=>{e.preventDefault();finish(null);});document.body.append(dialog);dialog.showModal();
   });
 }
+function media74Notice(before,after,mediaId){
+  document.getElementById('m74-notice')?.remove();const box=document.createElement('div');box.id='m74-notice';box.className='m74-notice';box.setAttribute('role','status');
+  const label=document.createElement('span');label.textContent=t('m74_added');box.append(label);
+  const show=document.createElement('button');show.textContent=t('m74_show');show.onclick=()=>{media74Show(mediaId);box.remove();};box.append(show);
+  const undo=document.createElement('button');undo.textContent=t('m74_undo');undo.onclick=()=>{
+    if(JSON.stringify(S.days)!==after){showToast(t('m74_undo_changed'));box.remove();return;}
+    if(media74Commit(()=>{S.days=JSON.parse(before);})){media74Refresh();box.remove();}
+  };box.append(undo);document.body.append(box);setTimeout(()=>box.remove(),12000);
+}
+async function startRecommendation(date,id){
+  if(!flushAutosave())return false;
+  let rec=S.days[date]?.recs?.find(r=>r.id===id);if(!rec)return false;
+  if(rec.mediaId){media74Show(rec.mediaId);return false;}
+  if(rec.done||!MEDIA74_CATS[rec.cat])return false;
+  const original=JSON.stringify(rec),target=todayKey();
+  if(rec.cat==='todo'){
+    const ok=media74Commit(()=>{rec.done=true;rec.doneDate=target;});if(ok)media74Refresh();return ok;
+  }
+  const matches=media74Latest().filter(m=>m.cat===rec.cat&&media74Name(m.name)===media74Name(rec.name)&&m.status!=='done');
+  let chosen=null;
+  if(matches.length){
+    const selected=await media74Choice(t('m74_match'),matches.map((m,i)=>({label:t('m74_use')+' · '+m.name+' · '+m._date,value:i})).concat([{label:t('m74_separate'),value:'new'}]));
+    if(selected===null)return false;if(selected!=='new')chosen=matches[selected];
+  }
+  rec=S.days[date]?.recs?.find(r=>r.id===id);
+  if(!rec||JSON.stringify(rec)!==original||target!==todayKey())return false;
+  const before=JSON.stringify(S.days);let linkedId;
+  const ok=media74Commit(()=>{
+    let source={name:rec.name,cat:rec.cat,sourceRec:{date,id}};
+    if(chosen){const live=S.days[chosen._date]?.media?.[chosen._index];if(!live||live.name!==chosen.name||live.mediaId!==chosen.mediaId)throw Error('Media changed');source=media74EnsureEntry(live);}
+    const m=media74AddSnapshot(source,target);m.status='active';delete m.completedDate;linkedId=m.mediaId;
+    rec.mediaId=linkedId;rec.startedDate=target;rec.done=false;rec.doneDate=null;
+  });
+  if(ok){const after=JSON.stringify(S.days);media74Refresh();media74Notice(before,after,linkedId);}return ok;
+}
+function media74SetStatus(date,index,status){
+  const ok=media74Commit(()=>{
+    const m=S.days[date]?.media?.[index];if(!m)throw Error('Missing media');
+    if(status==='del'){S.days[date].media.splice(index,1);return;}
+    media74EnsureEntry(m);m.status=status;if(status==='done')m.completedDate=date;else delete m.completedDate;
+  });if(ok)media74Refresh();return ok;
+}
+function media74Show(id){
+  const m=media74Latest().find(x=>x.mediaId===id);if(!m){showToast(t('m74_missing'));return;}
+  media74UI.mode=m.status==='done'?'history':'now';media74UI.period='all';media74UI.focus=id;S.settings.mediaDashOpen=true;
+  document.querySelector('[data-page=dash]')?.click();document.dispatchEvent(new Event('media74change'));
+  requestAnimationFrame(()=>{const row=[...document.querySelectorAll('[data-m74-id]')].find(x=>x.dataset.m74Id===id);if(row){row.closest('details').open=true;row.scrollIntoView({block:'center',behavior:'smooth'});}});
+}
+const media74UI={mode:'now',period:'month',month:todayKey().slice(0,7),year:todayKey().slice(0,4),focus:null,recHistory:false};
+function media74Button(label,action,primary=false){return `<button type="button" class="m74-button${primary?' primary':''}" data-action="${action}">${esc(label)}</button>`;}
+function renderMedia74Dash(cont){
+  const card=document.createElement('section');card.className='card m74-card';card.id='media-dash-card';cont.append(card);
+  const render=()=>{
+    const open=card.querySelector('.m74-content')?!card.querySelector('.m74-content').hidden:S.settings.mediaDashOpen!==false;
+    const details=new Map([...card.querySelectorAll('details[data-group]')].map(x=>[x.dataset.group,x.open]));
+    const all=media74Latest();let items=all.filter(m=>media74UI.mode==='history'?m.status==='done':m.status!=='done');
+    if(media74UI.mode==='history'&&media74UI.period!=='all')items=items.filter(m=>{const date=insightDateKey(m.completedDate)?m.completedDate:m._date;return date.startsWith(media74UI.period==='month'?media74UI.month:media74UI.year);});
+    card.innerHTML=`<div class="ch m74-head"><span class="clabel">🎬 ${esc(t('m74_media'))}</span><button type="button" class="m74-collapse" aria-label="${esc(t('m74_toggle'))}" aria-expanded="${open}">${open?'⌃':'⌄'}</button></div><div class="cb m74-content" ${open?'':'hidden'}><div class="m74-tabs">${['now','history'].map(x=>`<button type="button" data-mode="${x}" class="${media74UI.mode===x?'selected':''}">${esc(t('m74_'+x))}</button>`).join('')}</div><div class="m74-period"></div><div class="m74-list"></div></div>`;
+    card.querySelector('.m74-collapse').onclick=()=>{const body=card.querySelector('.m74-content');body.hidden=!body.hidden;S.settings.mediaDashOpen=!body.hidden;markNow();render();};
+    card.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{media74UI.mode=b.dataset.mode;render();});
+    if(media74UI.mode==='history'){
+      const period=card.querySelector('.m74-period');period.innerHTML=`<div class="m74-tabs secondary">${['month','year','all'].map(x=>`<button type="button" data-period="${x}" class="${media74UI.period===x?'selected':''}">${esc(t('m74_'+x))}</button>`).join('')}</div>${media74UI.period==='all'?'':`<div class="m74-date-nav"><button type="button" data-shift="-1" aria-label="${esc(t('m74_previous'))}">‹</button><span>${esc(media74UI.period==='month'?new Date(media74UI.month+'-15T12:00:00').toLocaleDateString(getLang()==='en'?'en-GB':'uk-UA',{month:'long',year:'numeric'}):media74UI.year)}</span><button type="button" data-shift="1" aria-label="${esc(t('m74_next'))}">›</button></div>`}`;
+      period.querySelectorAll('[data-period]').forEach(b=>b.onclick=()=>{media74UI.period=b.dataset.period;render();});
+      period.querySelectorAll('[data-shift]').forEach(b=>b.onclick=()=>{const n=Number(b.dataset.shift);if(media74UI.period==='year')media74UI.year=String(Number(media74UI.year)+n);else{const d=new Date(media74UI.month+'-15T12:00:00');d.setMonth(d.getMonth()+n);media74UI.month=d.getFullYear()+'-'+pad(d.getMonth()+1);}render();});
+    }
+    const list=card.querySelector('.m74-list');
+    if(!items.length)list.innerHTML=`<p class="m74-empty">${esc(t(media74UI.mode==='now'?'m74_empty_now':'m74_empty_history'))}</p>`;
+    const groups=media74UI.mode==='now'?['active','pause','planned']:['done'];
+    groups.forEach(status=>{
+      const groupItems=items.filter(m=>m.status===status);if(!groupItems.length)return;
+      const group=document.createElement('details');group.dataset.group=status;group.open=details.get(status)??(status!=='pause');group.innerHTML=`<summary>${esc(t('m74_'+status))}<span class="m74-count">${groupItems.length}</span></summary>`;
+      groupItems.sort((a,b)=>b._date.localeCompare(a._date)).forEach(m=>{
+        const row=document.createElement('article');row.className='m74-row';row.dataset.m74Id=m.mediaId||m._key;
+        row.innerHTML=`<div class="m74-title"><span>${MEDIA74_CATS[m.cat]||'🎬'}</span><button type="button" class="m74-name" aria-expanded="false">${esc(m.name)}</button></div><div class="m74-meta">${esc(m._date)}${m.rating?' · '+'⭐'.repeat(Math.min(5,Math.max(0,Number(m.rating)||0))):''}</div>${m.note?`<details class="m74-note"><summary>${esc(t('m74_impression'))}</summary><p>${esc(m.note)}</p></details>`:''}<div class="m74-actions">${media74Button(t(status==='done'?'m74_again':'media_add_today'),'today',status!=='done')}</div>`;
+        const button=row.querySelector('[data-action=today]');if(button)button.onclick=()=>{
+          if(!canOpenDayJourney())return;const target=todayKey();const ok=media74Commit(()=>{let source=S.days[m._date].media[m._index];if(status==='done')source={name:source.name,cat:source.cat};else media74EnsureEntry(source);const entry=media74AddSnapshot(source,target,'active');entry.status='active';delete entry.completedDate;});
+          if(ok){activeDay=target;mediaCat=m.cat;document.querySelector('[data-page=today]')?.click();renderToday();const body=document.querySelector('#media-card .media-body');body.style.maxHeight='none';document.getElementById('media-card').scrollIntoView({block:'start'});}
+        };group.append(row);
+      });list.append(group);
+    });
+  };
+  card._render74=render;render();
+}
+function renderRecDash(cont){
+  const card=document.createElement('section');card.className='card m74-card';card.id='rec-dash-card';cont.append(card);
+  const render=()=>{
+    const open=card.querySelector('.m74-content')?!card.querySelector('.m74-content').hidden:!S.dashCollapsed?.recs;
+    const groups=new Map([...card.querySelectorAll('details[data-group]')].map(x=>[x.dataset.group,x.open]));
+    const recs=media74Recs(),waiting=recs.filter(r=>r._state==='waiting');
+    card.innerHTML=`<div class="ch m74-head"><span class="clabel">📋 ${esc(t('m74_recommendations'))} <span class="m74-count">${waiting.length}</span></span><button type="button" class="m74-collapse" aria-label="${esc(t('m74_toggle'))}" aria-expanded="${open}">${open?'⌃':'⌄'}</button></div><div class="cb m74-content" ${open?'':'hidden'}></div>`;
+    card.querySelector('.m74-collapse').onclick=()=>{const body=card.querySelector('.m74-content');body.hidden=!body.hidden;S.dashCollapsed=S.dashCollapsed||{};S.dashCollapsed.recs=body.hidden;markNow();render();};
+    const body=card.querySelector('.m74-content');
+    const addRow=(host,r)=>{
+      const row=document.createElement('article');row.className='m74-row';
+      row.innerHTML=`<div class="m74-title"><span>${MEDIA74_CATS[r.cat]||'📋'}</span><button type="button" class="m74-name" aria-expanded="false">${esc(r.name)}</button></div><div class="m74-meta">${esc(r._date)}${r._state==='waiting'?'':` · ${esc(t('m74_'+(r._state==='active'?'linked':r._state)))}`}</div><div class="m74-actions">${r._state==='waiting'?media74Button(t('m74_start_'+r.cat),'start',true):r._media?media74Button(t('m74_show'),'show'):''}<details class="m74-menu"><summary aria-label="${esc(t('m74_more'))}">⋯</summary><div>${r._state==='missing'||(r.done&&!r.mediaId)?media74Button(t('m74_restore'),'restore'):''}${media74Button(t('m74_delete'),'delete')}</div></details></div>`;
+      row.querySelector('[data-action=start]')?.addEventListener('click',()=>startRecommendation(r._date,r.id));
+      row.querySelector('[data-action=show]')?.addEventListener('click',()=>media74Show(r.mediaId));
+      row.querySelector('[data-action=restore]')?.addEventListener('click',()=>{if(media74Commit(()=>{const live=S.days[r._date].recs[r._index];delete live.mediaId;delete live.startedDate;live.done=false;live.doneDate=null;}))media74Refresh();});
+      row.querySelector('[data-action=delete]')?.addEventListener('click',async()=>{if(await media74Choice(t('m74_delete_question'),[{label:t('m74_delete'),value:true}])){if(media74Commit(()=>{S.days[r._date].recs=S.days[r._date].recs.filter(x=>x.id!==r.id);}))media74Refresh();}});
+      host.append(row);
+    };
+    if(!waiting.length)body.innerHTML=`<p class="m74-empty">${esc(t('m74_empty_recs'))}</p>`;
+    Object.keys(MEDIA74_CATS).forEach(cat=>{
+      const items=waiting.filter(r=>r.cat===cat);if(!items.length)return;
+      const group=document.createElement('details');group.dataset.group=cat;group.open=groups.get(cat)||false;group.innerHTML=`<summary>${MEDIA74_CATS[cat]} ${esc(t('m74_cat_'+cat))}<span class="m74-count">${items.length}</span></summary>`;
+      // Keep large collections compact without hiding the full list from search/accessibility.
+      const entries=document.createElement('div');entries.className='m74-rec-entries';items.forEach(r=>addRow(entries,r));group.append(entries);body.append(group);
+    });
+    const history=recs.filter(r=>r._state!=='waiting');if(history.length){const group=document.createElement('details');group.dataset.group='history';group.open=groups.get('history')||false;group.innerHTML=`<summary>${esc(t('m74_history'))}<span class="m74-count">${history.length}</span></summary>`;const entries=document.createElement('div');entries.className='m74-rec-entries';history.forEach(r=>addRow(entries,r));group.append(entries);body.append(group);}
+  };card._render74=render;render();
+}
+document.addEventListener('click',e=>{const name=e.target.closest('.m74-name');if(name){const expanded=name.getAttribute('aria-expanded')!=='true';name.setAttribute('aria-expanded',String(expanded));}});
+document.addEventListener('media74change',()=>{
+  const positions=[...document.querySelectorAll('#rec-dash-card details[data-group]')].map(g=>[g.dataset.group,g.querySelector('.m74-rec-entries')?.scrollTop||0]);
+  document.getElementById('media-dash-card')?._render74?.();document.getElementById('rec-dash-card')?._render74?.();
+  document.querySelectorAll('#rec-dash-card details[data-group]').forEach(g=>{const list=g.querySelector('.m74-rec-entries'),pos=positions.find(x=>x[0]===g.dataset.group);if(list&&pos)list.scrollTop=pos[1];});
+});
 
 // ═══ RECOMMENDATIONS TODAY ═══
 (function initRecToday(){
@@ -6386,7 +6125,7 @@ function renderRecDash(cont){
     {id:'todo',   icon:'✅', label:getLang()==='en'?'To-do':'Зробити'},
   ];
 
-  const CAT_ICONS = {watch:'🎥',play:'🎮',listen:'🎵',read:'📖',todo:'🗒️'};
+  const CAT_ICONS = MEDIA74_CATS;
   if(!S.uiRecCats) S.uiRecCats = {};
 
   function getCurrentCat(){
@@ -6415,12 +6154,12 @@ function renderRecDash(cont){
   }
 
   function renderRecList(){
-    const d = ensureDayRecs();
+    const d = S.days[activeDay]||{};
     const listEl = mountList();
     if(!listEl) return;
     const cat = getCurrentCat();
     document.querySelectorAll('.rec-cat-btn').forEach(b => b.classList.toggle('active', b.dataset.rcat === cat));
-    const recs = d.recs.filter(r => !r.done && r.cat === cat);
+    const recs = (d.recs||[]).filter(r => !r.done && !r.mediaId && r.cat === cat);
     if(!recs.length){
       listEl.innerHTML = '';
       return;
@@ -6434,30 +6173,16 @@ function renderRecDash(cont){
   }
 
   window.delRecToday = function(id){
-    const d = ensureDayRecs();
-    d.recs = d.recs.filter(r => r.id !== id);
-    save();
-    renderRecList();
+    if(media74Commit(()=>{const d=ensureDayRecs();d.recs=d.recs.filter(r=>r.id!==id);}))media74Refresh();
   };
 
   function addRec(){
     const input = document.getElementById('rec-input');
     const name = input ? input.value.trim() : '';
     if(!name) return;
-    const d = ensureDayRecs();
-    const cat = getCurrentCat();
-    d.recs.push({
-      id: Date.now().toString(),
-      cat,
-      name,
-      done: false,
-      doneDate: null,
-      addedDate: activeDay
-    });
-    save();
-    if(input){ input.value = ''; input.focus(); }
-    renderRecList();
-    showToast('Додано до рекомендацій');
+    const cat=getCurrentCat();
+    if(!media74Commit(()=>{ensureDayRecs().recs.push({id:media74Id(),cat,name,done:false,doneDate:null,addedDate:activeDay});}))return;
+    if(input){input.value='';input.focus();}media74Refresh();showToast(t('m74_rec_added'));
   }
 
   document.querySelectorAll('.rec-cat-btn').forEach(btn => {
@@ -6489,6 +6214,7 @@ function renderRecDash(cont){
     }
   });
 
+  window.renderRecToday74=renderRecList;
   document.addEventListener('dayChanged', renderRecList);
   renderRecList();
 })();
@@ -8157,7 +7883,7 @@ async function generateMonthPanorama(mo){
   moDays.forEach(k=>{ Object.entries(S.days[k]?.habits||{}).forEach(([h,v])=>{ if(v) habitCounts[h]=(habitCounts[h]||0)+1; }); });
   const topHabits = Object.entries(habitCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([h,c])=>`${h}: ${c}/${moDays.length}`).join(', ');
 
-  const mediaCounts = {read:0, watch:0, play:0};
+  const mediaCounts = {read:0, watch:0, play:0, listen:0};
   moDays.forEach(k=>{ (S.days[k]?.media||[]).forEach(m=>{ if(mediaCounts[m.cat]!==undefined) mediaCounts[m.cat]++; }); });
   const mediaSummary = Object.entries(mediaCounts).filter(([,c])=>c>0).map(([c,n])=>`${c}:${n}`).join(', ');
 
@@ -9411,60 +9137,17 @@ renderStats();
 if(typeof renderDigestBadge==='function') renderDigestBadge();
 
 function renderCarryMedia(){
-  const wrap=document.getElementById('media-carry-wrap');
-  if(!wrap)return;
-  const active=[],paused=[];
-  Object.keys(S.days).sort().reverse().forEach(k=>{
-    if(k===TODAY)return;
-    (S.days[k].media||[]).forEach(m=>{
-      if(m.cat!==mediaCat)return;
-      if(m.status==='active')active.push({...m,_day:k});
-      else if(m.status==='pause')paused.push({...m,_day:k});
-    });
-  });
-  const uniqFn=arr=>{const s=new Set();return arr.filter(m=>{const k=m.name.toLowerCase();if(s.has(k))return false;s.add(k);return true;});};
-  const todayNames=new Set((day().media||[]).filter(m=>m.cat===mediaCat).map(m=>m.name.toLowerCase()));
-  // Collect ALL media across all past days, then dedupe by name (keeping most recent)
-  const allPastMedia=[];
-  Object.keys(S.days).sort().reverse().forEach(k=>{
-    if(k===activeDay)return;
-    (S.days[k].media||[]).forEach(m=>{
-      if(m.cat!==mediaCat)return;
-      allPastMedia.push({...m,_day:k});
-    });
-  });
-  // Dedupe by name — keep first occurrence (most recent day due to sort().reverse())
-  const seenAll=new Set();
-  const dedupedPast=allPastMedia.filter(m=>{
-    const key=m.name.toLowerCase();
-    if(seenAll.has(key))return false;
-    seenAll.add(key);return true;
-  });
-  const ua=dedupedPast.filter(m=>m.status==='active'&&!todayNames.has(m.name.toLowerCase()));
-  const up=dedupedPast.filter(m=>m.status==='pause'&&!todayNames.has(m.name.toLowerCase()));
-  let html='';
-  if(ua.length){
-    html+=`<div style="margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--div)"><div style="font-size:10px;font-weight:600;color:var(--txf);text-transform:uppercase;letter-spacing:.04em;margin-bottom:var(--s2)">${t('media_continuing')}</div>`;
-    html+=ua.map(m=>`<div class="media-item"><div class="media-item-icon">${MCAT[m.cat].icon}</div><div style="flex:1;min-width:0"><div class="media-item-name">${esc(m.name)}</div><div class="media-item-status" style="font-size:10px;color:var(--txf)">${fmtLabel(m._day)}</div></div><button class="media-btn done" data-mcarry="${esc(m.name)}" data-mcat="${esc(m.cat)}">${t('media_add_today')}</button></div>`).join('');
-    html+='</div>';
+  const wrap=document.getElementById('media-carry-wrap');if(!wrap)return;
+  const today=S.days[activeDay]?.media||[];
+  const items=media74Latest(S,activeDay).filter(m=>m.cat===mediaCat&&m._date<activeDay&&['active','pause','planned'].includes(m.status)&&!today.some(x=>m.mediaId&&x.mediaId===m.mediaId));
+  wrap.innerHTML='';
+  for(const status of ['active','pause','planned']){
+    const groupItems=items.filter(m=>m.status===status);if(!groupItems.length)continue;
+    const group=document.createElement('details');group.className='m74-carry';group.open=status==='active';group.innerHTML=`<summary>${esc(t('m74_'+status))} (${groupItems.length})</summary>`;
+    groupItems.forEach(m=>{const row=document.createElement('div');row.className='m74-row';row.innerHTML=`<div class="m74-title"><span>${MEDIA74_CATS[m.cat]}</span><button type="button" class="m74-name" aria-expanded="false">${esc(m.name)}</button></div><div class="m74-meta">${esc(m._date)}</div>${media74Button(t('media_add_today'),'carry')}`;
+      row.querySelector('[data-action=carry]').onclick=()=>{if(media74Commit(()=>{const source=media74EnsureEntry(S.days[m._date].media[m._index]);const entry=media74AddSnapshot(source,activeDay,'active');entry.status='active';delete entry.completedDate;}))media74Refresh();};group.append(row);
+    });wrap.append(group);
   }
-  if(up.length){
-    html+=`<div style="margin-top:var(--s3);padding-top:var(--s2);border-top:1px solid var(--div)"><div class="mcph" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:var(--s1) 0"><span style="font-size:10px;font-weight:600;color:var(--txf);text-transform:uppercase;letter-spacing:.04em">${t('media_paused')} (${up.length})</span><span class="mcpa" style="color:var(--txf);font-size:1rem;transition:transform .25s;display:inline-block">›</span></div><div class="mcpl" style="display:none">`;
-    html+=up.map(m=>`<div class="media-item" style="opacity:.8"><div class="media-item-icon">${MCAT[m.cat].icon}</div><div style="flex:1;min-width:0"><div class="media-item-name">${esc(m.name)}</div><div class="media-item-status" style="font-size:10px;color:var(--txf)">${fmtLabel(m._day)}</div></div><button class="media-btn" data-mcarry="${esc(m.name)}" data-mcat="${esc(m.cat)}">${t('media_resume')}</button></div>`).join('');
-    html+='</div></div>';
-  }
-  wrap.innerHTML=html;
-  wrap.querySelectorAll('.mcph').forEach(h=>h.addEventListener('click',()=>{
-    const l=h.nextElementSibling,a=h.querySelector('.mcpa'),open=l.style.display==='none';
-    l.style.display=open?'':'none';a.style.transform=open?'rotate(90deg)':'';
-  }));
-  wrap.querySelectorAll('[data-mcarry]').forEach(btn=>btn.addEventListener('click',()=>{
-    const name=btn.dataset.mcarry,cat=btn.dataset.mcat;
-    const d=day();if(!d.media)d.media=[];
-    if(d.media.find(x=>x.name.toLowerCase()===name.toLowerCase()&&x.cat===cat))return;
-    d.media.push({name,cat,status:'active',rating:0});
-    markNow();renderMediaList();renderCarryMedia();
-  }));
 }
 
 document.addEventListener('pointerdown',function(e){const sh=document.getElementById('idea-detail-sheet');if(!sh||!sh.classList.contains('open'))return;if(sh.contains(e.target))return;closeIdeaDetail();},true);
@@ -9473,7 +9156,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
 
   <script>
     // ── MEDIA STEP 2 ──
-    const MCAT = {watch:{icon:'📺',get label(){return t('media_cat_watch');}}, read:{icon:'📚',get label(){return t('media_cat_read');}}, play:{icon:'🎮',get label(){return t('media_cat_play');}}};
+    const MCAT = {watch:{icon:'📺',get label(){return t('media_cat_watch');}}, read:{icon:'📚',get label(){return t('media_cat_read');}}, play:{icon:'🎮',get label(){return t('media_cat_play');}}, listen:{icon:'🎵',get label(){return t('media_cat_listen');}}};
     let mediaCat = 'watch';
 
     function mediaDay(){
@@ -9482,7 +9165,8 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
     }
 
     function renderMediaList(){
-      const all = mediaDay();
+      const all = S.days[activeDay]?.media||[];
+      document.querySelectorAll('.media-tab').forEach(b=>b.classList.toggle('active',b.dataset.mcat===mediaCat));
       const items = all.filter(m => m.cat === mediaCat);
       const el = document.getElementById('media-list');
       if(!items.length){
@@ -9491,7 +9175,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
       }
       el.innerHTML = items.map(m => {
         const ri = all.indexOf(m);
-        const st = m.status || 'active';
+        const st = media74Status(m);
         const stars = st==='done'
           ? `<div class="media-stars">${[1,2,3,4,5].map(n =>
               `<span class="media-star${(m.rating||0)>=n?' on':''}" data-ri="${esc(ri)}" data-s="${esc(n)}">⭐</span>`).join('')}</div>`
@@ -9536,18 +9220,14 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
       el.querySelectorAll('[data-a]').forEach(btn => {
         btn.addEventListener('click', () => {
           const ri = parseInt(btn.dataset.ri), a = btn.dataset.a;
-          const md = mediaDay();
-          if(a==='del'){ md.splice(ri,1); }
-          else { md[ri].status = a; if(a==='active'||a==='pause') md[ri].rating = 0; }
-          markNow(); renderMediaList();
+          media74SetStatus(activeDay,ri,a);
         });
       });
 
       el.querySelectorAll('.media-star').forEach(s => {
         s.addEventListener('click', () => {
           const ri = parseInt(s.dataset.ri), n = parseInt(s.dataset.s);
-          mediaDay()[ri].rating = n;
-          markNow(); renderMediaList();
+          if(media74Commit(()=>{mediaDay()[ri].rating=n;}))media74Refresh();
         });
       });
 
@@ -9557,8 +9237,8 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
           const ta = el.querySelector(`.media-note[data-ri="${ri}"]`);
           const box = el.querySelector(`.media-done-note[data-ri="${ri}"]`);
           const noteText = (ta?.value || '').trim();
-          mediaDay()[ri].note = noteText;
-          markNow();
+          if(!media74Commit(()=>{mediaDay()[ri].note=noteText;}))return;
+          document.dispatchEvent(new Event('media74change'));
           if(box) box.style.display = 'none';
           let line = el.querySelector(`.media-note-line[data-ri="${ri}"]`);
           if(!line && noteText){
@@ -9617,13 +9297,12 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
       const inp = document.getElementById('media-in');
       const name = inp.value.trim();
       if(!name) return;
-      const md = mediaDay();
+      const md = S.days[activeDay]?.media||[];
       if(!md.find(m => m.name === name && m.cat === mediaCat)){
-        md.push({name, cat: mediaCat, status:'active'});
-        markNow();
+        if(!media74Commit(()=>{media74AddSnapshot({name,cat:mediaCat},activeDay);}))return;
       }
       inp.value = '';
-      renderMediaList();
+      media74Refresh();
     }
     document.getElementById('media-add-btn').addEventListener('click', mediaAdd);
     document.getElementById('media-in').addEventListener('keydown', e => { if(e.key==='Enter') mediaAdd(); });
@@ -9878,7 +9557,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
           h+=`<div class="drawer-row"><div class="drawer-row-label">🙏 ${getLang()==='en'?'Gratitude':'Вдячність'}</div><div class="drawer-row-text">${d.gratitude.filter(x=>x&&x.trim()).map((x,i)=>`${i+1}. ${esc(x)}`).join('<br>')}</div></div>`;
         }
         if(d.media&&d.media.length){
-          const icons={watch:'📺',read:'📚',play:'🎮'};const st={done:'✅',pause:'⏸',active:''};
+          const icons=MEDIA74_CATS;const st={done:'✅',pause:'⏸',active:''};
           h+=`<div class="drawer-row"><div class="drawer-row-label">🎬 ${getLang()==='en'?'Media':'Медіа'}</div><div class="drawer-row-text">${d.media.map(m=>`${icons[m.cat]||'🎬'} ${esc(m.name)} ${st[m.status]||''}`).join('<br>')}</div></div>`;
         }
         if(dayIdeasForDisplay(k).length){

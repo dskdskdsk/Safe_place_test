@@ -47,7 +47,7 @@ horizontal centering, page-scroll dismissal, internal scrolling, compact calenda
 and delayed display of the current day's status sticker.
 Results/screenshots: `tests/artifacts/edit731/`.
 
-73.1 collapse persistence: `python tests/collapse731.py` — fresh-journal defaults for all
-Today and Dashboard modules plus collapsible Settings groups; independent open/closed
-state, language and theme persistence across two reloads. Results/screenshots:
-`tests/artifacts/collapse731/`.
+37.2 collapse persistence: `python tests/collapse731.py` — fixed Today cards remain open
+without collapse controls; only pre-existing collapsible Today, Dashboard and Settings
+modules start closed and persist independent state, language and theme across two reloads.
+Results/screenshots: `tests/artifacts/collapse372/`.

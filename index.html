@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 73.0
-  Файл: 73.0_safe-place.html
-  Зміни 73.0 Day in the past: спогади місяць і рік тому, лише перегляд.
+  ЩОДЕННИК · ВЕРСІЯ 73.1
+  Файл: 73.1_edit-existing.html
+  Зміни 73.1: редагування ідей, подій, власних емоцій, медіа та рекомендацій.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -361,7 +361,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 73.0 Day in the past</title>
+<title>Safe Place · 73.1 Edit existing</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -441,6 +441,18 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .etxt{flex:1;line-height:1.5}
 .etime{font-size:10px;color:var(--txf);flex-shrink:0;margin-top:2px}
 .edel{color:var(--txf);padding:0 var(--s1);font-size:var(--xs);flex-shrink:0}
+.entry-edit-btn{width:28px;height:28px;min-width:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--txf);background:transparent;font-size:11px;opacity:.72;flex-shrink:0}
+.entry-edit-btn:active{background:var(--dyn);color:var(--pri);opacity:1}
+.entry-inline-edit{display:flex;flex:1;min-width:0;gap:6px;align-items:flex-start}
+.entry-inline-edit textarea,.entry-inline-edit input{flex:1;min-width:0;padding:6px 8px;border:1px solid var(--bdr);border-radius:var(--r2);background:var(--surface);color:var(--tx);font:inherit;line-height:1.4;resize:none}
+.entry-inline-edit textarea:focus,.entry-inline-edit input:focus{outline:none;border-color:var(--pri)}
+.entry-inline-actions{display:flex;gap:4px;flex-shrink:0}
+.entry-inline-action{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--bdr);color:var(--txm);font-size:13px}
+.entry-inline-action.save{background:var(--fill);border-color:var(--fill);color:#fff}
+.edit-text-dialog{width:calc(100% - 32px);max-width:390px;margin:auto;padding:20px;border:1px solid var(--bdr);border-radius:var(--r4);background:var(--surface);color:var(--tx);box-shadow:var(--sh3)}
+.edit-text-dialog::backdrop{background:rgb(0 0 0/.48)}
+.edit-text-dialog h3{font-size:var(--base);margin:0 0 12px}.edit-text-dialog input{width:100%;margin-bottom:12px}.edit-text-dialog-actions{display:flex;gap:8px;justify-content:flex-end}.edit-text-dialog-actions button{min-height:38px;padding:7px 14px;border-radius:var(--rf);border:1px solid var(--bdr);background:var(--off);color:var(--txm);font-size:var(--xs)}.edit-text-dialog-actions .save{background:var(--fill);border-color:var(--fill);color:#fff}
+.custom-emotion-editing{box-shadow:0 0 0 2px oklch(from var(--pri) l c h/.22)}
 
 /* EMOTIONS */
 .egrid{display:flex;flex-wrap:wrap;gap:var(--s2)}
@@ -2116,13 +2128,13 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   today_rating_hint:'Оціни день від 1 до 10',
   today_ai_btn:'Резюме дня від АІ',voice_rec_hint:'Запис голосового...',today_ai_update:'Оновити резюме',
   today_add_photo:'Додати',today_custom_status_ph:'Назва статусу...',today_travel_ph:'Куди / уточнення...',
-  media_name_ph:'Назва...',rec_name_ph:'Назва...',plus_custom:'+ Свій',
+  media_name_ph:'Назва...',rec_name_ph:'Назва...',plus_custom:'+ Свій',edit_item:'Редагувати',edit_save:'Зберегти',edit_cancel:'Скасувати',edit_idea:'Редагувати ідею',edit_event:'Редагувати подію',edit_media:'Редагувати назву медіа',edit_rec:'Редагувати рекомендацію',edit_emotion:'Редагувати власну емоцію',edit_emotion_hint:'Подвійний тап — редагувати',edit_duplicate_emotion:'Така власна емоція вже існує.',
   rec_cat_watch:'Подивитись',rec_cat_play:'Пограти',rec_cat_listen:'Послухати',
   rec_cat_read:'Почитати',rec_cat_todo:'Зробити',rec_cat_archive:'📦 Архів',
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 73.0',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 73.1',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2215,13 +2227,13 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   today_rating_hint:'Rate your day from 1 to 10',
   today_ai_btn:'Day summary from AI',voice_rec_hint:'Recording voice message...',today_ai_update:'Refresh summary',
   today_add_photo:'Add',today_custom_status_ph:'Status name...',today_travel_ph:'Destination / details...',
-  media_name_ph:'Title...',rec_name_ph:'Name...',plus_custom:'+ Custom',
+  media_name_ph:'Title...',rec_name_ph:'Name...',plus_custom:'+ Custom',edit_item:'Edit',edit_save:'Save',edit_cancel:'Cancel',edit_idea:'Edit idea',edit_event:'Edit event',edit_media:'Edit media title',edit_rec:'Edit recommendation',edit_emotion:'Edit custom emotion',edit_emotion_hint:'Double tap to edit',edit_duplicate_emotion:'This custom emotion already exists.',
   rec_cat_watch:'Watch',rec_cat_play:'Play',rec_cat_listen:'Listen',
   rec_cat_read:'Read',rec_cat_todo:'To-do',rec_cat_archive:'📦 Archive',
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 73.0',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 73.1',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -3354,6 +3366,37 @@ function keyToUTCDate(key){
 
 function mark(){dirty=true;scheduleAutosave();}          // typing: debounced autosave
 function markNow(){dirty=true;return persist();}          // discrete action: saved immediately
+function edit73Commit(mutator){
+  if(!flushAutosave())return false;
+  const before=JSON.stringify(S);
+  try{mutator();if(markNow())return true;}catch(e){console.error('Edit failed:',e);}
+  S=JSON.parse(before);dirty=false;hideFab();return false;
+}
+function beginInlineTextEdit(row,current,commit,refresh,multiline=true){
+  if(!row||row.classList.contains('is-editing'))return;
+  row.classList.add('is-editing');row.innerHTML='';
+  const wrap=document.createElement('div');wrap.className='entry-inline-edit';
+  const input=document.createElement(multiline?'textarea':'input');input.value=current;input.maxLength=500;input.setAttribute('aria-label',t('edit_item'));if(multiline)input.rows=2;else input.type='text';
+  const actions=document.createElement('div');actions.className='entry-inline-actions';
+  const saveBtn=document.createElement('button');saveBtn.type='button';saveBtn.className='entry-inline-action save';saveBtn.textContent='✓';saveBtn.setAttribute('aria-label',t('edit_save'));
+  const cancelBtn=document.createElement('button');cancelBtn.type='button';cancelBtn.className='entry-inline-action';cancelBtn.textContent='×';cancelBtn.setAttribute('aria-label',t('edit_cancel'));
+  const save=()=>{const value=input.value.trim();if(!value)return;if(edit73Commit(()=>commit(value)))refresh();};
+  saveBtn.addEventListener('click',save);cancelBtn.addEventListener('click',refresh);
+  input.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();refresh();}else if(e.key==='Enter'&&(!multiline||!e.shiftKey)){e.preventDefault();save();}});
+  actions.append(saveBtn,cancelBtn);wrap.append(input,actions);row.append(wrap);input.focus();input.setSelectionRange(input.value.length,input.value.length);
+}
+function openTextEditDialog(title,current,onSave){
+  const dialog=document.createElement('dialog');dialog.className='edit-text-dialog';
+  const heading=document.createElement('h3');heading.textContent=title;
+  const input=document.createElement('input');input.className='txt-input';input.type='text';input.maxLength=80;input.value=current;
+  const actions=document.createElement('div');actions.className='edit-text-dialog-actions';
+  const cancel=document.createElement('button');cancel.type='button';cancel.textContent=t('edit_cancel');
+  const save=document.createElement('button');save.type='button';save.className='save';save.textContent=t('edit_save');
+  const close=()=>{dialog.close();dialog.remove();};
+  const submit=()=>{const value=input.value.trim();if(!value)return;if(onSave(value)!==false)close();};
+  cancel.onclick=close;save.onclick=submit;input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();submit();}else if(e.key==='Escape'){e.preventDefault();close();}});
+  dialog.addEventListener('cancel',e=>{e.preventDefault();close();});actions.append(cancel,save);dialog.append(heading,input,actions);document.body.append(dialog);dialog.showModal();requestAnimationFrame(()=>{input.focus();input.select();});
+}
 function showFab(){document.getElementById('save-fab').classList.add('on');}
 function hideFab(){document.getElementById('save-fab').classList.remove('on');}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
@@ -3534,6 +3577,31 @@ function emotionColor(id){
   return level==='pos'?'var(--suc)':level==='neg'?'var(--err)':'var(--gold)';
 }
 
+function renameCustomEmotion(oldLabel,newLabel){
+  const value=String(newLabel||'').trim();if(!value||value===oldLabel)return value===oldLabel;
+  const duplicate=(S.customEmotions||[]).some(e=>(typeof e==='string'?e:e.label)===value);
+  if(duplicate){showToast(t('edit_duplicate_emotion'));return false;}
+  const oldId='c_'+oldLabel,newId='c_'+value;
+  const ok=edit73Commit(()=>{
+    S.customEmotions=(S.customEmotions||[]).map(e=>{
+      const label=typeof e==='string'?e:e.label;if(label!==oldLabel)return e;
+      return typeof e==='string'?value:{...e,label:value};
+    });
+    Object.values(S.days||{}).forEach(d=>{
+      (d.emotions||[]).forEach(em=>{if(em.id===oldId)em.id=newId;});
+      (d.summaryEntries||[]).forEach(entry=>{
+        if(!Array.isArray(entry.emotions))return;
+        entry.emotions=entry.emotions.map(link=>{
+          if(typeof link==='string')return link===oldId?newId:link;
+          if(link&&link.id===oldId)link.id=newId;return link;
+        });
+      });
+    });
+  });
+  if(ok){renderEmotions();if(typeof renderSummaryEntries==='function')renderSummaryEntries();renderStats();}
+  return ok;
+}
+
 function renderEmotions(){
   const grid=document.getElementById('egrid');
   const noteArea=document.getElementById('emotion-notes-area');
@@ -3570,6 +3638,7 @@ function renderEmotions(){
       btn.dataset.id=em.id;btn.dataset.cls=em.cls;
       btn.textContent=em.label;
       if(em.id.startsWith('c_')){
+        btn.title=t('edit_emotion_hint');
         const del=document.createElement('span');
         del.textContent=' ×';
         del.style.cssText='opacity:.6;font-weight:700;margin-left:2px';
@@ -3591,8 +3660,7 @@ function renderEmotions(){
         });
         btn.appendChild(del);
       }
-      btn.addEventListener('click',(e)=>{
-        if(e.target.tagName==='SPAN')return;
+      const toggleEmotion=()=>{
         const idx=d.emotions.findIndex(x=>x.id===em.id);
         if(idx>=0){
           const stillLinked=ensureSummaryEntries(d).some(en=>ensureEntryEmotions(en).some(link=>link.id===em.id));
@@ -3601,6 +3669,18 @@ function renderEmotions(){
         }
         else{d.emotions.push({id:em.id,note:'',isManual:true,comments:[]});}
         markNow();renderEmotions();
+      };
+      let customTapAt=0,customTapTimer=null;
+      btn.addEventListener('click',(e)=>{
+        if(e.target.tagName==='SPAN')return;
+        if(!em.id.startsWith('c_')){toggleEmotion();return;}
+        const now=Date.now();
+        if(now-customTapAt<430){
+          clearTimeout(customTapTimer);customTapAt=0;btn.classList.add('custom-emotion-editing');
+          openTextEditDialog(t('edit_emotion'),em.label,value=>renameCustomEmotion(em.label,value));
+          return;
+        }
+        customTapAt=now;customTapTimer=setTimeout(()=>{customTapAt=0;toggleEmotion();},320);
       });
       grid.appendChild(btn);
     });
@@ -4507,17 +4587,35 @@ function setupList(inId,btnId,listId,field,dot,withTime=false){
 }
 
 function renderList(list,field,dot,withTime=false){
-  const items=field==='ideas' ? dayIdeasForDisplay(activeDay) : (day()[field]||[]);
+  const items=field==='ideas' ? dayIdeaNodes(activeDay) : (day()[field]||[]);
   list.innerHTML='';
   items.forEach((item,i)=>{
-    const txt=withTime?(item.text||item):item;
+    const txt=field==='ideas'?item.text:(withTime?(item.text||item):item);
     const time=withTime&&item.time?item.time:null;
     const li=document.createElement('li');li.className='eitem';
-    li.innerHTML=`<div class="edot" style="background:${esc(dot)}"></div><span class="etxt">${esc(txt)}</span>${time?`<span class="etime">${esc(time)}</span>`:''}<button class="edel" data-i="${esc(i)}" aria-label="Видалити">✕</button>`;
+    li.innerHTML=`<div class="edot" style="background:${esc(dot)}"></div><span class="etxt">${esc(txt)}</span>${time?`<span class="etime">${esc(time)}</span>`:''}<button type="button" class="entry-edit-btn" data-edit="${esc(i)}" aria-label="${esc(field==='ideas'?t('edit_idea'):t('edit_event'))}">✏️</button><button class="edel" data-i="${esc(i)}" aria-label="${getLang()==='en'?'Delete':'Видалити'}">✕</button>`;
     list.appendChild(li);
   });
+  list.querySelectorAll('[data-edit]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const i=+b.dataset.edit,item=items[i];if(!item)return;
+      const current=field==='ideas'?item.text:(withTime?(item.text||item):item);
+      beginInlineTextEdit(b.closest('.eitem'),current,value=>{
+        if(field==='ideas'){
+          const found=findIdeaNode(item.id);if(!found)throw new Error('Idea no longer exists');found.node.text=value;
+        }else{
+          const target=day()[field][i];day()[field][i]=withTime&&target&&typeof target==='object'?{...target,text:value}:value;
+        }
+      },()=>{renderList(list,field,dot,withTime);renderStats();},true);
+    });
+  });
   list.querySelectorAll('.edel').forEach(b=>{
-    b.addEventListener('click',()=>{day()[field].splice(+b.dataset.i,1);markNow();renderList(list,field,dot,withTime);renderStats();});
+    b.addEventListener('click',()=>{
+      const i=+b.dataset.i;
+      if(field==='ideas'){const item=items[i];if(item)deleteIdeaById(item.id);}
+      else edit73Commit(()=>day()[field].splice(i,1));
+      renderList(list,field,dot,withTime);renderStats();
+    });
   });
 }
 
@@ -4607,7 +4705,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='73.0';
+const APP_VERSION='73.1';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -6426,11 +6524,16 @@ function renderRecDash(cont){
       return;
     }
     listEl.innerHTML = recs.map(r => `
-      <div style="display:flex;align-items:center;gap:var(--s2);padding:var(--s2) var(--s2);background:var(--off);border-radius:var(--r2)">
+      <div class="rec-today-item" style="display:flex;align-items:center;gap:var(--s2);padding:var(--s2) var(--s2);background:var(--off);border-radius:var(--r2)">
         <span>${CAT_ICONS[r.cat]||'📋'}</span>
         <span style="font-size:var(--sm);color:var(--tx);flex:1">${esc(r.name)}</span>
+        <button type="button" class="entry-edit-btn" data-rec-edit="${esc(r.id)}" aria-label="${esc(t('edit_rec'))}">✏️</button>
         <button data-rid="${esc(r.id)}" onclick="delRecToday(this.dataset.rid)" style="font-size:var(--xs);color:var(--txm);background:none;border:none;cursor:pointer;padding:2px 4px">✕</button>
       </div>`).join('');
+    listEl.querySelectorAll('[data-rec-edit]').forEach(btn=>btn.addEventListener('click',()=>{
+      const item=d.recs.find(r=>r.id===btn.dataset.recEdit);if(!item)return;
+      beginInlineTextEdit(btn.closest('.rec-today-item'),item.name,value=>{item.name=value;},renderRecList,false);
+    }));
   }
 
   window.delRecToday = function(id){
@@ -6949,9 +7052,12 @@ function bindIdeaNodeEvents(container,en){
 }
 
 function dayIdeasForDisplay(dateKey){
+  return dayIdeaNodes(dateKey).map(n=>n.text);
+}
+function dayIdeaNodes(dateKey){
   migrateIdeasToTree();
   const tree=ensureIdeaTree();
-  return (tree.roots||[]).filter(n=>n.date===dateKey).map(n=>n.text);
+  return (tree.roots||[]).filter(n=>n.date===dateKey);
 }
 function dayIdeasCount(dateKey){
   return dayIdeasForDisplay(dateKey).length;
@@ -9525,6 +9631,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
             <div style="flex:1;min-width:0">
               <div class="media-item-name">${esc(m.name)}</div>
             </div>
+            <button type="button" class="entry-edit-btn" data-media-edit="${esc(ri)}" aria-label="${esc(t('edit_media'))}">✏️</button>
           </div>
           ${stars}
           ${noteLine}
@@ -9532,6 +9639,11 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
           ${actRow}
         </div>`;
       }).join('');
+
+      el.querySelectorAll('[data-media-edit]').forEach(btn=>btn.addEventListener('click',()=>{
+        const ri=parseInt(btn.dataset.mediaEdit),item=mediaDay()[ri];if(!item)return;
+        beginInlineTextEdit(btn.closest('.media-item'),item.name,value=>{mediaDay()[ri].name=value;},()=>{renderMediaList();renderCarryMedia();renderStats();},false);
+      }));
 
       el.querySelectorAll('[data-a]').forEach(btn => {
         btn.addEventListener('click', () => {

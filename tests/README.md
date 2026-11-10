@@ -37,3 +37,8 @@ read-only storage invariants, actual IndexedDB audio/photos, draft/save/recordin
 late/corrupt media, focus/Escape, UK/EN, themes and mobile layout. Synthetic touch events
 check gesture filtering; physical Safari/PWA gestures still require the iPhone checklist
 in QA-73.0.md. Results/screenshots: `tests/artifacts/memories73/`.
+
+73.1 editing: `python tests/edit731.py` — inline edit/save/cancel for ideas, events, media
+and recommendations; custom-emotion double tap and global reference rename; injected
+storage failure rollback, reload persistence, UK/EN, both themes and 320–1024 px layouts.
+Results/screenshots: `tests/artifacts/edit731/`.

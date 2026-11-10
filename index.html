@@ -1175,9 +1175,10 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .summary-page-btn:disabled{opacity:.4;cursor:default}
 .summary-page-label{font-size:var(--xs);color:var(--txm);font-weight:600}
 .summary-entry-excluded{opacity:.55;background:linear-gradient(135deg,var(--txm) 0%,var(--txf) 100%)}
-.summary-entry-del.summary-entry-del-armed{background:var(--err);color:#fff;font-size:10px;font-weight:700;width:auto;padding:0 8px;border-radius:12px}
+.summary-entry-del.summary-entry-del-armed{background:var(--err);color:#fff}
 .summary-compose{display:flex;flex-direction:row;align-items:flex-end;gap:var(--s2);width:100%}
 .summary-compose .summary-wrap{flex:1 1 auto;min-width:0}
+.summary-compose.voice-visible #day-summary{min-height:calc(88px + var(--s2))!important}
 .summary-send-btn{flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--fill);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .1s,opacity .15s}
 .summary-send-btn:active{opacity:.8}
 .summary-send-btn:disabled{opacity:.4;cursor:default}
@@ -1360,7 +1361,7 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 #ibank-dash-card>.ibank-dash-head>.mood-coll-btn{flex:0 0 30px;width:30px;height:30px}
 .ibank-actions .ibank-act{min-height:26px;height:26px;width:auto;padding:2px 10px;border-radius:var(--rf);line-height:1}
 .ibank-actions :is(.idea-add-child-btn,.ibank-del){min-width:34px;width:34px;padding:0}
-.cal-day{position:relative}.cal-status-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);font-size:20px;line-height:1;filter:drop-shadow(0 1px 1px oklch(0% 0 0/.12));pointer-events:none}
+.cal-day{position:relative}.cal-status-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);font-size:13px;line-height:1;filter:drop-shadow(0 1px 1px oklch(0% 0 0/.10));pointer-events:none}
 
 </style>
 <script>
@@ -2921,7 +2922,6 @@ function renderSummaryEntries(){
     const id=btn.dataset.seDel;
     if(btn.dataset.confirmArm!=='1'){
       btn.dataset.confirmArm='1';
-      btn.textContent=en?'Sure?':'Точно?';
       btn.classList.add('summary-entry-del-armed');
       clearTimeout(btn._armTimer);
       btn._armTimer=setTimeout(()=>{btn.dataset.confirmArm='0';btn.textContent='✕';btn.classList.remove('summary-entry-del-armed');},2500);
@@ -3442,8 +3442,10 @@ document.getElementById('streak-vis-tog').addEventListener('click',function(){
 // ── Voice recording visibility toggle ──
 function applyVoiceVisibility(){
   const micBtn=document.getElementById('voice-mic-btn');
+  const compose=document.getElementById('summary-compose');
   const show=S.settings.showVoice!==false;
   if(micBtn) micBtn.style.display=show?'':'none';
+  if(compose) compose.classList.toggle('voice-visible',show);
   const tog=document.getElementById('voice-vis-tog');
   if(tog){ tog.classList.toggle('on',show); tog.setAttribute('aria-checked',show); }
 }
@@ -4606,7 +4608,7 @@ function renderList(list,field,dot,withTime=false){
         }else{
           const target=day()[field][i];day()[field][i]=withTime&&target&&typeof target==='object'?{...target,text:value}:value;
         }
-      },()=>{renderList(list,field,dot,withTime);renderStats();},true);
+      },()=>{renderList(list,field,dot,withTime);renderStats();},false);
     });
   });
   list.querySelectorAll('.edel').forEach(b=>{

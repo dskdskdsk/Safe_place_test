@@ -40,5 +40,6 @@ in QA-73.0.md. Results/screenshots: `tests/artifacts/memories73/`.
 
 73.1 editing: `python tests/edit731.py` — inline edit/save/cancel for ideas, events, media
 and recommendations; custom-emotion double tap and global reference rename; injected
-storage failure rollback, reload persistence, UK/EN, both themes and 320–1024 px layouts.
+storage failure rollback, reload persistence, matching one-row editors, voice composer
+alignment, delete confirmation and calendar sticker sizing; UK/EN, both themes and 320–1024 px layouts.
 Results/screenshots: `tests/artifacts/edit731/`.

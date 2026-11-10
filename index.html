@@ -669,16 +669,19 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .se-emo-tag-note-popover{position:absolute;top:calc(100% + 6px);left:0;z-index:90;min-width:160px;max-width:220px;background:var(--surface);border:1px solid var(--bdr);border-radius:var(--r2);box-shadow:var(--sh3);padding:8px 10px;color:var(--tx)}
 .se-emo-tag-note-text{font-size:12px;line-height:1.4;color:var(--tx)}
 .se-emo-tag-note-empty{font-size:11px;color:var(--txf);font-style:italic}
-.se-emo-dropdown{position:fixed;top:0;left:0;z-index:9999;margin-top:0;background:var(--surface);border:1px solid var(--bdr);border-radius:var(--r3);box-shadow:var(--sh3);padding:6px;display:none;max-height:220px;overflow-y:auto;max-width:180px;color:var(--tx)}
+.se-emo-dropdown{position:fixed;top:0;left:0;z-index:9999;margin-top:0;background:var(--surface);border:1px solid var(--bdr);border-radius:var(--r3);box-shadow:var(--sh3);padding:8px;display:none;width:min(320px,calc(100vw - 24px));max-height:360px;max-height:min(360px,calc(100dvh - 24px));overflow-y:auto;color:var(--tx);overscroll-behavior:contain}
 .se-emo-dropdown.open{display:block}
+.se-emo-dropdown-head{position:sticky;top:-8px;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:-8px -8px 6px;padding:9px 10px 7px;background:var(--surface);border-bottom:1px solid var(--div)}
+.se-emo-dropdown-title{font-size:var(--xs);font-weight:700;color:var(--tx)}
+.se-emo-dropdown-close{width:32px;height:32px;min-width:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--off);border:1px solid var(--bdr);color:var(--txm);font-size:16px}
 .se-emo-group{border-radius:var(--r2);padding:4px 5px;margin-bottom:4px}
 .se-emo-group:last-child{margin-bottom:0}
 .se-emo-group.pos{background:oklch(from var(--suc) l c h/.10)}
 .se-emo-group.neu{background:oklch(from var(--gold) l c h/.10)}
 .se-emo-group.neg{background:oklch(from var(--err) l c h/.10)}
 .se-emo-group-lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--txm);margin-bottom:3px;padding:0 2px}
-.se-emo-list{display:flex;flex-direction:column;gap:2px}
-.se-emo-row-item{padding:4px 8px;border-radius:var(--r2);font-size:11px;font-weight:500;border:1.5px solid transparent;cursor:pointer;background:var(--surface);color:var(--tx);transition:all var(--tr);white-space:nowrap;line-height:1.3}
+.se-emo-list{display:flex;flex-wrap:wrap;gap:5px}
+.se-emo-row-item{min-height:34px;padding:6px 10px;border-radius:var(--rf);font-size:11px;font-weight:600;border:1.5px solid transparent;cursor:pointer;background:var(--surface);color:var(--tx);transition:all var(--tr);white-space:nowrap;line-height:1.3}
 .se-emo-row-item.active{box-shadow:0 0 0 2px currentColor inset}
 .se-emo-comment-inline{background:oklch(from var(--pri) l c h/.08);border:1px solid oklch(from var(--pri) l c h/.30);border-radius:var(--r2);padding:6px 8px;margin:2px 0 6px 0}
 .se-emo-comment-hdr{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--txm);margin-bottom:4px}
@@ -925,7 +928,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
     .cal-nav-label{font-size:16px;font-weight:800;color:var(--tx);padding:6px 16px;border-radius:0;background:transparent;border:0;letter-spacing:.01em}
     .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;padding:var(--s2) var(--s3) var(--s3);width:100%;box-sizing:border-box;overflow:hidden;}
     .cal-dow{text-align:center;font-size:9px;color:var(--txf);padding:0 0 2px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;opacity:.85}
-    .cal-day{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:4px;padding:6px;border-radius:var(--r2);cursor:pointer;transition:transform var(--tr),background var(--tr),border-color var(--tr),box-shadow var(--tr);aspect-ratio:auto;min-height:72px;min-width:0;box-sizing:border-box;background:var(--off);border:1px solid oklch(from var(--tx) l c h/.06);box-shadow:0 1px 0 oklch(0% 0 0/.03)}
+    .cal-day{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:4px;padding:6px;border-radius:var(--r2);cursor:pointer;transition:transform var(--tr),background var(--tr),border-color var(--tr),box-shadow var(--tr);aspect-ratio:auto;min-height:64px;min-width:0;box-sizing:border-box;background:var(--off);border:1px solid oklch(from var(--tx) l c h/.06);box-shadow:0 1px 0 oklch(0% 0 0/.03)}
     .cal-day:hover{background:oklch(from var(--pri) l c h/.08);border-color:oklch(from var(--pri) l c h/.18);transform:translateY(-1px);box-shadow:0 4px 10px oklch(0% 0 0/.06)}
     .cal-day.today .cal-num{background:var(--fill);color:#fff;border-radius:8px;min-width:22px;height:22px;padding:0 6px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px oklch(from var(--pri) l c h/.14)}
     .cal-day.other-month{opacity:.45}.cal-day.other-month .cal-num{color:var(--txf)}
@@ -1301,7 +1304,7 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 }
 @media(max-width:390px){
  .cal-grid{gap:4px;padding-inline:8px}
- .cal-day{padding:4px;min-height:68px}
+ .cal-day{padding:4px;min-height:60px}
  .media-item-right{flex-basis:100%;align-items:flex-start}
  .media-item>.media-btn{margin-left:auto}
  .status-chip{padding-inline:8px}
@@ -1361,7 +1364,7 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 #ibank-dash-card>.ibank-dash-head>.mood-coll-btn{flex:0 0 30px;width:30px;height:30px}
 .ibank-actions .ibank-act{min-height:26px;height:26px;width:auto;padding:2px 10px;border-radius:var(--rf);line-height:1}
 .ibank-actions :is(.idea-add-child-btn,.ibank-del){min-width:34px;width:34px;padding:0}
-.cal-day{position:relative}.cal-status-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);font-size:13px;line-height:1;filter:drop-shadow(0 1px 1px oklch(0% 0 0/.10));pointer-events:none}
+.cal-day{position:relative}.cal-status-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);font-size:10px;line-height:1;filter:drop-shadow(0 1px 1px oklch(0% 0 0/.08));pointer-events:none}
 
 </style>
 <script>
@@ -2129,7 +2132,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   today_rating_hint:'Оціни день від 1 до 10',
   today_ai_btn:'Резюме дня від АІ',voice_rec_hint:'Запис голосового...',today_ai_update:'Оновити резюме',
   today_add_photo:'Додати',today_custom_status_ph:'Назва статусу...',today_travel_ph:'Куди / уточнення...',
-  media_name_ph:'Назва...',rec_name_ph:'Назва...',plus_custom:'+ Свій',edit_item:'Редагувати',edit_save:'Зберегти',edit_cancel:'Скасувати',edit_idea:'Редагувати ідею',edit_event:'Редагувати подію',edit_media:'Редагувати назву медіа',edit_rec:'Редагувати рекомендацію',edit_emotion:'Редагувати власну емоцію',edit_emotion_hint:'Подвійний тап — редагувати',edit_duplicate_emotion:'Така власна емоція вже існує.',
+  media_name_ph:'Назва...',rec_name_ph:'Назва...',plus_custom:'+ Свій',edit_item:'Редагувати',edit_save:'Зберегти',edit_cancel:'Скасувати',edit_idea:'Редагувати ідею',edit_event:'Редагувати подію',edit_media:'Редагувати назву медіа',edit_rec:'Редагувати рекомендацію',edit_emotion:'Редагувати власну емоцію',edit_emotion_hint:'Подвійний тап — редагувати',edit_duplicate_emotion:'Така власна емоція вже існує.',entry_emotion_title:'Емоція повідомлення',
   rec_cat_watch:'Подивитись',rec_cat_play:'Пограти',rec_cat_listen:'Послухати',
   rec_cat_read:'Почитати',rec_cat_todo:'Зробити',rec_cat_archive:'📦 Архів',
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
@@ -2228,7 +2231,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   today_rating_hint:'Rate your day from 1 to 10',
   today_ai_btn:'Day summary from AI',voice_rec_hint:'Recording voice message...',today_ai_update:'Refresh summary',
   today_add_photo:'Add',today_custom_status_ph:'Status name...',today_travel_ph:'Destination / details...',
-  media_name_ph:'Title...',rec_name_ph:'Name...',plus_custom:'+ Custom',edit_item:'Edit',edit_save:'Save',edit_cancel:'Cancel',edit_idea:'Edit idea',edit_event:'Edit event',edit_media:'Edit media title',edit_rec:'Edit recommendation',edit_emotion:'Edit custom emotion',edit_emotion_hint:'Double tap to edit',edit_duplicate_emotion:'This custom emotion already exists.',
+  media_name_ph:'Title...',rec_name_ph:'Name...',plus_custom:'+ Custom',edit_item:'Edit',edit_save:'Save',edit_cancel:'Cancel',edit_idea:'Edit idea',edit_event:'Edit event',edit_media:'Edit media title',edit_rec:'Edit recommendation',edit_emotion:'Edit custom emotion',edit_emotion_hint:'Double tap to edit',edit_duplicate_emotion:'This custom emotion already exists.',entry_emotion_title:'Message emotion',
   rec_cat_watch:'Watch',rec_cat_play:'Play',rec_cat_listen:'Listen',
   rec_cat_read:'Read',rec_cat_todo:'To-do',rec_cat_archive:'📦 Archive',
   editing_label:'✏️ Editing:',back_today:'← Today',
@@ -2752,7 +2755,7 @@ function renderEntryEmotionUI(entry,en){
       return block;
     }).join('')+`</div>`;
   }
-  html+=`<div class="se-emo-dropdown${isOpen?' open':''}" data-se-emo-dropdown="${esc(entry.id)}">`;
+  html+=`<div class="se-emo-dropdown${isOpen?' open':''}" data-se-emo-dropdown="${esc(entry.id)}"><div class="se-emo-dropdown-head"><span class="se-emo-dropdown-title">${esc(t('entry_emotion_title'))}</span><button type="button" class="se-emo-dropdown-close" data-se-emo-close="${esc(entry.id)}" aria-label="${esc(t('edit_cancel'))}">×</button></div>`;
   const groups=[{level:'pos',cls:'pos',label:en?'Positive':'Позитивні'},{level:'neu',cls:'neu',label:en?'Neutral':'Нейтральні'},{level:'neg',cls:'neg',label:en?'Negative':'Негативні'}];
   const all=allEmotions();
   groups.forEach(grp=>{
@@ -2763,7 +2766,7 @@ function renderEntryEmotionUI(entry,en){
       const active=emos.some(x=>x.id===em.id);
       const chipColor=em.color||MOOD_COLORS[em.id]||'var(--tx)';
       const style=active?`background:${chipColor}22;border-color:${chipColor};color:${chipColor}`:`border-color:${chipColor}40;color:var(--txm)`;
-      html+=`<div class="se-emo-row-item${active?' active':''}" data-se-emo-pick="${esc(entry.id)}" data-emo-id="${esc(em.id)}" style="${esc(style)}">${esc(em.label)}</div>`;
+      html+=`<button type="button" class="se-emo-row-item${active?' active':''}" data-se-emo-pick="${esc(entry.id)}" data-emo-id="${esc(em.id)}" aria-pressed="${active?'true':'false'}" style="${esc(style)}">${active?'✓ ':''}${esc(em.label)}</button>`;
     });
     html+=`</div></div>`;
   });
@@ -2828,8 +2831,8 @@ function renderEntryEmotionCommentSlot(en){
 function positionSeEmoDropdown(triggerEl, dropdownEl){
   if(!triggerEl||!dropdownEl)return;
   const r=triggerEl.getBoundingClientRect();
-  const dw=Math.min(dropdownEl.offsetWidth||180, window.innerWidth-24);
-  const dh=Math.min(dropdownEl.offsetHeight||220, window.innerHeight-24);
+  const dw=Math.min(dropdownEl.offsetWidth||320, window.innerWidth-24);
+  const dh=Math.min(dropdownEl.offsetHeight||360, window.innerHeight-24);
   let top=r.bottom+4;
   let left=r.right-dw;
   if(top+dh>window.innerHeight-12){
@@ -2849,7 +2852,13 @@ if(!window.seEmoRepositionBound){
     const dd=document.querySelector(`[data-se-emo-dropdown="${CSS.escape(openEmoDropdownEntryId)}"]`);
     if(trg&&dd)positionSeEmoDropdown(trg,dd);
   };
-  window.addEventListener('scroll',repositionOpenSeEmoDropdown,{passive:true,capture:true});
+  const closeOpenSeEmoDropdownOnPageScroll=e=>{
+    if(!openEmoDropdownEntryId)return;
+    if(e.target instanceof Element&&e.target.closest('.se-emo-dropdown'))return;
+    openEmoDropdownEntryId=null;
+    if(typeof renderSummaryEntries==='function')renderSummaryEntries();
+  };
+  window.addEventListener('scroll',closeOpenSeEmoDropdownOnPageScroll,{passive:true,capture:true});
   window.addEventListener('resize',repositionOpenSeEmoDropdown);
 }
 
@@ -2948,6 +2957,11 @@ function renderSummaryEntries(){
         positionSeEmoDropdown(trg,dd);
       });
     }
+  }));
+  wrap.querySelectorAll('[data-se-emo-close]').forEach(btn=>btn.addEventListener('click',(e)=>{
+    e.preventDefault();e.stopPropagation();
+    openEmoDropdownEntryId=null;
+    renderSummaryEntries();
   }));
   wrap.querySelectorAll('[data-se-emo-tag]').forEach(el=>el.addEventListener('click',(e)=>{
     if(e.target.classList.contains('se-emo-tag-x'))return;

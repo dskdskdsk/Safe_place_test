@@ -72,7 +72,7 @@ def responsive(p,c):
     check(ev(p,"document.body.scrollWidth<=innerWidth"),(lang,dark,width,'overflow'))
     p.locator('#idea-list [data-edit]').click();check(ev(p,"document.querySelector('#idea-list .entry-inline-edit').getBoundingClientRect().right<=innerWidth"),'editor width');p.locator('#idea-list .entry-inline-action:not(.save)').click()
    p.set_viewport_size({'width':390,'height':844});p.locator('#idea-list').scroll_into_view_if_needed();p.screenshot(path=str(OUT/f'{lang}-{dark}.png'))
- check(ev(p,"Object.keys(LANG.uk).filter(k=>k.startsWith('edit_')).every(k=>LANG.en[k]&&LANG.en[k]!==LANG.uk[k])"),'translations')
+ check(ev(p,"Object.keys(LANG.uk).filter(k=>k.startsWith('edit_')).every(k=>LANG.en[k]&&LANG.en[k]!==LANG.uk[k])&&LANG.en.entry_emotion_title!==LANG.uk.entry_emotion_title"),'translations')
  return 'UK/EN, themes, 320/390/430/1024 px; compact editors stay within viewport'
 
 def visual_polish(p,c):
@@ -90,10 +90,15 @@ def visual_polish(p,c):
  voice=ev(p,"""()=>{S.settings.showVoice=true;applyVoiceVisibility();const f=document.querySelector('#day-summary').getBoundingClientRect(),c=document.querySelector('.compose-btn-col').getBoundingClientRect();S.settings.showVoice=false;applyVoiceVisibility();const off=document.querySelector('#day-summary').getBoundingClientRect();return {field:f.height,buttons:c.height,off:off.height}}""")
  check(abs(voice['field']-voice['buttons'])<=1 and voice['off']<voice['field'],voice)
  ev(p,"()=>{S.settings.showVoice=true;applyVoiceVisibility();}");p.locator('[data-block="summary"]').scroll_into_view_if_needed();p.locator('[data-block="summary"]').screenshot(path=str(OUT/'polish-summary-dark.png'))
+ p.locator('.summary-entry').first.click();p.locator('[data-se-emo-trigger]').first.click();dropdown=p.locator('.se-emo-dropdown.open');check(dropdown.count()==1,'emotion picker opens');picker=dropdown.evaluate("e=>({width:e.getBoundingClientRect().width,wrap:getComputedStyle(e.querySelector('.se-emo-list')).flexWrap,row:e.querySelector('.se-emo-row-item').getBoundingClientRect().height,title:e.querySelector('.se-emo-dropdown-title').textContent})");check(280<=picker['width']<=320 and picker['wrap']=='wrap' and picker['row']>=34 and picker['title']=='Емоція повідомлення',picker);dropdown.screenshot(path=str(OUT/'polish-emotion-picker-dark.png'))
+ dropdown.evaluate("e=>e.dispatchEvent(new Event('scroll'))");p.wait_for_timeout(50);check(p.locator('.se-emo-dropdown.open').count()==1,'internal picker scroll stays open')
+ ev(p,"()=>window.dispatchEvent(new Event('scroll'))");p.wait_for_timeout(50);check(p.locator('.se-emo-dropdown.open').count()==0 and ev(p,'openEmoDropdownEntryId===null'),'page scroll closes picker')
+ p.locator('.summary-entry').first.click();p.locator('[data-se-emo-trigger]').first.click();p.locator('[data-se-emo-close]').click();check(p.locator('.se-emo-dropdown.open').count()==0,'explicit close')
  p.locator('.summary-entry').first.click();delete=p.locator('[data-se-del]').first;delete.click();check(delete.inner_text()=='✕' and delete.evaluate("e=>e.classList.contains('summary-entry-del-armed')"),'delete confirm stays icon-only')
  ev(p,"()=>{S.settings.showVoice=true;day().status='travel';markNow();renderCal();}")
- sticker=p.locator('.cal-status-icon').first;check(sticker.evaluate("e=>getComputedStyle(e).fontSize")=='13px','calendar sticker size')
- return 'All inline fields share one-row height; voice-on composer aligns; delete stays icon-only; calendar sticker is 13px'
+ sticker=p.locator('.cal-status-icon').first;calendar=sticker.evaluate("e=>({font:getComputedStyle(e).fontSize,height:getComputedStyle(e.closest('.cal-day')).minHeight})");check(calendar=={'font':'10px','height':'60px'},calendar)
+ p.locator('.ni[data-page="notes"]').click();p.locator('#notes-view-cal').screenshot(path=str(OUT/'polish-calendar-dark.png'))
+ return 'One-row editors; aligned voice composer; icon-only delete; 60px calendar cells/10px stickers; larger picker closes on page scroll'
 
 with sync_playwright() as pw:
  browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])

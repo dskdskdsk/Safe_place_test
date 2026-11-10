@@ -42,4 +42,6 @@ in QA-73.0.md. Results/screenshots: `tests/artifacts/memories73/`.
 and recommendations; custom-emotion double tap and global reference rename; injected
 storage failure rollback, reload persistence, matching one-row editors, voice composer
 alignment, delete confirmation and calendar sticker sizing; UK/EN, both themes and 320–1024 px layouts.
+The visual-polish scenario also checks the grouped message-emotion picker, explicit close,
+page-scroll dismissal, internal scrolling and compact calendar geometry.
 Results/screenshots: `tests/artifacts/edit731/`.

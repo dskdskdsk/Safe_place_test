@@ -46,3 +46,8 @@ The visual-polish scenario also checks the grouped message-emotion picker, expli
 horizontal centering, page-scroll dismissal, internal scrolling, compact calendar geometry
 and delayed display of the current day's status sticker.
 Results/screenshots: `tests/artifacts/edit731/`.
+
+73.1 collapse persistence: `python tests/collapse731.py` — fresh-journal defaults for all
+Today and Dashboard modules plus collapsible Settings groups; independent open/closed
+state, language and theme persistence across two reloads. Results/screenshots:
+`tests/artifacts/collapse731/`.

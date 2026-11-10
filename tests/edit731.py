@@ -15,6 +15,7 @@ def setup(p):
   day().emotions=[{id:'c_Натхнення 🚀',isManual:true,comments:[{cid:'c1',text:'Коментар',time:'12:35'}]}];
   day().summaryEntries=[{id:'entry1',type:'text',text:'Запис',time:'12:35',emotions:[{id:'c_Натхнення 🚀',comment:'До запису'}]}];
   markNow();renderToday();
+  document.querySelectorAll('#page-today .today-module-collapsed>.ch,#page-today .emo-collapsed>.emo-ch,#page-today .media-collapsed>.media-ch,#page-today .rec-collapsed>.rec-ch,#page-today .grat-collapsed>.grat-ch').forEach(h=>h.click());
   window.editIdeaId=idea.id;
  }""")
 

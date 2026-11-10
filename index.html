@@ -588,6 +588,9 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .mood-ch:active{opacity:.8;}
 .mood-coll-btn{width:26px;height:26px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;color:var(--txm);background:var(--off);flex-shrink:0;transition:transform .25s ease;}
 .mood-collapsed .mood-coll-btn{transform:rotate(180deg);}.mood-collapsed .mood-body{max-height:0 !important;overflow:hidden;}
+.today-coll-btn{width:30px;height:30px;min-width:30px;border-radius:var(--r2);display:inline-flex;align-items:center;justify-content:center;background:var(--off);border:0;color:var(--txm);flex-shrink:0;transition:transform .25s ease}
+.today-module-collapsed .today-coll-btn{transform:rotate(180deg)}
+.today-collapse-body[hidden]{display:none!important}
 .mood-body{overflow:hidden;transition:max-height .35s cubic-bezier(.16,1,.3,1);}
 
 .rec-cat-btn{padding:var(--s2) var(--s4);border-radius:var(--rf);font-size:var(--sm);font-weight:600;border:1.5px solid var(--bdr);color:var(--txm);background:var(--off);cursor:pointer;transition:all var(--tr);flex-shrink:0}
@@ -1521,7 +1524,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   </div>
 
   <!-- Status -->
-  <div class="card" style="margin:0 var(--s4) var(--s3)">
+  <div class="card" data-block="status" style="margin:0 var(--s4) var(--s3)">
     <div class="ch"><span class="clabel" data-i18n="lbl_status_day">📍 Статус дня</span></div>
     <div class="status-bar" id="status-chips">
       <div class="status-chip" data-status="work">💼 <span data-i18n="status_work">На роботі</span></div>
@@ -5836,6 +5839,8 @@ function buildMoodChart(container){
 async function renderDash(){
   const cont=document.getElementById('dash-content');
   cont.innerHTML='';
+  if(!S.dashCollapsed||typeof S.dashCollapsed!=='object'||Array.isArray(S.dashCollapsed))S.dashCollapsed={};
+  ['mood','habits','insights','ibank','timeline','recs'].forEach(key=>{if(typeof S.dashCollapsed[key]!=='boolean')S.dashCollapsed[key]=true;});
 
   // Stats
   const allDays=Object.keys(S.days).sort();
@@ -6625,7 +6630,9 @@ function renderRecDash(cont){
   const btn  = card && card.querySelector('.rec-coll-btn');
   const head = card && card.querySelector('.rec-ch');
   if(!card || !btn) return;
-  if(S.settings && S.settings.recCollapsed) card.classList.add('rec-collapsed');
+  if(!S.settings)S.settings={};
+  if(typeof S.settings.recCollapsed!=='boolean')S.settings.recCollapsed=true;
+  if(S.settings.recCollapsed) card.classList.add('rec-collapsed');
   const toggle = () => {
     const collapsed = card.classList.toggle('rec-collapsed');
     if(!S.settings) S.settings = {};
@@ -7535,11 +7542,15 @@ const treeFull=ensureIdeaTree();
     habits:S.habits||[],
     habitLog:S.habitLog||{},
     habitsCollapsed:S.habitsCollapsed,
+    todayCollapsed:S.todayCollapsed,
     dashCollapsed:S.dashCollapsed,
     mediaCollapsed:S.mediaCollapsed,
     gratCollapsed:S.gratCollapsed,
     emoCollapsed:S.emoCollapsed,
     shCollapsed:S.shCollapsed,
+    expCollapsed:S.expCollapsed,
+    impCollapsed:S.impCollapsed,
+    gemCollapsed:S.gemCollapsed,
     ibankState:S.ibankState,
     uiRecCats:S.uiRecCats,
     photoData,
@@ -7899,7 +7910,7 @@ function mergeJournalJson(imp,_il){
     Object.assign(S.habitLog,imp.habitLog);
   }
 
-  ['habitsCollapsed','dashCollapsed','mediaCollapsed','gratCollapsed','emoCollapsed','shCollapsed','ibankState','uiRecCats'].forEach(key=>{
+  ['habitsCollapsed','todayCollapsed','dashCollapsed','mediaCollapsed','gratCollapsed','emoCollapsed','shCollapsed','expCollapsed','impCollapsed','gemCollapsed','ibankState','uiRecCats'].forEach(key=>{
     if(imp[key]!==undefined&&S[key]===undefined){
       S[key]=imp[key];
     }
@@ -9507,7 +9518,7 @@ function initDayMemories(){
   const view=document.createElement('div');view.id='memory-view';view.setAttribute('role','dialog');view.setAttribute('aria-modal','true');view.setAttribute('aria-labelledby','memory-title');view.innerHTML='<div class="memory-shell"><header class="memory-header"><h2 id="memory-title"></h2><button id="memory-close" type="button"></button></header><div class="memory-hero"><div class="memory-hero-copy"><div class="memory-eyebrow" id="memory-period"></div><div id="memory-date"></div><div class="memory-meta"><span id="memory-readonly"></span></div></div><nav class="memory-nav"><button id="memory-back" type="button"></button><button id="memory-next" type="button"></button></nav></div><main id="memory-body"></main><div id="memory-photo-lightbox" class="memory-photo-lightbox" hidden><button id="memory-photo-close" class="memory-photo-close" type="button" aria-label="Close">×</button><img id="memory-photo-full" alt=""></div></div>';document.body.append(view);
   document.getElementById('memory-close').onclick=closeMemorySession;document.getElementById('memory-back').onclick=()=>stepMemory(-1);document.getElementById('memory-next').onclick=()=>stepMemory(1);bindDayJourneyGestures(view,stepMemory);
   document.getElementById('memory-photo-close').onclick=closeMemoryPhoto;document.getElementById('memory-photo-lightbox').onclick=e=>{if(e.target===e.currentTarget)closeMemoryPhoto();};
-  const card=document.querySelector('[data-block="summary"]'),button=document.createElement('button');button.id='memory-launch';button.type='button';button.dataset.i18n='memory_past';button.textContent=t('memory_past');button.onclick=()=>openMemorySession();card.querySelector('.ch').append(button);bindDayJourneyGestures(card,d=>{if(d===1)openMemorySession();});
+  const card=document.querySelector('[data-block="summary"]'),button=document.createElement('button');button.id='memory-launch';button.type='button';button.dataset.i18n='memory_past';button.textContent=t('memory_past');button.onclick=()=>openMemorySession();const head=card.querySelector('.ch'),collapse=head.querySelector('.today-coll-btn');head.insertBefore(button,collapse||null);bindDayJourneyGestures(card,d=>{if(d===1)openMemorySession();});
 }
 window.addEventListener('load',initDayMemories,{once:true});
 
@@ -9538,6 +9549,38 @@ initHeader();
 renderToday();
 renderStats();
 if(typeof renderDigestBadge==='function') renderDigestBadge();
+
+const TODAY_COLLAPSE_KEYS=['status','events','summary','ideas','rating','photos'];
+function initTodayCollapse(){
+  if(!S.todayCollapsed||typeof S.todayCollapsed!=='object'||Array.isArray(S.todayCollapsed))S.todayCollapsed={};
+  TODAY_COLLAPSE_KEYS.forEach(key=>{
+    if(typeof S.todayCollapsed[key]!=='boolean')S.todayCollapsed[key]=true;
+    const card=document.querySelector(`#page-today [data-block="${key}"]`);
+    if(!card)return;
+    const head=card.querySelector(':scope > .ch');if(!head)return;
+    let body=card.querySelector(':scope > .today-collapse-body');
+    if(!body){
+      body=document.createElement('div');body.className='today-collapse-body';
+      while(head.nextSibling)body.appendChild(head.nextSibling);
+      card.appendChild(body);
+    }
+    let button=head.querySelector('.today-coll-btn');
+    if(!button){
+      button=document.createElement('button');button.type='button';button.className='today-coll-btn';
+      button.setAttribute('aria-label',getLang()==='en'?'Expand or collapse':'Розгорнути або згорнути');
+      button.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>';
+      head.appendChild(button);
+    }
+    const apply=collapsed=>{card.classList.toggle('today-module-collapsed',collapsed);body.hidden=collapsed;button.setAttribute('aria-expanded',String(!collapsed));};
+    apply(S.todayCollapsed[key]);head.style.cursor='pointer';
+    head.addEventListener('click',e=>{
+      if(e.target.closest('button,a,input,select,textarea')&&!e.target.closest('.today-coll-btn'))return;
+      const collapsed=!card.classList.contains('today-module-collapsed');
+      S.todayCollapsed[key]=collapsed;apply(collapsed);save();
+    });
+  });
+}
+initTodayCollapse();
 
 function renderCarryMedia(){
   const wrap=document.getElementById('media-carry-wrap');
@@ -9725,7 +9768,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
     (()=>{
       const mc = document.getElementById('media-card');
       const body = mc.querySelector('.media-body');
-      if(!S.mediaCollapsed) S.mediaCollapsed = false;
+      if(typeof S.mediaCollapsed!=='boolean') S.mediaCollapsed = true;
       if(S.mediaCollapsed){ mc.classList.add('media-collapsed'); body.style.maxHeight='0px'; }
       else { body.style.maxHeight='2000px'; }
       mc.querySelector('.media-ch').addEventListener('click', ()=>{
@@ -9774,7 +9817,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
     (()=>{
       const gc = document.getElementById('grat-card');
       const body = gc.querySelector('.grat-body');
-      if(!S.gratCollapsed) S.gratCollapsed = false;
+      if(typeof S.gratCollapsed!=='boolean') S.gratCollapsed = true;
       if(S.gratCollapsed){ gc.classList.add('grat-collapsed'); body.style.maxHeight='0px'; }
       else { body.style.maxHeight='2000px'; }
       gc.querySelector('.grat-ch').addEventListener('click', ()=>{
@@ -9790,7 +9833,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
       const hc = document.getElementById('habits-card');
       if(!hc) return;
       const body = hc.querySelector('.habits-body');
-      if(!S.habitsCollapsed) S.habitsCollapsed = false;
+      if(typeof S.habitsCollapsed!=='boolean') S.habitsCollapsed = true;
       if(S.habitsCollapsed){ hc.classList.add('habits-collapsed'); body.style.maxHeight='0px'; }
       else { body.style.maxHeight='2000px'; }
       hc.querySelector('.habits-ch').addEventListener('click', ()=>{
@@ -9805,7 +9848,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
     (()=>{
       const ec = document.getElementById('emo-card');
       const body = ec.querySelector('.emo-body');
-      if(!S.emoCollapsed) S.emoCollapsed = false;
+      if(typeof S.emoCollapsed!=='boolean') S.emoCollapsed = true;
       if(S.emoCollapsed){ ec.classList.add('emo-collapsed'); body.style.maxHeight='0px'; }
       else { body.style.maxHeight='2000px'; }
       ec.querySelector('.emo-ch').addEventListener('click', ()=>{
@@ -9822,7 +9865,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
       if(!grp) return;
       const body = grp.querySelector('.sh-body');
       const btn = grp.querySelector('.sh-coll-btn');
-      if(!S.shCollapsed) S.shCollapsed = false;
+      if(typeof S.shCollapsed!=='boolean') S.shCollapsed = true;
       if(S.shCollapsed){ body.style.maxHeight='0px'; btn.style.transform='rotate(180deg)'; }
       grp.querySelector('.sh-ch').addEventListener('click', ()=>{
         S.shCollapsed = !S.shCollapsed;
@@ -9838,7 +9881,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
       if(!grp) return;
       const body = grp.querySelector('.exp-body');
       const btn = grp.querySelector('.exp-coll-btn');
-      if(!S.expCollapsed) S.expCollapsed = false;
+      if(typeof S.expCollapsed!=='boolean') S.expCollapsed = true;
       if(S.expCollapsed){ body.style.maxHeight='0px'; btn.style.transform='rotate(180deg)'; }
       grp.querySelector('.exp-ch').addEventListener('click', ()=>{
         S.expCollapsed = !S.expCollapsed;
@@ -9854,7 +9897,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
       if(!grp) return;
       const body = grp.querySelector('.imp-body');
       const btn = grp.querySelector('.imp-coll-btn');
-      if(!S.impCollapsed) S.impCollapsed = false;
+      if(typeof S.impCollapsed!=='boolean') S.impCollapsed = true;
       if(S.impCollapsed){ body.style.maxHeight='0px'; btn.style.transform='rotate(180deg)'; }
       grp.querySelector('.imp-ch').addEventListener('click', ()=>{
         S.impCollapsed = !S.impCollapsed;
@@ -9870,7 +9913,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
       if(!grp) return;
       const body = grp.querySelector('.gem-body');
       const btn = grp.querySelector('.gem-coll-btn');
-      if(!S.gemCollapsed) S.gemCollapsed = false;
+      if(typeof S.gemCollapsed!=='boolean') S.gemCollapsed = true;
       if(S.gemCollapsed){ body.style.maxHeight='0px'; btn.style.transform='rotate(180deg)'; }
       grp.querySelector('.gem-ch').addEventListener('click', ()=>{
         S.gemCollapsed = !S.gemCollapsed;

@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 75.0
-  Файл: 75.0_adaptive-spacing.html
-  Зміни 75.0 — Adaptive spacing:
-  1. Плавні відступи карток для mini, звичайного iPhone та Plus/Pro Max.
-  2. Єдині проміжки між картками на Сьогодні, Дашборді та в Налаштуваннях.
-  3. М’яка двошарова тінь карток у світлій темі.
-  4. Системний шрифт збережено; основні кнопки залишаються 44 × 44 px.
-  Наступні версії: 75.1, 75.2 і далі.
+  ЩОДЕННИК · ВЕРСІЯ 75.1
+  Файл: 75.1_adaptive-spacing.html
+  Зміни 75.1 — Responsive fixes:
+  1. Оцінки в один ряд від ширини 390 px; на mini — два ряди.
+  2. Прапорець і UA/EN не переносяться всередині кнопок мови.
+  3. Перевірено початково закриті згортні модулі й збереження стану, мови та теми.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -366,7 +364,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 75.0 Adaptive spacing</title>
+<title>Safe Place · 75.1 Responsive fixes</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -1355,7 +1353,7 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 .rating-value[aria-pressed="true"]{background:oklch(from var(--rating-tone) l c h/.23)}
 #rating-label{display:flex;align-items:center;justify-content:center;min-height:1.6em;line-height:1.35;margin:2px 0;overflow-wrap:anywhere}
 #rating-chips:empty{display:none!important}
-@container(min-width:360px){#rating-row{grid-template-columns:repeat(10,minmax(0,1fr))}}
+@media(min-width:390px){#rating-row{grid-template-columns:repeat(10,minmax(0,1fr))}}
 
 /* 73.0 polish: matching composer geometry and compact contextual controls. */
 .row-input>.txt-input{height:44px;min-height:44px;padding:var(--s2) var(--s3);resize:none;overflow-y:auto}
@@ -1371,7 +1369,7 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 .ibank-actions :is(.idea-add-child-btn,.ibank-del){min-width:34px;width:34px;padding:0}
 .cal-day{position:relative}.cal-status-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);font-size:10px;line-height:1;filter:drop-shadow(0 1px 1px oklch(0% 0 0/.08));pointer-events:none}
 
-/* 75.0: fluid spacing; 375px → 16/14px, 400px → 18/15px, 425px+ → 20/16px. */
+/* 75.1: fluid spacing; 375px → 16/14px, 400px → 18/15px, 425px+ → 20/16px. */
 :root{
   --card-pad:clamp(1rem,calc(8vw - 14px),1.25rem);
   --card-gap:clamp(.875rem,calc(4vw - 1px),1rem);
@@ -1387,6 +1385,9 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 .sgrp-title{padding:var(--card-pad) var(--card-pad) var(--s3)}
 .srow,.sbtn{padding:var(--card-pad)}
 .settings-module-title{padding-inline:var(--card-pad)}
+.language-row{flex-wrap:wrap;gap:8px;padding:var(--s4)}
+.language-row>div:last-child{flex-shrink:0}
+#lang-uk-btn,#lang-en-btn{white-space:nowrap;flex-shrink:0}
 
 </style>
 <script>
@@ -1812,7 +1813,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   <div class="topbar"><div class="topbar-title" style="display:flex;align-items:center;gap:6px"><span data-i18n="title_settings">Налаштування</span><button class="info-btn" id="info-btn-settings" aria-label="Info"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="2"/><text x="12" y="16.5" text-anchor="middle" font-size="11" font-weight="700" font-family="Georgia,serif" fill="currentColor">i</text></svg></button></div></div>
   <div class="sset">
     <div class="sgrp">
-      <div class="srow settings-module-row">
+      <div class="srow settings-module-row language-row">
         <div><div class="clabel" style="white-space:nowrap">🌐 Мова/Language</div></div>
         <div style="display:flex;gap:var(--s2)">
           <button id="lang-uk-btn" style="padding:var(--s1) var(--s3);border-radius:var(--rf);border:1.5px solid var(--bdr);background:var(--off);font-size:var(--xs);font-weight:600;cursor:pointer;transition:all .15s">&#x1F1FA;&#x1F1E6; UA</button>
@@ -2160,7 +2161,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.0',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.1',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2259,7 +2260,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.0',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.1',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4750,7 +4751,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='75.0';
+const APP_VERSION='75.1';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');

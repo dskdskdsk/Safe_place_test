@@ -22,13 +22,13 @@ def persistence(p,c):
  # Open one existing module on each screen and leave neighbouring modules closed.
  p.locator('#emo-card .emo-ch').click()
  go(p,'dash');p.locator('#dash-content>.card .mood-ch').first.click();p.locator('#ibank-dash-card .mood-ch').click()
- go(p,'settings');p.locator('#export-grp .exp-ch').click();p.locator('#dark-tog').click();p.locator('#lang-en-btn').click()
+ go(p,'settings');p.locator('#habit-settings-grp .sh-ch').click();p.locator('#export-grp .exp-ch').click();p.locator('#dark-tog').click();p.locator('#lang-en-btn').click()
  p.wait_for_function("typeof _writeReady!=='undefined'&&_writeReady&&typeof getLang==='function'&&getLang()==='en'&&S.settings.dark===true")
  check(ev(p,"getLang()==='en'&&document.documentElement.dataset.theme==='dark'"),'language/theme after reload')
  today=ev(p,"""()=>({fixed:!document.querySelector('.today-coll-btn,.today-collapse-body,.today-module-collapsed'),emotion:S.emoCollapsed===false&&!document.querySelector('#emo-card').classList.contains('emo-collapsed'),media:S.mediaCollapsed===true&&document.querySelector('#media-card').classList.contains('media-collapsed')})""");check(all(today.values()),today)
  go(p,'dash');dash=ev(p,"""()=>({mood:S.dashCollapsed.mood===false&&!document.querySelector('#dash-content>.card').classList.contains('mood-collapsed'),ideas:S.dashCollapsed.ibank===false&&!document.querySelector('#ibank-dash-card').classList.contains('mood-collapsed'),habits:S.dashCollapsed.habits===true})""");check(all(dash.values()),dash)
  go(p,'settings');settings=ev(p,"""()=>({export:S.expCollapsed===false&&document.querySelector('.exp-body').style.maxHeight!=='0px',imports:S.impCollapsed===true&&document.querySelector('.imp-body').style.maxHeight==='0px'})""");check(all(settings.values()),settings)
- p.reload();p.wait_for_function("typeof _writeReady!=='undefined'&&_writeReady&&typeof getLang==='function'&&getLang()==='en'");check(ev(p,"S.emoCollapsed===false&&S.mediaCollapsed===true&&S.dashCollapsed.mood===false&&S.dashCollapsed.ibank===false&&S.expCollapsed===false&&S.settings.dark===true"),'second reload')
+ p.reload();p.wait_for_function("typeof _writeReady!=='undefined'&&_writeReady&&typeof getLang==='function'&&getLang()==='en'");check(ev(p,"S.emoCollapsed===false&&S.mediaCollapsed===true&&S.dashCollapsed.mood===false&&S.dashCollapsed.ibank===false&&S.expCollapsed===false&&S.shCollapsed===false&&S.settings.dark===true"),'second reload')
  return 'Existing opened modules, closed neighbours, English and dark theme survive two reloads'
 
 with sync_playwright() as pw:

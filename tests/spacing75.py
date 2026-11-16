@@ -17,6 +17,13 @@ with sync_playwright() as pw:
     p.evaluate('(s)=>document.documentElement.style.fontSize=s+"px"',size)
     for tab in ['today','notes','dash','settings']:
      p.locator('[data-page='+tab+']').click();p.wait_for_timeout(100)
+     if size==16 and tab=='today':
+      rows=p.locator('#rating-row .rating-value').evaluate_all('(es)=>new Set(es.map(e=>Math.round(e.getBoundingClientRect().top))).size')
+      assert rows==(1 if width>=390 else 2),(width,rows)
+     if size==16 and tab=='settings':
+      for button in ['#lang-uk-btn','#lang-en-btn']:
+       assert p.locator(button).evaluate('(e)=>getComputedStyle(e).whiteSpace')=='nowrap'
+       assert p.locator(button).bounding_box()['height']<40
      assert p.evaluate('(()=>{let p=document.querySelector(".page.active");return p.scrollWidth<=p.clientWidth+1})()'),(width,dark,size,tab)
    p.evaluate('document.documentElement.style.fontSize="16px"');p.locator('[data-page=today]').click()
    print(width,dark,p.locator('[data-block=events]>.cb').evaluate('(e)=>getComputedStyle(e).paddingLeft'))

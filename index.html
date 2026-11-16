@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 75.1
-  Файл: 75.1_adaptive-spacing.html
-  Зміни 75.1 — Responsive fixes:
-  1. Оцінки в один ряд від ширини 390 px; на mini — два ряди.
-  2. Прапорець і UA/EN не переносяться всередині кнопок мови.
-  3. Перевірено початково закриті згортні модулі й збереження стану, мови та теми.
+  ЩОДЕННИК · ВЕРСІЯ 75.2
+  Файл: 75.2_toasts-dialogs.html
+  Зміни 75.2 — Toasts & dialogs:
+  1. Тости мають єдину прямокутну форму й показуються послідовно без накладання.
+  2. Оборотні дії використовують окремий тост «Скасувати»; критичне незбереження — вікно.
+  3. Помилки періоду експорту показуються біля полів дат.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -364,7 +364,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 75.1 Responsive fixes</title>
+<title>Safe Place · 75.2 Toasts &amp; dialogs</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -1031,9 +1031,17 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .preset-btn.active{background:var(--fill);border-color:var(--pri);color:#fff;}
 
 
-.undo-toast{position:fixed;bottom:calc(68px + env(safe-area-inset-bottom) + 12px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--tx);color:var(--bg);padding:var(--s2) var(--s4);border-radius:var(--rf);font-size:var(--sm);display:flex;align-items:center;gap:var(--s3);z-index:999;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;white-space:nowrap;box-shadow:var(--sh3);}
+.app-toast,.undo-toast{position:fixed;bottom:calc(68px + env(safe-area-inset-bottom) + 12px);left:50%;width:max-content;max-width:calc(min(480px,100vw) - 24px);transform:translateX(-50%) translateY(20px);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:var(--r3);font-size:var(--sm);font-weight:600;text-align:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;white-space:normal;overflow-wrap:anywhere;box-shadow:var(--sh3)}
+.app-toast.show,.undo-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.app-toast[data-kind="success"]{background:var(--suc);color:#fff}
+.app-toast[data-kind="error"]{background:var(--err);color:#fff}
+.app-toast[data-kind="accent"]{background:var(--fill);color:#fff}
+.undo-toast{display:flex;align-items:center;gap:var(--s3);text-align:left;z-index:10000}
 .undo-toast.show{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
-.undo-btn{font-size:var(--sm);font-weight:700;color:var(--pri);background:none;border:none;cursor:pointer;padding:0;}
+.undo-toast[data-kind="danger"]{background:var(--err);color:#fff}
+.undo-btn{font-size:var(--sm);font-weight:700;color:inherit;background:oklch(from currentColor l c h/.14);border:1px solid oklch(from currentColor l c h/.25);border-radius:var(--r2);cursor:pointer;padding:6px 10px;white-space:nowrap}
+.field-error{color:var(--err);font-size:var(--xs);line-height:1.35;padding-top:2px}
+#export-period-row input.field-invalid{border-color:var(--err)!important;box-shadow:0 0 0 2px oklch(from var(--err) l c h/.12)}
 .cs-clr{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;flex-shrink:0;transition:.15s;}.cs-clr.picked{border-color:var(--tx);transform:scale(1.2);}
 
 /* AI Result Block */
@@ -1296,7 +1304,7 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 .cal-nav-label{min-width:0;text-align:center;padding-inline:8px}
 .drawer{left:50%;right:auto;width:100%;max-width:480px;transform:translate(-50%,100%)}
 .drawer.on{transform:translate(-50%,0)}
-.undo-toast{width:max-content;max-width:calc(100% - 24px);white-space:normal;overflow-wrap:anywhere}
+.undo-toast{max-width:calc(100% - 24px)}
 .undo-btn{color:var(--bg);text-decoration:underline;min-height:44px;flex-shrink:0}
 .bnav{padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
 .ni{min-width:0;text-align:center}
@@ -1369,7 +1377,7 @@ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none
 .ibank-actions :is(.idea-add-child-btn,.ibank-del){min-width:34px;width:34px;padding:0}
 .cal-day{position:relative}.cal-status-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);font-size:10px;line-height:1;filter:drop-shadow(0 1px 1px oklch(0% 0 0/.08));pointer-events:none}
 
-/* 75.1: fluid spacing; 375px → 16/14px, 400px → 18/15px, 425px+ → 20/16px. */
+/* 75.0: fluid spacing; 375px → 16/14px, 400px → 18/15px, 425px+ → 20/16px. */
 :root{
   --card-pad:clamp(1rem,calc(8vw - 14px),1.25rem);
   --card-gap:clamp(.875rem,calc(4vw - 1px),1rem);
@@ -1871,6 +1879,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           <span style="color:var(--txm);font-size:12px">—</span>
           <input type="date" id="export-period-to" style="flex:1;background:var(--off);border:1.5px solid var(--bdr);border-radius:var(--r2);padding:8px;color:var(--tx);font-size:13px">
         </div>
+        <div id="export-period-error" class="field-error" role="alert" aria-live="polite" hidden></div>
       </div>
       <button class="sbtn" id="export-period-btn" style="border-top:1px solid var(--div)"><span data-i18n="settings_export_period_btn">📤 Експортувати цей період</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
       </div>
@@ -2161,7 +2170,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.1',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.2',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2260,7 +2269,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.1',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.2',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -2444,7 +2453,7 @@ let _saveFailAt=0;
 function notifySaveFail(e){
   console.error('Journal save failed:',e);
   const now=Date.now();if(now-_saveFailAt<8000)return;_saveFailAt=now;
-  showToast(getLang()==='en'?'⚠️ Could not save: browser storage is full. Export a backup in Settings.':'⚠️ Не вдалося зберегти: сховище браузера заповнене. Зроби експорт бекапу в Налаштуваннях.',6000);
+  reportError(e,{ctx:'storage'});
 }
 let _autosaveT=null,_autosaveFirst=0;
 // Quiet write of the whole journal (no re-render). Returns true on success.
@@ -2476,13 +2485,41 @@ function flushAutosave(){
   if(!dirty){clearTimeout(_autosaveT);_autosaveT=null;_autosaveFirst=0;return true;}
   return persist();
 }
-function showToast(msg,ms){
-  const _tt=document.createElement('div');
-  _tt.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:var(--rf);font-size:var(--sm);font-weight:600;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.4);max-width:85%;text-align:center';
-  _tt.textContent=msg;
-if(String(msg).length>46)_tt.style.borderRadius='18px';
-document.body.appendChild(_tt);
-  setTimeout(()=>{_tt.style.transition='opacity .3s';_tt.style.opacity='0';setTimeout(()=>_tt.remove(),300);},ms||2200);
+const _toastQueue=[];
+let _toastActive=null,_toastTimer=null;
+const _toastPauses=new Set();
+function _toastElement(){
+  let el=document.getElementById('app-toast');
+  if(el)return el;
+  el=document.createElement('div');el.id='app-toast';el.className='app-toast';
+  el.setAttribute('role','status');el.setAttribute('aria-live','polite');el.setAttribute('aria-atomic','true');
+  document.body.appendChild(el);return el;
+}
+function _showNextToast(){
+  if(_toastPauses.size||_toastActive||!_toastQueue.length)return;
+  const item=_toastQueue.shift(),el=_toastElement();_toastActive=item;
+  el.textContent=item.msg;el.dataset.kind=item.kind;
+  requestAnimationFrame(()=>el.classList.add('show'));
+  _toastTimer=setTimeout(()=>{
+    el.classList.remove('show');
+    setTimeout(()=>{_toastActive=null;el.textContent='';_showNextToast();},220);
+  },item.ms);
+}
+function showToast(msg,ms,kind){
+  const text=String(msg||'').trim();if(!text)return;
+  if((_toastActive&&_toastActive.msg===text)||_toastQueue.some(x=>x.msg===text))return;
+  _toastQueue.push({msg:text,ms:Math.max(1200,Number(ms)||2200),kind:kind||'neutral'});
+  _showNextToast();
+}
+function _pauseToasts(reason){
+  if(!_toastPauses.size&&_toastActive){
+    clearTimeout(_toastTimer);_toastElement().classList.remove('show');
+    _toastQueue.unshift(_toastActive);_toastActive=null;
+  }
+  _toastPauses.add(reason);
+}
+function _resumeToasts(reason){
+  _toastPauses.delete(reason);if(!_toastPauses.size)setTimeout(_showNextToast,220);
 }
 function day(k=activeDay){
   if(!S.days[k])S.days[k]={emotions:[],dayRating:0,dayRatings:[],ideas:[],events:[],photos:[],gratitude:['','',''],summary:'',summaryEntries:[],status:'',statusNote:''};
@@ -4751,7 +4788,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='75.1';
+const APP_VERSION='75.2';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -4792,6 +4829,7 @@ function showDialog(opts){
   return new Promise(resolve=>{
     if(_dlgCtl&&_dlgCtl.locked){resolve(null);return;}
     if(_dlgCtl)_dlgCtl.close(null);
+    _pauseToasts('dialog');
     const prevFocus=document.activeElement;
     const ov=document.createElement('div');
     ov.className='ob-ov err-ov';ov.id='err-dlg';ov.dataset.kind=o.kind||'error';
@@ -4830,6 +4868,7 @@ function showDialog(opts){
       if(done)return;done=true;
       document.removeEventListener('keydown',onKey,true);
       ov.remove();if(_dlgCtl&&_dlgCtl.ov===ov)_dlgCtl=null;
+      _resumeToasts('dialog');
       try{if(prevFocus&&prevFocus.focus&&document.contains(prevFocus))prevFocus.focus({preventScroll:true});}catch(e){}
       resolve(v);
     }
@@ -4960,7 +4999,12 @@ function showImportSummary(en,res,x){
   if(x.manifestError)bad.push(en?'the voice list in the ZIP is damaged, so voice notes were not linked to days':'список голосових у ZIP пошкоджено, тому голосові не привʼязані до днів');
   let text=L.join('\n');
   if(bad.length)text+='\n\n'+(en?'Problems: ':'Проблеми: ')+bad.join('; ')+'.';
-  return showDialog({kind:bad.length?'warning':'info',title:bad.length?(en?'Imported with problems':'Імпортовано з проблемами'):(en?'Import complete':'Імпорт завершено'),text});
+  if(bad.length||res.skippedDays)return showDialog({kind:'warning',title:en?'Imported with problems':'Імпортовано з проблемами',text});
+  const parts=[en?`New: ${res.addedDays}`:`Нових: ${res.addedDays}`,en?`updated: ${res.updatedDays}`:`оновлено: ${res.updatedDays}`];
+  if(x.photos)parts.push(en?`photos: ${x.photos}`:`фото: ${x.photos}`);
+  if(x.voices)parts.push(en?`voice: ${x.voices}`:`голосових: ${x.voices}`);
+  showToast((en?'Import complete · ':'Імпорт завершено · ')+parts.join(' · '),3500,'success');
+  return Promise.resolve(true);
 }
 // Backup finished, but some photos/voice notes could not be read
 let _exportGaps={photos:0,voices:0};
@@ -5284,21 +5328,7 @@ document.getElementById('photo-in').addEventListener('change',async e=>{
   }finally{_photoAdding=false;input.disabled=false;}
 });
 function showPhotoMsg(txt){
-  const toast=document.getElementById('undo-toast');
-  if(!toast){showToast(txt);return;}
-  const span=toast.querySelector('span');
-  const origBg=toast.style.background,origCol=toast.style.color,origTxt=span?span.textContent:'';
-  const undoBtn=document.getElementById('undo-btn');
-  toast.style.background='var(--err)';toast.style.color='#fff';
-  if(undoBtn)undoBtn.style.display='none';
-  if(span)span.textContent=txt;
-  toast.classList.add('show');
-  setTimeout(()=>{
-    toast.classList.remove('show');
-    toast.style.background=origBg;toast.style.color=origCol;
-    if(span)span.textContent=origTxt;
-    if(undoBtn)undoBtn.style.display='';
-  },3000);
+  showToast(txt,3000,'error');
 }
 function renderPhotos(){
   const row=document.getElementById('photo-row');
@@ -5422,24 +5452,7 @@ function renderStats(){
       200:'🌋 200 днів! Виверження!',
       365:'🌋 Рік поспіль! Неможливо!'
     };
-    setTimeout(()=>{
-      const toast=document.getElementById('undo-toast');
-      if(!toast)return;
-      const origBg=toast.style.background,origCol=toast.style.color;
-      const undoBtn=document.getElementById('undo-btn');
-      const msgSpan=toast.querySelector('span:first-child')||toast.querySelector('span');
-      const origText=msgSpan?msgSpan.textContent:'';
-      toast.style.background='var(--pri)';toast.style.color='#fff';
-      if(undoBtn)undoBtn.style.display='none';
-      if(msgSpan)msgSpan.textContent=msgs[streak]||`${getStreakEmoji(streak)} ${streak} днів поспіль!`;
-      toast.classList.add('show');
-      setTimeout(()=>{
-        toast.classList.remove('show');
-        toast.style.background=origBg;toast.style.color=origCol;
-        if(undoBtn)undoBtn.style.display='';
-        if(msgSpan)msgSpan.textContent=origText;
-      },3500);
-    },800);
+    setTimeout(()=>showToast(msgs[streak]||`${getStreakEmoji(streak)} ${streak} днів поспіль!`,3500,'accent'),800);
   }
 }
 
@@ -7693,13 +7706,20 @@ document.getElementById('export-period-btn').addEventListener('click',async()=>{
   const _il=getLang();
   const fromEl=document.getElementById('export-period-from');
   const toEl=document.getElementById('export-period-to');
+  const errorEl=document.getElementById('export-period-error');
+  const setPeriodError=(msg,invalid)=>{
+    errorEl.textContent=msg||'';errorEl.hidden=!msg;
+    fromEl.classList.toggle('field-invalid',!!msg&&invalid.includes('from'));
+    toEl.classList.toggle('field-invalid',!!msg&&invalid.includes('to'));
+  };
+  setPeriodError('',[]);
   const fromKey=fromEl.value,toKey=toEl.value;
   if(!fromKey||!toKey){
-    showToast(_il==='en'?'Select both start and end date':'Обери обидві дати — початок і кінець');
+    setPeriodError(_il==='en'?'Select both start and end date':'Обери обидві дати — початок і кінець',[...(!fromKey?['from']:[]),...(!toKey?['to']:[])]);
     return;
   }
   if(fromKey>toKey){
-    showToast(_il==='en'?'Start date must be before end date':'Дата початку має бути раніше дати кінця');
+    setPeriodError(_il==='en'?'Start date must be before end date':'Дата початку має бути раніше дати кінця',['from','to']);
     return;
   }
   const btn=document.getElementById('export-period-btn');
@@ -7709,7 +7729,7 @@ document.getElementById('export-period-btn').addEventListener('click',async()=>{
     _exportGaps={photos:0,voices:0};const exportObj=await buildPeriodExportObj(fromKey,toKey);
     const cnt=Object.keys(exportObj.days).length;
     if(!cnt){
-      showToast(_il==='en'?'No filled days found in this period':'У цьому періоді немає заповнених днів');
+      setPeriodError(_il==='en'?'No filled days found in this period':'У цьому періоді немає заповнених днів',[]);
       btn.disabled=false;btn.innerHTML=orig;
       return;
     }
@@ -7731,6 +7751,11 @@ document.getElementById('export-period-btn').addEventListener('click',async()=>{
   }
   btn.disabled=false;btn.innerHTML=orig;
 });
+['export-period-from','export-period-to'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{
+  const errorEl=document.getElementById('export-period-error');errorEl.hidden=true;errorEl.textContent='';
+  document.getElementById('export-period-from').classList.remove('field-invalid');
+  document.getElementById('export-period-to').classList.remove('field-invalid');
+}));
 document.getElementById('import-btn').addEventListener('click',()=>document.getElementById('import-file').click());
 async function restoreVoiceEntriesFromZip(zip){
   const wrapped={files:Object.fromEntries(Object.entries(zip.files).map(([name,z])=>['voice/'+name,z]))};
@@ -8205,16 +8230,11 @@ confirmLabel:_lang==='en'?'Delete':'Видалити',cancelLabel:_lang==='en'?'
 if(!_yes)return;
 await (async()=>{
 const _bk=await wipeAllData({undoable:true});renderAfterWipe();_wipeWarn();
-    const _t=document.createElement('div');
-    _t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--err);color:#fff;padding:10px 18px;border-radius:var(--rf);font-size:var(--sm);display:flex;align-items:center;gap:10px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.4)';
-    const _ub=document.createElement('button');
-    _ub.textContent=_lang==='en'?'Undo':'Скасувати';
-    _ub.style.cssText='background:rgba(255,255,255,.25);border:none;color:#fff;padding:4px 10px;border-radius:var(--rf);cursor:pointer;font-weight:700';
-    _t.textContent=(_lang==='en'?'All data deleted':'Всі дані видалено')+' ';
-    _t.appendChild(_ub);document.body.appendChild(_t);
-    let _rm=false;
-    const _tm=setTimeout(()=>{if(!_rm){_rm=true;_t.remove();}if(!_storageBlocked&&_writeReady)finalizePendingWipe();},5000);
-    _ub.addEventListener('click',async()=>{clearTimeout(_tm);_rm=true;_t.remove();await undoWipe(_bk);renderAfterWipe();if(typeof renderCal==='function')renderCal();if(typeof renderNotesList==='function')renderNotesList();if(typeof showToast==='function'){showToast(_lang==='en'?'Restored!':'Відновлено!');}else{const _rt=document.createElement('div');_rt.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--suc);color:#fff;padding:10px 18px;border-radius:var(--rf);font-size:var(--sm);z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.4)';_rt.textContent=_lang==='en'?'Restored!':'Відновлено!';document.body.appendChild(_rt);setTimeout(()=>_rt.remove(),2500);}});
+    showUndoToast(_lang==='en'?'All data deleted':'Всі дані видалено',async()=>{
+      await undoWipe(_bk);renderAfterWipe();
+      if(typeof renderCal==='function')renderCal();if(typeof renderNotesList==='function')renderNotesList();
+      showToast(_lang==='en'?'Restored!':'Відновлено!',2200,'success');
+    },{kind:'danger',ms:5000,onExpire:()=>{if(!_storageBlocked&&_writeReady)finalizePendingWipe();}});
   })();
 });
 
@@ -10365,14 +10385,18 @@ applyBg();
 applyPreset('full');
 
 let _undoTimer=null;
-function showUndoToast(msg,undoFn){
+function showUndoToast(msg,undoFn,opts){
+  opts=opts||{};
   const toast=document.getElementById('undo-toast');
+  _pauseToasts('undo');
   document.getElementById('undo-msg').textContent=msg;
+  toast.dataset.kind=opts.kind||'neutral';
   applyI18n();
   toast.classList.add('show');
   if(_undoTimer)clearTimeout(_undoTimer);
-  document.getElementById('undo-btn').onclick=()=>{undoFn();toast.classList.remove('show');clearTimeout(_undoTimer);};
-  _undoTimer=setTimeout(()=>toast.classList.remove('show'),5000);
+  const resume=()=>_resumeToasts('undo');
+  document.getElementById('undo-btn').onclick=async()=>{clearTimeout(_undoTimer);toast.classList.remove('show');try{await undoFn();}finally{resume();}};
+  _undoTimer=setTimeout(()=>{toast.classList.remove('show');try{if(opts.onExpire)opts.onExpire();}finally{resume();}},opts.ms||5000);
 }
 
 // ==================== GEMINI AI ====================
@@ -10725,7 +10749,7 @@ function renderInsAI(body) {
 
 
 </script>
-<div class="undo-toast" id="undo-toast"><span id="undo-msg"></span><button class="undo-btn" id="undo-btn" data-i18n="toast_undo">Скасувати</button></div>
+<div class="undo-toast" id="undo-toast" role="status" aria-live="polite" aria-atomic="true"><span id="undo-msg"></span><button class="undo-btn" id="undo-btn" data-i18n="toast_undo">Скасувати</button></div>
 
 
 <script>

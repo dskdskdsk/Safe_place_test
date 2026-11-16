@@ -74,13 +74,13 @@ def roundtrip(p,c):
  const exported=await buildFullExportObj();const result=await buildCombinedZip(exported,'journal.json');return Array.from(new Uint8Array(await result.zipBlob.arrayBuffer()));
  }""",{'png':base64.b64encode(PNG).decode(),'wav':WAV})
  target=browser.new_context(accept_downloads=True);q=target.new_page();q.set_default_timeout(8000);q.goto(URL)
- q.locator('#import-file').set_input_files({'name':'journal.zip','mimeType':'application/zip','buffer':bytes(archive)});q.wait_for_selector('#err-dlg')
- check('30' in q.locator('#err-dlg-text').inner_text());q.locator('#err-dlg .ob-next').click();q.reload()
+ q.locator('#import-file').set_input_files({'name':'journal.zip','mimeType':'application/zip','buffer':bytes(archive)});q.wait_for_selector('#app-toast.show')
+ check('30' in q.locator('#app-toast').inner_text());q.reload()
  got=ev(q,"""async()=>{
  const d=S.days['2026-09-01'];return {days:Object.keys(S.days).filter(k=>k.startsWith('2026-09')).length,text:d.summary,photo:(await _photoGet(d.photoIds))[0],voice:Array.from(new Uint8Array(await (await _voiceGet(d.summaryEntries.find(e=>e.type==='voice').audioId)).arrayBuffer())),tree:S.ideaTree,habits:S.habits,logs:S.habitLog};
  }""")
  check(got['days']==30 and 'День 1 🧪' in got['text']);check(got['photo']=='data:image/png;base64,'+base64.b64encode(PNG).decode());check(got['voice']==WAV);check(len(got['tree']['roots'][0]['children'])==1 and len(got['habits'])==1 and len(got['logs'])==1)
- q.locator('#import-file').set_input_files({'name':'journal.zip','mimeType':'application/zip','buffer':bytes(archive)});q.wait_for_selector('#err-dlg');check(ev(q,"S.days['2026-09-01'].summaryEntries.length===2&&S.ideaTree.roots.length===1"));target.close()
+ q.locator('#import-file').set_input_files({'name':'journal.zip','mimeType':'application/zip','buffer':bytes(archive)});q.wait_for_selector('#app-toast.show');check(ev(q,"S.days['2026-09-01'].summaryEntries.length===2&&S.ideaTree.roots.length===1"));target.close()
  return 'Real export builder → ZIP → clean context file input import; 30 days/photos + WAV/tree/habit; media bytes exact; repeated import no duplicate entries'
 def oldformat(p,c):
  result=ev(p,"()=>importJournalJson({days:{'2020-01-01':{summary:'legacy text',dayRating:7,ideas:['old idea']}},settings:{dark:false}},'uk')")

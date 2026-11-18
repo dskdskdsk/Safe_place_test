@@ -56,8 +56,9 @@ with sync_playwright() as pw:
  assert page.evaluate("document.activeElement.id")!='habit-name-input'
  page.evaluate('testViewport(844)');page.wait_for_timeout(300)
  assert not page.evaluate("document.documentElement.classList.contains('keyboard-open')")
- # A visible input should not be centred on focus.
- page.evaluate("()=>{let p=document.getElementById('page-settings');let i=document.getElementById('gemini-key-input');i.closest('.gem-body').style.maxHeight='2000px';i.scrollIntoView({block:'center'});window.beforeScroll=p.scrollTop;i.focus({preventScroll:true})}")
+ # A visible input should not be centred on focus. Open the initially collapsed groups so
+ # the settings page is tall enough to place the input at the centre before focusing it.
+ page.evaluate("()=>{for(const h of document.querySelectorAll('.sh-ch,.exp-ch,.imp-ch,.gem-ch')){const body=h.parentElement.querySelector('.sh-body,.exp-body,.imp-body,.gem-body');if(body&&parseFloat(getComputedStyle(body).maxHeight)===0)h.click()}let p=document.getElementById('page-settings'),i=document.getElementById('gemini-key-input');i.scrollIntoView({block:'center'});window.beforeScroll=p.scrollTop;i.focus({preventScroll:true})}")
  page.wait_for_timeout(350)
  assert abs(page.evaluate("document.getElementById('page-settings').scrollTop-beforeScroll"))<2
  # Pinch-zoom should not update the layout geometry.

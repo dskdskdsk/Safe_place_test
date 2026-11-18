@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 75.4
-  Файл: 75.4_dark-accent-system.html
-  Зміни 75.4 — Dark accent system:
-  1. Бірюзовий акцент Медіа/Рекомендацій поширено на пресети, Записи, додавання й тогли.
-  2. Пресети та статуси стали трохи вищими; смислові кольори статусів збережено.
-  3. Активний текст у темній темі уніфіковано як білий.
+  ЩОДЕННИК · ВЕРСІЯ 75.5
+  Файл: 75.5_custom-status-consistency.html
+  Зміни 75.5 — Custom status consistency:
+  1. Кастомні статуси синхронізовано з календарем, Записами, дашбордом та інсайтами.
+  2. Додано вибір стікера; старі статуси без стікера використовують 📌.
+  3. Темна тема використовує один бірюзовий акцент замість двох близьких відтінків.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -364,7 +364,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 75.4 Dark accent system</title>
+<title>Safe Place · 75.5 Custom status consistency</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -390,7 +390,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 [data-theme="dark"]{
   --bg:#171614;--surface:#1c1b19;--off:#222120;--dyn:#2d2c2a;
   --div:#262523;--bdr:#393836;--tx:#cdccca;--txm:rgb(174 170 164);--txf:rgb(155 150 143);
-  --pri:#4f98a3;--prih:#227f8b;--prilo:#313b3b;--fill:rgb(39 100 107);--fill-hover:rgb(30 83 89);
+  --pri:#4f98a3;--prih:#227f8b;--prilo:#313b3b;--fill:#4f98a3;--fill-hover:#227f8b;
   --err:#d163a7;--suc:#6daa45;--gold:#e8af34;--org:#fdab43;--blu:#5591c7;--pur:#a86fdf;
   --sh1:0 1px 2px oklch(0 0 0/.2);--sh2:0 4px 12px oklch(0 0 0/.3);--sh3:0 12px 32px oklch(0 0 0/.4);
 }
@@ -526,6 +526,10 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .status-chip.sel-other{background:oklch(from var(--pur) l c h/.15);border-color:var(--pur);color:var(--pur);}
 .status-note-wrap{padding:0 var(--s4) var(--s3);display:none;}
 .status-note-wrap.show{display:block;}
+.cs-icon-picker{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.cs-icon-btn{width:38px;height:38px;border-radius:var(--r2);border:1.5px solid var(--bdr);background:var(--off);display:flex;align-items:center;justify-content:center;font-size:18px}
+.cs-icon-btn.picked{background:var(--fill);border-color:var(--pri);box-shadow:inset 0 0 0 1px var(--pri)}
+#cs-icon-custom{width:64px;height:38px;text-align:center;padding:4px 6px;font-size:18px}
 
 
 /* INSIGHTS */
@@ -819,7 +823,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .fpov.open{opacity:1;pointer-events:all}
 .fpov img{max-width:100%;max-height:100dvh;object-fit:contain}
 
-@media(prefers-color-scheme:dark){:root:not([data-theme]){--bg:#171614;--surface:#1c1b19;--off:#222120;--dyn:#2d2c2a;--div:#262523;--bdr:#393836;--tx:#cdccca;--txm:rgb(174 170 164);--txf:rgb(155 150 143);--pri:#4f98a3;--prih:#227f8b;--prilo:#313b3b;--fill:rgb(39 100 107);--fill-hover:rgb(30 83 89);--err:#d163a7;--suc:#6daa45;--gold:#e8af34;--org:#fdab43;--blu:#5591c7;--pur:#a86fdf}}
+@media(prefers-color-scheme:dark){:root:not([data-theme]){--bg:#171614;--surface:#1c1b19;--off:#222120;--dyn:#2d2c2a;--div:#262523;--bdr:#393836;--tx:#cdccca;--txm:rgb(174 170 164);--txf:rgb(155 150 143);--pri:#4f98a3;--prih:#227f8b;--prilo:#313b3b;--fill:#4f98a3;--fill-hover:#227f8b;--err:#d163a7;--suc:#6daa45;--gold:#e8af34;--org:#fdab43;--blu:#5591c7;--pur:#a86fdf}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 /* CUSTOM EMOTION LEVEL */
@@ -1579,6 +1583,18 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     </div>
     <div id="cs-form" style="display:none;margin-top:8px;padding:12px;background:var(--surface2);border-radius:var(--r3);border:1px solid var(--brd)">
       <input type="text" class="txt-input" id="cs-name" placeholder="Назва статусу..." style="margin-bottom:10px">
+      <div style="font-size:var(--xs);color:var(--txm);margin-bottom:6px" data-i18n="custom_status_sticker">Стікер статусу</div>
+      <div class="cs-icon-picker" id="cs-icon-picker">
+        <button type="button" class="cs-icon-btn picked" data-icon="📌" aria-label="📌">📌</button>
+        <button type="button" class="cs-icon-btn" data-icon="🏥" aria-label="🏥">🏥</button>
+        <button type="button" class="cs-icon-btn" data-icon="🎓" aria-label="🎓">🎓</button>
+        <button type="button" class="cs-icon-btn" data-icon="🏋️" aria-label="🏋️">🏋️</button>
+        <button type="button" class="cs-icon-btn" data-icon="🎉" aria-label="🎉">🎉</button>
+        <button type="button" class="cs-icon-btn" data-icon="🚗" aria-label="🚗">🚗</button>
+        <button type="button" class="cs-icon-btn" data-icon="🌿" aria-label="🌿">🌿</button>
+        <button type="button" class="cs-icon-btn" data-icon="🧳" aria-label="🧳">🧳</button>
+        <input type="text" class="txt-input" id="cs-icon-custom" maxlength="8" inputmode="text" placeholder="🙂" data-i18n-aria="custom_status_sticker_custom" aria-label="Свій стікер">
+      </div>
       <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
         <div class="cs-clr picked" data-color="#4A9EFF" style="background:#4A9EFF"></div>
         <div class="cs-clr" data-color="#FF6B6B" style="background:#FF6B6B"></div>
@@ -2149,7 +2165,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   idea_detail_title:'Ідея',idea_tags_lbl:'Мітки',idea_new_tag_ph:'Нова мітка...',idea_subtasks_lbl:'Підпункти',idea_new_subtask_ph:'Новий підпункт...',idea_detail_hint:'Натисни ідею, щоб відкрити деталі',
   title_today:'Сьогодні',title_notes:'Записи',title_dash:'Дашборд',title_settings:'Налаштування',
   preset_full:'\u2728 Повний',preset_standard:'\uD83D\uDCCB Стандарт',preset_minimal:'\u26A1 Мінімум',
-  status_work:'На роботі',status_home:'Вдома',status_travel:'Мандрівка',status_other:'Інше',
+  status_work:'На роботі',status_home:'Вдома',status_travel:'Мандрівка',status_other:'Інше',custom_status_sticker:'Стікер статусу',custom_status_sticker_custom:'Свій стікер',
   emo_great:'\uD83D\uDE0E Чудово',emo_good:'\uD83D\uDE18 Добре',emo_ok:'\uD83D\uDE10 Нормально',
   emo_meh:'\uD83D\uDE11 Так собі',emo_tired:'\uD83D\uDE34 Втомлений',emo_bad:'\uD83D\uDE14 Зле',emo_anxious:'\uD83D\uDE30 Тривожно',
   months:['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'],
@@ -2187,7 +2203,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.4',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.5',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2248,7 +2264,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   idea_detail_title:'Idea',idea_tags_lbl:'Tags',idea_new_tag_ph:'New tag...',idea_subtasks_lbl:'Subtasks',idea_new_subtask_ph:'New subtask...',idea_detail_hint:'Tap an idea to open details',
   title_today:'Today',title_notes:'Notes',title_dash:'Dashboard',title_settings:'Settings',
   preset_full:'\u2728 Full',preset_standard:'\uD83D\uDCCB Standard',preset_minimal:'\u26A1 Minimal',
-  status_work:'At work',status_home:'Home',status_travel:'Travel',status_other:'Other',
+  status_work:'At work',status_home:'Home',status_travel:'Travel',status_other:'Other',custom_status_sticker:'Status sticker',custom_status_sticker_custom:'Custom sticker',
   emo_great:'\uD83D\uDE0E Great',emo_good:'\uD83D\uDE18 Good',emo_ok:'\uD83D\uDE10 Okay',
   emo_meh:'\uD83D\uDE11 Meh',emo_tired:'\uD83D\uDE34 Tired',emo_bad:'\uD83D\uDE14 Bad',emo_anxious:'\uD83D\uDE30 Anxious',
   months:['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -2286,7 +2302,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.4',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.5',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -3602,7 +3618,10 @@ document.querySelectorAll('.ni').forEach(btn=>{
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('page-'+btn.dataset.page).classList.add('active');
-    if(btn.dataset.page==='notes')renderNotesList();
+    if(btn.dataset.page==='notes'){
+      renderNotesList();
+      if(typeof renderCal==='function'&&notesView==='cal')renderCal();
+    }
     if(btn.dataset.page==='dash')renderDash();
     if(btn.dataset.page==='settings')applyI18n();
     setTimeout(()=>{
@@ -4334,12 +4353,8 @@ function buildDigestFacts(d, dateKey){
   const avg = calcDayRating(d);
   if(avg>0) facts.rating = avg.toFixed(1);
   if(d.status){
-    const sd = STATUS_DATA[d.status];
-    if(sd){ facts.status = sd.icon+' '+sd.label; }
-    else {
-      const cs=(S.settings.customStatuses||[]).find(c=>c.id===d.status);
-      if(cs) facts.status=(cs.icon||'📌')+' '+cs.label;
-    }
+    const sd=getStatusDefinition(d.status);
+    if(sd)facts.status=sd.icon+' '+sd.label;
   }
   // raw emotions kept as-is here; each comment gets AI-compressed individually later in buildDigestPrompt/applyDigestAiResults
   facts.emotions = (d.emotions||[]).map(e=>{
@@ -4805,7 +4820,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='75.4';
+const APP_VERSION='75.5';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -5489,7 +5504,7 @@ function renderNotes(){
     const has=(d.emotions&&d.emotions.length)||d.dayRating||(dayIdeasForDisplay(k).length)||(d.events&&d.events.length)||(d.photos&&d.photos.length)||hasG||(d.summary&&d.summary.trim())||(d.media&&d.media.length);
     if(!has)return;
     const div=document.createElement('div');div.className='nday';
-    let statusIcon='';if(d.status&&STATUS_DATA[d.status])statusIcon=`<span style="margin-left:6px;font-size:var(--xs)">${esc(STATUS_DATA[d.status].icon)}${d.statusNote?' '+esc(d.statusNote):''}</span>`;
+    const statusDef=getStatusDefinition(d.status);let statusIcon=statusDef?`<span style="margin-left:6px;font-size:var(--xs)">${esc(statusDef.icon)}${d.statusNote?' '+esc(d.statusNote):''}</span>`:'';
     let h=`<div class="ndh"><span class="ndlbl">${fmtLabel(k)}</span>${statusIcon}</div><div class="ndc">`;;
     // Summary first (prominent)
     if(d.summary&&d.summary.trim()){
@@ -5625,7 +5640,7 @@ function renderMoodCards(model,snapshot,lang){
   const evidence=readInsightCandidates(snapshot,model.period,model.selectedRange.from||model.asOf,model.asOf);
   const cards=selectMoodCards(model,evidence);
   const periodWord={week:tr('тиждень','week'),month:tr('місяць','month'),year:tr('рік','year'),all:tr('весь час','all time')}[model.period];
-  const statusName=id=>STATUS_DATA[id]?.label||(snapshot.settings?.customStatuses||[]).find(s=>s.id===id)?.label||id;
+  const statusName=id=>getStatusDefinition(id,snapshot)?.label||id;
   const slides=cards.map(card=>{
     let title='',text='',foot='';
     if(card.type==='summary'){
@@ -6787,7 +6802,7 @@ function renderNotesContent(){
   cont.innerHTML=days.map(k=>{
     const d=S.days[k];
     const icons=[d.dayRating?'⭐':'',(d.emotions&&d.emotions.length)?'😘':'',(d.summary&&d.summary.trim())?'📝':'',(d.media&&d.media.length)?'🎬':'',(dayIdeasForDisplay(k).length)?'💡':'',(d.events&&d.events.length)?'📅':'',(d.photoIds&&d.photoIds.length)?'📷':''].filter(Boolean).join(' ');
-    const si=(d.status&&STATUS_DATA[d.status])?STATUS_DATA[d.status].icon:'';
+    const si=getStatusDefinition(d.status)?.icon||'';
     let b='';
     if(d.dayRating){const _ca=calcDayRating(d);const _cntA=(d.dayRatings||[]).length;const _da=_cntA>1?_ca.toFixed(1):d.dayRating;b+='<div class="nsm"><span>⭐ '+_da+'/10'+(_cntA>1?' ('+_cntA+')':'')+' </span></div>';}
     if(d.emotions&&d.emotions.length)b+='<div class="nsm"><div class="nsml">'+(getLang()==='en'?'Mood':'Стан')+'</div><div>'+d.emotions.map(e=>'<span class="nebadge">'+esc(emotionLabel(e.id))+'</span>').join('')+'</div></div>';
@@ -8266,6 +8281,23 @@ const STATUS_DATA={
   other:{get label(){return t('status_other');},icon:'🌍',cls:'sel-other',dayCls:'tl-days-other'},
 };
 
+function getStatusDefinition(id,snapshot=S){
+  if(!id)return null;
+  const builtin=STATUS_DATA[id];
+  if(builtin)return{id,label:builtin.label,icon:builtin.icon,cls:builtin.cls,dayCls:builtin.dayCls,color:null,custom:false};
+  const custom=(snapshot?.settings?.customStatuses||[]).find(status=>status?.id===id);
+  if(custom)return{id,label:custom.label||id,icon:custom.icon||'📌',cls:'',dayCls:'',color:custom.color||'var(--pri)',custom:true};
+  return{id,label:id,icon:'❓',cls:'',dayCls:'',color:'var(--txm)',custom:false,unknown:true};
+}
+
+function refreshStatusConsumers(){
+  renderStatus();
+  renderStats();
+  if(typeof renderCal==='function')renderCal();
+  if(typeof renderNotesList==='function')renderNotesList();
+  if(document.getElementById('page-dash')?.classList.contains('active')&&typeof renderDash==='function')renderDash();
+}
+
 function renderStatus(){
   const d=day();
   // Спочатку видаляємо custom chips, потім скидаємо стандартні
@@ -8300,15 +8332,17 @@ document.getElementById('status-chips').addEventListener('click',function(e){
     const aff={};
     Object.entries(S.days).forEach(([k,v])=>{if(v.status===id){aff[k]=id;v.status='';}});
     S.settings.customStatuses=(S.settings.customStatuses||[]).filter(x=>x.id!==id);
-    save();renderStatus();
-    showUndoToast(t('toast_status_deleted'),()=>{S.settings.customStatuses=bk;Object.entries(aff).forEach(([k,s])=>{S.days[k].status=s;});save();renderStatus();});
+    persist();refreshStatusConsumers();
+    showUndoToast(t('toast_status_deleted'),()=>{S.settings.customStatuses=bk;Object.entries(aff).forEach(([k,s])=>{S.days[k].status=s;});persist();refreshStatusConsumers();});
     return;
   }
   const chip=e.target.closest('.status-chip');
   if(!chip||!chip.dataset.status)return;
   const d=day();
+  const previous=d.status;
   d.status=d.status===chip.dataset.status?'':chip.dataset.status;
-  markNow();renderStatus();
+  if(!markNow())d.status=previous;
+  refreshStatusConsumers();
 });
 
 document.getElementById('status-note-in').addEventListener('input',function(){
@@ -9096,22 +9130,22 @@ function renderInsStatus(body){
     daysShort:'д'
   };
   const days=getInsightDays();
-  const statuses=['work','home','travel','other'];
+  const statuses=[...new Set(['work','home','travel','other',...(S.settings.customStatuses||[]).map(s=>s.id).filter(Boolean)])];
   const groups={};
   statuses.forEach(s=>{groups[s]=days.filter(k=>S.days[k]&&S.days[k].status===s&&S.days[k].dayRating>0);});
   const hasAny=statuses.some(s=>groups[s].length>=2);
   if(!hasAny){body.innerHTML='<div class="ins-empty">'+t.needData+'<br><span style="font-size:var(--xs)">'+t.setStatus+'</span></div>';return;}
-  const colors={work:'var(--blu)',home:'var(--suc)',travel:'var(--org)',other:'var(--pur)'};
-  const labels={work:'💼 '+t.work,home:'🏠 '+t.home,travel:'✈️ '+t.travel,other:'🌍 '+t.other};
+  const builtinColors={work:'var(--blu)',home:'var(--suc)',travel:'var(--org)',other:'var(--pur)'};
   let html='';
   const avgs=statuses.map(s=>({s,avg:avgRating(groups[s]),cnt:groups[s].length})).filter(x=>x.avg!==null&&x.cnt>=2);
   avgs.sort((a,b)=>b.avg-a.avg);
   avgs.forEach(({s,avg,cnt})=>{
+    const def=getStatusDefinition(s),color=builtinColors[s]||def?.color||'var(--pri)',label=def?(def.icon+' '+def.label):s;
     html+=`<div class="ins-row">
-      <div class="ins-label">${labels[s]}</div>
+      <div class="ins-label">${esc(label)}</div>
       <div class="ins-bar-wrap">
         <div class="ins-bar-row">
-          ${insBar(avg,10,colors[s])}
+          ${insBar(avg,10,color)}
           <span class="ins-bar-val">${avg.toFixed(1)}</span>
         </div>
       </div>
@@ -9209,13 +9243,13 @@ function renderInsAnalysis(body){
     if(aw!==null&&awo!==null){const d=aw-awo;if(d>bestDiff){bestDiff=d;bestHabit={label:hlabel,diff:d,avg:aw};}}
   });
   if(bestHabit&&bestHabit.diff>0.5) insights.push({icon:'💡',text:`${t.habit} <b>${esc(bestHabit.label)}</b> ${t.higher} <b>+${bestHabit.diff.toFixed(1)} ${t.points}</b>`,cls:'green'});
-  const statuses=['work','home','travel','other'];
-  const statusLabels={work:'💼 '+(getLang()==='en'?'At work':'На роботі'),home:'🏠 '+(getLang()==='en'?'At home':'Вдома'),travel:'✈️ '+(getLang()==='en'?'Travel':'Мандрівка'),other:'🌍 '+(getLang()==='en'?'Other':'Інше')};
+  const statuses=[...new Set(['work','home','travel','other',...(S.settings.customStatuses||[]).map(s=>s.id).filter(Boolean)])];
+  const statusLabels=Object.fromEntries(statuses.map(s=>{const def=getStatusDefinition(s);return[s,def?(def.icon+' '+def.label):s];}));
   const savgs=statuses.map(s=>({s,avg:avgRating(rated.filter(k=>S.days[k].status===s))})).filter(x=>x.avg!==null);
   if(savgs.length>=2){
     savgs.sort((a,b)=>b.avg-a.avg);
     const best=savgs[0],worst=savgs[savgs.length-1];
-    if(best.avg-worst.avg>0.5) insights.push({icon:'📍',text:`${t.best} <b>${statusLabels[best.s]}</b> (${best.avg.toFixed(1)}★), ${t.worst} — <b>${statusLabels[worst.s]}</b> (${worst.avg.toFixed(1)}★)`,cls:'yellow'});
+    if(best.avg-worst.avg>0.5) insights.push({icon:'📍',text:`${t.best} <b>${esc(statusLabels[best.s])}</b> (${best.avg.toFixed(1)}★), ${t.worst} — <b>${esc(statusLabels[worst.s])}</b> (${worst.avg.toFixed(1)}★)`,cls:'yellow'});
   }
   const DOW=getLang()==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['Нд','Пн','Вт','Ср','Чт','Пт','Сб'];
   const dowGroups={};
@@ -9310,13 +9344,13 @@ function buildTimeline(yearFilter){
   const order=[...knownOrder,...customOrder];
   order.forEach(s=>{
     if(!stats[s])return;
-    const st=STATUS_DATA[s]||((S.settings.customStatuses||[]).find(x=>x.id===s)?{label:(S.settings.customStatuses||[]).find(x=>x.id===s).label,icon:(S.settings.customStatuses||[]).find(x=>x.id===s).icon||'📌'}:{icon:'❓',label:s});
+    const st=getStatusDefinition(s);
     const isActiveFilter=tlStatusFilter===s;
     html+=`<div class="tl-stat" style="cursor:pointer;${isActiveFilter?'outline:2px solid var(--pri);border-radius:var(--r2)':''}" data-ts="${esc(s)}" onclick="tlStatusFilter=(tlStatusFilter===this.dataset.ts?null:this.dataset.ts);tlPage=0;renderTimelineYear(currentTlYear)">${esc(st.icon)} <span><b>${stats[s]}</b> ${getLang()==='en'?'d':'дн'}</span></div>`;
   });
   html+='</div>';
   if(tlStatusFilter){
-    const _fst=STATUS_DATA[tlStatusFilter]||((S.settings.customStatuses||[]).find(x=>x.id===tlStatusFilter)?{label:(S.settings.customStatuses||[]).find(x=>x.id===tlStatusFilter).label}:{label:tlStatusFilter});
+    const _fst=getStatusDefinition(tlStatusFilter);
     html+=`<div style="display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s3);padding:6px 10px;background:oklch(from var(--pri) l c h/.08);border:1px solid oklch(from var(--pri) l c h/.18);border-radius:var(--r2);font-size:var(--xs);color:var(--tx)"><span>${getLang()==='en'?'Filtered by':'Фільтр за'}: <strong>${esc(_fst.label)}</strong></span><span style="margin-left:auto;cursor:pointer;color:var(--txm)" onclick="tlStatusFilter=null;tlPage=0;renderTimelineYear(currentTlYear)">✕</span></div>`;
   }
 
@@ -9335,10 +9369,8 @@ function buildTimeline(yearFilter){
   }
 
   pageSegs.forEach((seg,si)=>{
-    let st=STATUS_DATA[seg.status];
-    if(!st){const _cs=(S.settings.customStatuses||[]).find(x=>x.id===seg.status);st=_cs?{label:_cs.label,icon:_cs.icon||'📌',cls:'',dayCls:''}:{label:seg.status,icon:'❓',cls:'',dayCls:''};}
-    const _csClr=(S.settings.customStatuses||[]).find(x=>x.id===seg.status);
-    const color=STATUS_COLORS[seg.status]||(_csClr?_csClr.color:'var(--txm)');
+    const st=getStatusDefinition(seg.status);
+    const color=STATUS_COLORS[seg.status]||st?.color||'var(--txm)';
 
     const fmtDate=k=>{
       const [y,m,d]=k.split('-');
@@ -9434,9 +9466,8 @@ function readMemoryDay(snapshot,dateKey){
   const ideas=list(d.ideas).slice();
   function visit(nodes){for(const n of list(nodes)){if(n?.date===dateKey&&typeof n.text==='string'&&n.text.trim())ideas.push(n.text);visit(n?.children);}}
   visit(snapshot.ideaTree?.roots);
-  const customStatus=list(snapshot.settings?.customStatuses).find(s=>s.id===profile.status.id);
-  const builtinStatus=STATUS_DATA[profile.status.id];
-  return copy({dateKey,profile,entries,emotions:list(d.emotions),statusNote:d.statusNote||'',gratitude:list(d.gratitude),events:list(d.events),ideas,media:list(d.media),photoIds:list(d.photoIds),photos:list(d.photos),habits:profile.habits.markedIds.map(id=>{const h=list(snapshot.habits).find(x=>x.id===id);return{id,name:h?.name||id,freq:h?.freq||null};}),statusDef:profile.status.id?{id:profile.status.id,label:builtinStatus?.label||customStatus?.label||profile.status.id,icon:builtinStatus?.icon||customStatus?.icon||'📌',cls:builtinStatus?.cls||'',color:customStatus?.color||null}:null});
+  const statusDef=getStatusDefinition(profile.status.id,snapshot);
+  return copy({dateKey,profile,entries,emotions:list(d.emotions),statusNote:d.statusNote||'',gratitude:list(d.gratitude),events:list(d.events),ideas,media:list(d.media),photoIds:list(d.photoIds),photos:list(d.photos),habits:profile.habits.markedIds.map(id=>{const h=list(snapshot.habits).find(x=>x.id===id);return{id,name:h?.name||id,freq:h?.freq||null};}),statusDef});
 }
 function hasMemoryContent(snapshot,key){return readInsightDay(snapshot,key,key).flags.hasSubmittedData;}
 function getMemoryTargets(snapshot,anchor){return ['month','year'].map(kind=>({kind,dateKey:getExactMemoryDate(anchor,kind)})).filter(x=>x.dateKey&&hasMemoryContent(snapshot,x.dateKey));}
@@ -10008,7 +10039,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
         const count = dayData ? ((dayData.summaryEntries&&dayData.summaryEntries.length)||0) : 0;
         const badge = count ? `<div style="font-size:9px;font-weight:700;color:var(--txm);line-height:1">${count}</div>` : '<div style="height:9px"></div>';
         const statusId=dayData?.status;
-        const statusDef=statusId?(STATUS_DATA[statusId]||(S.settings?.customStatuses||[]).find(x=>x.id===statusId)):null;
+        const statusDef=getStatusDefinition(statusId);
         const statusSticker=statusDef?.icon&&!isToday?`<span class="cal-status-icon" aria-hidden="true">${esc(statusDef.icon)}</span>`:'';
         const cellBg = dotColor ? `background:color-mix(in oklch, ${dotColor} 14%, var(--off));` : '';
         const cellBorder = dotColor ? `border-color:color-mix(in oklch, ${dotColor} 30%, transparent);` : '';
@@ -10056,7 +10087,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
   window.safePlaceUI?.remember('day-drawer');
       const d = S.days[k] || {};
       const dateLabel = fmtLabel(k);
-      const statusIcon=(d.status&&STATUS_DATA&&STATUS_DATA[d.status])?STATUS_DATA[d.status].icon:'';
+      const statusIcon=getStatusDefinition(d.status)?.icon||'';
 
       let h = `<div class="drawer-date">${dateLabel} ${statusIcon}</div>`;
 
@@ -10546,7 +10577,7 @@ document.getElementById('ai-day-btn').addEventListener('click', async () => {
     const d = day(activeDay);
     const parts = [];
     parts.push(`Дата: ${fmtBig(activeDay)}`);
-    if(d.status){const _stl=(STATUS_DATA[d.status]&&STATUS_DATA[d.status].label)||((S.settings.customStatuses||[]).find(c=>c.id===d.status)||{}).label||d.status;parts.push(`Статус дня: ${_stl}${d.statusNote ? ' — ' + d.statusNote : ''}`);}
+    if(d.status){const _stl=getStatusDefinition(d.status)?.label||d.status;parts.push(`Статус дня: ${_stl}${d.statusNote ? ' — ' + d.statusNote : ''}`);}
     if(d.emotions?.length) parts.push(`Емоції: ${d.emotions.map(e=>{const txt=(e.comments||[]).map(c=>c.text).filter(Boolean).join(' / ');return emotionLabel(e.id)+(txt?' ('+txt+')':'');}).join(', ')}`);
     if(d.dayRating){const _aiCnt=(d.dayRatings||[]).length;const _aiAvg=calcDayRating(d);const _aiDisp=_aiCnt>1?_aiAvg.toFixed(1):d.dayRating;parts.push(`Оцінка дня: ${_aiDisp}/10${_aiCnt>1?' (середнє з '+_aiCnt+' оцінок)':''}`);}        
     const _digestText=getDigestSourceText(d);
@@ -10778,6 +10809,24 @@ document.querySelectorAll('.cs-clr').forEach(function(el){
     document.getElementById('cs-color').value=el.dataset.color;
   });
 });
+function resetCustomStatusSticker(){
+  document.querySelectorAll('.cs-icon-btn').forEach(btn=>btn.classList.toggle('picked',btn.dataset.icon==='📌'));
+  const custom=document.getElementById('cs-icon-custom');if(custom)custom.value='';
+}
+function selectedCustomStatusSticker(){
+  const custom=document.getElementById('cs-icon-custom')?.value.trim();
+  return custom||document.querySelector('.cs-icon-btn.picked')?.dataset.icon||'📌';
+}
+document.querySelectorAll('.cs-icon-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.cs-icon-btn').forEach(x=>x.classList.toggle('picked',x===btn));
+    document.getElementById('cs-icon-custom').value='';
+  });
+});
+document.getElementById('cs-icon-custom').addEventListener('input',function(){
+  if(this.value.trim())document.querySelectorAll('.cs-icon-btn').forEach(x=>x.classList.remove('picked'));
+  else resetCustomStatusSticker();
+});
 // Custom status sheet
 document.getElementById('cs-add-btn').addEventListener('click',function(e){
   e.stopPropagation();
@@ -10785,6 +10834,7 @@ document.getElementById('cs-add-btn').addEventListener('click',function(e){
   form.style.display=form.style.display==='none'?'block':'none';
   if(form.style.display!=='none') applyI18n();
   document.getElementById('cs-name').value='';
+  resetCustomStatusSticker();
 });
 document.getElementById('cs-cancel').addEventListener('click',function(){
   document.getElementById('cs-form').style.display='none';
@@ -10793,7 +10843,7 @@ document.getElementById('cs-save').addEventListener('click',function(){
   var name=document.getElementById('cs-name').value.trim();
   if(!name)return;
   if(!S.settings.customStatuses)S.settings.customStatuses=[];
-  S.settings.customStatuses.push({id:'cs_'+Date.now(),label:name,icon:'📌',color:document.getElementById('cs-color').value});
+  S.settings.customStatuses.push({id:'cs_'+Date.now(),label:name,icon:selectedCustomStatusSticker(),color:document.getElementById('cs-color').value});
   save();
   document.getElementById('cs-form').style.display='none';
   renderStatus();

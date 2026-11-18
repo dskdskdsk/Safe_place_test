@@ -1,4 +1,4 @@
-const CACHE_NAME = 'journal-pwa-v75.4';
+const CACHE_NAME = 'journal-pwa-v75.5';
 const APP_SHELL = [
   '/',
   '/index.html',

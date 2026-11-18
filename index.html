@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 75.5
-  Файл: 75.5_custom-status-consistency.html
-  Зміни 75.5 — Custom status consistency:
-  1. Кастомні статуси синхронізовано з календарем, Записами, дашбордом та інсайтами.
-  2. Додано вибір стікера; старі статуси без стікера використовують 📌.
-  3. Темна тема використовує один бірюзовий акцент замість двох близьких відтінків.
+  ЩОДЕННИК · ВЕРСІЯ 75.6
+  Файл: 75.6_status-sticker-layout.html
+  Зміни 75.6 — Status sticker layout:
+  1. Вісім стікерів статусу розміщено в один ряд на звичайних і великих iPhone.
+  2. На iPhone mini стікери мають два рівні рядки по чотири.
+  3. Окреме поле власного смайлика прибрано; збережені раніше стікери продовжують відображатися.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -364,7 +364,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 75.5 Custom status consistency</title>
+<title>Safe Place · 75.6 Status sticker layout</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -526,10 +526,10 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .status-chip.sel-other{background:oklch(from var(--pur) l c h/.15);border-color:var(--pur);color:var(--pur);}
 .status-note-wrap{padding:0 var(--s4) var(--s3);display:none;}
 .status-note-wrap.show{display:block;}
-.cs-icon-picker{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.cs-icon-picker{display:grid;grid-template-columns:repeat(8,38px);justify-content:space-between;gap:6px 0;margin-bottom:10px}
 .cs-icon-btn{width:38px;height:38px;border-radius:var(--r2);border:1.5px solid var(--bdr);background:var(--off);display:flex;align-items:center;justify-content:center;font-size:18px}
 .cs-icon-btn.picked{background:var(--fill);border-color:var(--pri);box-shadow:inset 0 0 0 1px var(--pri)}
-#cs-icon-custom{width:64px;height:38px;text-align:center;padding:4px 6px;font-size:18px}
+@media(max-width:389px){.cs-icon-picker{grid-template-columns:repeat(4,38px)}}
 
 
 /* INSIGHTS */
@@ -1593,7 +1593,6 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         <button type="button" class="cs-icon-btn" data-icon="🚗" aria-label="🚗">🚗</button>
         <button type="button" class="cs-icon-btn" data-icon="🌿" aria-label="🌿">🌿</button>
         <button type="button" class="cs-icon-btn" data-icon="🧳" aria-label="🧳">🧳</button>
-        <input type="text" class="txt-input" id="cs-icon-custom" maxlength="8" inputmode="text" placeholder="🙂" data-i18n-aria="custom_status_sticker_custom" aria-label="Свій стікер">
       </div>
       <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
         <div class="cs-clr picked" data-color="#4A9EFF" style="background:#4A9EFF"></div>
@@ -2165,7 +2164,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   idea_detail_title:'Ідея',idea_tags_lbl:'Мітки',idea_new_tag_ph:'Нова мітка...',idea_subtasks_lbl:'Підпункти',idea_new_subtask_ph:'Новий підпункт...',idea_detail_hint:'Натисни ідею, щоб відкрити деталі',
   title_today:'Сьогодні',title_notes:'Записи',title_dash:'Дашборд',title_settings:'Налаштування',
   preset_full:'\u2728 Повний',preset_standard:'\uD83D\uDCCB Стандарт',preset_minimal:'\u26A1 Мінімум',
-  status_work:'На роботі',status_home:'Вдома',status_travel:'Мандрівка',status_other:'Інше',custom_status_sticker:'Стікер статусу',custom_status_sticker_custom:'Свій стікер',
+  status_work:'На роботі',status_home:'Вдома',status_travel:'Мандрівка',status_other:'Інше',custom_status_sticker:'Стікер статусу',
   emo_great:'\uD83D\uDE0E Чудово',emo_good:'\uD83D\uDE18 Добре',emo_ok:'\uD83D\uDE10 Нормально',
   emo_meh:'\uD83D\uDE11 Так собі',emo_tired:'\uD83D\uDE34 Втомлений',emo_bad:'\uD83D\uDE14 Зле',emo_anxious:'\uD83D\uDE30 Тривожно',
   months:['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'],
@@ -2203,7 +2202,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.5',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.6',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2264,7 +2263,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   idea_detail_title:'Idea',idea_tags_lbl:'Tags',idea_new_tag_ph:'New tag...',idea_subtasks_lbl:'Subtasks',idea_new_subtask_ph:'New subtask...',idea_detail_hint:'Tap an idea to open details',
   title_today:'Today',title_notes:'Notes',title_dash:'Dashboard',title_settings:'Settings',
   preset_full:'\u2728 Full',preset_standard:'\uD83D\uDCCB Standard',preset_minimal:'\u26A1 Minimal',
-  status_work:'At work',status_home:'Home',status_travel:'Travel',status_other:'Other',custom_status_sticker:'Status sticker',custom_status_sticker_custom:'Custom sticker',
+  status_work:'At work',status_home:'Home',status_travel:'Travel',status_other:'Other',custom_status_sticker:'Status sticker',
   emo_great:'\uD83D\uDE0E Great',emo_good:'\uD83D\uDE18 Good',emo_ok:'\uD83D\uDE10 Okay',
   emo_meh:'\uD83D\uDE11 Meh',emo_tired:'\uD83D\uDE34 Tired',emo_bad:'\uD83D\uDE14 Bad',emo_anxious:'\uD83D\uDE30 Anxious',
   months:['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -2302,7 +2301,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.5',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.6',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -4820,7 +4819,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='75.5';
+const APP_VERSION='75.6';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -10811,21 +10810,14 @@ document.querySelectorAll('.cs-clr').forEach(function(el){
 });
 function resetCustomStatusSticker(){
   document.querySelectorAll('.cs-icon-btn').forEach(btn=>btn.classList.toggle('picked',btn.dataset.icon==='📌'));
-  const custom=document.getElementById('cs-icon-custom');if(custom)custom.value='';
 }
 function selectedCustomStatusSticker(){
-  const custom=document.getElementById('cs-icon-custom')?.value.trim();
-  return custom||document.querySelector('.cs-icon-btn.picked')?.dataset.icon||'📌';
+  return document.querySelector('.cs-icon-btn.picked')?.dataset.icon||'📌';
 }
 document.querySelectorAll('.cs-icon-btn').forEach(function(btn){
   btn.addEventListener('click',function(){
     document.querySelectorAll('.cs-icon-btn').forEach(x=>x.classList.toggle('picked',x===btn));
-    document.getElementById('cs-icon-custom').value='';
   });
-});
-document.getElementById('cs-icon-custom').addEventListener('input',function(){
-  if(this.value.trim())document.querySelectorAll('.cs-icon-btn').forEach(x=>x.classList.remove('picked'));
-  else resetCustomStatusSticker();
 });
 // Custom status sheet
 document.getElementById('cs-add-btn').addEventListener('click',function(e){

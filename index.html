@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 75.6
-  Файл: 75.6_status-sticker-layout.html
-  Зміни 75.6 — Status sticker layout:
-  1. Вісім стікерів статусу розміщено в один ряд на звичайних і великих iPhone.
-  2. На iPhone mini стікери мають два рівні рядки по чотири.
-  3. Окреме поле власного смайлика прибрано; збережені раніше стікери продовжують відображатися.
+  ЩОДЕННИК · ВЕРСІЯ 75.7
+  Файл: 75.7_status-limits-and-editing.html
+  Зміни 75.7 — Status limits and editing:
+  1. Кількість статусів обмежено до 10: три основні та сім кастомних.
+  2. Назва кастомного статусу редагується подвійним тапом без зміни його внутрішнього ID.
+  3. Поле уточнення для кастомного статусу прибрано; форма створення після збереження очищується.
   Зміни 71.6.2: прибрано діапазони з підписів; кнопка додавання хобі знову компактна.
   Зміни 71.6.1: шкала оцінок активується після вибору; стикери, палітра, жести.
   Зміни 71.6: узгоджені оцінки та підсумки настрою; деталі графіка реагують на натискання і закриваються при скролі.
@@ -364,7 +364,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 75.6 Status sticker layout</title>
+<title>Safe Place · 75.7 Status limits and editing</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -530,6 +530,7 @@ a,button,[role=button]{transition:color var(--tr),background var(--tr),border-co
 .cs-icon-btn{width:38px;height:38px;border-radius:var(--r2);border:1.5px solid var(--bdr);background:var(--off);display:flex;align-items:center;justify-content:center;font-size:18px}
 .cs-icon-btn.picked{background:var(--fill);border-color:var(--pri);box-shadow:inset 0 0 0 1px var(--pri)}
 @media(max-width:389px){.cs-icon-picker{grid-template-columns:repeat(4,38px)}}
+#cs-add-btn.is-disabled{opacity:.45;cursor:not-allowed!important;border-style:solid!important}
 
 
 /* INSIGHTS */
@@ -2196,19 +2197,19 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   today_rating_hint:'Оціни день від 1 до 10',
   today_ai_btn:'Резюме дня від АІ',voice_rec_hint:'Запис голосового...',today_ai_update:'Оновити резюме',
   today_add_photo:'Додати',today_custom_status_ph:'Назва статусу...',today_travel_ph:'Куди / уточнення...',
-  media_name_ph:'Назва...',rec_name_ph:'Назва...',plus_custom:'+ Свій',edit_item:'Редагувати',edit_save:'Зберегти',edit_cancel:'Скасувати',edit_idea:'Редагувати ідею',edit_event:'Редагувати подію',edit_media:'Редагувати назву медіа',edit_rec:'Редагувати рекомендацію',edit_emotion:'Редагувати власну емоцію',edit_emotion_hint:'Подвійний тап — редагувати',edit_duplicate_emotion:'Така власна емоція вже існує.',entry_emotion_title:'Емоція повідомлення',
+  media_name_ph:'Назва...',rec_name_ph:'Назва...',plus_custom:'+ Свій',edit_item:'Редагувати',edit_save:'Зберегти',edit_cancel:'Скасувати',edit_idea:'Редагувати ідею',edit_event:'Редагувати подію',edit_media:'Редагувати назву медіа',edit_rec:'Редагувати рекомендацію',edit_emotion:'Редагувати власну емоцію',edit_emotion_hint:'Подвійний тап — редагувати',edit_duplicate_emotion:'Така власна емоція вже існує.',edit_status:'Редагувати назву статусу',edit_status_hint:'Подвійний тап — редагувати',entry_emotion_title:'Емоція повідомлення',
   rec_cat_watch:'Подивитись',rec_cat_play:'Пограти',rec_cat_listen:'Послухати',
   rec_cat_read:'Почитати',rec_cat_todo:'Зробити',rec_cat_archive:'📦 Архів',
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.6',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.7',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
   em_color_lbl:'Колір кнопки:',em_color_auto:'автоматично по типу або свій',
   em_add_btn:'Додати',
-  toast_undo:'Скасувати',toast_deleted:'видалено',toast_status_deleted:'Статус видалено',em_add_own:'+ Своя',
+  toast_undo:'Скасувати',toast_deleted:'видалено',toast_status_deleted:'Статус видалено',toast_status_limit:'Можна додати не більше 7 власних статусів',em_add_own:'+ Своя',
   media_cat_watch:'Дивлюсь',media_cat_read:'Читаю',media_cat_play:'Граю',
   media_empty:'Поки порожньо 🎬',
   media_continuing:'🔄 Продовжуєш',media_paused:'⏸ На паузі',media_add_today:'+ Сьогодні',
@@ -2295,19 +2296,19 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   today_rating_hint:'Rate your day from 1 to 10',
   today_ai_btn:'Day summary from AI',voice_rec_hint:'Recording voice message...',today_ai_update:'Refresh summary',
   today_add_photo:'Add',today_custom_status_ph:'Status name...',today_travel_ph:'Destination / details...',
-  media_name_ph:'Title...',rec_name_ph:'Name...',plus_custom:'+ Custom',edit_item:'Edit',edit_save:'Save',edit_cancel:'Cancel',edit_idea:'Edit idea',edit_event:'Edit event',edit_media:'Edit media title',edit_rec:'Edit recommendation',edit_emotion:'Edit custom emotion',edit_emotion_hint:'Double tap to edit',edit_duplicate_emotion:'This custom emotion already exists.',entry_emotion_title:'Message emotion',
+  media_name_ph:'Title...',rec_name_ph:'Name...',plus_custom:'+ Custom',edit_item:'Edit',edit_save:'Save',edit_cancel:'Cancel',edit_idea:'Edit idea',edit_event:'Edit event',edit_media:'Edit media title',edit_rec:'Edit recommendation',edit_emotion:'Edit custom emotion',edit_emotion_hint:'Double tap to edit',edit_duplicate_emotion:'This custom emotion already exists.',edit_status:'Edit status name',edit_status_hint:'Double tap to edit',entry_emotion_title:'Message emotion',
   rec_cat_watch:'Watch',rec_cat_play:'Play',rec_cat_listen:'Listen',
   rec_cat_read:'Read',rec_cat_todo:'To-do',rec_cat_archive:'📦 Archive',
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.6',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.7',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
   em_color_lbl:'Button color:',em_color_auto:'auto by type or custom',
   em_add_btn:'Add',
-  toast_undo:'Undo',toast_deleted:'Deleted',toast_status_deleted:'Status deleted',em_add_own:'+ Custom',
+  toast_undo:'Undo',toast_deleted:'Deleted',toast_status_deleted:'Status deleted',toast_status_limit:'You can add up to 7 custom statuses',em_add_own:'+ Custom',
   media_cat_watch:'Watching',media_cat_read:'Reading',media_cat_play:'Playing',
   media_empty:'Nothing here yet 🎬',
   media_continuing:'🔄 Continuing',media_paused:'⏸ On pause',media_add_today:'+ Today',
@@ -4819,7 +4820,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='75.6';
+const APP_VERSION='75.7';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -8297,6 +8298,26 @@ function refreshStatusConsumers(){
   if(document.getElementById('page-dash')?.classList.contains('active')&&typeof renderDash==='function')renderDash();
 }
 
+const CUSTOM_STATUS_LIMIT=7;
+function customStatusCount(){return Array.isArray(S.settings.customStatuses)?S.settings.customStatuses.length:0;}
+function newCustomStatusId(){
+  let id;
+  do{
+    const token=globalThis.crypto?.randomUUID?.()||`${Date.now()}_${Math.random().toString(36).slice(2,10)}`;
+    id='cs_'+token;
+  }while((S.settings.customStatuses||[]).some(status=>status?.id===id));
+  return id;
+}
+function renameCustomStatus(id,newLabel){
+  const value=String(newLabel||'').trim();
+  const status=(S.settings.customStatuses||[]).find(item=>item.id===id);
+  if(!status||!value)return false;
+  if(value===status.label)return true;
+  const ok=edit73Commit(()=>{status.label=value;});
+  if(ok)refreshStatusConsumers();
+  return ok;
+}
+
 function renderStatus(){
   const d=day();
   // Спочатку видаляємо custom chips, потім скидаємо стандартні
@@ -8312,17 +8333,29 @@ function renderStatus(){
     const sel=d.status===cs.id;
     chip.className='status-chip cs-chip';
     chip.dataset.status=cs.id;
+    chip.title=t('edit_status_hint');
     if(sel){chip.classList.add('cs-sel');chip.style.cssText=`background:${cs.color}22;border-color:${cs.color};color:${cs.color}`;}
     chip.innerHTML=`${esc(cs.icon||'📌')} ${esc(cs.label)}<span class="cs-x" data-id="${esc(cs.id)}" style="opacity:.5;margin-left:5px;cursor:pointer">✕</span>`;
     if(csAddBtn)csAddBtn.parentNode.insertBefore(chip,csAddBtn);
   });
+  if(csAddBtn){
+    const atLimit=customStatusCount()>=CUSTOM_STATUS_LIMIT;
+    csAddBtn.classList.toggle('is-disabled',atLimit);
+    csAddBtn.setAttribute('aria-disabled',String(atLimit));
+  }
   const wrap=document.getElementById('status-note-wrap');
   const noteIn=document.getElementById('status-note-in');
-  const isCsSel=(S.settings.customStatuses||[]).some(cs=>cs.id===d.status);
-  wrap.classList.toggle('show',d.status==='travel'||d.status==='other'||isCsSel);
+  wrap.classList.toggle('show',d.status==='travel'||d.status==='other');
   noteIn.value=d.statusNote||'';
 }
 
+let customStatusTapId='',customStatusTapAt=0,customStatusTapTimer=null;
+function toggleDayStatus(id){
+  const d=day(),previous=d.status;
+  d.status=d.status===id?'':id;
+  if(!markNow())d.status=previous;
+  refreshStatusConsumers();
+}
 document.getElementById('status-chips').addEventListener('click',function(e){
   if(e.target.classList.contains('cs-x')){
     e.stopPropagation();
@@ -8337,11 +8370,19 @@ document.getElementById('status-chips').addEventListener('click',function(e){
   }
   const chip=e.target.closest('.status-chip');
   if(!chip||!chip.dataset.status)return;
-  const d=day();
-  const previous=d.status;
-  d.status=d.status===chip.dataset.status?'':chip.dataset.status;
-  if(!markNow())d.status=previous;
-  refreshStatusConsumers();
+  const id=chip.dataset.status,status=getStatusDefinition(id);
+  if(status?.custom){
+    const now=Date.now();
+    if(customStatusTapId===id&&now-customStatusTapAt<430){
+      clearTimeout(customStatusTapTimer);customStatusTapId='';customStatusTapAt=0;
+      openTextEditDialog(t('edit_status'),status.label,value=>renameCustomStatus(id,value));
+      return;
+    }
+    clearTimeout(customStatusTapTimer);customStatusTapId=id;customStatusTapAt=now;
+    customStatusTapTimer=setTimeout(()=>{customStatusTapId='';customStatusTapAt=0;toggleDayStatus(id);},320);
+    return;
+  }
+  toggleDayStatus(id);
 });
 
 document.getElementById('status-note-in').addEventListener('input',function(){
@@ -10814,6 +10855,16 @@ function resetCustomStatusSticker(){
 function selectedCustomStatusSticker(){
   return document.querySelector('.cs-icon-btn.picked')?.dataset.icon||'📌';
 }
+function resetCustomStatusForm(){
+  document.getElementById('cs-name').value='';
+  resetCustomStatusSticker();
+  document.querySelectorAll('.cs-clr').forEach((item,index)=>item.classList.toggle('picked',index===0));
+  document.getElementById('cs-color').value='#4A9EFF';
+}
+function closeCustomStatusForm(){
+  document.getElementById('cs-form').style.display='none';
+  resetCustomStatusForm();
+}
 document.querySelectorAll('.cs-icon-btn').forEach(function(btn){
   btn.addEventListener('click',function(){
     document.querySelectorAll('.cs-icon-btn').forEach(x=>x.classList.toggle('picked',x===btn));
@@ -10822,23 +10873,25 @@ document.querySelectorAll('.cs-icon-btn').forEach(function(btn){
 // Custom status sheet
 document.getElementById('cs-add-btn').addEventListener('click',function(e){
   e.stopPropagation();
+  if(customStatusCount()>=CUSTOM_STATUS_LIMIT){
+    closeCustomStatusForm();showToast(t('toast_status_limit'));return;
+  }
   var form=document.getElementById('cs-form');
   form.style.display=form.style.display==='none'?'block':'none';
-  if(form.style.display!=='none') applyI18n();
-  document.getElementById('cs-name').value='';
-  resetCustomStatusSticker();
+  resetCustomStatusForm();
+  if(form.style.display!=='none'){applyI18n();document.getElementById('cs-name').focus();}
 });
 document.getElementById('cs-cancel').addEventListener('click',function(){
-  document.getElementById('cs-form').style.display='none';
+  closeCustomStatusForm();
 });
 document.getElementById('cs-save').addEventListener('click',function(){
   var name=document.getElementById('cs-name').value.trim();
   if(!name)return;
   if(!S.settings.customStatuses)S.settings.customStatuses=[];
-  S.settings.customStatuses.push({id:'cs_'+Date.now(),label:name,icon:selectedCustomStatusSticker(),color:document.getElementById('cs-color').value});
-  save();
-  document.getElementById('cs-form').style.display='none';
-  renderStatus();
+  if(customStatusCount()>=CUSTOM_STATUS_LIMIT){closeCustomStatusForm();showToast(t('toast_status_limit'));renderStatus();return;}
+  const status={id:newCustomStatusId(),label:name,icon:selectedCustomStatusSticker(),color:document.getElementById('cs-color').value};
+  if(!edit73Commit(()=>S.settings.customStatuses.push(status)))return;
+  closeCustomStatusForm();refreshStatusConsumers();
 });
 
 // ── ONBOARDING ────────────────────────────────────────────────────────────

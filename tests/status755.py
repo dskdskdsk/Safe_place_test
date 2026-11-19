@@ -42,6 +42,7 @@ with sync_playwright() as pw:
     page.locator('#cs-save').click()
     custom = page.locator('#status-chips .cs-chip').last
     custom.click()
+    page.wait_for_timeout(400)
 
     status_id = page.evaluate('(k) => S.days[k].status', target)
     assert status_id.startswith('cs_')

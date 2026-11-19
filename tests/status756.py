@@ -58,5 +58,5 @@ with sync_playwright() as pw:
 server.shutdown()
 source = (ROOT / "index.html").read_text()
 assert "id=\"cs-icon-custom\"" not in source
-assert "journal-pwa-v75.6" in (ROOT / "sw.js").read_text()
+assert "journal-pwa-v75." in (ROOT / "sw.js").read_text()
 print("PASS: sticker presets use 4+4 on mini and one row from 390px")

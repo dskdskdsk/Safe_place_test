@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 75.9
-  Файл: 75.9_status-archive.html
+  ЩОДЕННИК · ВЕРСІЯ 75.10
+  Файл: 75.10_status-presentation.html
+  Зміни 75.10 — Status presentation:
+  Назви статусів додано до Записів, пошуку та фільтрів дашборда.
+  Уточнення прив'язане до статусу; таймлайн розділяє пропуски та різні уточнення.
   Зміни 75.9 — Status archive:
   Архівування зберігає всі дні та звільняє місце серед семи активних статусів.
   Відновлення точкове, з контролем ліміту та відкатом при помилці збереження.
@@ -370,7 +373,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 75.9 Status archive</title>
+<title>Safe Place · 75.10 Status presentation</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -2209,7 +2212,7 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.9',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.10',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
@@ -2309,7 +2312,7 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.9',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.10',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
@@ -2388,7 +2391,7 @@ function validateJournal(input){
     if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!obj(d))fail();
     for(const k of ['emotions','dayRatings','ideas','events','photos','gratitude','summaryEntries','photoIds'])if(d[k]!==undefined&&!Array.isArray(d[k]))fail();
     if(d.draftText===undefined)d.draftText='';
-    for(const k of ['summary','status','statusNote','draftText'])if(d[k]!==undefined&&typeof d[k]!=='string')fail();
+    for(const k of ['summary','status','statusNote','statusNoteStatus','draftText'])if(d[k]!==undefined&&typeof d[k]!=='string')fail();
     if(d.summaryEntries&&d.summaryEntries.some(e=>!obj(e)))fail();
     if(d.photoIds&&d.photoIds.some(id=>typeof id!=='string'))fail();
   }
@@ -4839,7 +4842,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='75.9';
+const APP_VERSION='75.10';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -5523,7 +5526,7 @@ function renderNotes(){
     const has=(d.emotions&&d.emotions.length)||d.dayRating||(dayIdeasForDisplay(k).length)||(d.events&&d.events.length)||(d.photos&&d.photos.length)||hasG||(d.summary&&d.summary.trim())||(d.media&&d.media.length);
     if(!has)return;
     const div=document.createElement('div');div.className='nday';
-    const statusDef=getStatusDefinition(d.status);let statusIcon=statusDef?`<span style="margin-left:6px;font-size:var(--xs)">${esc(statusDef.icon)}${d.statusNote?' '+esc(d.statusNote):''}</span>`:'';
+    const statusDef=getStatusDefinition(d.status);let statusIcon=statusDef?`<span style="margin-left:6px;font-size:var(--xs)">${esc(statusDef.icon)}${readStatusNote(d)?' '+esc(readStatusNote(d)):''}</span>`:'';
     let h=`<div class="ndh"><span class="ndlbl">${fmtLabel(k)}</span>${statusIcon}</div><div class="ndc">`;;
     // Summary first (prominent)
     if(d.summary&&d.summary.trim()){
@@ -6807,7 +6810,7 @@ function renderNotesContent(){
   const allDays=Object.keys(S.days).sort((a,b)=>b.localeCompare(a)).filter(k=>{
     if(!hasRealContent(k))return false;
     const d=S.days[k];
-    const text=[d.summary||'',d.statusNote||'',(d.events||[]).map(e=>e.text||e).join(' '),dayIdeasForDisplay(k).join(' '),(d.emotions||[]).map(e=>emotionLabel(e.id)+' '+((e.comments||[]).map(c=>c.text).filter(Boolean).join(' '))).join(' '),(d.media||[]).map(m=>m.name+' '+(m.note||'')).join(' '),(d.gratitude||[]).filter(x=>x&&x.trim()).join(' '),(d.photoIds||[]).length?('photos '+(d.photoIds||[]).length):''].join(' ').toLowerCase();
+    const text=[d.summary||'',getStatusDefinition(d.status)?.label||'',readStatusNote(d),(d.events||[]).map(e=>e.text||e).join(' '),dayIdeasForDisplay(k).join(' '),(d.emotions||[]).map(e=>emotionLabel(e.id)+' '+((e.comments||[]).map(c=>c.text).filter(Boolean).join(' '))).join(' '),(d.media||[]).map(m=>m.name+' '+(m.note||'')).join(' '),(d.gratitude||[]).filter(x=>x&&x.trim()).join(' '),(d.photoIds||[]).length?('photos '+(d.photoIds||[]).length):''].join(' ').toLowerCase();
     if(searchQuery&&!text.includes(searchQuery))return false;
     if(!activeTag)return true;
     return extractTags(d.summary||'').map(t=>t.toLowerCase()).includes(activeTag);
@@ -6821,8 +6824,9 @@ function renderNotesContent(){
   cont.innerHTML=days.map(k=>{
     const d=S.days[k];
     const icons=[d.dayRating?'⭐':'',(d.emotions&&d.emotions.length)?'😘':'',(d.summary&&d.summary.trim())?'📝':'',(d.media&&d.media.length)?'🎬':'',(dayIdeasForDisplay(k).length)?'💡':'',(d.events&&d.events.length)?'📅':'',(d.photoIds&&d.photoIds.length)?'📷':''].filter(Boolean).join(' ');
-    const si=getStatusDefinition(d.status)?.icon||'';
+    const sd=getStatusDefinition(d.status);const si=sd?esc(sd.icon+' '+sd.label):'';
     let b='';
+    if(readStatusNote(d))b+='<div class="nsm">'+esc(readStatusNote(d))+'</div>';
     if(d.dayRating){const _ca=calcDayRating(d);const _cntA=(d.dayRatings||[]).length;const _da=_cntA>1?_ca.toFixed(1):d.dayRating;b+='<div class="nsm"><span>⭐ '+_da+'/10'+(_cntA>1?' ('+_cntA+')':'')+' </span></div>';}
     if(d.emotions&&d.emotions.length)b+='<div class="nsm"><div class="nsml">'+(getLang()==='en'?'Mood':'Стан')+'</div><div>'+d.emotions.map(e=>'<span class="nebadge">'+esc(emotionLabel(e.id))+'</span>').join('')+'</div></div>';
     if(d.summary&&d.summary.trim()){const _entries=ensureSummaryEntries(d).filter(e=>e.text&&e.text.trim());b+='<div class="nsm"><div class="day-summary-list">'+_entries.map(e=>'<div class="day-summary-preview">'+esc(e.text)+'</div>').join('')+'</div></div>';}
@@ -8332,6 +8336,13 @@ function getStatusDefinition(id,snapshot=S){
   return{id,label:id,icon:'❓',cls:'',dayCls:'',color:'var(--txm)',custom:false,unknown:true};
 }
 
+// Legacy notes have no owner: display only for statuses with a details field.
+function readStatusNote(d){
+  if(!d?.status)return '';
+  const owner=d.statusNoteStatus;
+  return (owner?owner===d.status:['travel','other'].includes(d.status))?(d.statusNote||''):'';
+}
+
 function refreshStatusConsumers(){
   renderStatus();
   renderStats();
@@ -8419,14 +8430,16 @@ function renderStatus(){
     row.append(label,restore);archive.append(row);
   }
   wrap.classList.toggle('show',d.status==='travel'||d.status==='other');
-  noteIn.value=d.statusNote||'';
+  noteIn.value=readStatusNote(d);
 }
 
 let customStatusTap=null;
 function toggleDayStatus(id){
-  const d=day(),previous=d.status;
-  d.status=d.status===id?'':id;
-  if(!markNow())d.status=previous;
+  edit73Commit(()=>{
+    const d=day(),previous=d.status;
+    if(d.statusNote&&!d.statusNoteStatus)d.statusNoteStatus=previous;
+    d.status=d.status===id?'':id;
+  });
   refreshStatusConsumers();
 }
 document.getElementById('status-chips').addEventListener('click',function(e){
@@ -8458,7 +8471,7 @@ document.getElementById('status-chips').addEventListener('click',function(e){
 });
 
 document.getElementById('status-note-in').addEventListener('input',function(){
-  day().statusNote=this.value;mark();
+  day().statusNote=this.value;day().statusNoteStatus=day().status;mark();
 });
 
 
@@ -9410,11 +9423,10 @@ function buildTimeline(yearFilter){
   }
   allKeys.forEach(k=>{
     const d=S.days[k];
-    const note=d.statusNote||'';
+    const note=readStatusNote(d);
     const gap=cur?daysBetween(cur.end,k):Infinity;
-    // Group same status even with gaps up to 3 days (unrecorded days between)
-    // Ignore note difference when grouping — show note from most recent day
-    if(!cur||cur.status!==d.status||gap>3){
+    // Only consecutive days with the same status and details form a period.
+    if(!cur||cur.status!==d.status||gap!==1||cur.note!==note){
       cur={status:d.status,note,start:k,end:k,count:1};
       segments.push(cur);
     } else {
@@ -9458,7 +9470,7 @@ function buildTimeline(yearFilter){
     if(!stats[s])return;
     const st=getStatusDefinition(s);
     const isActiveFilter=tlStatusFilter===s;
-    html+=`<div class="tl-stat" style="cursor:pointer;${isActiveFilter?'outline:2px solid var(--pri);border-radius:var(--r2)':''}" data-ts="${esc(s)}" onclick="tlStatusFilter=(tlStatusFilter===this.dataset.ts?null:this.dataset.ts);tlPage=0;renderTimelineYear(currentTlYear)">${esc(st.icon)} <span><b>${stats[s]}</b> ${getLang()==='en'?'d':'дн'}</span></div>`;
+    html+=`<div class="tl-stat" style="cursor:pointer;${isActiveFilter?'outline:2px solid var(--pri);border-radius:var(--r2)':''}" data-ts="${esc(s)}" onclick="tlStatusFilter=(tlStatusFilter===this.dataset.ts?null:this.dataset.ts);tlPage=0;renderTimelineYear(currentTlYear)">${esc(st.icon)} <span>${esc(st.label)} · <b>${stats[s]}</b> ${getLang()==='en'?'d':'дн'}</span></div>`;
   });
   html+='</div>';
   if(tlStatusFilter){
@@ -9579,7 +9591,7 @@ function readMemoryDay(snapshot,dateKey){
   function visit(nodes){for(const n of list(nodes)){if(n?.date===dateKey&&typeof n.text==='string'&&n.text.trim())ideas.push(n.text);visit(n?.children);}}
   visit(snapshot.ideaTree?.roots);
   const statusDef=getStatusDefinition(profile.status.id,snapshot);
-  return copy({dateKey,profile,entries,emotions:list(d.emotions),statusNote:d.statusNote||'',gratitude:list(d.gratitude),events:list(d.events),ideas,media:list(d.media),photoIds:list(d.photoIds),photos:list(d.photos),habits:profile.habits.markedIds.map(id=>{const h=list(snapshot.habits).find(x=>x.id===id);return{id,name:h?.name||id,freq:h?.freq||null};}),statusDef});
+  return copy({dateKey,profile,entries,emotions:list(d.emotions),statusNote:readStatusNote(d),gratitude:list(d.gratitude),events:list(d.events),ideas,media:list(d.media),photoIds:list(d.photoIds),photos:list(d.photos),habits:profile.habits.markedIds.map(id=>{const h=list(snapshot.habits).find(x=>x.id===id);return{id,name:h?.name||id,freq:h?.freq||null};}),statusDef});
 }
 function hasMemoryContent(snapshot,key){return readInsightDay(snapshot,key,key).flags.hasSubmittedData;}
 function getMemoryTargets(snapshot,anchor){return ['month','year'].map(kind=>({kind,dateKey:getExactMemoryDate(anchor,kind)})).filter(x=>x.dateKey&&hasMemoryContent(snapshot,x.dateKey));}
@@ -10200,9 +10212,10 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape')closeIdeaDetail();});
   window.safePlaceUI?.remember('day-drawer');
       const d = S.days[k] || {};
       const dateLabel = fmtLabel(k);
-      const statusIcon=getStatusDefinition(d.status)?.icon||'';
+      const sd=getStatusDefinition(d.status);const statusIcon=sd?esc(sd.icon+' '+sd.label):'';
 
       let h = `<div class="drawer-date">${dateLabel} ${statusIcon}</div>`;
+      if(readStatusNote(d))h+=`<div class="drawer-row"><div class="drawer-row-text">${esc(readStatusNote(d))}</div></div>`;
 
       if(!hasRealContent(k)){
         h += `<div class="drawer-empty">${getLang()==='en'?'This day is not filled yet':'Цей день ще не заповнений'}</div>
@@ -10690,7 +10703,7 @@ document.getElementById('ai-day-btn').addEventListener('click', async () => {
     const d = day(activeDay);
     const parts = [];
     parts.push(`Дата: ${fmtBig(activeDay)}`);
-    if(d.status){const _stl=getStatusDefinition(d.status)?.label||d.status;parts.push(`Статус дня: ${_stl}${d.statusNote ? ' — ' + d.statusNote : ''}`);}
+    if(d.status){const _stl=getStatusDefinition(d.status)?.label||d.status;parts.push(`Статус дня: ${_stl}${readStatusNote(d) ? ' — ' + readStatusNote(d) : ''}`);}
     if(d.emotions?.length) parts.push(`Емоції: ${d.emotions.map(e=>{const txt=(e.comments||[]).map(c=>c.text).filter(Boolean).join(' / ');return emotionLabel(e.id)+(txt?' ('+txt+')':'');}).join(', ')}`);
     if(d.dayRating){const _aiCnt=(d.dayRatings||[]).length;const _aiAvg=calcDayRating(d);const _aiDisp=_aiCnt>1?_aiAvg.toFixed(1):d.dayRating;parts.push(`Оцінка дня: ${_aiDisp}/10${_aiCnt>1?' (середнє з '+_aiCnt+' оцінок)':''}`);}        
     const _digestText=getDigestSourceText(d);

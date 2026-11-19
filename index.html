@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!--
-  ЩОДЕННИК · ВЕРСІЯ 75.8
-  Файл: 75.8_status-import-integrity.html
+  ЩОДЕННИК · ВЕРСІЯ 75.9
+  Файл: 75.9_status-archive.html
+  Зміни 75.9 — Status archive:
+  Архівування зберігає всі дні та звільняє місце серед семи активних статусів.
+  Відновлення точкове, з контролем ліміту та відкатом при помилці збереження.
   Зміни 75.8 — Status import integrity:
   Імпорт переносить визначення статусів, розділяє конфлікти ID та перевіряє структуру.
   Кастомний статус реагує одразу; подвійний тап відновлює попередній вибір і відкриває редактор.
@@ -367,7 +370,7 @@ if(remBtn)remBtn.addEventListener('click',()=>{requirePinVerification(()=>{const
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Щоденник">
-<title>Safe Place · 75.8 Status import integrity</title>
+<title>Safe Place · 75.9 Status archive</title>
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="rgb(250 249 245)">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -2206,13 +2209,14 @@ import_cleanup:"Імпорт не збережено. Не вдалося при
   editing_label:'✏️ Редагуєш:',back_today:'← Сьогодні',
   streak_current:'Поточний',streak_record:'Рекорд',streak_start:'Початок стріку',streak_total:'Всього днів',
   btn_save_cs:'✓ Зберегти',btn_cancel_cs:'✗ Скасувати',
-  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.8',habit_daily:'Щодня',habit_times:'× на тиждень',
+  habit_daily:'Щодня',habit_goal_weekly:'З ціллю на тиждень',habit_times_week:'Скільки разів на тиждень?',habit_edit_title:'Редагувати звичку',habit_new_title:'Нова звичка',habit_save:'Зберегти',settings_cover_btn:'🖼️ Обрати обкладинку',settings_cover_remove:'🗑️ Видалити обкладинку',settings_group_export:'📤 Експорт',settings_group_import:'📥 Імпорт записів',settings_group_danger:'Видалення даних',settings_export:'📤 Експорт всього щоденника',settings_export_period_lbl:'📆 Період',settings_export_period_btn:'📤 Експортувати цей період',settings_import:'📥 Імпорт записів',settings_export_voice:'🎙️ Експорт голосових',settings_import_voice:'📥 Імпорт голосових',settings_clear:'🗑️ Очистити всі дані',settings_gemini_sub:'AI працює через Google Gemini: текст надсилається лише після підтвердження. Потрібен інтернет.',settings_gemini_link:'Отримати ключ',settings_gemini_save:'Зберегти ключ',settings_footer:'Записи зберігаються локально · AI використовує зовнішній сервіс · Версія 75.9',habit_daily:'Щодня',habit_times:'× на тиждень',
   em_modal_title:'Додати свою емоцію',em_example_ph:'Наприклад: натхненний 🚀',
   em_type_lbl:'Тип емоції (для графіку настрою):',
   em_pos:'😊 Позитивна',em_neu:'😐 Нейтральна',em_neg:'😔 Негативна',
   em_color_lbl:'Колір кнопки:',em_color_auto:'автоматично по типу або свій',
   em_add_btn:'Додати',
   toast_undo:'Скасувати',toast_deleted:'видалено',toast_status_deleted:'Статус видалено',toast_status_limit:'Можна додати не більше 7 власних статусів',em_add_own:'+ Своя',
+  status_archived:'Статус в архіві. Минулі записи збережено.',status_archive_badge:'Архів',status_archive_action:'Архівувати статус',status_restore:'Відновити',status_restore_full:'Усі 7 місць зайняті. Спочатку архівуй інший статус.',
   media_cat_watch:'Дивлюсь',media_cat_read:'Читаю',media_cat_play:'Граю',
   media_empty:'Поки порожньо 🎬',
   media_continuing:'🔄 Продовжуєш',media_paused:'⏸ На паузі',media_add_today:'+ Сьогодні',
@@ -2305,13 +2309,14 @@ import_cleanup:"Import was not saved. New unlinked media could not be removed an
   editing_label:'✏️ Editing:',back_today:'← Today',
   streak_current:'Current',streak_record:'Record',streak_start:'Streak start',streak_total:'Total days',
   btn_save_cs:'✓ Save',btn_cancel_cs:'✗ Cancel',
-  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.8',habit_daily:'Daily',habit_times:'× per week',
+  habit_daily:'Daily',habit_goal_weekly:'Weekly goal',habit_times_week:'How many times per week?',habit_edit_title:'Edit habit',habit_new_title:'New habit',habit_save:'Save',settings_cover_btn:'🖼️ Choose cover',settings_cover_remove:'🗑️ Remove cover',settings_group_export:'📤 Export',settings_group_import:'📥 Import',settings_group_danger:'Delete data',settings_export:'📤 Export entire journal',settings_export_period_lbl:'📆 Period',settings_export_period_btn:'📤 Export this period',settings_import:'📥 Import entries',settings_export_voice:'🎙️ Export voice notes',settings_import_voice:'📥 Import voice notes',settings_clear:'🗑️ Clear all data',settings_gemini_sub:'AI uses Google Gemini: text is sent only after confirmation. Internet required.',settings_gemini_link:'Get API key',settings_gemini_save:'Save key',settings_footer:'Entries stored locally · AI uses an external service · Version 75.9',habit_daily:'Daily',habit_times:'× per week',
   em_modal_title:'Add custom emotion',em_example_ph:'E.g.: inspired 🚀',
   em_type_lbl:'Emotion type (for mood chart):',
   em_pos:'😊 Positive',em_neu:'😐 Neutral',em_neg:'😔 Negative',
   em_color_lbl:'Button color:',em_color_auto:'auto by type or custom',
   em_add_btn:'Add',
   toast_undo:'Undo',toast_deleted:'Deleted',toast_status_deleted:'Status deleted',toast_status_limit:'You can add up to 7 custom statuses',em_add_own:'+ Custom',
+  status_archived:'Status archived. Past entries are preserved.',status_archive_badge:'Archive',status_archive_action:'Archive status',status_restore:'Restore',status_restore_full:'All 7 slots are occupied. Archive another status first.',
   media_cat_watch:'Watching',media_cat_read:'Reading',media_cat_play:'Playing',
   media_empty:'Nothing here yet 🎬',
   media_continuing:'🔄 Continuing',media_paused:'⏸ On pause',media_add_today:'+ Today',
@@ -2374,6 +2379,7 @@ function validateJournal(input){
     for(const status of s.settings.customStatuses){
       if(!obj(status)||typeof status.id!=='string'||!status.id.trim()||ids.has(status.id)||typeof status.label!=='string'||!status.label.trim())fail();
       if(status.icon!==undefined&&typeof status.icon!=='string')fail();
+      if(status.archived!==undefined&&typeof status.archived!=='boolean')fail();
       if(status.color!==undefined&&(typeof status.color!=='string'||!/^#[0-9a-f]{6}$/i.test(status.color)))fail();
       ids.add(status.id);
     }
@@ -4833,7 +4839,7 @@ let _voiceStarting=false;
 // ═══ UNIFIED DIALOGS & ERRORS ═══
 // One window (same look as the info slider, no picture) for errors, warnings, summaries and confirmations.
 // All text goes in via textContent, never as HTML.
-const APP_VERSION='75.8';
+const APP_VERSION='75.9';
 const _errLog=[];
 function _redact(s){
   return String(s==null?'':s).replace(/([?&]key=)[^&\s"']+/gi,'$1***').replace(/AIza[0-9A-Za-z_\-]{20,}/g,'AIza***');
@@ -8335,7 +8341,22 @@ function refreshStatusConsumers(){
 }
 
 const CUSTOM_STATUS_LIMIT=7;
-function customStatusCount(){return Array.isArray(S.settings.customStatuses)?S.settings.customStatuses.length:0;}
+function customStatusCount(){return (S.settings.customStatuses||[]).filter(s=>!s.archived).length;}
+function restoreCustomStatus(id){
+  const status=(S.settings.customStatuses||[]).find(s=>s.id===id);
+  if(!status?.archived)return false;
+  if(customStatusCount()>=CUSTOM_STATUS_LIMIT){showToast(t('status_restore_full'));return false;}
+  const ok=edit73Commit(()=>{status.archived=false;});
+  refreshStatusConsumers();return ok;
+}
+function archiveCustomStatus(id){
+  const status=(S.settings.customStatuses||[]).find(s=>s.id===id);
+  if(!status||status.archived)return false;
+  const ok=edit73Commit(()=>{status.archived=true;});
+  refreshStatusConsumers();
+  if(ok)showUndoToast(t('status_archived'),()=>restoreCustomStatus(id));
+  return ok;
+}
 function newCustomStatusId(){
   let id;
   do{
@@ -8365,13 +8386,18 @@ function renderStatus(){
   });
   const csAddBtn=document.getElementById('cs-add-btn');
   (S.settings.customStatuses||[]).forEach(cs=>{
+    if(cs.archived&&d.status!==cs.id)return;
     const chip=document.createElement('div');
     const sel=d.status===cs.id;
     chip.className='status-chip cs-chip';
     chip.dataset.status=cs.id;
     chip.title=t('edit_status_hint');
     if(sel){chip.classList.add('cs-sel');chip.style.cssText=`background:${cs.color}22;border-color:${cs.color};color:${cs.color}`;}
-    chip.innerHTML=`${esc(cs.icon||'📌')} ${esc(cs.label)}<span class="cs-x" data-id="${esc(cs.id)}" style="opacity:.5;margin-left:5px;cursor:pointer">✕</span>`;
+    chip.innerHTML=`${esc(cs.icon||'📌')} ${esc(cs.label)}`;
+    if(cs.archived){
+      chip.removeAttribute('data-status');chip.title=t('status_archived');
+      chip.innerHTML+=` <span style="font-size:var(--xs);opacity:.7">${esc(t('status_archive_badge'))}</span>`;
+    }else chip.innerHTML+=`<span class="cs-x" data-id="${esc(cs.id)}" title="${esc(t('status_archive_action'))}" style="opacity:.5;margin-left:5px;cursor:pointer">✕</span>`;
     if(csAddBtn)csAddBtn.parentNode.insertBefore(chip,csAddBtn);
   });
   if(csAddBtn){
@@ -8381,6 +8407,17 @@ function renderStatus(){
   }
   const wrap=document.getElementById('status-note-wrap');
   const noteIn=document.getElementById('status-note-in');
+  let archive=document.getElementById('status-archive');
+  if(!archive){archive=document.createElement('details');archive.id='status-archive';archive.style.cssText='padding:0 16px 12px;color:var(--txm);font-size:var(--sm)';wrap.after(archive);}
+  const archived=(S.settings.customStatuses||[]).filter(s=>s.archived);
+  archive.hidden=!archived.length;
+  archive.innerHTML=`<summary>${esc(t('status_archive_badge'))} (${archived.length})</summary>`;
+  for(const status of archived){
+    const row=document.createElement('div');row.style.cssText='display:flex;align-items:center;gap:8px;margin-top:8px';
+    const label=document.createElement('span');label.textContent=(status.icon||'📌')+' '+status.label;label.style.cssText='flex:1;min-width:0;overflow-wrap:anywhere';
+    const restore=document.createElement('button');restore.className='media-btn';restore.textContent=t('status_restore');restore.onclick=()=>restoreCustomStatus(status.id);
+    row.append(label,restore);archive.append(row);
+  }
   wrap.classList.toggle('show',d.status==='travel'||d.status==='other');
   noteIn.value=d.statusNote||'';
 }
@@ -8397,12 +8434,7 @@ document.getElementById('status-chips').addEventListener('click',function(e){
     customStatusTap=null;
     e.stopPropagation();
     const id=e.target.dataset.id;
-    const bk=JSON.parse(JSON.stringify(S.settings.customStatuses||[]));
-    const aff={};
-    Object.entries(S.days).forEach(([k,v])=>{if(v.status===id){aff[k]=id;v.status='';}});
-    S.settings.customStatuses=(S.settings.customStatuses||[]).filter(x=>x.id!==id);
-    persist();refreshStatusConsumers();
-    showUndoToast(t('toast_status_deleted'),()=>{S.settings.customStatuses=bk;Object.entries(aff).forEach(([k,s])=>{S.days[k].status=s;});persist();refreshStatusConsumers();});
+    archiveCustomStatus(id);
     return;
   }
   const chip=e.target.closest('.status-chip');
